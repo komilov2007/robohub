@@ -1,14 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import { Logo } from '../assets/icons';
 import roboImg from '../assets/img/robo-stack.png';
+import { useTranslation } from 'react-i18next';
 const LoginRight = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
         flex: 1,
         background: 'linear-gradient(to bottom, #00524F, #186c6c)',
         borderRadius: '16px',
-        m: '16px',
+        m: 'px',
 
         display: 'flex',
         flexDirection: 'column',
@@ -40,7 +43,7 @@ const LoginRight = () => {
               fontWeight: 'bold',
             }}
           >
-            Robohub orqali barchasi oson
+            {t('rtitle')}
           </Typography>
           <Typography
             sx={{
@@ -50,11 +53,10 @@ const LoginRight = () => {
               fontWeight: '400',
               lineHeight: '21px',
               opzacity: 70,
+              mr: '24px',
             }}
           >
-            Platformamiz orqali barcha marketplace laringizni bir joyda
-            ishlating. Vaqtingizni tejang. Platformamiz orqali barcha
-            marketplace laringizni bir joyda ishlating. Vaqtingizni tejang.
+            {t('rtext')}
           </Typography>
         </Box>
         <Box
@@ -80,8 +82,7 @@ const LoginRight = () => {
             mt: '40px',
           }}
         >
-          Platformamiz orqali barcha marketplace laringizni bir joyda <br />{' '}
-          ishlating. Vaqtingizni tejang.
+          {t('rtextBtm')}
         </Typography>
       </Box>
     </Box>

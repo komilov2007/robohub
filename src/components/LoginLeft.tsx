@@ -15,32 +15,35 @@ import MenuItem from '@mui/material/MenuItem';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router-dom';
-import { UserIcon, Bayroq, Qulf } from '../assets/icons';
+import { useTranslation } from 'react-i18next';
+import { UserIcon, Bayroq, Qulf, Rus, Eng } from '../assets/icons';
+import turkey from '../assets/icons/turkey.png';
 
 const LoginLeft = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [checked, setChecked] = useState(false);
-  const [lang, setLang] = useState('uz');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
     setTimeout(() => {
       if (login === 'admin123' && password === '12345') {
-        setError('');
         navigate('/dashboard');
       } else {
-        setError('Login yoki parol noto‘g‘ri');
+        setError(t('error'));
       }
 
       setLoading(false);
-    }, 1500);
+    }, 1000);
   };
 
   return (
@@ -53,8 +56,8 @@ const LoginLeft = () => {
     >
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mr: '37px' }}>
         <Select
-          value={lang}
-          onChange={(e) => setLang(e.target.value)}
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
           size="small"
           sx={{
             ml: '16px',
@@ -73,8 +76,26 @@ const LoginLeft = () => {
               O'zbekcha
             </Box>
           </MenuItem>
-          <MenuItem value="ru">Russian</MenuItem>
-          <MenuItem value="en">English</MenuItem>
+          <MenuItem
+            sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            value="ru"
+          >
+            <Rus />
+            Русский
+          </MenuItem>
+          <MenuItem
+            sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            value="en"
+          >
+            <Eng /> English
+          </MenuItem>
+          <MenuItem
+            sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            value="tr"
+          >
+            <img src={turkey} alt="turkey" width={25} height={25} />
+            Türkçe
+          </MenuItem>
         </Select>
       </Box>
 
@@ -97,7 +118,7 @@ const LoginLeft = () => {
                 mb: '10px',
               }}
             >
-              Hisobingizga kiring
+              {t('title')}
             </Typography>
 
             <Typography
@@ -106,8 +127,9 @@ const LoginLeft = () => {
                 mb: '30px',
               }}
             >
-              Kirish uchun elektron pochta yoki telefon raqamiongiz va <br />
-              parolingizni kiriting
+              {t('subtitleLine1')}
+              <br />
+              {t('subtitleLine2')}
             </Typography>
           </Box>
 
@@ -124,11 +146,11 @@ const LoginLeft = () => {
                   mb: '6px',
                 }}
               >
-                Login
+                {t('login')}
               </Typography>
 
               <TextField
-                placeholder="Telefon raqam yoki elektron pochtangizni kiriting"
+                placeholder={t('loginPlaceholder')}
                 variant="outlined"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
@@ -144,11 +166,13 @@ const LoginLeft = () => {
                 }}
                 sx={{
                   width: 464,
+
                   '& .MuiOutlinedInput-root': {
                     height: '40px',
                     borderRadius: '12px',
                     '&.Mui-focused fieldset': {
                       borderColor: '#60788f',
+                      boxShadow: '0px 0px 3px green',
                     },
                   },
                   '& input': {
@@ -165,13 +189,13 @@ const LoginLeft = () => {
                   mb: '6px',
                 }}
               >
-                Parol
+                {t('password')}
               </Typography>
 
               <TextField
                 type={showPassword ? 'text' : 'password'}
                 variant="outlined"
-                placeholder="Parolni kiriting"
+                placeholder={t('passwordPlaceholder')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
@@ -182,6 +206,7 @@ const LoginLeft = () => {
                     borderRadius: '12px',
                     '&.Mui-focused fieldset': {
                       borderColor: '#60788f',
+                      boxShadow: '0px 0px 3px green',
                     },
                   },
                   '& input': {
@@ -232,11 +257,11 @@ const LoginLeft = () => {
                     onChange={(e) => setChecked(e.target.checked)}
                   />
                 }
-                label="Meni eslab qoling"
+                label={t('rememberMe')}
               />
 
               <Typography sx={{ color: '#00524F' }}>
-                Parolni unutdingizmi?
+                {t('forgotPassword')}
               </Typography>
             </Box>
 
@@ -257,7 +282,7 @@ const LoginLeft = () => {
                 {loading ? (
                   <CircularProgress size={24} color="inherit" />
                 ) : (
-                  'Kirish'
+                  t('enter')
                 )}
               </Button>
 
@@ -270,11 +295,15 @@ const LoginLeft = () => {
                 }}
               >
                 <Typography sx={{ color: '#8796AF' }}>
-                  Hisobingiz yo&apos;qmi?
+                  {t('noAccount')}
                 </Typography>
-                <Typography sx={{ color: '#00524F', fontWeight: '750' }}>
-                  Ro&apos;yxatdan o&apos;tish
-                </Typography>
+                <Button
+                  sx={{ color: '#00524F', fontWeight: '750', mt: '-6px' }}
+                  onClick={() => navigate('/register')}
+                >
+                  {' '}
+                  {t('register')}
+                </Button>
               </Box>
             </Box>
           </Box>
@@ -291,8 +320,8 @@ const LoginLeft = () => {
         }}
       >
         <Typography>© 2025 Robohub</Typography>
-        <Typography>Maxfiylik siyosati</Typography>
-        <Typography component="span">Qo&apos;llab-quvvatlash</Typography>
+        <Typography>{t('privacyPolicy')}</Typography>
+        <Typography component="span">{t('support')}</Typography>
       </Box>
     </Box>
   );
