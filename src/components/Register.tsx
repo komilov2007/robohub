@@ -86,6 +86,15 @@ export const Register = () => {
 
     setLoading(true);
 
+    const userData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.createPassword,
+    };
+
+    localStorage.setItem('registeredUser', JSON.stringify(userData));
+
     setTimeout(() => {
       setLoading(false);
       navigate('/');

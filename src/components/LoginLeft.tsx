@@ -36,8 +36,18 @@ const LoginLeft = () => {
     setError('');
 
     setTimeout(() => {
-      if (login === 'admin123' && password === '12345') {
-        navigate('/dashboard');
+      const savedUser = localStorage.getItem('registeredUser');
+
+      if (!savedUser) {
+        setError("Ro'yxatdan o'tgan user topilmadi");
+        setLoading(false);
+        return;
+      }
+
+      const parsedUser = JSON.parse(savedUser);
+
+      if (login === parsedUser.email && password === parsedUser.password) {
+        navigate('/home');
       } else {
         setError(t('error'));
       }

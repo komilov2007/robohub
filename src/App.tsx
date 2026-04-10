@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import LoginLeft from './components/LoginLeft';
 import LoginRight from './components/LoginRight';
 import Register from './components/Register';
+import Home from './components/Home';
 
 const LoginPage = () => {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }
