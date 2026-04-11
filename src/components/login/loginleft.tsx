@@ -59,6 +59,7 @@ const LoginLeft = () => {
     const savedUser = localStorage.getItem('registeredUser');
     if (!savedUser) {
       setError('email', { message: 'user topilmadi' });
+      return;
     }
     const user = JSON.parse(savedUser);
 
