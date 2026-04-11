@@ -1,6 +1,6 @@
 import { Box, CircularProgress } from '@mui/material';
 import { memo, useState } from 'react';
-import LoginRight from './LoginRight';
+import LoginRight from './login/loginright';
 import {
   TextField,
   Typography,

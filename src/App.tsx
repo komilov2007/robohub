@@ -1,23 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
-import { Box } from '@mui/material';
-import LoginLeft from './components/LoginLeft';
-import LoginRight from './components/LoginRight';
+import { Box, Container, useMediaQuery } from '@mui/material';
 import Register from './components/Register';
-import Home from './components/Home';
+import Loginright from './components/login/loginright';
+import LoginLeft from './components/login/loginleft';
+import Home from './components/home/home';
 
 const LoginPage = () => {
+  const isMobile = useMediaQuery('(max-width:768px)');
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        minHeight: '95vh', // butun ekran
-        width: '100%',
-        overflow: 'auto', // kerak bo‘lsa scroll ishlaydi
-      }}
-    >
-      <LoginLeft />
-      <LoginRight />
-    </Box>
+    <Container maxWidth={false} disableGutters>
+      <Box
+        sx={{
+          display: 'flex',
+          height: '100vh',
+          width: '100%',
+        }}
+      >
+        <LoginLeft />
+        {!isMobile && <Loginright />}
+      </Box>
+    </Container>
   );
 };
 

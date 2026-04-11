@@ -12,7 +12,7 @@ i18n.use(initReactI18next).init({
         loginPlaceholder: 'Telefon raqam yoki elektron pochtangizni kiriting',
         password: 'Parol',
         passwordPlaceholder: 'Parolni kiriting',
-        rememberMe: 'Meni eslab qoling',
+        rememberMe: 'Meni eslab qol',
         forgotPassword: 'Parolni unutdingizmi?',
         enter: 'Kirish',
         noAccount: "Hisobingiz yo'qmi?",
