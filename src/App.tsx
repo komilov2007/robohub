@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Box, Container, useMediaQuery } from '@mui/material';
-import Register from './components/Register';
 import Loginright from './components/login/loginright';
-import LoginLeft from './components/login/loginleft';
+import LoginLeft from './components/login/page';
 import Home from './components/home/home';
 
 const LoginPage = () => {
@@ -32,7 +31,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/register" element={<Register />} />
+      {/* <Route path="/register" element={<Register />} /> */}
       <Route path="/home" element={<Home />} />
     </Routes>
   );

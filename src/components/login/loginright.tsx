@@ -1,10 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import robostack from '../../assets/img/robo-stack.png';
-import { Logo } from '../../assets/icons';
+import ImgRoboStack from '@/assets/img/robo-stack.png';
+import Logo from '@/assets/icons/logo.svg?react';
+
 const LoginRight = () => {
   const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -31,6 +33,8 @@ const LoginRight = () => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             gap: '20px',
+            overflow: 'hidden',
+            minHeight: 0,
           }}
         >
           <Box
@@ -54,6 +58,7 @@ const LoginRight = () => {
               robohub
             </Typography>
           </Box>
+
           <Box>
             <Typography
               sx={{
@@ -62,7 +67,7 @@ const LoginRight = () => {
                 fontWeight: '600',
               }}
             >
-              {t('rtitle')}
+              {t('r_title')}
             </Typography>
             <Typography
               sx={{
@@ -72,9 +77,10 @@ const LoginRight = () => {
                 lineHeight: '21px',
               }}
             >
-              {t('rtext')}
+              {t('r_text')}
             </Typography>
           </Box>
+
           <Box
             sx={{
               display: 'flex',
@@ -83,10 +89,11 @@ const LoginRight = () => {
               height: '100%',
             }}
           >
-            <img src={robostack} alt="stacks" width={'70%'} />
+            <img src={ImgRoboStack} alt="stacks" width={'70%'} />
           </Box>
+
           <Typography sx={{ color: '#FFFFFF', fontSize: '18px' }}>
-            {t('rtextBtm')}
+            {t('r_text_btm')}
           </Typography>
         </Box>
       </Box>
