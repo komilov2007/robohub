@@ -1,104 +1,45 @@
-import { Box, Typography } from '@mui/material';
-import { memo } from 'react';
+import {
+  RightWrapper,
+  RightCard,
+  RightContent,
+  LogoWrapper,
+  LogoBox,
+  TitleBlock,
+  ImageWrapper,
+  StyledImage,
+  LoginRightLogoText,
+  LoginRightTitle,
+  LoginRightText,
+  LoginRightTextBtm,
+} from './style';
 import { useTranslation } from 'react-i18next';
 import ImgRoboStack from '@/assets/img/robo-stack.png';
 import Logo from '@/assets/icons/logo.svg?react';
-
-const LoginRight = () => {
+export const LoginRight = () => {
   const { t } = useTranslation();
-
   return (
-    <Box
-      sx={{
-        width: '50%',
-        height: '100vh',
-        border: 'none',
-        padding: '16px',
-      }}
-    >
-      <Box
-        sx={{
-          background: 'linear-gradient(to bottom, #00524F, #0f8484)',
-          width: '100%',
-          borderRadius: '15px',
-          height: '100%',
-          padding: '40px 55px',
-        }}
-      >
-        <Box
-          sx={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: '20px',
-            overflow: 'hidden',
-            minHeight: 0,
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'start',
-              alignItems: 'center',
-            }}
-          >
-            <Box>
+    <RightWrapper>
+      <RightCard>
+        <RightContent>
+          <LogoWrapper>
+            <LogoBox>
               <Logo />
-            </Box>
-            <Typography
-              sx={{
-                fontSize: '42px',
-                color: '#B8FFB0',
-                fontWeight: '600',
-                mt: '-10px',
-              }}
-            >
-              robohub
-            </Typography>
-          </Box>
+            </LogoBox>
+            <LoginRightLogoText>robohub</LoginRightLogoText>
+          </LogoWrapper>
 
-          <Box>
-            <Typography
-              sx={{
-                fontSize: '32px',
-                color: '#ffffff',
-                fontWeight: '600',
-              }}
-            >
-              {t('r_title')}
-            </Typography>
-            <Typography
-              sx={{
-                color: '#ffffff',
-                opacity: '70%',
-                fontWeight: '400',
-                lineHeight: '21px',
-              }}
-            >
-              {t('r_text')}
-            </Typography>
-          </Box>
+          <TitleBlock>
+            <LoginRightTitle>{t('r_title')}</LoginRightTitle>
+            <LoginRightText>{t('r_text')}</LoginRightText>
+          </TitleBlock>
 
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '100%',
-            }}
-          >
-            <img src={ImgRoboStack} alt="stacks" width={'70%'} />
-          </Box>
+          <ImageWrapper>
+            <StyledImage src={ImgRoboStack} alt="stacks" />
+          </ImageWrapper>
 
-          <Typography sx={{ color: '#FFFFFF', fontSize: '18px' }}>
-            {t('r_text_btm')}
-          </Typography>
-        </Box>
-      </Box>
-    </Box>
+          <LoginRightTextBtm>{t('r_text_btm')}</LoginRightTextBtm>
+        </RightContent>
+      </RightCard>
+    </RightWrapper>
   );
 };
-
-export default memo(LoginRight);

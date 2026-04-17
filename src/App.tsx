@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Box, Container, useMediaQuery } from '@mui/material';
-import Loginright from './components/login/loginright';
 import LoginLeft from './components/login/page';
 import Home from './components/home/home';
+import { LoginRight } from './components/login/loginright';
 
 const LoginPage = () => {
   const isMobile = useMediaQuery('(max-width:768px)');
@@ -16,7 +16,7 @@ const LoginPage = () => {
         }}
       >
         <LoginLeft />
-        {!isMobile && <Loginright />}
+        {!isMobile && <LoginRight />}
       </Box>
     </Container>
   );

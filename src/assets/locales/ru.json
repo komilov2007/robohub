@@ -1,10 +1,14 @@
 {
+  "user_not_found": "Пользователь не найден",
+  "email_not_match": "Электронная почта неверна",
+  "password_not_match": "Password is incorrect",
   "title": "Войдите в свой аккаунт",
   "subtitle_line_1": "Введите свой email или номер телефона",
   "subtitle_line_2": "и пароль для входа",
   "login": "Логин",
   "login_placeholder": "Введите номер телефона или email",
   "password": "Пароль",
+
   "password_placeholder": "Введите пароль",
   "remember_me": "Запомнить меня",
   "forgot_password": "Забыли пароль?",
