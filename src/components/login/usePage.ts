@@ -1,105 +1,92 @@
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useTranslation } from 'react-i18next';
-import { useBoolean } from '../../hook/useBoolean';
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import * as yup from "yup";
 
-type SavedUser = {
+import { useBoolean } from "@/hook/useBoolean";
+import { api } from "@/api/api";
+
+export interface UserProps {
   email: string;
-  password: string;
-};
+  phone: string;
+  user_id: number;
+  full_name: string;
+  last_name: string;
+  first_name: string;
+  is_verified: boolean;
+  isExpiredAccess?: boolean;
+  isExpiredRefresh?: boolean;
+  tokens: {
+    access: string;
+    refresh: string;
+  };
+}
 
 const schema = yup.object({
-  email: yup
-    .string()
-    .trim()
-    .required('email_required')
-    .email('email_invalid')
-    .default(''),
+  contact: yup.string().trim().required("contact_required").default(""),
   password: yup
     .string()
-    .default('')
-    .required('password_required')
-    .min(6, 'password_min_length'),
+    .required("password_required")
+    .min(6, "password_min_length")
+    .default(""),
 });
 
 export type SchemaType = yup.InferType<typeof schema>;
 
-const getSavedUser = (): SavedUser | null => {
-  const savedUser = localStorage.getItem('user');
-
-  if (!savedUser) {
-    return null;
-  }
-
-  try {
-    const parsedUser = JSON.parse(savedUser) as Partial<SavedUser>;
-
-    if (
-      typeof parsedUser.email !== 'string' ||
-      typeof parsedUser.password !== 'string'
-    ) {
-      return null;
-    }
-
-    return {
-      email: parsedUser.email.trim().toLowerCase(),
-      password: parsedUser.password,
-    };
-  } catch {
-    return null;
-  }
-};
-
 export const usePage = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+
   const rememberMe = useBoolean();
   const passwordVisibility = useBoolean();
+
   const {
     control,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting, isDirty, isValid },
+    formState: { errors, isDirty, isValid },
   } = useForm<SchemaType>({
     resolver: yupResolver(schema),
     defaultValues: schema.cast({}),
+    mode: "onChange",
   });
 
+  const loginMutation = useMutation({
+    mutationFn: async (data: SchemaType) => {
+      const res = await api.post<UserProps>("account/login/", data);
+      return res.data;
+    },
+    onSuccess: (user) => {
+      const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : "";
+      document.cookie = `access_token=${user.tokens.access}; path=/; secure; samesite=strict${expires}`;
+      navigate("/home");
+    },
+    onError: (error: any) => {
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data?.detail ||
+        "login_failed";
+
+      setError("root", {
+        type: "server",
+        message,
+      });
+    },
+  });
   const onSubmit = async (data: SchemaType) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    const user = getSavedUser();
-
-    if (!user) {
-      setError('email', { message: 'user_not_found' });
-      return;
-    }
-
-    if (data.email.trim().toLowerCase() !== user.email) {
-      setError('email', { message: 'email_not_match' });
-      return;
-    }
-
-    if (data.password !== user.password) {
-      setError('password', { message: 'password_not_match' });
-      return;
-    }
-
-    navigate('/home');
+    await loginMutation.mutateAsync(data);
   };
-
   const handleLangChange = (value: string) => {
     i18n.changeLanguage(value);
-    localStorage.setItem('i18nextLng', value);
+    localStorage.setItem("i18nextLng", value);
   };
-
   return {
     control,
     handleSubmit,
     errors,
-    isSubmitting,
+    isSubmitting: loginMutation.isPending,
     onSubmit,
     rememberMe,
     isValid,

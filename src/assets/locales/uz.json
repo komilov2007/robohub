@@ -42,6 +42,7 @@
   "have_account": "Hisobingiz bormi?",
   "login_now": "Tizimga kiring",
   "email_required": "Email kiritish shart",
+  "contact_required":"Telefon raqam kiritish shart",
   "email_invalid": "Email noto'g'ri",
   "password_required": "Parol kiritish shart",
   "password_min_length": "Parolingiz noto’g’ri kiritilgan"

@@ -88,7 +88,7 @@ const LoginLeft = () => {
                   <FieldLabel>{t('login')}</FieldLabel>
 
                   <Controller
-                    name="email"
+                    name="contact"
                     control={control}
                     render={({ field, fieldState }) => (
                       <StyledTextField
