@@ -17,42 +17,14 @@ import IconLock from '@/assets/icons/lock.svg?react';
 import IconUser from '@/assets/icons/user.svg?react';
 import theme from '@/theme/theme';
 import { usePage } from './usePage';
-import {
-  Container,
-  LoginFormCenter,
-  LoginFormOptions,
-  AutofillOverride,
-  StyledTextField,
-  FieldLabel,
-  StyledMenuItem,
-  LoginLeftNoAcc,
-  StyledLoginButton,
-  LanguageSelectWrap,
-  LoginOuter,
-  LoginTitleWrap,
-  LoginFieldsWrap,
-  FooterWrap,
-  FooterInner,
-} from './style';
+import {  Container,  LoginFormCenter,  LoginFormOptions,  AutofillOverride,  StyledTextField,  FieldLabel,  StyledMenuItem,  LoginLeftNoAcc,  StyledLoginButton,  LanguageSelectWrap,  LoginOuter,  LoginTitleWrap,  LoginFieldsWrap,  FooterWrap,  FooterInner,} from './style';
 const languages = [
   { value: 'uz', label: "O'zbekcha", Icon: IconFlagUz },
   { value: 'ru', label: 'Русский', Icon: IconFlagRu },
   { value: 'en', label: 'English', Icon: IconFlagEn },
 ];
 const LoginLeft = () => {
-  const {
-    control,
-    handleSubmit,
-    isSubmitting,
-    onSubmit,
-    rememberMe,
-    passwordVisibility,
-    t,
-    i18n,
-    handleLangChange,
-    isDirty,
-    isValid,
-  } = usePage();
+  const { control, handleSubmit, isSubmitting, onSubmit, rememberMe, passwordVisibility, t, i18n, handleLangChange, isDirty, isValid} = usePage();
   return (
     <ThemeProvider theme={theme}>
       <AutofillOverride>
@@ -70,7 +42,6 @@ const LoginLeft = () => {
               ))}
             </Select>
           </LanguageSelectWrap>
-
           <LoginFormCenter>
             <LoginOuter>
               <LoginTitleWrap>
@@ -82,11 +53,9 @@ const LoginLeft = () => {
                   {t('subtitle_line_2')}
                 </Typography>
               </LoginTitleWrap>
-
               <LoginFieldsWrap>
                 <Box>
                   <FieldLabel>{t('login')}</FieldLabel>
-
                   <Controller
                     name="contact"
                     control={control}
@@ -111,10 +80,8 @@ const LoginLeft = () => {
                     )}
                   />
                 </Box>
-
                 <Box>
                   <FieldLabel>{t('password')}</FieldLabel>
-
                   <Controller
                     name="password"
                     control={control}
@@ -154,7 +121,6 @@ const LoginLeft = () => {
                     )}
                   />
                 </Box>
-
                 <LoginFormOptions>
                   <FormControlLabel
                     control={
@@ -165,7 +131,6 @@ const LoginLeft = () => {
                     }
                     label={t('remember_me')}
                   />
-
                   <Typography
                     component={Link}
                     to="/register"
@@ -174,7 +139,6 @@ const LoginLeft = () => {
                     {t('forgot_password')}
                   </Typography>
                 </LoginFormOptions>
-
                 <Box>
                   <StyledLoginButton
                     variant="contained"
@@ -186,10 +150,8 @@ const LoginLeft = () => {
                   >
                     {t('enter')}
                   </StyledLoginButton>
-
                   <LoginLeftNoAcc>
                     <Typography vocab="noAccaunt">{t('no_account')}</Typography>
-
                     <Typography
                       component={Link}
                       to="/register"
@@ -202,7 +164,6 @@ const LoginLeft = () => {
               </LoginFieldsWrap>
             </LoginOuter>
           </LoginFormCenter>
-
           <FooterWrap>
             <FooterInner>
               <Typography vocab="loginBtm">
@@ -219,5 +180,4 @@ const LoginLeft = () => {
     </ThemeProvider>
   );
 };
-
 export default LoginLeft;
