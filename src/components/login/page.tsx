@@ -5,8 +5,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+
 import { ThemeProvider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import IconFlagUz from '@/assets/icons/flag-uz.svg?react';
@@ -16,7 +17,7 @@ import IconLock from '@/assets/icons/lock.svg?react';
 import IconUser from '@/assets/icons/user.svg?react';
 import theme from '@/theme/theme';
 import { usePage } from './usePage';
-import {  Container,  LoginFormCenter,  LoginFormOptions,  AutofillOverride,  StyledTextField,  FieldLabel,  StyledMenuItem,  LoginLeftNoAcc,  StyledLoginButton,  LanguageSelectWrap,  LoginOuter,  LoginTitleWrap,  LoginFieldsWrap,  FooterWrap,  FooterInner, LanguageSelect,} from './style';
+import {  Container,  LoginFormCenter,  LoginFormOptions,  AutofillOverride,  StyledTextField,  FieldLabel,  StyledMenuItem,  LoginLeftNoAcc,  StyledLoginButton,    LoginOuter,  LoginTitleWrap,  LoginFieldsWrap,  FooterWrap,  FooterInner, LanguageSelect, LanguageSelectWrap,} from './style';
 const languages = [
   { value: 'uz', label: "O'zbekcha", Icon: IconFlagUz },
   { value: 'ru', label: 'Русский', Icon: IconFlagRu },
@@ -32,7 +33,6 @@ const LoginLeft = () => {
             <LanguageSelect
              value={i18n.language}
              onChange={(e) => handleLangChange(e.target.value as string)}
-             size="medium"
            >
              {languages.map(({ value, label, Icon }) => (
                <StyledMenuItem key={value} value={value}>
@@ -107,9 +107,9 @@ const LoginLeft = () => {
                                   edge="end"
                                 >
                                   {passwordVisibility.value ? (
-                                    <VisibilityOff />
+                                    <VisibilityOffOutlinedIcon sx={{ fontSize: 18 }} />
                                   ) : (
-                                    <Visibility />
+                                    <VisibilityOutlinedIcon sx={{ fontSize: 18 }} />
                                   )}
                                 </IconButton>
                               </InputAdornment>
@@ -132,7 +132,7 @@ const LoginLeft = () => {
                   />
                   <Typography
                     component={Link}
-                    to="/register"
+                    to="/forget-password"
                     variant="forgetText"
                   >
                     {t('forgot_password')}

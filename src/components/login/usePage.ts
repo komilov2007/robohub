@@ -23,7 +23,9 @@ export interface UserProps {
     refresh: string;
   };
 }
-
+import IconFlagUz from '@/assets/icons/flag-uz.svg?react';
+import IconFlagRu from '@/assets/icons/flag-ru.svg?react';
+import IconFlagEn from '@/assets/icons/flag-en.svg?react';
 const schema = yup.object({
   contact: yup.string().trim().required("contact_required").default(""),
   password: yup
@@ -32,7 +34,11 @@ const schema = yup.object({
     .min(6, "password_min_length")
     .default(""),
 });
-
+const languages = [
+  { value: 'uz', label: "O'zbekcha", Icon: IconFlagUz },
+  { value: 'ru', label: 'Русский', Icon: IconFlagRu },
+  { value: 'en', label: 'English', Icon: IconFlagEn },
+];
 export type SchemaType = yup.InferType<typeof schema>;
 
 export const usePage = () => {
@@ -94,6 +100,6 @@ export const usePage = () => {
     passwordVisibility,
     t,
     i18n,
-    handleLangChange,
+    handleLangChange,languages
   };
 };

@@ -1,6 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 import './themeType';
 const theme = createTheme({
+   typography: {
+    fontFamily: 'Inter, sans-serif',
+  },
+
   components: {
     MuiTypography: {
       variants: [
@@ -16,7 +20,8 @@ const theme = createTheme({
         },
         {
           props: { vocab: 'loginTitle' },
-          style: { fontSize: '32px', fontWeight: '600' },
+          style: { fontSize: '32px', fontWeight: '600'
+           },
         },
         { props: { vocab: 'loginSubTitle' }, style: { color: '#596881' } },
         {

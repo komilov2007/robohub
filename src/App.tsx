@@ -3,11 +3,15 @@ import { Box, Container, useMediaQuery } from '@mui/material';
 import LoginLeft from './components/login/page';
 import Home from './components/home/home';
 import { LoginRight } from './components/login/loginright';
+import  Register  from './components/register/page';
+import Page from './components/forget-login/page';
+import OtpVerifyPage from './components/otp-verificate/page';
+import  Success  from './components/resgister-success/page';
 
 const LoginPage = () => {
   const isMobile = useMediaQuery('(max-width:768px)');
   return (
-    <Container maxWidth={false} disableGutters>
+    <Container sx={{width:"100%",display:'flex'}} maxWidth={false} disableGutters>
       <Box
         sx={{
           display: 'flex',
@@ -16,23 +20,24 @@ const LoginPage = () => {
         }}
       >
         <LoginLeft />
-        {!isMobile && <LoginRight />}
       </Box>
+        {!isMobile && <LoginRight />}
     </Container>
   );
 };
 
-const Dashboard = () => {
-  return <h1>Dashboard sahifasi</h1>;
-};
+
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      {/* <Route path="/register" element={<Register />} /> */}
+      <Route path="/forget-password" element={<Page />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/otp-verify" element={<OtpVerifyPage />} />
+      <Route path='/register/success' element={<Success/>}/>
+
     </Routes>
   );
 }

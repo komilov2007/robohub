@@ -10,7 +10,7 @@ import { Select } from '@mui/material';
 export const Container = styled('form')<{ isLogin: boolean }>`
   flex: 1;
   height: 100vh;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -93,7 +93,7 @@ export const StyledLoginButton = styled(LoadingButton)`
 `;
 
 export const RightWrapper = styled(Box)`
-  width: 50%;
+  width: 100%;
   height: 100vh;
   border: none;
   padding: 16px;
@@ -204,9 +204,13 @@ export const LoginFieldsWrap = styled(Box)`
 export const FooterWrap = styled(Box)`
   display: flex;
   justify-content: center;
+  text-size: 10px !important;  
+  color: #7d879c;
 `;
 
 export const FooterInner = styled(Box)`
   display: flex;
+  text-size: 10px !important;  
+
   gap: 24px;
 `;

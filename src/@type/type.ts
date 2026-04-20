@@ -18,3 +18,39 @@ export interface LoginRequestType {
   contact: string;
   password: string;
 }
+
+export type RegisterFormType = {
+  first_name: string;
+  last_name: string;
+  contact: string;
+  password: string;
+  confirm_password: string;
+};
+
+export type RegisterPayload = {
+  first_name: string;
+  last_name: string;
+  contact: string;
+  password: string;
+  confirm_password: string;
+};
+
+export type RegisterResponsee = {
+  message?: string;
+  detail?: string;
+};
+export type RegisterResponse = {
+  email?: string;
+  phone?: string;
+  user_id?: number;
+  full_name?: string;
+  last_name?: string;
+  first_name?: string;
+  is_verified?: boolean;
+  tokens?: {
+    access?: string;
+    refresh?: string;
+  };
+  message?: string;
+  detail?: string;
+};
