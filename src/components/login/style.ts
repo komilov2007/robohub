@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Select } from '@mui/material';
 
 export const Container = styled('form')<{ isLogin: boolean }>`
   flex: 1;
@@ -169,7 +170,18 @@ export const LoginLeftNoAcc = styled(Box)`
 export const LanguageSelectWrap = styled(Box)`
   display: flex;
   justify-content: flex-end;
+  `;
+
+export  const LanguageSelect = styled(Select)`
+  height: 36px;
+  border-radius: 8px;
+  background-color: #F5F5F5;
+  border: #E4E4E4 solid 1px;
+  '&::before': {
+    border: 'none',
+  },
 `;
+
 
 export const LoginOuter = styled(Box)`
   display: flex;

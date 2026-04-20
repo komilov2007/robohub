@@ -5,7 +5,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Select from '@mui/material/Select';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ThemeProvider } from '@mui/material';
@@ -17,7 +16,7 @@ import IconLock from '@/assets/icons/lock.svg?react';
 import IconUser from '@/assets/icons/user.svg?react';
 import theme from '@/theme/theme';
 import { usePage } from './usePage';
-import {  Container,  LoginFormCenter,  LoginFormOptions,  AutofillOverride,  StyledTextField,  FieldLabel,  StyledMenuItem,  LoginLeftNoAcc,  StyledLoginButton,  LanguageSelectWrap,  LoginOuter,  LoginTitleWrap,  LoginFieldsWrap,  FooterWrap,  FooterInner,} from './style';
+import {  Container,  LoginFormCenter,  LoginFormOptions,  AutofillOverride,  StyledTextField,  FieldLabel,  StyledMenuItem,  LoginLeftNoAcc,  StyledLoginButton,  LanguageSelectWrap,  LoginOuter,  LoginTitleWrap,  LoginFieldsWrap,  FooterWrap,  FooterInner, LanguageSelect,} from './style';
 const languages = [
   { value: 'uz', label: "O'zbekcha", Icon: IconFlagUz },
   { value: 'ru', label: 'Русский', Icon: IconFlagRu },
@@ -30,17 +29,17 @@ const LoginLeft = () => {
       <AutofillOverride>
         <Container isLogin={true} onSubmit={handleSubmit(onSubmit)}>
           <LanguageSelectWrap>
-            <Select
-              value={i18n.language}
-              onChange={(e) => handleLangChange(e.target.value)}
-              size="small"
-            >
-              {languages.map(({ value, label, Icon }) => (
-                <StyledMenuItem key={value} value={value}>
-                  <Icon /> {label}
-                </StyledMenuItem>
-              ))}
-            </Select>
+            <LanguageSelect
+             value={i18n.language}
+             onChange={(e) => handleLangChange(e.target.value as string)}
+             size="medium"
+           >
+             {languages.map(({ value, label, Icon }) => (
+               <StyledMenuItem key={value} value={value}>
+                 <Icon /> {label}
+               </StyledMenuItem>
+             ))}
+           </LanguageSelect>
           </LanguageSelectWrap>
           <LoginFormCenter>
             <LoginOuter>
