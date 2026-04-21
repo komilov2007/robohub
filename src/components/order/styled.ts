@@ -183,10 +183,22 @@ export const ShortcutText = styled(Typography)(() => ({
   fontSize: '12px',
   lineHeight: '16px',
   color: '#98A2B3',
+  background:'#F7F9FB',
+  borderRadius:'6px',
+  padding:'2px 5px',
   whiteSpace: 'nowrap',
+  display:'flex',
+  justifyContent:'center',
+  alignContent:'center'
 }))
 
+export const InputIcon = styled(Box)(()=>({
+  fontSize:'15px',
+  marginTop:4
+}))
 export const FilterButton = styled(Button)(() => ({
+  display:'flex',
+  gap:5,
   minWidth: 'auto',
   height: 40,
   padding: '0 16px',

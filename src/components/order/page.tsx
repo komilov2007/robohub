@@ -1,5 +1,4 @@
 import {UnfoldMoreRounded,} from '@mui/icons-material'
-import {TuneRounded} from '@mui/icons-material'
 import {SearchRounded} from '@mui/icons-material'
 import {KeyboardArrowRightRounded} from '@mui/icons-material'
 import {KeyboardArrowLeftRounded} from '@mui/icons-material'
@@ -12,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableChexol from '@/assets/img/table-chexol.png'
 import { usePage } from './usePage'
+import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
 import {
   DashboardWrap,
   ContentWrap,
@@ -56,8 +56,9 @@ import {
   PageButton,
   PageTextButton,
   EllipsisText,
+  InputIcon,
 } from './styled'
-
+import IconFilter from '@/assets/icons/icon-filter.svg?react'
 const OrdersPage = () => {
  const {
   search,
@@ -108,9 +109,13 @@ const OrdersPage = () => {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <ShortcutText>⌘+K</ShortcutText>
+                <ShortcutText>
+                  <KeyboardCommandKeyIcon />
+                  <InputIcon>+K</InputIcon>
+                </ShortcutText>
               </SearchBox>
-              <FilterButton startIcon={<TuneRounded sx={{ fontSize: 18 }} />}>
+              <FilterButton>
+                <IconFilter/>
                 Filter
               </FilterButton>
             </ToolbarRow>
