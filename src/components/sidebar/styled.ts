@@ -320,7 +320,7 @@ export const GlassBlock = styled(Box)(() => ({
 export const PhoneImage = styled('img')(() => ({
   position: 'absolute',
   top: '-25px',
-  left: '50%',
+  left: '40%',
   transform: 'translateX(-50%)',
   width: 166,
   height: 187,
