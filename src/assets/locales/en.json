@@ -76,6 +76,15 @@
   "otp_expired_description": "3 minutes have passed. This code can no longer be used.",
   "otp_code_required": "Please enter the verification code",
   "otp_verify_failed": "OTP verification failed",
-  "contact_not_found": "Contact not found"
+  "contact_not_found": "Contact not found",
+  "sidebar_dashboard": "Dashboard",
+  "sidebar_orders": "Orders",
+  "sidebar_products": "Products",
+  "sidebar_warehouse": "Warehouse",
+  "sidebar_integration": "Integration",
+  "sidebar_notifications": "Notifications",
+  "sidebar_card_title": "Connect Robosell!",
+  "sidebar_card_description": "For more convenience, also get the Robosell app",
+  "sidebar_card_button": "Connect Robosell"
 
 }

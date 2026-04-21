@@ -83,6 +83,15 @@
   "otp_expired_description": "Прошло 3 минуты. Этот код больше нельзя использовать.",
   "otp_code_required": "Введите код подтверждения",
   "otp_verify_failed": "Ошибка при подтверждении OTP",
-  "contact_not_found": "Контакт не найден"
+  "contact_not_found": "Контакт не найден",
+   "sidebar_dashboard": "Дашборд",
+  "sidebar_orders": "Заказы",
+  "sidebar_products": "Товары",
+  "sidebar_warehouse": "Склад",
+  "sidebar_integration": "Интеграция",
+  "sidebar_notifications": "Уведомления",
+  "sidebar_card_title": "Подключите Robosell!",
+  "sidebar_card_description": "Для большего удобства подключите и приложение Robosell",
+  "sidebar_card_button": "Подключить Robosell"
   
 }

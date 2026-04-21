@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
@@ -42,7 +41,6 @@ const languages = [
 export type SchemaType = yup.InferType<typeof schema>;
 
 export const usePage = () => {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   const rememberMe = useBoolean();
@@ -64,11 +62,17 @@ export const usePage = () => {
       const res = await api.post<UserProps>("account/login/", data);
       return res.data;
     },
-    onSuccess: (user) => {
-      const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : "";
-      document.cookie = `access_token=${user.tokens.access}; path=/; secure; samesite=strict${expires}`;
-      navigate("/home");
-    },
+  onSuccess: (user) => {
+  const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : '';
+
+  document.cookie = `access_token=${user.tokens.access}; path=/; samesite=strict${expires}`;
+
+  if (user.tokens.refresh) {
+    document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
+  }
+
+  window.location.href='/dashboard'
+},
     onError: (error: any) => {
       const message =
         error?.response?.data?.message ||

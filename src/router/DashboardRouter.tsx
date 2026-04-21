@@ -1,0 +1,25 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import DashboardLayout from '@/layout/DashboardLayout';
+import DashboardPage from '@/components/dashboard/page';
+import OrdersPage from '@/components/order/page';
+import ProductsPage from '@/components/product/page';
+import WarehousePage from '@/components/were-house/page';
+import IntegrationPage from '@/components/integration/page';
+
+const DashboardRouter = () => {
+  return (
+    <Routes>
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="products" element={<ProductsPage />} />
+        <Route path="warehouse" element={<WarehousePage />} />
+        <Route path="integration" element={<IntegrationPage />} />
+      </Route>
+
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+  );
+};
+
+export default DashboardRouter;

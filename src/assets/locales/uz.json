@@ -83,5 +83,14 @@
   "otp_expired_description": "3 daqiqa tugadi. Endi bu kod bilan tasdiqlab bo‘lmaydi.",
   "otp_code_required": "Tasdiqlash kodini kiriting",
   "otp_verify_failed": "OTP tasdiqlashda xatolik yuz berdi",
-  "contact_not_found": "Kontakt topilmadi"
+  "contact_not_found": "Kontakt topilmadi",
+   "sidebar_dashboard": "Dashboard",
+  "sidebar_orders": "Buyurtmalar",
+  "sidebar_products": "Mahsulotlar",
+  "sidebar_warehouse": "Ombor",
+  "sidebar_integration": "Integratsiya",
+  "sidebar_notifications": "Bildirishnomalar",
+  "sidebar_card_title": "Robosellni ulang!",
+  "sidebar_card_description": "Yanada qulaylik uchun robosellni ham ilova oling",
+  "sidebar_card_button": "Robosellni ulash"
 }
