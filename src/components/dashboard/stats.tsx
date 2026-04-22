@@ -180,12 +180,13 @@ export default function DashboardStatsSection() {
     <Box sx={{ width: "100%" }}>
       <Typography
         sx={{
-          fontSize: "28px",
-          fontWeight: 700,
+          fontSize: "20px",
+          fontWeight: 600,
           color: "#101828",
           mb: "18px",
           borderBottom: '0.5px solid #E0E6F0',
-          paddingLeft:'15px'
+          padding:'10px 15px',
+          fontFamily:'inter'
         }}
       >
         Dashboard

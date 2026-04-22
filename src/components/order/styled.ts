@@ -75,11 +75,10 @@ export const TitleRow = styled(Box)(() => ({
 }))
 
 export const TitleText = styled(Typography)(() => ({
-  fontSize: '22px',
+  fontSize: '20px',
   lineHeight: '20px',
-  fontWeight: 600,
+  fontWeight: 500,
   color: TEXT_PRIMARY,
-  marginTop:'10px'
 }))
 
 export const TabsRow = styled(Box)(() => ({
@@ -255,7 +254,7 @@ export const StyledTableContainer = styled(TableContainer)(() => ({
 export const HeaderCell = styled(TableCell)(() => ({
   background: '#ffffff',
   padding: '0 14px',
-  height: 48,
+  height: 50,
   borderBottom: `1px solid ${BORDER}`,
   borderRight: `1px solid ${BORDER}`,
   fontSize: '12px',
@@ -276,7 +275,7 @@ export const BodyRow = styled(TableRow)(() => ({
 }))
 
 export const BodyCell = styled(TableCell)(() => ({
-  padding: '8px 14px',
+  padding: '5.4px 14px',
   height: 46,
   borderBottom: `1px solid ${BORDER}`,
   borderRight: `1px solid ${BORDER}`,

@@ -92,5 +92,6 @@
   "sidebar_notifications": "Bildirishnomalar",
   "sidebar_card_title": "Robosellni ulang!",
   "sidebar_card_description": "Yanada qulaylik uchun robosellni ham ilova oling",
-  "sidebar_card_button": "Robosellni ulash"
+  "sidebar_card_button": "Robosellni ulash",
+  "sidebar_chat":"Chat"
 }

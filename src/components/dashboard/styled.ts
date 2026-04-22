@@ -32,7 +32,6 @@ export const Title = styled(Box)({
   fontWeight: 700,
   color: '#1f2937',
 })
-
 export const ImportButton = styled(Button)({
   minWidth: '156px',
   height: '38px',
@@ -48,7 +47,6 @@ export const ImportButton = styled(Button)({
     boxShadow: 'none',
   },
 })
-
 export const Toolbar = styled(Box)({
   padding: '14px 16px',
   borderBottom: '1px solid #e6ebf1',
@@ -58,14 +56,12 @@ export const Toolbar = styled(Box)({
   gap: '16px',
   flexWrap: 'wrap',
 })
-
 export const LeftTools = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
   flexWrap: 'wrap',
 })
-
 export const RightTools = styled(Box)({
   display: 'flex',
   alignItems: 'center',
@@ -73,7 +69,6 @@ export const RightTools = styled(Box)({
   flexWrap: 'wrap',
   marginLeft: 'auto',
 })
-
 export const SearchBox = styled(Box)({
   width: '530px',
   height: '40px',
@@ -86,7 +81,6 @@ export const SearchBox = styled(Box)({
   padding: '0 14px',
   boxSizing: 'border-box',
 })
-
 export const SearchInput = styled(InputBase)({
   flex: 1,
   fontSize: '14px',
@@ -96,7 +90,6 @@ export const SearchInput = styled(InputBase)({
     opacity: 1,
   },
 })
-
 export const ToolButton = styled(Button)({
   height: '40px',
   minWidth: '96px',
@@ -115,7 +108,6 @@ export const ToolButton = styled(Button)({
     boxShadow: 'none',
   },
 })
-
 export const HotkeyBox = styled(Box)({
   minWidth: '48px',
   height: '24px',
@@ -129,22 +121,18 @@ export const HotkeyBox = styled(Box)({
   fontSize: '12px',
   fontWeight: 600,
 })
-
 export const StyledTableContainer = styled(TableContainer)({
   width: '100%',
   overflowX: 'auto',
 })
-
 export const StyledHead = styled(TableHead)({
   background: '#f8fafc',
 })
-
 export const StyledHeadRow = styled(TableRow)({
   '& .MuiTableCell-root': {
     borderBottom: '1px solid #e6ebf1',
   },
 })
-
 export const HeadCell = styled(TableCell)({
   padding: '12px 12px',
   fontSize: '13px',
@@ -153,7 +141,6 @@ export const HeadCell = styled(TableCell)({
   whiteSpace: 'nowrap',
   background: '#f8fafc',
 })
-
 export const BodyCell = styled(TableCell)({
   padding: '8px 12px',
   fontSize: '13px',
@@ -184,7 +171,6 @@ export const ProductCell = styled(Box)({
   gap: '10px',
   minWidth: 0,
 })
-
 export const ProductImage = styled('img')({
   width: '22px',
   height: '22px',
@@ -193,13 +179,11 @@ export const ProductImage = styled('img')({
   border: '1px solid #d0d5dd',
   flexShrink: 0,
 })
-
 export const ProductName = styled(Box)({
   fontSize: '13px',
   color: '#344054',
   lineHeight: 1.35,
 })
-
 export const QuantityInput = styled(InputBase)({
   width: '96px',
   height: '34px',
@@ -213,7 +197,6 @@ export const QuantityInput = styled(InputBase)({
     textAlign: 'left',
   },
 })
-
 export const Footer = styled(Box)({
   height: '56px',
   padding: '0 16px',

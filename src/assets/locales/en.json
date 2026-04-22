@@ -85,6 +85,7 @@
   "sidebar_notifications": "Notifications",
   "sidebar_card_title": "Connect Robosell!",
   "sidebar_card_description": "For more convenience, also get the Robosell app",
-  "sidebar_card_button": "Connect Robosell"
+  "sidebar_card_button": "Connect Robosell",
+  "sidebar_chat":"Chat"
 
 }

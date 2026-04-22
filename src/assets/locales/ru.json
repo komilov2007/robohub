@@ -92,6 +92,8 @@
   "sidebar_notifications": "Уведомления",
   "sidebar_card_title": "Подключите Robosell!",
   "sidebar_card_description": "Для большего удобства подключите и приложение Robosell",
-  "sidebar_card_button": "Подключить Robosell"
+  "sidebar_card_button": "Подключить Robosell",
+  "sidebar_chat":"Чат"
+
   
 }

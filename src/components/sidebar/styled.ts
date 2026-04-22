@@ -299,6 +299,9 @@ export const CardWrap = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'flex-end',
   justifyContent: 'center',
+  paddingBottom:'15px',
+  borderBottom:'1px solid #cac6c633',
+  marginBottom:'-40px'
 }));
 
 export const GlassBlock = styled(Box)(() => ({

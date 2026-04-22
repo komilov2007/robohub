@@ -14,7 +14,7 @@ export interface DashboardOrder {
   moreCount?: number
 }
 
-const ROWS_PER_PAGE = 14
+const ROWS_PER_PAGE = 13
 
 const tabValues = [
   'yangilar',
@@ -34,7 +34,7 @@ const activeTabSchema = yup
   .mixed<TabValue>()
   .oneOf(tabValues)
   .required()
-  .default('topshirilgan')
+  .default('yangilar')
 
 const MOCK_DATA: DashboardOrder[] = [
   {

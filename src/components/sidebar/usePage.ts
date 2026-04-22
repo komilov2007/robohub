@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import IconChat from '@/assets/icons/icon-chat.svg?react';
 import IconIntegration from '@/assets/icons/icon-integration.svg?react';
 import IconProduct from '@/assets/icons/icon-product.svg?react';
 import IconOrder from '@/assets/icons/sidebar-order.svg?react';
@@ -59,6 +60,11 @@ export const usePage = () => {
         title: t('sidebar_integration'),
         path: '/dashboard/integration',
         icon: IconIntegration,
+      }, {
+        id: 6,
+        title: t('sidebar_chat'),
+        path: '/dashboard/chat',
+        icon: IconChat,
       },
     ],
     [t]

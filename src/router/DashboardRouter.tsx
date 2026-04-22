@@ -5,6 +5,8 @@ import OrdersPage from '@/components/order/page';
 import ProductsPage from '@/components/product/page';
 import WarehousePage from '@/components/were-house/page';
 import IntegrationPage from '@/components/integration/page';
+import ProductAddCard from '@/components/product-card-add/page';
+import Page from '@/components/chat/page';
 
 const DashboardRouter = () => {
   return (
@@ -15,6 +17,9 @@ const DashboardRouter = () => {
         <Route path="products" element={<ProductsPage />} />
         <Route path="warehouse" element={<WarehousePage />} />
         <Route path="integration" element={<IntegrationPage />} />
+        <Route path="chat" element={<Page/>} />
+        <Route path='/dashboard/products/add' element={<ProductAddCard/>}/>
+
       </Route>
 
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

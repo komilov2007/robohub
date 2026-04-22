@@ -9,75 +9,13 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import TableChexol from '@/assets/img/table-chexol.png'
+import TablePhone from '@/assets/img/table-phone.webp'
 import { usePage } from './usePage'
 import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
-import {
-  DashboardWrap,
-  ContentWrap,
-  OrdersContainer,
-  OrdersCard,
-  TitleRow,
-  TitleText,
-  TabsRow,
-  TabItem,
-  TabText,
-  TabCount,
-  ToolbarRow,
-  SearchBox,
-  SearchInput,
-  ShortcutText,
-  FilterButton,
-  TableArea,
-  TableWrap,
-  StyledTableContainer,
-  HeaderCell,
-  BodyRow,
-  BodyCell,
-  OrderText,
-  MarketplaceName,
-  ProductWrap,
-  ProductImage,
-  ProductInfo,
-  ProductTitleRow,
-  ProductTitle,
-  ProductExtraBadge,
-  ProductCount,
-  ShopText,
-  MethodText,
-  DateText,
-  PaginationWrap,
-  PaginationLeft,
-  PaginationLabel,
-  StyledRowsSelect,
-  StyledRowsMenuItem,
-  PaginationInfo,
-  PaginationRight,
-  PageButton,
-  PageTextButton,
-  EllipsisText,
-  InputIcon,
-} from './styled'
+import {  DashboardWrap,  ContentWrap,  OrdersContainer,  OrdersCard,  TitleRow,  TitleText,  TabsRow,  TabItem,  TabText,  TabCount,  ToolbarRow,  SearchBox,  SearchInput,  ShortcutText,  FilterButton,  TableArea,  TableWrap,  StyledTableContainer,  HeaderCell,  BodyRow,  BodyCell,  OrderText,  MarketplaceName,  ProductWrap,  ProductImage,  ProductInfo,  ProductTitleRow,  ProductTitle,  ProductExtraBadge,  ProductCount,  ShopText,  MethodText,  DateText,  PaginationWrap,  PaginationLeft,  PaginationLabel,  StyledRowsSelect,  StyledRowsMenuItem,  PaginationInfo,  PaginationRight,  PageButton,  PageTextButton,  EllipsisText,  InputIcon,} from './styled'
 import IconFilter from '@/assets/icons/icon-filter.svg?react'
 const OrdersPage = () => {
- const {
-  search,
-  setSearch,
-  page,
-  setPage,
-  activeTab,
-  setActiveTab,
-  tabs,
-  paginatedRows,
-  totalCount,
-  totalPages,
-  pageNumbers,
-  handlePrevPage,
-  handleNextPage,
-  ROWS_PER_PAGE,
-  isLoading,
-  isError,
-} = usePage()
+ const { search, setSearch, page, setPage, activeTab, setActiveTab, tabs, paginatedRows, totalCount, totalPages, pageNumbers, handlePrevPage, handleNextPage, ROWS_PER_PAGE, isLoading, isError,} = usePage()
   return (
     <DashboardWrap>
       <ContentWrap>
@@ -93,13 +31,11 @@ const OrdersPage = () => {
                   <TabItem
                     key={tab.id}
                     active={active}
-                    onClick={() => setActiveTab(tab.id)}
-                  >
+                    onClick={() => setActiveTab(tab.id)} >
                     <TabText active={active}>{tab.label}</TabText>
                     <TabCount active={active}>{tab.count}</TabCount>
                   </TabItem>
-                )
-              })}
+                )})}
             </TabsRow>
             <ToolbarRow>
               <SearchBox>
@@ -107,17 +43,13 @@ const OrdersPage = () => {
                 <SearchInput
                   placeholder="Qidirish"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
+                  onChange={(e) => setSearch(e.target.value)} />
                 <ShortcutText>
                   <KeyboardCommandKeyIcon />
                   <InputIcon>+K</InputIcon>
                 </ShortcutText>
               </SearchBox>
-              <FilterButton>
-                <IconFilter/>
-                Filter
-              </FilterButton>
+              <FilterButton><IconFilter/> Filter </FilterButton>
             </ToolbarRow>
             <TableArea>
               <TableWrap>
@@ -130,8 +62,7 @@ const OrdersPage = () => {
                       minWidth: 980,
                       borderCollapse: 'separate',
                       borderSpacing: 0,
-                    }}
-                  >
+                    }}>
                     <TableHead>
                       <TableRow>
                         <HeaderCell sx={{ minWidth: 150 }}>
@@ -153,8 +84,7 @@ const OrdersPage = () => {
                               display: 'inline-flex',
                               alignItems: 'center',
                               gap: 4,
-                            }}
-                          >
+                            }}>
                             Topshirilgan vaqti
                             <UnfoldMoreRounded sx={{ fontSize: 16 }} />
                           </span>
@@ -172,8 +102,7 @@ const OrdersPage = () => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 gap: 12,
-                              }}
-                            >
+                              }}>
                               <CircularProgress size={24} />
                               <span>Yuklanmoqda...</span>
                             </div>
@@ -183,7 +112,7 @@ const OrdersPage = () => {
                         <TableRow>
                           <TableCell colSpan={6} sx={{ borderBottom: 'none', p: 2 }}>
                             <Alert severity="error">
-                              Ma&apos;lumotlarni yuklashda xatolik yuz berdi
+                              Malumotlarni yuklashda xatolik yuz berdi
                             </Alert>
                           </TableCell>
                         </TableRow>
@@ -196,9 +125,8 @@ const OrdersPage = () => {
                               textAlign: 'center',
                               py: 6,
                               color: '#667085',
-                            }}
-                          >
-                            Ma&apos;lumot topilmadi
+                            }}>
+                            Malumot topilmadi
                           </TableCell>
                         </TableRow>
                       ) : (
@@ -213,10 +141,7 @@ const OrdersPage = () => {
                             <BodyCell>
                               <ProductWrap>
                                 <ProductImage>
-                                  <img
-                                    src={TableChexol}
-                                    alt={row.product_name}
-                                  />
+                                  <img src={TablePhone} alt={row.product_name} />
                                 </ProductImage>
                                 <ProductInfo>
                                   <ProductTitleRow>
@@ -231,21 +156,14 @@ const OrdersPage = () => {
                                 </ProductInfo>
                               </ProductWrap>
                             </BodyCell>
-                            <BodyCell>
-                              <ShopText>{row.shop_name}</ShopText>
-                            </BodyCell>
-                            <BodyCell>
-                              <MethodText>{row.work_type}</MethodText>
-                            </BodyCell>
-                            <BodyCell>
-                              <DateText>{row.created_at}</DateText>
-                            </BodyCell>
-                          </BodyRow>
-                        ))
-                      )}
+                            <BodyCell><ShopText>{row.shop_name}</ShopText> </BodyCell>
+                            <BodyCell><MethodText>{row.work_type}</MethodText></BodyCell>
+                            <BodyCell><DateText>{row.created_at}</DateText></BodyCell>
+                          </BodyRow>)))}
                     </TableBody>
                   </Table>
                 </StyledTableContainer>
+
                 <PaginationWrap>
                   <PaginationLeft>
                     <PaginationLabel>Showing</PaginationLabel>
@@ -254,38 +172,29 @@ const OrdersPage = () => {
                     </StyledRowsSelect>
                     <PaginationInfo>of {totalCount}</PaginationInfo>
                   </PaginationLeft>
+                  
                   <PaginationRight>
                     <PageButton onClick={handlePrevPage} disabled={page === 1}>
                       <KeyboardArrowLeftRounded sx={{ fontSize: 16 }} />
                     </PageButton>
                     {pageNumbers.map((pageNumber) => (
-                      <PageTextButton
-                        key={pageNumber}
-                        active={page === pageNumber}
-                        onClick={() => setPage(pageNumber)}
-                      >
-                        {pageNumber}
-                      </PageTextButton>
-                    ))}
+                      <PageTextButton key={pageNumber} active={page === pageNumber}
+                        onClick={() => setPage(pageNumber)}> {pageNumber}</PageTextButton> ))}
                     {totalPages > 5 && <EllipsisText>...</EllipsisText>}
-                    <PageTextButton active={page === totalPages}>
-                      {totalPages}
-                    </PageTextButton>
+                    <PageTextButton active={page === totalPages}> {totalPages} </PageTextButton>
                     <PageButton
                       onClick={handleNextPage}
-                      disabled={page === totalPages}
-                    >
+                      disabled={page === totalPages}>
                       <KeyboardArrowRightRounded sx={{ fontSize: 16 }} />
                     </PageButton>
                   </PaginationRight>
                 </PaginationWrap>
+
               </TableWrap>
             </TableArea>
           </OrdersCard>
         </OrdersContainer>
       </ContentWrap>
     </DashboardWrap>
-  )
-}
-
+  )}
 export default OrdersPage
