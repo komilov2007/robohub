@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import SyncRoundedIcon from "@mui/icons-material/SyncRounded";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import PeopleOutlineRoundedIcon from "@mui/icons-material/PeopleOutlineRounded";
@@ -133,7 +133,15 @@ function DashboardStatCard({ item }: { item: StatCardItem }) {
         </Typography>
       </Box>
 
-      <Box sx={{ display: "flex", alignItems: "center", gap: "10px", mb: 1.5, flexWrap: "wrap" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          mb: 1.5,
+          flexWrap: "wrap",
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
           <Typography
             sx={{
@@ -180,13 +188,12 @@ export default function DashboardStatsSection() {
     <Box sx={{ width: "100%" }}>
       <Typography
         sx={{
-          fontSize: "20px",
           fontWeight: 600,
           color: "#101828",
           mb: "18px",
-          borderBottom: '0.5px solid #E0E6F0',
-          padding:'10px 15px',
-          fontFamily:'inter'
+          borderBottom: "0.5px solid #E0E6F0",
+          padding: "15px 15px",
+          fontFamily: "inter",
         }}
       >
         Dashboard
@@ -195,7 +202,7 @@ export default function DashboardStatsSection() {
       <Box
         sx={{
           display: "grid",
-          padding:'0px 10px',
+          padding: "0px 10px",
           gridTemplateColumns: {
             xs: "1fr",
             sm: "1fr 1fr",

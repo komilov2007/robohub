@@ -181,7 +181,6 @@ const OrdersPage = () => {
                       <PageTextButton key={pageNumber} active={page === pageNumber}
                         onClick={() => setPage(pageNumber)}> {pageNumber}</PageTextButton> ))}
                     {totalPages > 5 && <EllipsisText>...</EllipsisText>}
-                    <PageTextButton active={page === totalPages}> {totalPages} </PageTextButton>
                     <PageButton
                       onClick={handleNextPage}
                       disabled={page === totalPages}>

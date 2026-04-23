@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import * as yup from 'yup'
-
 export interface DashboardOrder {
   id: number
   order_number: string
@@ -13,9 +12,7 @@ export interface DashboardOrder {
   image?: string
   moreCount?: number
 }
-
 const ROWS_PER_PAGE = 13
-
 const tabValues = [
   'yangilar',
   'yigishdagilar',
@@ -25,9 +22,7 @@ const tabValues = [
   'bekor_qilingan',
   'qaytarishlar',
 ] as const
-
 type TabValue = (typeof tabValues)[number]
-
 const searchSchema = yup.string().max(100).required().default('')
 const pageSchema = yup.number().integer().min(1).required().default(1)
 const activeTabSchema = yup
@@ -35,7 +30,6 @@ const activeTabSchema = yup
   .oneOf(tabValues)
   .required()
   .default('yangilar')
-
 const MOCK_DATA: DashboardOrder[] = [
   {
     id: 1,
@@ -189,16 +183,13 @@ const MOCK_DATA: DashboardOrder[] = [
     created_at: '12:25, 25.09.2025',
   },
 ]
-
 export const usePage = () => {
   const [search, setSearchState] = useState<string>(searchSchema.getDefault())
   const [page, setPageState] = useState<number>(pageSchema.getDefault())
   const [activeTab, setActiveTabState] = useState<TabValue>(
-    activeTabSchema.getDefault() as TabValue
-  )
+    activeTabSchema.getDefault() as TabValue)
   const [isLoading] = useState<boolean>(false)
   const [isError] = useState<boolean>(false)
-
   const tabs: Array<{ id: TabValue; label: string; count: number }> = [
     { id: 'yangilar', label: 'Yangilar', count: 0 },
     { id: 'yigishdagilar', label: "Yig‘ishdagilar", count: 1 },
@@ -206,86 +197,52 @@ export const usePage = () => {
     { id: 'topshirishni_kutyapti', label: 'Topshirishni kutyapti', count: 1 },
     { id: 'topshirilgan', label: 'Topshirilgan', count: 23 },
     { id: 'bekor_qilingan', label: 'Bekor qilingan', count: 4 },
-    { id: 'qaytarishlar', label: 'Qaytarishlar', count: 0 },
-  ]
-
+    { id: 'qaytarishlar', label: 'Qaytarishlar', count: 0 }, ]
   const setSearch = (value: string) => {
     if (searchSchema.isValidSync(value)) {
       setSearchState(value)
-      setPageState(1)
-    }
-  }
-
+      setPageState(1)}}
   const setPage = (value: number) => {
     if (pageSchema.isValidSync(value)) {
-      setPageState(value)
-    }
-  }
-
+      setPageState(value)}}
   const setActiveTab = (value: string) => {
     if (activeTabSchema.isValidSync(value)) {
       setActiveTabState(value as TabValue)
-      setPageState(1)
-    }
-  }
-
+      setPageState(1) }}
   const rows = useMemo(() => {
     const query = search.trim().toLowerCase()
-
     if (!query) return MOCK_DATA
-
     return MOCK_DATA.filter((item) =>
-      [
-        item.order_number,
+      [ item.order_number,
         item.marketplace,
         item.product_name,
         item.shop_name,
         item.work_type,
-        item.created_at,
-      ]
-        .join(' ')
-        .toLowerCase()
-        .includes(query)
-    )
-  }, [search])
-
+        item.created_at,].join(' ').toLowerCase().includes(query))}, [search])
   const totalCount = rows.length
   const totalPages = Math.max(1, Math.ceil(totalCount / ROWS_PER_PAGE))
-
   const paginatedRows = useMemo(() => {
     const start = (page - 1) * ROWS_PER_PAGE
     const end = start + ROWS_PER_PAGE
     return rows.slice(start, end)
   }, [rows, page])
-
   const pageNumbers = useMemo(() => {
     if (totalPages <= 5) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1)
-    }
-
+      return Array.from({ length: totalPages }, (_, i) => i + 1)}
     if (page <= 3) return [1, 2, 3, 4, 5]
-
     if (page >= totalPages - 2) {
       return [
         totalPages - 4,
         totalPages - 3,
         totalPages - 2,
         totalPages - 1,
-        totalPages,
-      ]
-    }
-
+        totalPages,]}
     return [page - 2, page - 1, page, page + 1, page + 2]
   }, [page, totalPages])
-
   const handlePrevPage = () => {
-    setPageState((prev) => Math.max(prev - 1, 1))
-  }
-
+    setPageState((prev) => Math.max(prev - 1, 1))}
   const handleNextPage = () => {
-    setPageState((prev) => Math.min(prev + 1, totalPages))
-  }
-
+    setPageState((prev) => Math.min(prev + 1, totalPages))}
   return {
     tabs,
     activeTab,

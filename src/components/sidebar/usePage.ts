@@ -1,16 +1,21 @@
-import { useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-
-import IconChat from '@/assets/icons/icon-chat.svg?react';
-import IconIntegration from '@/assets/icons/icon-integration.svg?react';
-import IconProduct from '@/assets/icons/icon-product.svg?react';
-import IconOrder from '@/assets/icons/sidebar-order.svg?react';
-import IconWareHouse from '@/assets/icons/sidebar-ware-house.svg?react';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import IconDashboard from '@/assets/icons/icon-dashboard.svg?react';
-import SidebarPhone from '@/assets/img/sidebar-phone.png';
-import ProfilImg from '@/assets/img/profil.webp'
+import { useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import IconDashboardActive from "@/assets/icons/icon-dashboard-act.svg?react";
+import IconProductActive from "@/assets/icons/icon-product-act.svg?react";
+import IconWareActive from "@/assets/icons/sidebar-ware-act.svg?react";
+import IconIntegrationActive from "@/assets/icons/icon-integration-act.svg?react";
+import IconChatActive from "@/assets/icons/icon-chat-act.svg?react";
+import IconOrderActive from "@/assets/icons/icon-order-act.svg?react";
+import IconChat from "@/assets/icons/icon-chat.svg?react";
+import IconIntegration from "@/assets/icons/icon-integration.svg?react";
+import IconProduct from "@/assets/icons/icon-product.svg?react";
+import IconOrder from "@/assets/icons/sidebar-order.svg?react";
+import IconWareHouse from "@/assets/icons/sidebar-ware-house.svg?react";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import IconDashboard from "@/assets/icons/icon-dashboard.svg?react";
+import SidebarPhone from "@/assets/img/sidebar-phone.png";
+import ProfilImg from "@/assets/img/profil.webp";
 export const usePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,66 +24,73 @@ export const usePage = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const cardData = {
-    title: t('sidebar_card_title'),
-    description: t('sidebar_card_description'),
-    buttonText: t('sidebar_card_button'),
+    title: t("sidebar_card_title"),
+    description: t("sidebar_card_description"),
+    buttonText: t("sidebar_card_button"),
     image: SidebarPhone,
   };
 
   const handleInstall = () => {
-    navigate('/dashboard/integration');
+    navigate("/dashboard/integration");
   };
 
   const menus = useMemo(
     () => [
       {
         id: 1,
-        title: t('sidebar_dashboard'),
-        path: '/dashboard',
+        title: t("sidebar_dashboard"),
+        path: "/dashboard",
         icon: IconDashboard,
+        iconAct: IconDashboardActive,
       },
       {
         id: 2,
-        title: t('sidebar_orders'),
-        path: '/dashboard/orders',
+        title: t("sidebar_orders"),
+        path: "/dashboard/orders",
         icon: IconOrder,
+        iconAct: IconOrderActive,
       },
       {
         id: 3,
-        title: t('sidebar_products'),
-        path: '/dashboard/products',
+        title: t("sidebar_products"),
+        path: "/dashboard/products",
         icon: IconProduct,
+        iconAct: IconProductActive,
       },
       {
         id: 4,
-        title: t('sidebar_warehouse'),
-        path: '/dashboard/warehouse',
+        title: t("sidebar_warehouse"),
+        path: "/dashboard/warehouse",
         icon: IconWareHouse,
+        iconAct: IconWareActive,
       },
       {
         id: 5,
-        title: t('sidebar_integration'),
-        path: '/dashboard/integration',
+        title: t("sidebar_integration"),
+        path: "/dashboard/integration",
         icon: IconIntegration,
-      }, {
+        iconAct: IconIntegrationActive,
+      },
+      {
         id: 6,
-        title: t('sidebar_chat'),
-        path: '/dashboard/chat',
+        title: t("sidebar_chat"),
+        path: "/dashboard/chat",
         icon: IconChat,
+        iconAct: IconChatActive,
       },
     ],
-    [t]
+    [t],
   );
 
   const notification = {
-    title: t('sidebar_notifications'),
+    title: t("sidebar_notifications"),
     count: 2,
     icon: NotificationsNoneOutlinedIcon,
   };
 
   const user = {
-    fullName: 'Sarvarbek Erkinjonov',
-    phone: '+998(50) 074 20-00',
+    fullName: "Sarvarbek Erkinjonov",
+    phone: "+998(50) 074 20-00",
     image: ProfilImg,
   };
 
@@ -91,8 +103,8 @@ export const usePage = () => {
   };
 
   const isActive = (path: string) => {
-    if (path === '/dashboard') {
-      return location.pathname === '/dashboard';
+    if (path === "/dashboard") {
+      return location.pathname === "/dashboard";
     }
 
     return location.pathname.startsWith(path);

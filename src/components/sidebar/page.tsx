@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import IconLogo from '@/assets/icons/sidebar-logo.svg?react';
-import IconArrow from '@/assets/icons/sidebar-arrow.svg?react';
-import IconArrowLeft from '@/assets/icons/sidebar-arrow-left.svg?react';
+import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
+import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
+import IconArrowLeft from "@/assets/icons/sidebar-arrow-left.svg?react";
 
-import { usePage } from './usePage';
+import { usePage } from "./usePage";
 import {
   AvatarWrap,
   Badge,
@@ -30,7 +30,7 @@ import {
   UserInfo,
   UserName,
   UserPhone,
-} from './styled';
+} from "./styled";
 
 type SidebarPageProps = {
   onCollapseChange?: (collapsed: boolean) => void;
@@ -74,6 +74,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
           {menus.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
+            const IconAct = item.iconAct;
 
             return (
               <MenuItem
@@ -83,7 +84,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
                 onClick={() => handleNavigate(item.path)}
               >
                 <MenuIconWrap active={active}>
-                  <Icon />
+                  {active ? <IconAct /> : <Icon />}
                 </MenuIconWrap>
 
                 <MenuText active={active} collapsed={collapsed}>
@@ -121,7 +122,9 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
             </NotificationsText>
           </NotificationsLeft>
 
-          {!collapsed && <Badge collapsed={collapsed}>{notification.count}</Badge>}
+          {!collapsed && (
+            <Badge collapsed={collapsed}>{notification.count}</Badge>
+          )}
         </NotificationsRow>
 
         <UserCard collapsed={collapsed}>
