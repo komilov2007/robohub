@@ -24,8 +24,6 @@ export interface WarehouseRenderItem {
   row?: WarehouseRow;
 }
 
-/* -------------------- yup schemas -------------------- */
-
 const formSchema = yup.object({
   text: yup
     .string()
@@ -242,8 +240,6 @@ const createRows = (): WarehouseRow[] => {
 };
 
 const allRows = createRows();
-
-/* -------------------- hook -------------------- */
 
 export const usePage = () => {
   const [page, setPageState] = useState<number>(pageSchema.getDefault());
