@@ -1,11 +1,14 @@
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import KeyboardCommandKeyIcon from '@mui/icons-material/KeyboardCommandKey';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import SearchIcon from '@mui/icons-material/Search';
-import IconStar from '@/assets/icons/icon-star.svg?react'
-import IconAdd from '@/assets/icons/icon-add.svg?react'
-import usePage from './usePage';
+import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
+import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SearchIcon from "@mui/icons-material/Search";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
+import IconStar from "@/assets/icons/icon-star.svg?react";
+import IconAdd from "@/assets/icons/icon-add.svg?react";
+
+import usePage from "./usePage";
 import {
   CardTop,
   CreateButton,
@@ -46,28 +49,29 @@ import {
   StatValue,
   StatusBadge,
   StatusRow,
-  StyledTab,
-  StyledTabs,
-  TabCount,
-  TabLabel,
-  TabsWrapper,
-  Title,
   TopRightAction,
-} from './styled';
-import { useNavigate } from 'react-router-dom';
+  Title,
+  TabsWrapper,
+  StyledTabs,
+  StyledTab,
+  TabLabel,
+  TabCount,
+} from "./styled";
 
 export default function Page() {
+  const { t } = useTranslation();
   const { tab, setTab, search, setSearch, tabs, filteredProducts } = usePage();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   return (
     <PageWrapper>
       <Header>
-        <Title>Mening tovarlarim</Title>
+        <Title>{t("my_products")}</Title>
 
-        <CreateButton to={'/dashboard/products/add'}>
+        <CreateButton to="/dashboard/products/add">
           <IconAdd />
-      Tovar kartochkasini yaratish
+          {t("create_product_card")}
         </CreateButton>
       </Header>
 
@@ -84,7 +88,7 @@ export default function Page() {
               value={index}
               label={
                 <TabLabel>
-                  <span>{item.label}</span>
+                  <span>{t(item.label)}</span>
                   <TabCount>{item.count}</TabCount>
                 </TabLabel>
               }
@@ -100,7 +104,7 @@ export default function Page() {
           </SearchLeft>
 
           <SearchInput
-            placeholder="Nomi, SKU yoki barcode bo'yicha izlash"
+            placeholder={t("product_search_placeholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -126,134 +130,143 @@ export default function Page() {
 
                     <ProductInfo>
                       <StatusRow>
-                        <StatusBadge
-                          status={item.status}>
-                         Status: {item.status}
+                        <StatusBadge status={item.status}>
+                          {t("status")}: {item.status}
                         </StatusBadge>
                       </StatusRow>
 
                       <ProductName>{item.name}</ProductName>
 
                       <ProductMeta>
-                        ID: {item.articleId} &nbsp;&nbsp; SKU: {item.sku}
+                        {t("product_id")}: {item.articleId} &nbsp;&nbsp;{" "}
+                        {t("sku")}: {item.sku}
                       </ProductMeta>
 
-                      <ProductPrice>Narx: {item.price}</ProductPrice>
+                      <ProductPrice>
+                        {t("price")}: {item.price}
+                      </ProductPrice>
 
                       <MarketsWrapper>
-  <MarketsColumn>
-    {leftColumn.map((platform, index) => {
-      const isShareButton = platform.status === 'Ulash';
- 
-      return (
-        <MarketRow key={`${platform.name}-${index}`}>
-          <MarketName>{platform.name}</MarketName>
+                        <MarketsColumn>
+                          {leftColumn.map((platform, index) => {
+                            const isShareButton = platform.status === "Ulash";
 
-         <MiniBadge tone={platform.tone}onClick={() => {
-              if (isShareButton) {
-                navigate('/dashboard/integration');
-              }
-            }}
-              sx={{
-              borderRadius:'10px',
-              padding:'1px 6px',
-              fontSize:'12px',
+                            return (
+                              <MarketRow key={`${platform.name}-${index}`}>
+                                <MarketName>{platform.name}</MarketName>
 
-              cursor: isShareButton ? 'pointer' : 'default',
-            }}>
-             {platform.status}
-              </MiniBadge>
-        </MarketRow>
-      );
-    })}
-  </MarketsColumn>
+                                <MiniBadge
+                                  tone={platform.tone}
+                                  onClick={() => {
+                                    if (isShareButton) {
+                                      navigate("/dashboard/integration");
+                                    }
+                                  }}
+                                  sx={{
+                                    borderRadius: "10px",
+                                    padding: "1px 6px",
+                                    fontSize: "12px",
+                                    cursor: isShareButton
+                                      ? "pointer"
+                                      : "default",
+                                  }}
+                                >
+                                  {isShareButton ? t("share") : platform.status}
+                                </MiniBadge>
+                              </MarketRow>
+                            );
+                          })}
+                        </MarketsColumn>
 
-  <MarketsColumn>
-    {rightColumn.map((platform, index) => {
-      const isShareButton = platform.status === 'Ulash';
+                        <MarketsColumn>
+                          {rightColumn.map((platform, index) => {
+                            const isShareButton = platform.status === "Ulash";
 
-      return (
-        <MarketRow key={`${platform.name}-${index}`}>
-          <MarketName>{platform.name}</MarketName>
+                            return (
+                              <MarketRow key={`${platform.name}-${index}`}>
+                                <MarketName>{platform.name}</MarketName>
 
-          <MiniBadge
-            tone={platform.tone}
-            onClick={() => {
-              if (isShareButton) {
-                navigate('/dashboard/integration');
-              }
-            }}
-              sx={{
-              borderRadius:'10px',
-              padding:'2px 6px',
-              fontSize:'12px',
-              cursor: isShareButton ? 'pointer' : 'default',
-            }}
-          >
-            {platform.status}
-          </MiniBadge>
-        </MarketRow>
-      );
-    })}
-  </MarketsColumn>
-</MarketsWrapper>
+                                <MiniBadge
+                                  tone={platform.tone}
+                                  onClick={() => {
+                                    if (isShareButton) {
+                                      navigate("/dashboard/integration");
+                                    }
+                                  }}
+                                  sx={{
+                                    borderRadius: "10px",
+                                    padding: "2px 6px",
+                                    fontSize: "12px",
+                                    cursor: isShareButton
+                                      ? "pointer"
+                                      : "default",
+                                  }}
+                                >
+                                  {isShareButton ? t("share") : platform.status}
+                                </MiniBadge>
+                              </MarketRow>
+                            );
+                          })}
+                        </MarketsColumn>
+                      </MarketsWrapper>
+
                       <PlatformTabs>
                         <PlatformTab>Ozon</PlatformTab>
                         <PlatformTab active>Wildberries</PlatformTab>
                         <PlatformTab>Uzum Market</PlatformTab>
                       </PlatformTabs>
 
-                  <StatsBox>
-  <StatsRow>
-    <StatItem>
-      <StatTop>
-        <IconStar />
-        <StatValue>{item.stats.rating}</StatValue>
-      </StatTop>
-      <StatLabel>Reyting</StatLabel>
-      <StatDivider />
-    </StatItem>
+                      <StatsBox>
+                        <StatsRow>
+                          <StatItem>
+                            <StatTop>
+                              <IconStar />
+                              <StatValue>{item.stats.rating}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("rating")}</StatLabel>
+                            <StatDivider />
+                          </StatItem>
 
-    <StatItem>
-      <StatTop>
-        <StatValue>{item.stats.views}</StatValue>
-      </StatTop>
-      <StatLabel>Ko‘rishlar</StatLabel>
-      <StatDivider />
-    </StatItem>
+                          <StatItem>
+                            <StatTop>
+                              <StatValue>{item.stats.views}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("views")}</StatLabel>
+                            <StatDivider />
+                          </StatItem>
 
-    <StatItem>
-      <StatTop>
-        <StatValue>{item.stats.conversion}</StatValue>
-      </StatTop>
-      <StatLabel>Konversiya</StatLabel>
-      <StatDivider />
-    </StatItem>
+                          <StatItem>
+                            <StatTop>
+                              <StatValue>{item.stats.conversion}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("conversion")}</StatLabel>
+                            <StatDivider />
+                          </StatItem>
 
-    <StatItem>
-      <StatTop>
-        <StatValue>{item.stats.sold}</StatValue>
-      </StatTop>
-      <StatLabel>Sotilgan</StatLabel>
-      <StatDivider />
-    </StatItem>
+                          <StatItem>
+                            <StatTop>
+                              <StatValue>{item.stats.sold}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("sold")}</StatLabel>
+                            <StatDivider />
+                          </StatItem>
 
-    <StatItem>
-      <StatTop>
-        <StatValue>{item.stats.returned}</StatValue>
-      </StatTop>
-      <StatLabel>Qaytarilgan</StatLabel>
-      <StatDivider />
-    </StatItem>
+                          <StatItem>
+                            <StatTop>
+                              <StatValue>{item.stats.returned}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("returned")}</StatLabel>
+                            <StatDivider />
+                          </StatItem>
 
-    <StatItem>
-      <StatTop>
-        <StatValue>{item.stats.invalid}</StatValue>
-      </StatTop>
-      <StatLabel>Yaroqsiz</StatLabel>
-    </StatItem>
-  </StatsRow>
-</StatsBox>
+                          <StatItem>
+                            <StatTop>
+                              <StatValue>{item.stats.invalid}</StatValue>
+                            </StatTop>
+                            <StatLabel>{t("invalid")}</StatLabel>
+                          </StatItem>
+                        </StatsRow>
+                      </StatsBox>
                     </ProductInfo>
                   </ProductMain>
 
@@ -272,20 +285,18 @@ export default function Page() {
               <Inventory2OutlinedIcon
                 sx={{
                   fontSize: 34,
-                  color: '#D0D5DD',
+                  color: "#D0D5DD",
                 }}
               />
             </EmptyStateIconBox>
 
-            <EmptyStateTitle>Mahsulotlar ro‘yxati bo‘sh</EmptyStateTitle>
+            <EmptyStateTitle>{t("empty_products_title")}</EmptyStateTitle>
 
             <EmptyStateDescription>
-              Mahsulot joylashtirishni vaqt va nervlardan asrang.
+              {t("empty_products_description")}
             </EmptyStateDescription>
 
-            <EmptyStateButton>
-              Yana bir tovar qo‘shish
-            </EmptyStateButton>
+            <EmptyStateButton>{t("add_another_product")}</EmptyStateButton>
           </EmptyStateBox>
         </EmptyStateWrapper>
       )}

@@ -1,5 +1,6 @@
 import { InputAdornment, TableBody, ThemeProvider } from "@mui/material";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
@@ -74,6 +75,8 @@ import {
 import { Controller } from "react-hook-form";
 
 const WereHouse = () => {
+  const { t } = useTranslation();
+
   const {
     page,
     setPage,
@@ -99,18 +102,18 @@ const WereHouse = () => {
     <ThemeProvider theme={theme}>
       <PageBg>
         <HeaderBar>
-          <HeaderTitle>Buyurtmalar</HeaderTitle>
+          <HeaderTitle>{t("orders_title")}</HeaderTitle>
 
           <ImportLink to="/">
             <IconImport />
-            <ImportText>Import exel fayl</ImportText>
+            <ImportText>{t("import_excel_file")}</ImportText>
           </ImportLink>
         </HeaderBar>
 
         <ToolbarSection>
           <ToolbarLeft>
             <StyledInput
-              placeholder="Qidirish..."
+              placeholder={t("search_placeholder_dots")}
               startAdornment={
                 <InputAdornment position="start">
                   <SearchIcon />
@@ -126,24 +129,24 @@ const WereHouse = () => {
 
             <FilterAction>
               <IconFilter />
-              Filter
+              {t("filter")}
             </FilterAction>
           </ToolbarLeft>
 
           <ToolbarRight>
             <ToolbarLink to="/">
               <IconMapping />
-              Mapping
+              {t("mapping")}
             </ToolbarLink>
 
             <ToolbarLink to="/">
               <IconManual />
-              Qo'llanma
+              {t("manual")}
             </ToolbarLink>
 
             <ToolbarAction onClick={handleOpenModal}>
               <IconBasket />
-              Stoplist
+              {t("stoplist")}
             </ToolbarAction>
           </ToolbarRight>
 
@@ -154,7 +157,7 @@ const WereHouse = () => {
           >
             <ModalCard>
               <ModalHeader>
-                <ModalTitle>Stoplist</ModalTitle>
+                <ModalTitle>{t("stoplist")}</ModalTitle>
 
                 <ModalCloseButton onClick={handleCloseModal}>
                   <IconCancel />
@@ -166,32 +169,27 @@ const WereHouse = () => {
                   <IconInfo />
                 </ModalInfoIconWrap>
 
-                <ModalInfoText>
-                  Stoplist — bu minimal miqdordan kam qolgan yoki sotuv uchun
-                  vaqtincha to‘xtatilgan tovarlar ro‘yxati. Ushbu ro‘yxat ombor
-                  zaxirasini nazorat qilish, yetishmayotgan mahsulotlarni
-                  aniqlash va ortiqcha chiqimlarning oldini olish uchun xizmat
-                  qiladi.
-                </ModalInfoText>
+                <ModalInfoText>{t("stoplist_description")}</ModalInfoText>
               </ModalInfoBox>
 
               <ModalFieldSection>
-                <ModalFieldTitle>Minimal miqdor</ModalFieldTitle>
+                <ModalFieldTitle>{t("minimum_quantity")}</ModalFieldTitle>
+
                 <Controller
                   control={control}
                   name="text"
                   render={({ field }) => (
                     <StyledField
                       {...field}
-                      placeholder="Stoplist uchun minimal miqdor kiriting"
+                      placeholder={t("enter_stoplist_min_quantity")}
                     />
                   )}
-                ></Controller>
+                />
               </ModalFieldSection>
 
               <ModalFooter>
                 <ModalCancelButton onClick={handleCloseModal}>
-                  Yopish
+                  {t("close")}
                 </ModalCancelButton>
 
                 <ModalSaveButton
@@ -200,7 +198,7 @@ const WereHouse = () => {
                   type="submit"
                   onClick={handleSubmit(onSubmit)}
                 >
-                  Saqlash
+                  {t("save")}
                 </ModalSaveButton>
               </ModalFooter>
             </ModalCard>
@@ -214,14 +212,16 @@ const WereHouse = () => {
                 <StyledTableHead>
                   <StyledHeaderRow>
                     <HeaderCell sx={{ width: "380px" }}>
-                      Mahsulot nomi
+                      {t("product_name")}
                     </HeaderCell>
-                    <HeaderCell sx={{ width: "150px" }}>SKU</HeaderCell>
-                    <HeaderCell sx={{ width: "160px" }}>IKPU</HeaderCell>
+
+                    <HeaderCell sx={{ width: "150px" }}>{t("sku")}</HeaderCell>
+
+                    <HeaderCell sx={{ width: "160px" }}>{t("ikpu")}</HeaderCell>
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        Kirish narxi
+                        {t("purchase_price")}
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -230,7 +230,7 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        Sotuv narxi
+                        {t("sale_price")}
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -239,7 +239,7 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        Soni
+                        {t("quantity")}
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -248,7 +248,7 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "160px" }}>
                       <SortHeaderWrap>
-                        Qo'shilgan vaqti
+                        {t("added_time")}
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -305,7 +305,7 @@ const WereHouse = () => {
 
             <Footer>
               <FooterLeft>
-                <FooterText>Showing</FooterText>
+                <FooterText>{t("showing")}</FooterText>
 
                 <RowsPerPageControl size="small">
                   <StyledSelect
@@ -322,7 +322,9 @@ const WereHouse = () => {
                   </StyledSelect>
                 </RowsPerPageControl>
 
-                <FooterText>of {totalCount}</FooterText>
+                <FooterText>
+                  {t("of")} {totalCount}
+                </FooterText>
               </FooterLeft>
 
               <FooterRight>

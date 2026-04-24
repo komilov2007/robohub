@@ -1,5 +1,6 @@
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 type ActiveProps = {
   active?: boolean;
@@ -142,7 +143,20 @@ export const MenuItem = styled(Box, {
     background: active ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)",
   },
 }));
-
+export const MenuItemLogout = styled(Box)({});
+export const MenuItemLogoutBtn = styled(Button)({
+  textTransform: "none",
+  color: "#C5CFDD",
+  height: 45,
+  borderRadius: 8,
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  userSelect: "none",
+  width: "100%",
+  justifyContent: "flex-start",
+  gap: "10px",
+});
 export const MenuIconWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "active",
 })<ActiveProps>(({ active }) => ({
@@ -230,8 +244,75 @@ export const Badge = styled(Box, {
   flexShrink: 0,
   marginLeft: collapsed ? 0 : 8,
 }));
+export const LogoutModalBox = styled(Box)(() => ({
+  width: 420,
+  borderRadius: "16px",
+  background: "#fff",
+  padding: "28px 24px",
+  boxShadow: "0px 20px 48px rgba(16,24,40,0.18)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "18px",
+  outline: "none",
+}));
 
-export const UserCard = styled(Box, {
+export const LogoutIconWrap = styled(Box)(() => ({
+  width: 56,
+  height: 56,
+  borderRadius: "50%",
+  background: "#FEE4E2",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+export const LogoutTitle = styled(Typography)(() => ({
+  fontSize: 18,
+  fontWeight: 600,
+  color: "#101828",
+  fontFamily: "Inter",
+}));
+
+export const LogoutDescription = styled(Typography)(() => ({
+  fontSize: 14,
+  color: "#667085",
+  textAlign: "center",
+  maxWidth: 320,
+  fontFamily: "Inter",
+}));
+
+export const LogoutButtons = styled(Box)(() => ({
+  display: "flex",
+  gap: "12px",
+  width: "100%",
+  marginTop: 8,
+}));
+
+export const LogoutCancelButton = styled(Button)(() => ({
+  height: 40,
+  borderRadius: "10px",
+  border: "1px solid #E4E7EC",
+  color: "#344054",
+  background: "#fff",
+  textTransform: "none",
+  fontWeight: 500,
+  fontFamily: "Inter",
+}));
+
+export const LogoutConfirmButton = styled(Button)(() => ({
+  height: 40,
+  borderRadius: "10px",
+  background: "#D92D20",
+  color: "#fff",
+  textTransform: "none",
+  fontWeight: 500,
+  fontFamily: "Inter",
+  "&:hover": {
+    background: "#B42318",
+  },
+}));
+export const UserCard = styled(Link, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
   minHeight: 50,
@@ -244,6 +325,7 @@ export const UserCard = styled(Box, {
   padding: collapsed ? "8px" : "8px 10px",
   justifyContent: collapsed ? "center" : "flex-start",
   marginRight: "5px",
+  textDecoration: "none",
 }));
 
 export const AvatarWrap = styled(Box)(() => ({
@@ -290,7 +372,6 @@ export const UserPhone = styled(Typography)(() => ({
 export const CardWrap = styled(Box)(() => ({
   width: "100%",
   maxWidth: 242,
-  marginTop: 60,
   height: 300,
   position: "relative",
   display: "flex",

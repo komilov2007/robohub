@@ -53,7 +53,7 @@ export const ImportLink = styled(Link)({
   height: "32px",
   borderRadius: "8px",
   color: "white",
-  width: "137px",
+  width: "157px",
   gap: "6px",
   textDecoration: "none",
 });

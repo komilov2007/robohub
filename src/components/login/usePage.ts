@@ -22,9 +22,10 @@ export interface UserProps {
     refresh: string;
   };
 }
-import IconFlagUz from '@/assets/icons/flag-uz.svg?react';
-import IconFlagRu from '@/assets/icons/flag-ru.svg?react';
-import IconFlagEn from '@/assets/icons/flag-en.svg?react';
+import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
+import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
+import IconFlagEn from "@/assets/icons/flag-en.svg?react";
+import toast from "react-hot-toast";
 const schema = yup.object({
   contact: yup.string().trim().required("contact_required").default(""),
   password: yup
@@ -34,9 +35,9 @@ const schema = yup.object({
     .default(""),
 });
 const languages = [
-  { value: 'uz', label: "O'zbekcha", Icon: IconFlagUz },
-  { value: 'ru', label: 'Русский', Icon: IconFlagRu },
-  { value: 'en', label: 'English', Icon: IconFlagEn },
+  { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
+  { value: "ru", label: "Русский", Icon: IconFlagRu },
+  { value: "en", label: "English", Icon: IconFlagEn },
 ];
 export type SchemaType = yup.InferType<typeof schema>;
 
@@ -62,17 +63,19 @@ export const usePage = () => {
       const res = await api.post<UserProps>("account/login/", data);
       return res.data;
     },
-  onSuccess: (user) => {
-  const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : '';
+    onSuccess: (user) => {
+      const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : "";
 
-  document.cookie = `access_token=${user.tokens.access}; path=/; samesite=strict${expires}`;
+      document.cookie = `access_token=${user.tokens.access}; path=/; samesite=strict${expires}`;
 
-  if (user.tokens.refresh) {
-    document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
-  }
-
-  window.location.href='/dashboard'
-},
+      if (user.tokens.refresh) {
+        document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
+      }
+      toast.success("Tizimga xush kelibsiz!!!");
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 800);
+    },
     onError: (error: any) => {
       const message =
         error?.response?.data?.message ||
@@ -88,10 +91,6 @@ export const usePage = () => {
   const onSubmit = async (data: SchemaType) => {
     await loginMutation.mutateAsync(data);
   };
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-    localStorage.setItem("i18nextLng", value);
-  };
   return {
     control,
     handleSubmit,
@@ -104,6 +103,6 @@ export const usePage = () => {
     passwordVisibility,
     t,
     i18n,
-    handleLangChange,languages
+    languages,
   };
 };

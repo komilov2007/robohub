@@ -1,18 +1,77 @@
-import IconArrow from '@/assets/icons/icon-arrow.svg?react';
-import IconArrowRight from '@/assets/icons/icon-right-arrow.svg?react';
-import IconSku from '@/assets/icons/icon-sku.svg?react';
-import IconSee from '@/assets/icons/icon-see.svg?react';
-import Iconbox from '@/assets/icons/icon-add-box.svg?react';
-import IconKaspiy from '@/assets/icons/icon-kaspiy.svg?react';
-import IconRobo from '@/assets/icons/icon-robo.svg?react';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Arrow } from '../otp-verificate/styled';
-import { useNavigate } from 'react-router-dom';
-import { BackButton, BreadcrumbText, BreadcrumbsRow, ContentLayout, FieldBlock, FieldLabel, HiddenFileInput, HintText, MainColumn, MarketplaceBadge, MarketplaceItem, MarketplaceList, MarketplaceName, MarktBtn, MarktPlace, MediaPreviewRow, MediaThumb, PageWrapper, PlusThumb, RequiredMark, RichInput, RichToolbar, SectionBody, SectionCard, SectionHeader, SectionTitle, Sidebar, SidebarCard, SidebarDescription, SidebarTitle, Spacer12, StepBorder, StepCaption, StepCircle, StepContent, StepLabel, StepList, StepRow, StrongHead, StrongHeadLink, StyledCheckbox, StyledFormControl, StyledMenuItem, StyledSelect, StyledTextField, SubmitButton, ToolbarText, TopBar, UploadArea, UploadDescription, UploadIconWrap, UploadTitle, VideoButton,} from './styled';
-import usePage from './usePage';
+import IconArrow from "@/assets/icons/icon-arrow.svg?react";
+import IconArrowRight from "@/assets/icons/icon-right-arrow.svg?react";
+import IconSku from "@/assets/icons/icon-sku.svg?react";
+import IconSee from "@/assets/icons/icon-see.svg?react";
+import Iconbox from "@/assets/icons/icon-add-box.svg?react";
+import IconKaspiy from "@/assets/icons/icon-kaspiy.svg?react";
+import IconRobo from "@/assets/icons/icon-robo.svg?react";
+import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import { Arrow } from "../otp-verificate/styled";
+import usePage from "./usePage";
+import {
+  BackButton,
+  BreadcrumbText,
+  BreadcrumbsRow,
+  ContentLayout,
+  FieldBlock,
+  FieldLabel,
+  HiddenFileInput,
+  HintText,
+  MainColumn,
+  MarketplaceBadge,
+  MarketplaceItem,
+  MarketplaceList,
+  MarketplaceName,
+  MarktBtn,
+  MarktPlace,
+  MediaPreviewRow,
+  MediaThumb,
+  PageWrapper,
+  PlusThumb,
+  RequiredMark,
+  RichInput,
+  RichToolbar,
+  SectionBody,
+  SectionCard,
+  SectionHeader,
+  SectionTitle,
+  Sidebar,
+  SidebarCard,
+  SidebarDescription,
+  SidebarTitle,
+  Spacer12,
+  StepBorder,
+  StepCaption,
+  StepCircle,
+  StepContent,
+  StepLabel,
+  StepList,
+  StepRow,
+  StrongHead,
+  StrongHeadLink,
+  StyledCheckbox,
+  StyledFormControl,
+  StyledMenuItem,
+  StyledSelect,
+  StyledTextField,
+  SubmitButton,
+  ToolbarText,
+  TopBar,
+  UploadArea,
+  UploadDescription,
+  UploadIconWrap,
+  UploadTitle,
+  VideoButton,
+} from "./styled";
+
 export default function Page() {
+  const { t } = useTranslation();
+
   const {
     fileInputRef,
     marketplaces,
@@ -24,7 +83,9 @@ export default function Page() {
     handleFilesChange,
     handleBadgeClick,
   } = usePage();
+
   const navigate = useNavigate();
+
   return (
     <PageWrapper>
       <TopBar>
@@ -34,77 +95,99 @@ export default function Page() {
               <IconArrow />
             </Arrow>
           </BackButton>
+
           <BreadcrumbText>
-            <StrongHeadLink to="/dashboard/products">Mahsulotlar</StrongHeadLink>
+            <StrongHeadLink to="/dashboard/products">
+              {t("products")}
+            </StrongHeadLink>
             <IconArrowRight />
-            <StrongHead>Tovar kartochkasini yaratish</StrongHead>
+            <StrongHead>{t("create_product_card_text")}</StrongHead>
           </BreadcrumbText>
         </BreadcrumbsRow>
-        <SubmitButton>Saqlash va davom etish</SubmitButton>
+
+        <SubmitButton>{t("save_and_continue")}</SubmitButton>
       </TopBar>
+
       <ContentLayout>
         <Sidebar>
           <SidebarCard>
-            <SidebarTitle>Tovar kartochkasi yaratish</SidebarTitle>
+            <SidebarTitle>{t("create_product_card_title")}</SidebarTitle>
+
             <SidebarDescription>
-              Tovar kartochkasini yaratish uchun quyidagi bosqichlardan o‘tishingiz kerak
+              {t("create_product_card_description")}
             </SidebarDescription>
+
             <StepList>
               <StepRow>
-                <StepBorder sx={{ border: '1px solid #00524F' }}>
-                  <StepCircle sx={{ background: '#00524F' }}>
+                <StepBorder sx={{ border: "1px solid #00524F" }}>
+                  <StepCircle sx={{ background: "#00524F" }}>
                     <Iconbox />
                   </StepCircle>
                 </StepBorder>
+
                 <StepContent>
-                  <StepCaption>1-bosqich</StepCaption>
-                  <StepLabel sx={{ color: '#00524F' }}>Tovar kartochkasi</StepLabel>
+                  <StepCaption>{t("step_1")}</StepCaption>
+                  <StepLabel sx={{ color: "#00524F" }}>
+                    {t("product_card")}
+                  </StepLabel>
                 </StepContent>
               </StepRow>
+
               <StepRow>
                 <StepBorder>
                   <StepCircle>
                     <IconSku />
                   </StepCircle>
                 </StepBorder>
+
                 <StepContent>
-                  <StepCaption>2-bosqich</StepCaption>
-                  <StepLabel>Narxlar va SKU</StepLabel>
+                  <StepCaption>{t("step_2")}</StepCaption>
+                  <StepLabel>{t("prices_and_sku")}</StepLabel>
                 </StepContent>
               </StepRow>
+
               <StepRow>
                 <StepBorder>
                   <StepCircle>
                     <IconSee />
                   </StepCircle>
                 </StepBorder>
+
                 <StepContent>
-                  <StepCaption>3-bosqich</StepCaption>
-                  <StepLabel>Ko‘rib chiqish</StepLabel>
+                  <StepCaption>{t("step_3")}</StepCaption>
+                  <StepLabel>{t("review")}</StepLabel>
                 </StepContent>
               </StepRow>
             </StepList>
           </SidebarCard>
+
           <SidebarCard>
-            <SidebarTitle>Tovar kartochka yaratish bo‘yicha qo‘llanma</SidebarTitle>
+            <SidebarTitle>{t("product_card_guide_title")}</SidebarTitle>
+
             <SidebarDescription>
-              Tovar kartochka yaratish bo‘yicha to‘liq video ishlanmamiz. Ushbu yo‘riqnomadan foydalanishingiz mumkin.
+              {t("product_card_guide_description")}
             </SidebarDescription>
+
             <VideoButton startIcon={<PlayArrowRoundedIcon />}>
-              Videoni ko‘rish
+              {t("watch_video")}
             </VideoButton>
           </SidebarCard>
         </Sidebar>
+
         <MainColumn>
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Marketplace</SectionTitle>
+              <SectionTitle>{t("marketplace")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldLabel>
-                Qaysi marketplacelar uchun kartochka yaratmoqchisiz? <RequiredMark>*</RequiredMark>
+                {t("select_marketplaces_question")}{" "}
+                <RequiredMark>*</RequiredMark>
               </FieldLabel>
-              <HintText>Kamida 1 tasi tanlanishi kerak</HintText>
+
+              <HintText>{t("select_at_least_one")}</HintText>
+
               <MarketplaceList>
                 {marketplaces.map((item) => (
                   <MarketplaceItem key={item.id}>
@@ -112,121 +195,160 @@ export default function Page() {
                       checked={item.checked}
                       onChange={() => toggleMarketplace(item.id)}
                     />
+
                     <MarketplaceName>{item.name}</MarketplaceName>
+
                     {item.badge ? (
                       <MarketplaceBadge
                         tone={item.badgeTone}
                         onClick={() => handleBadgeClick(item)}
-                        sx={{ cursor: item.isShare ? 'pointer' : 'default' }}
+                        sx={{ cursor: item.isShare ? "pointer" : "default" }}
                       >
-                        {item.badge}
+                        {item.isShare ? t("share") : item.badge}
                       </MarketplaceBadge>
                     ) : null}
                   </MarketplaceItem>
                 ))}
+
                 <MarktPlace>
                   <IconKaspiy />
                   Kaspiy
-                  <MarktBtn>Ulash</MarktBtn>
+                  <MarktBtn>{t("share")}</MarktBtn>
                 </MarktPlace>
+
                 <MarktPlace>
                   <IconRobo />
                   Robosell
-                  <MarktBtn>Ulash</MarktBtn>
+                  <MarktBtn>{t("share")}</MarktBtn>
                 </MarktPlace>
               </MarketplaceList>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Mahsulot nomi</SectionTitle>
+              <SectionTitle>{t("product_name")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldBlock>
                 <FieldLabel>
-                  Mahsulot nomi (O‘zbekcha) <RequiredMark>*</RequiredMark>
+                  {t("product_name_uz")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <StyledTextField
-                  placeholder="Mahsulot nomini kiriting"
+                  placeholder={t("enter_product_name")}
                   value={form.nameUz}
-                  onChange={(e) => handleChange('nameUz', e.target.value)}
+                  onChange={(e) => handleChange("nameUz", e.target.value)}
                 />
               </FieldBlock>
+
               <FieldBlock>
                 <FieldLabel>
-                  Mahsulot nomi (Ruscha) <RequiredMark>*</RequiredMark>
+                  {t("product_name_ru")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <StyledTextField
-                  placeholder="Mahsulot nomini kiriting"
+                  placeholder={t("enter_product_name")}
                   value={form.nameRu}
-                  onChange={(e) => handleChange('nameRu', e.target.value)}
+                  onChange={(e) => handleChange("nameRu", e.target.value)}
                 />
               </FieldBlock>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Kategoriya</SectionTitle>
+              <SectionTitle>{t("category")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldBlock>
                 <FieldLabel>
-                  Ozon uchun kategoriya <RequiredMark>*</RequiredMark>
+                  {t("ozon_category")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <StyledFormControl>
                   <StyledSelect
                     value={form.categoryOzon}
-                    onChange={(e) => handleChange('categoryOzon', String(e.target.value))}
+                    onChange={(e) =>
+                      handleChange("categoryOzon", String(e.target.value))
+                    }
                   >
-                    <StyledMenuItem value="chairs">Chairs</StyledMenuItem>
-                    <StyledMenuItem value="tables">Tables</StyledMenuItem>
+                    <StyledMenuItem value="chairs">
+                      {t("chairs")}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="tables">
+                      {t("tables")}
+                    </StyledMenuItem>
                   </StyledSelect>
                 </StyledFormControl>
               </FieldBlock>
+
               <FieldBlock>
                 <FieldLabel>
-                  Wildberries uchun kategoriya <RequiredMark>*</RequiredMark>
+                  {t("wildberries_category")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <StyledFormControl>
                   <StyledSelect
                     value={form.categoryWb}
-                    onChange={(e) => handleChange('categoryWb', String(e.target.value))}
+                    onChange={(e) =>
+                      handleChange("categoryWb", String(e.target.value))
+                    }
                   >
-                    <StyledMenuItem value="chairs">Chairs</StyledMenuItem>
-                    <StyledMenuItem value="tables">Tables</StyledMenuItem>
+                    <StyledMenuItem value="chairs">
+                      {t("chairs")}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="tables">
+                      {t("tables")}
+                    </StyledMenuItem>
                   </StyledSelect>
                 </StyledFormControl>
               </FieldBlock>
+
               <FieldBlock>
                 <FieldLabel>
-                  Uzum Market uchun kategoriya <RequiredMark>*</RequiredMark>
+                  {t("uzum_category")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <StyledFormControl>
                   <StyledSelect
                     value={form.categoryUzum}
-                    onChange={(e) => handleChange('categoryUzum', String(e.target.value))}
+                    onChange={(e) =>
+                      handleChange("categoryUzum", String(e.target.value))
+                    }
                   >
-                    <StyledMenuItem value="chairs">Chairs</StyledMenuItem>
-                    <StyledMenuItem value="tables">Tables</StyledMenuItem>
+                    <StyledMenuItem value="chairs">
+                      {t("chairs")}
+                    </StyledMenuItem>
+                    <StyledMenuItem value="tables">
+                      {t("tables")}
+                    </StyledMenuItem>
                   </StyledSelect>
                 </StyledFormControl>
               </FieldBlock>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Mahsulot umumiy rasmi va videolari</SectionTitle>
+              <SectionTitle>{t("product_media")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <UploadArea onClick={openFileDialog}>
                 <UploadIconWrap>
                   <CloudUploadOutlinedIcon sx={{ fontSize: 18 }} />
                 </UploadIconWrap>
-                <UploadTitle>Fayl yuklash</UploadTitle>
+
+                <UploadTitle>{t("upload_file")}</UploadTitle>
+
                 <UploadDescription>
-                  Rasm yoki videoni shu yerga tashlang yoki tanlang
+                  {t("upload_file_description")}
                 </UploadDescription>
               </UploadArea>
+
               <HiddenFileInput
                 ref={fileInputRef}
                 type="file"
@@ -234,25 +356,30 @@ export default function Page() {
                 multiple
                 onChange={(e) => handleFilesChange(e.target.files)}
               />
+
               <MediaPreviewRow>
                 {media.map((item) => (
                   <MediaThumb key={item.id} image={item.preview} />
                 ))}
+
                 <PlusThumb onClick={openFileDialog}>
                   <AddRoundedIcon sx={{ fontSize: 18 }} />
-                </PlusThumb>         
+                </PlusThumb>
               </MediaPreviewRow>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Mahsulot tavsifi</SectionTitle>
+              <SectionTitle>{t("product_description")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldBlock>
                 <FieldLabel>
-                  Tavsif (Ruscha) <RequiredMark>*</RequiredMark>
+                  {t("description_ru")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <RichToolbar>
                   <ToolbarText>Paragraph</ToolbarText>
                   <ToolbarText>B</ToolbarText>
@@ -260,18 +387,24 @@ export default function Page() {
                   <ToolbarText>U</ToolbarText>
                   <ToolbarText>•</ToolbarText>
                 </RichToolbar>
+
                 <RichInput
                   multiline
-                  placeholder="Mahsulot haqida yozing"
+                  placeholder={t("write_about_product")}
                   value={form.descriptionRu}
-                  onChange={(e) => handleChange('descriptionRu', e.target.value)}
+                  onChange={(e) =>
+                    handleChange("descriptionRu", e.target.value)
+                  }
                 />
               </FieldBlock>
+
               <Spacer12 />
+
               <FieldBlock>
                 <FieldLabel>
-                  Tavsif (O‘zbekcha) <RequiredMark>*</RequiredMark>
+                  {t("description_uz")} <RequiredMark>*</RequiredMark>
                 </FieldLabel>
+
                 <RichToolbar>
                   <ToolbarText>Paragraph</ToolbarText>
                   <ToolbarText>B</ToolbarText>
@@ -279,34 +412,41 @@ export default function Page() {
                   <ToolbarText>U</ToolbarText>
                   <ToolbarText>•</ToolbarText>
                 </RichToolbar>
+
                 <RichInput
                   multiline
-                  placeholder="Mahsulot haqida yozing"
+                  placeholder={t("write_about_product")}
                   value={form.descriptionUz}
-                  onChange={(e) => handleChange('descriptionUz', e.target.value)}
+                  onChange={(e) =>
+                    handleChange("descriptionUz", e.target.value)
+                  }
                 />
               </FieldBlock>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Qo‘shimcha</SectionTitle>
+              <SectionTitle>{t("additional")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldBlock>
-                <FieldLabel>Brend</FieldLabel>
-                <StyledTextField placeholder="Brendni kiriting" />
+                <FieldLabel>{t("brand")}</FieldLabel>
+                <StyledTextField placeholder={t("enter_brand")} />
               </FieldBlock>
             </SectionBody>
           </SectionCard>
+
           <SectionCard>
             <SectionHeader>
-              <SectionTitle>Variantlar</SectionTitle>
+              <SectionTitle>{t("variants")}</SectionTitle>
             </SectionHeader>
+
             <SectionBody>
               <FieldBlock>
-                <FieldLabel>Variant</FieldLabel>
-                <StyledTextField placeholder="Variantni kiriting" />
+                <FieldLabel>{t("variant")}</FieldLabel>
+                <StyledTextField placeholder={t("enter_variant")} />
               </FieldBlock>
             </SectionBody>
           </SectionCard>

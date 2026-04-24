@@ -127,7 +127,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
           )}
         </NotificationsRow>
 
-        <UserCard collapsed={collapsed}>
+        <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
           <AvatarWrap>
             <img src={user.image} alt={user.fullName} />
           </AvatarWrap>
