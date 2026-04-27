@@ -81,7 +81,7 @@ export const usePage = () => {
         error?.response?.data?.message ||
         error?.response?.data?.detail ||
         "login_failed";
-
+      toast.error(t("login_error_toast"));
       setError("root", {
         type: "server",
         message,

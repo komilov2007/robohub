@@ -329,5 +329,49 @@
   "language": "Language",
   "logout": "Log out",
   "login_toast": "You are logged in!!!",
-  "logout_toast": "You are logged out!"
+  "logout_toast": "You are logged out!",
+  "login_error_toast": "Login or password incorrect!",
+  "notifications": {
+    "title": "Notifications",
+    "new_order": "New order received",
+    "new_order_desc": "You received a new order from Uzum Market",
+    "stock_updated": "Stock updated",
+    "stock_updated_desc": "Product quantity changed successfully",
+    "integration": "Integration connected",
+    "integration_desc": "Ozon integration activated successfully"
+  },
+  "sidebar_comment": "Comment",
+  "review_title": "Reviews",
+  "review_filter": "Filter",
+  "review_search_placeholder": "Search by product ID",
+  "review_reply_placeholder": "Your reply...",
+  "review_send": "Send",
+
+  "review_mock_short": "Liked it, recommend",
+  "review_mock_medium": "Overall I liked it. Found the service quickly.",
+  "review_mock_long": "Very convenient marketplace. Easy to compare prices and choose.",
+
+  "review_tab_all": "All",
+  "review_tab_new": "New",
+  "review_tab_unanswered": "Unanswered",
+  "review_tab_reviewed": "Reviewed",
+
+  "review_table_marketplace": "Marketplace",
+  "review_table_product": "Product and Product ID",
+  "review_table_time": "Review time",
+  "review_table_rating_comment": "Rating and comment",
+
+  "review_detail_title": "Customer review",
+  "review_detail_rating": "Rating",
+  "review_detail_shop": "Shop",
+  "review_detail_platform": "Platform",
+  "review_detail_order_finished": "Order completed",
+  "review_detail_review_left": "Review left",
+  "review_detail_sku": "SKU",
+  "review_detail_review_id": "Review ID",
+  "review_detail_client": "Client",
+  "review_detail_rating_label": "Rating",
+  "review_detail_comment": "Comment",
+  "review_detail_image": "Image",
+  "review_detail_missing": "Not available"
 }

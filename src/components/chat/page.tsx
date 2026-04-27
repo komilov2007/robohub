@@ -3,12 +3,14 @@ import { ThemeProvider } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import VideocamIcon from "@mui/icons-material/Videocam";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import IconPhone from "@/assets/icons/icon-chat-phone.svg?react";
+import IconVideo from "@/assets/icons/icon-chat-video.svg?react";
+import IconEmoji from "@/assets/icons/icon-emoji.svg?react";
+import IconFile from "@/assets/icons/icon-chat-file.svg?react";
 import {
   AttachFileOutlined,
   EmojiEmotionsOutlined,
+  MoreHorizOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -162,9 +164,9 @@ const Chat = () => {
               </ChatHeaderLeft>
 
               <ChatHeaderRight>
-                <LocalPhoneIcon />
-                <VideocamIcon />
-                <MoreHorizIcon />
+                <IconPhone />
+                <IconVideo />
+                <MoreHorizOutlined />
               </ChatHeaderRight>
             </ChatHeader>
 
@@ -176,8 +178,8 @@ const Chat = () => {
               <MessageInput placeholder={t("write_here")} />
 
               <MessageSendActions>
-                <EmojiEmotionsOutlined />
-                <AttachFileOutlined />
+                <IconEmoji />
+                <IconFile />
 
                 <Button vocab="shareBtn">{t("send")}</Button>
               </MessageSendActions>

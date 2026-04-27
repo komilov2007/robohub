@@ -189,7 +189,11 @@ export const LogoBox = styled(Box)`
   }
 `;
 
-export const TitleBlock = styled(Box)``;
+export const TitleBlock = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
 
 export const HeroWrapper = styled(Box)`
   position: relative;
@@ -445,17 +449,18 @@ export const LoginRightTitle = styled(Typography)`
   font-size: clamp(24px, 2.3vw, 32px) !important;
   line-height: 1.2;
 `;
-
-export const LoginRightText = styled(Typography)`
-  color: white;
-  font-size: clamp(13px, 1.1vw, 16px) !important;
-  line-height: 1.45;
-`;
+export const LoginRightText = styled(Typography)({
+  color: "white",
+  fontSize: "16px",
+  lineHeight: 1.45,
+  opacity: 0.7,
+  fontWeight: 400,
+  fontFamily: "inter",
+});
 
 export const LoginRightTextBtm = styled(Typography)`
   color: white;
-  font-size: clamp(13px, 1.1vw, 16px) !important;
-  line-height: 1.45;
+  font-size: 18px !important;
 `;
 
 export const LoginLeftNoAcc = styled(Box)`

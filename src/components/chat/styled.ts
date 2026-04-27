@@ -3,10 +3,12 @@ import { styled } from "@mui/material/styles";
 
 export const ChatPage = styled(Box)({
   width: "100%",
-  minHeight: "100vh",
+  height: "100vh",
+  display: "flex",
+  flexDirection: "column",
   background: "#FFFFFF",
+  overflow: "hidden",
 });
-
 export const Header = styled(Box)({
   display: "flex",
   alignItems: "center",
@@ -62,13 +64,17 @@ export const SettingsButton = styled(Typography)({
 
 export const ChatLayout = styled(Box)({
   display: "flex",
+  flex: 1,
+  minHeight: 0,
 });
-
 export const ChatSidebar = styled(Box)({
   borderRight: "1px solid #E8E8E9",
-  width: "312px",
-  height: "91.5vh",
+  width: 312,
   flexShrink: 0,
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  minHeight: 0,
 });
 
 export const ChatListTabs = styled(Box)({

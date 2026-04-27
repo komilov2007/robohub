@@ -134,7 +134,7 @@ const WereHouse = () => {
           </ToolbarLeft>
 
           <ToolbarRight>
-            <ToolbarLink to="/">
+            <ToolbarLink to="/dashboard/warehouse/mapping">
               <IconMapping />
               {t("mapping")}
             </ToolbarLink>

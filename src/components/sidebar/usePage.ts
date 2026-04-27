@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-
+import IconComment from "@/assets/icons/icon-comment.svg?react";
+import IconCommentActive from "@/assets/icons/icon-comment-act.svg?react";
 import { api } from "@/api/api";
 
 import IconDashboardActive from "@/assets/icons/icon-dashboard-act.svg?react";
@@ -105,13 +106,20 @@ export const usePage = () => {
         icon: IconChat,
         iconAct: IconChatActive,
       },
+      {
+        id: 7,
+        title: t("sidebar_comment"),
+        path: "/dashboard/comment",
+        icon: IconComment,
+        iconAct: IconCommentActive,
+      },
     ],
     [t],
   );
 
   const notification = {
     title: t("sidebar_notifications"),
-    count: 2,
+    count: 3,
     icon: NotificationsNoneOutlinedIcon,
   };
 

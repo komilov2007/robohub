@@ -19,6 +19,10 @@ import { Link } from "react-router-dom";
 
 /* top level */
 export const PageBg = styled(Box)`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -295,22 +299,29 @@ export const TableAreaHouse = styled(Box)({
 });
 
 export const PageWrapper = styled(Box)({
-  width: "100%",
-  minHeight: "80vh",
+  flex: 1,
+  minHeight: 0,
   backgroundColor: "#F5F7FA",
   padding: "12px",
+  display: "flex",
+  flexDirection: "column",
   boxSizing: "border-box",
 });
-
 export const CardWrapper = styled(Box)({
-  width: "100%",
+  flex: 1,
+  minHeight: 0,
   background: "#FFFFFF",
   border: "1px solid #D7DFE9",
   borderRadius: "10px",
+  display: "flex",
+  flexDirection: "column",
   overflow: "hidden",
 });
 
 export const StyledTableContainer = styled(TableContainer)({
+  flex: 1,
+  minHeight: 0,
+  overflow: "auto",
   borderRadius: "10px 10px 0 0",
 });
 
@@ -417,12 +428,12 @@ export const QuantityInput = styled(InputBase)({
 });
 
 export const Footer = styled(Box)({
-  minHeight: "45px",
+  height: "45px",
+  flexShrink: 0,
   padding: "0 12px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  gap: "12px",
   backgroundColor: "#FFFFFF",
 });
 

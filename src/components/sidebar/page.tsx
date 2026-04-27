@@ -111,7 +111,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
       )}
 
       <BottomArea>
-        <NotificationsRow collapsed={collapsed}>
+        <NotificationsRow to={"/dashboard/notifications"} collapsed={collapsed}>
           <NotificationsLeft>
             <MenuIconWrap>
               <NotificationIcon />
