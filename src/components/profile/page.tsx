@@ -39,7 +39,6 @@ import {
   Separator,
   StrengthBar,
   StrengthFill,
-  StrengthLine,
   StrengthRow,
   StrengthText,
   TabButton,
@@ -283,8 +282,6 @@ const Profil = () => {
                   strengthcolor={passwordStrengthColor}
                 />
               </StrengthBar>
-
-              <StrengthLine />
 
               <StrengthText strengthcolor={passwordStrengthColor}>
                 {passwordStrengthText}

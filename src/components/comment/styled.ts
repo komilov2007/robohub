@@ -190,7 +190,7 @@ export const TableRow = styled(Box, {
   display: "grid",
   gridTemplateColumns: "190px 260px 180px 1fr",
   borderBottom: "1px solid #DCE5EF",
-  background: selected ? "#E6F4F1" : "#fff",
+  background: "#fff",
   cursor: "pointer",
 
   "&:hover": {
@@ -328,6 +328,8 @@ export const DetailValue = styled(Typography)(() => ({
   fontSize: 12,
   color: "#101828",
   textAlign: "right",
+  display: "flex",
+  justifyContent: "flex-end",
 }));
 
 export const MissingText = styled(DetailValue)(() => ({

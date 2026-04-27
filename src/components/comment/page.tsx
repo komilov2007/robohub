@@ -1,5 +1,6 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import TuneRoundedIcon from "@mui/icons-material/TuneRounded";
+
+import IconFilter from "@/assets/icons/icon-filter.svg?react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
 import InsertEmoticonOutlinedIcon from "@mui/icons-material/InsertEmoticonOutlined";
@@ -106,7 +107,7 @@ export default function CommentPage() {
           <Shortcut>⌘ + K</Shortcut>
         </SearchBox>
 
-        <FilterButton startIcon={<TuneRoundedIcon sx={{ fontSize: 17 }} />}>
+        <FilterButton startIcon={<IconFilter />}>
           {t("review_filter")}
         </FilterButton>
       </Toolbar>

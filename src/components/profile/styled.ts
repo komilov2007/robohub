@@ -521,8 +521,8 @@ export const EyeButton = styled(Box)({
   display: "flex",
   alignItems: "center",
 });
-
 export const StrengthRow = styled(Box)({
+  width: "100%",
   maxWidth: 630,
   display: "flex",
   alignItems: "center",
@@ -546,14 +546,8 @@ export const StrengthFill = styled(Box)<{
   height: "100%",
   background: strengthcolor,
   borderRadius: 999,
+  transition: "width 0.25s ease",
 }));
-
-export const StrengthLine = styled(Box)({
-  width: 140,
-  height: 5,
-  background: "#E2E8F0",
-  borderRadius: 999,
-});
 
 export const StrengthText = styled(Typography)<{ strengthcolor: string }>(
   ({ strengthcolor }) => ({
@@ -563,6 +557,12 @@ export const StrengthText = styled(Typography)<{ strengthcolor: string }>(
     minWidth: 52,
   }),
 );
+export const StrengthLine = styled(Box)({
+  width: 140,
+  height: 5,
+  background: "#E2E8F0",
+  borderRadius: 999,
+});
 
 export const RulesGrid = styled(Box)({
   maxWidth: 620,
