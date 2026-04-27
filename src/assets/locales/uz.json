@@ -329,8 +329,10 @@
   "no_messages": "Xabar yo'q",
   "write_here": "Shu yerga yozing...",
   "send": "Jo'natish",
-  "edit_profile": "Edit profile",
-  "change_password": "Change password",
-  "language": "Language",
-  "logout": "Log out"
+  "edit_profile": "Profilni tahririlash",
+  "change_password": "Parolni tahrirlash",
+  "language": "Til",
+  "logout": "Chiqish",
+  "login_toast": "Tizimga xush kelibsiz!!!",
+  "logout_toast": "Tizimdan chiqdingiz!"
 }

@@ -323,5 +323,11 @@
   "no_messages": "No messages",
   "write_here": "Write here...",
   "send": "Send",
-  "logout_confirm": "Logout"
+  "logout_confirm": "Logout",
+  "edit_profile": "Edit profile",
+  "change_password": "Change password",
+  "language": "Language",
+  "logout": "Log out",
+  "login_toast": "You are logged in!!!",
+  "logout_toast": "You are logged out!"
 }

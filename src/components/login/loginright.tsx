@@ -24,8 +24,10 @@ import IconUzum from "@/assets/icons/icon-uzum-login.svg?react";
 import IconMarket from "@/assets/icons/icon-market.svg?react";
 import IconRed from "@/assets/icons/icon-family.svg?react";
 import Logo from "@/assets/icons/logo.svg?react";
+
 export const LoginRight = () => {
   const { t } = useTranslation();
+
   return (
     <RightWrapper>
       <RightCard>
@@ -52,7 +54,7 @@ export const LoginRight = () => {
               <path d="M327 151 C395 167 360 207 409 207" />
               <path d="M426 207 C468 116 441 83 487 83" />
               <path d="M460 205 C555 170 583 165 628 200" />
-              <path d="M490 235 C555 225 583 245 628 285" />{" "}
+              <path d="M490 235 C555 225 583 245 628 285" />
               <path d="M410 365 C478 386 449 447 514 428" />
               <path d="M331 343 C268 353 269 399 221 421" />
               <path d="M325 281 C267 290 298 335 239 335" />
@@ -107,6 +109,7 @@ export const LoginRight = () => {
               <IconMarket />
             </LogoBubble>
           </HeroWrapper>
+
           <LoginRightTextBtm>{t("r_text_btm")}</LoginRightTextBtm>
         </RightContent>
       </RightCard>

@@ -136,7 +136,9 @@ export const usePage = () => {
         password: values.new_password,
         confirm_password: values.confirm_password,
       };
-
+      setTimeout(() => {
+        toast.success("Parolingiz muvaffaqiyatli o'zgartirildi!");
+      }, 800);
       const { data } = await api.post("account/change-password/", payload);
       return data;
     },
@@ -145,8 +147,8 @@ export const usePage = () => {
       setFalse();
     },
     onError: (error: any) => {
-      console.log("STATUS:", error?.response?.status);
-      console.log("DATA:", error?.response?.data);
+      console.log("statusi:", error?.response?.status);
+      console.log("datasi:", error?.response?.data);
     },
   });
   const handleLogout = () => {
@@ -155,7 +157,7 @@ export const usePage = () => {
 
     document.cookie =
       "refresh_token=; Max-Age=0; path=/; secure; samesite=strict";
-    toast.success("Siz tizimdan chiqdingiz");
+    toast.success(t("logout_toast"));
     setTimeout(() => {
       window.location.replace("/");
     }, 800);
@@ -190,7 +192,6 @@ export const usePage = () => {
   const handleUpdateProfile = profileForm.handleSubmit((values) => {
     updateProfileMutation.mutate(values);
   });
-
   return {
     t,
 

@@ -329,5 +329,11 @@
   "no_messages": "Нет сообщений",
   "write_here": "Напишите здесь...",
   "send": "Отправить",
-  "logout_confirm": "Выход"
+  "logout_confirm": "Выход",
+  "edit_profile": "Редактировать профиль",
+  "change_password": "Изменить пароль",
+  "language": "Язык",
+  "logout": "Выход",
+  "login_toast": "Вы вошли в систему!!!",
+  "logout_toast": "Вы вышли из системы!"
 }

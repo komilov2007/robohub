@@ -71,7 +71,7 @@ export const usePage = () => {
       if (user.tokens.refresh) {
         document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
       }
-      toast.success("Tizimga xush kelibsiz!!!");
+      toast.success(t("login_toast"));
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 800);

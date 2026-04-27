@@ -50,212 +50,14 @@ const linePulse = keyframes`
   }
 `;
 
-export const HeroWrapper = styled(Box)({
-  position: "relative",
-  width: 800,
-  height: 548,
-  overflow: "hidden",
-  background: "transperent",
-});
-export const LinesSvg = styled("svg")({
-  position: "absolute",
-  inset: 0,
-  width: "100%",
-  height: "100%",
-  zIndex: 1,
-  pointerEvents: "none",
-
-  path: {
-    stroke: "rgba(255,255,255,0.72)",
-    strokeWidth: 1.2,
-    strokeDasharray: "4 5",
-    strokeLinecap: "round",
-    animation: "dashMove 18s linear infinite",
-  },
-
-  "@keyframes dashMove": {
-    from: {
-      strokeDashoffset: 0,
-    },
-    to: {
-      strokeDashoffset: -120,
-    },
-  },
-});
-export const CenterLogo = styled(Box)({
-  position: "absolute",
-  left: 321,
-  top: 193,
-  width: 173,
-  height: 173,
-  borderRadius: "50%",
-  background: "#FFFFFF",
-  zIndex: 10,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  animation: `${enter} .75s ease both`,
-
-  img: {
-    width: 118,
-    height: "auto",
-  },
-});
-
-export const LogoBubble = styled(Box)({
-  position: "absolute",
-  borderRadius: "50%",
-  background: "#FFFFFF",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: 5,
-  animation: `${enter} .75s ease both, ${float} 4s ease-in-out infinite`,
-
-  img: {
-    maxWidth: "68%",
-    maxHeight: "68%",
-    objectFit: "contain",
-    zIndex: 2,
-  },
-
-  "&.robosell": {
-    width: 94,
-    height: 94,
-    left: 96,
-    top: 178,
-    animationDelay: ".1s, 0s",
-  },
-
-  "&.m-top": {
-    width: 92,
-    height: 92,
-    left: 286,
-    top: 78,
-    animationDelay: ".2s, .4s",
-  },
-
-  "&.wb": {
-    width: 61,
-    height: 61,
-    left: 459,
-    top: 84,
-    animationDelay: ".3s, .8s",
-  },
-
-  "&.ozon-big": {
-    width: 92,
-    height: 92,
-    left: 594,
-    top: 127,
-    animationDelay: ".4s, 1.1s",
-  },
-
-  "&.uzum-big": {
-    width: 92,
-    height: 92,
-    left: 584,
-    top: 274,
-    animationDelay: ".5s, 1.4s",
-  },
-
-  "&.red": {
-    width: 94,
-    height: 94,
-    left: 128,
-    top: 377,
-    animationDelay: ".6s, 1.7s",
-  },
-
-  "&.ozon-small": {
-    width: 59,
-    height: 59,
-    left: 210,
-    top: 279,
-    animationDelay: ".7s, 2s",
-  },
-
-  "&.uzum-small": {
-    width: 58,
-    height: 58,
-    left: 303,
-    top: 400,
-    animationDelay: ".8s, 2.2s",
-  },
-
-  "&.m-small": {
-    width: 58,
-    height: 58,
-    left: 487,
-    top: 400,
-    animationDelay: ".9s, 2.4s",
-  },
-});
-
-export const DashedCircle = styled(Box)({
-  position: "absolute",
-  inset: -14,
-  borderRadius: "50%",
-  border: "2px dashed rgba(255,255,255,.82)",
-  animation: `${dashMove} 18s linear infinite`,
-});
-
-export const CurveLine = styled(Box)({
-  position: "absolute",
-  border: "1.5px dashed rgba(255,255,255,.55)",
-  borderColor: "rgba(255,255,255,.55) transparent transparent transparent",
-  borderRadius: "50%",
-  zIndex: 1,
-  animation: `${linePulse} 3s ease-in-out infinite`,
-
-  "&.curve-1": {
-    width: 200,
-    height: 110,
-    left: 166,
-    top: 216,
-    transform: "rotate(-22deg)",
-  },
-
-  "&.curve-2": {
-    width: 190,
-    height: 110,
-    left: 345,
-    top: 132,
-    transform: "rotate(104deg)",
-  },
-
-  "&.curve-3": {
-    width: 210,
-    height: 115,
-    left: 487,
-    top: 180,
-    transform: "rotate(21deg)",
-  },
-
-  "&.curve-4": {
-    width: 210,
-    height: 125,
-    left: 224,
-    top: 300,
-    transform: "rotate(-38deg)",
-  },
-
-  "&.curve-5": {
-    width: 190,
-    height: 130,
-    left: 386,
-    top: 304,
-    transform: "rotate(72deg)",
-  },
-});
 export const Container = styled("form")<{ isLogin: boolean }>`
   flex: 1;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
+  padding: clamp(16px, 2vw, 24px);
   box-sizing: border-box;
 `;
 
@@ -270,6 +72,12 @@ export const LoginFormOptions = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+
+  @media (max-width: 430px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 `;
 
 export const AutofillOverride = styled("div")`
@@ -335,26 +143,32 @@ export const StyledLoginButton = styled(LoadingButton)`
 
 export const RightWrapper = styled(Box)`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   border: none;
-  padding: 16px;
+  padding: clamp(10px, 1vw, 16px);
+  box-sizing: border-box;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const RightCard = styled(Box)`
   background: linear-gradient(to bottom, #00524f, #0f8484);
   width: 100%;
-  height: 100%;
+  height: calc(100vh - clamp(20px, 2vw, 32px));
   border-radius: 15px;
-  padding: 40px 55px;
+  padding: clamp(28px, 3vw, 55px);
+  box-sizing: border-box;
+  overflow: hidden;
 `;
 
 export const RightContent = styled(Box)`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: clamp(10px, 1.3vw, 22px);
   overflow: hidden;
   min-height: 0;
 `;
@@ -365,9 +179,247 @@ export const LogoWrapper = styled(Box)`
   align-items: center;
 `;
 
-export const LogoBox = styled(Box)``;
+export const LogoBox = styled(Box)`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: clamp(58px, 4vw, 82px);
+    height: auto;
+  }
+`;
 
 export const TitleBlock = styled(Box)``;
+
+export const HeroWrapper = styled(Box)`
+  position: relative;
+  width: min(800px, 100%);
+  aspect-ratio: 800 / 548;
+  height: auto;
+  max-height: 100%;
+  overflow: hidden;
+  background: transparent;
+  margin: 0 auto;
+  transform-origin: center;
+
+  @media (max-height: 850px) {
+    width: min(720px, 100%);
+  }
+
+  @media (max-height: 760px) {
+    width: min(640px, 100%);
+  }
+
+  @media (max-height: 680px) {
+    width: min(560px, 100%);
+  }
+
+  @media (max-width: 1200px) {
+    width: min(680px, 100%);
+  }
+
+  @media (max-width: 1050px) {
+    width: min(600px, 100%);
+  }
+`;
+
+export const LinesSvg = styled("svg")`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+
+  path {
+    stroke: rgba(255, 255, 255, 0.72);
+    stroke-width: 1.2;
+    stroke-dasharray: 4 5;
+    stroke-linecap: round;
+    animation: dashMove 18s linear infinite;
+  }
+
+  @keyframes dashMove {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -120;
+    }
+  }
+`;
+
+export const CenterLogo = styled(Box)`
+  position: absolute;
+  left: 40.125%;
+  top: 35.22%;
+  width: 21.625%;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 50%;
+  background: #ffffff;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${enter} 0.75s ease both;
+
+  svg,
+  img {
+    width: 68%;
+    height: auto;
+  }
+`;
+
+export const LogoBubble = styled(Box)`
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  animation:
+    ${enter} 0.75s ease both,
+    ${float} 4s ease-in-out infinite;
+
+  svg,
+  img {
+    max-width: 68%;
+    max-height: 68%;
+    object-fit: contain;
+    z-index: 2;
+  }
+
+  &.robosell {
+    width: 11.75%;
+    aspect-ratio: 1;
+    left: 12%;
+    top: 32.48%;
+    animation-delay: 0.1s, 0s;
+  }
+
+  &.m-top {
+    width: 11.5%;
+    aspect-ratio: 1;
+    left: 35.75%;
+    top: 14.23%;
+    animation-delay: 0.2s, 0.4s;
+  }
+
+  &.wb {
+    width: 7.625%;
+    aspect-ratio: 1;
+    left: 57.37%;
+    top: 15.33%;
+    animation-delay: 0.3s, 0.8s;
+  }
+
+  &.ozon-big {
+    width: 11.5%;
+    aspect-ratio: 1;
+    left: 74.25%;
+    top: 23.18%;
+    animation-delay: 0.4s, 1.1s;
+  }
+
+  &.uzum-big {
+    width: 11.5%;
+    aspect-ratio: 1;
+    left: 73%;
+    top: 50%;
+    animation-delay: 0.5s, 1.4s;
+  }
+
+  &.red {
+    width: 11.75%;
+    aspect-ratio: 1;
+    left: 16%;
+    top: 68.8%;
+    animation-delay: 0.6s, 1.7s;
+  }
+
+  &.ozon-small {
+    width: 7.375%;
+    aspect-ratio: 1;
+    left: 26.25%;
+    top: 50.91%;
+    animation-delay: 0.7s, 2s;
+  }
+
+  &.uzum-small {
+    width: 7.25%;
+    aspect-ratio: 1;
+    left: 37.87%;
+    top: 72.99%;
+    animation-delay: 0.8s, 2.2s;
+  }
+
+  &.m-small {
+    width: 7.25%;
+    aspect-ratio: 1;
+    left: 60.87%;
+    top: 72.99%;
+    animation-delay: 0.9s, 2.4s;
+  }
+`;
+
+export const DashedCircle = styled(Box)`
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.82);
+  animation: ${dashMove} 18s linear infinite;
+`;
+
+export const CurveLine = styled(Box)`
+  position: absolute;
+  border: 1.5px dashed rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.55) transparent transparent transparent;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ${linePulse} 3s ease-in-out infinite;
+
+  &.curve-1 {
+    width: 200px;
+    height: 110px;
+    left: 166px;
+    top: 216px;
+    transform: rotate(-22deg);
+  }
+
+  &.curve-2 {
+    width: 190px;
+    height: 110px;
+    left: 345px;
+    top: 132px;
+    transform: rotate(104deg);
+  }
+
+  &.curve-3 {
+    width: 210px;
+    height: 115px;
+    left: 487px;
+    top: 180px;
+    transform: rotate(21deg);
+  }
+
+  &.curve-4 {
+    width: 210px;
+    height: 125px;
+    left: 224px;
+    top: 300px;
+    transform: rotate(-38deg);
+  }
+
+  &.curve-5 {
+    width: 190px;
+    height: 130px;
+    left: 386px;
+    top: 304px;
+    transform: rotate(72deg);
+  }
+`;
 
 export const ImageWrapper = styled(Box)`
   display: flex;
@@ -381,24 +433,29 @@ export const StyledImage = styled("img")`
 `;
 
 export const LoginRightLogoText = styled(Typography)`
-  font-size: 42px !important;
+  font-size: clamp(30px, 3vw, 42px) !important;
   font-weight: 600;
-  mt: "-10px";
   color: #b8ffb0;
+  line-height: 1;
 `;
 
 export const LoginRightTitle = styled(Typography)`
   color: white;
   font-weight: 600;
-
-  font-size: 32px !important;
+  font-size: clamp(24px, 2.3vw, 32px) !important;
+  line-height: 1.2;
 `;
+
 export const LoginRightText = styled(Typography)`
   color: white;
+  font-size: clamp(13px, 1.1vw, 16px) !important;
+  line-height: 1.45;
 `;
 
 export const LoginRightTextBtm = styled(Typography)`
   color: white;
+  font-size: clamp(13px, 1.1vw, 16px) !important;
+  line-height: 1.45;
 `;
 
 export const LoginLeftNoAcc = styled(Box)`
@@ -406,6 +463,8 @@ export const LoginLeftNoAcc = styled(Box)`
   justify-content: center;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 18px;
 `;
 
 export const LanguageSelectWrap = styled(Box)`
@@ -416,14 +475,16 @@ export const LanguageSelectWrap = styled(Box)`
 export const LanguageSelect = styled(Select)`
   height: 36px;
   border-radius: 8px;
-  background-color: #F5F5F5;
-  border: #E4E4E4 solid 1px;
-  '&::before': {
-    border: 'none',
-  },
+  background-color: #f5f5f5;
+  border: #e4e4e4 solid 1px;
+
+  &::before {
+    border: none;
+  }
 `;
 
 export const LoginOuter = styled(Box)`
+  width: min(100%, 540px);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -444,13 +505,12 @@ export const LoginFieldsWrap = styled(Box)`
 export const FooterWrap = styled(Box)`
   display: flex;
   justify-content: center;
-  text-size: 10px !important;
   color: #7d879c;
 `;
 
 export const FooterInner = styled(Box)`
   display: flex;
-  text-size: 10px !important;
-
   gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
