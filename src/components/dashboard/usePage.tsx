@@ -108,11 +108,11 @@ export function usePage() {
   const years = ["2025", "2024"];
 
   const platforms = [
-    { value: "all", labelKey: "analytics.all_platforms" },
-    { value: "ozon", labelKey: "analytics.ozon" },
-    { value: "uzum", labelKey: "analytics.uzum" },
-    { value: "wb", labelKey: "analytics.wb" },
-  ];
+    { value: "all", labelKey: "all_platforms" },
+    { value: "ozon", labelKey: "ozon" },
+    { value: "uzum", labelKey: "uzum" },
+    { value: "wb", labelKey: "wb" },
+  ]
 
   const months = [
     "jan",

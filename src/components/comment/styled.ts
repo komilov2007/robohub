@@ -29,7 +29,7 @@ export const TabsWrap = styled(Box)(() => ({
   background: "#fff",
   borderBottom: "1px solid #E0E7EF",
   display: "flex",
-  alignItems: "flex-end",
+  alignItems: "center",
   gap: 34,
   padding: "0 18px",
   boxSizing: "border-box",
@@ -40,7 +40,7 @@ export const TabButton = styled(Button, {
 })<{ active: boolean }>(({ active }) => ({
   minWidth: "auto",
   height: 52,
-  padding: "0 0 14px",
+  padding: "15px 0 14px",
   borderRadius: 0,
   background: "transparent",
   color: active ? "#00524F" : "#667085",
