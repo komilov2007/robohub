@@ -8,11 +8,3 @@ function App() {
 }
 
 export default App;
-// import { memo } from "react";
-// import CommentPage from "./components/comment/page";
-
-// const App = () => {
-//   return <CommentPage />;
-// };
-
-// export default memo(App);

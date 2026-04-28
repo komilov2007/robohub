@@ -324,7 +324,7 @@ export const DetailLabel = styled(Typography)(() => ({
   color: "#667085",
 }));
 
-export const DetailValue = styled(Typography)(() => ({
+export const DetailValue = styled(Box)(() => ({
   fontSize: 12,
   color: "#101828",
   textAlign: "right",

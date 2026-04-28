@@ -164,7 +164,7 @@ export const SearchInput = styled("input")(() => ({
     opacity: 1,
   },
 }));
-export const ShortcutText = styled(Typography)(() => ({
+export const ShortcutText = styled(Box)(() => ({
   fontSize: "12px",
   lineHeight: "16px",
   color: "#98A2B3",
