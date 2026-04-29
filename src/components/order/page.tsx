@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { UnfoldMoreRounded } from "@mui/icons-material";
+import { Close, UnfoldMoreRounded } from "@mui/icons-material";
 import { SearchRounded } from "@mui/icons-material";
 import { KeyboardArrowRightRounded } from "@mui/icons-material";
 import { KeyboardArrowLeftRounded } from "@mui/icons-material";
@@ -11,7 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKey";
-
+import IconFilterOrder from "@/assets/icons/icon-filter-order.svg?react";
 import TablePhone from "@/assets/img/table-phone.webp";
 import IconFilter from "@/assets/icons/icon-filter.svg?react";
 
@@ -61,7 +61,21 @@ import {
   PageTextButton,
   EllipsisText,
   InputIcon,
+  FilterModalWrapper,
+  FilterContainer,
+  FilterHeader,
+  FilterHeaderText,
+  FilterBody,
+  FilterSidebar,
+  FilterSidebarItem,
+  FilterContent,
+  FilterIconBox,
+  FilterFooter,
+  FilterCancelButton,
+  FilterApplyButton,
 } from "./styled";
+import { Box, IconButton, ThemeProvider } from "@mui/material";
+import theme from "@/theme/theme";
 
 const OrdersPage = () => {
   const { t } = useTranslation();
@@ -82,254 +96,313 @@ const OrdersPage = () => {
     handleNextPage,
     ROWS_PER_PAGE,
     isLoading,
+    isOpen,
     isError,
+    open,
+    close,
+    filterItems,
   } = usePage();
 
   return (
-    <DashboardWrap>
-      <ContentWrap>
-        <OrdersContainer>
-          <OrdersCard>
-            <TitleRow>
-              <TitleText>{t("orders_title")}</TitleText>
-            </TitleRow>
+    <ThemeProvider theme={theme}>
+      <DashboardWrap>
+        <ContentWrap>
+          <OrdersContainer>
+            <OrdersCard>
+              <TitleRow>
+                <TitleText>{t("orders_title")}</TitleText>
+              </TitleRow>
 
-            <TabsRow>
-              {tabs.map((tab) => {
-                const active = activeTab === tab.id;
+              <TabsRow>
+                {tabs.map((tab) => {
+                  const active = activeTab === tab.id;
 
-                return (
-                  <TabItem
-                    key={tab.id}
-                    active={active}
-                    onClick={() => setActiveTab(tab.id)}
-                  >
-                    <TabText active={active}>{t(tab.label)}</TabText>
-                    <TabCount active={active}>{tab.count}</TabCount>
-                  </TabItem>
-                );
-              })}
-            </TabsRow>
+                  return (
+                    <TabItem
+                      key={tab.id}
+                      active={active}
+                      onClick={() => setActiveTab(tab.id)}
+                    >
+                      <TabText active={active}>{t(tab.label)}</TabText>
+                      <TabCount active={active}>{tab.count}</TabCount>
+                    </TabItem>
+                  );
+                })}
+              </TabsRow>
 
-            <ToolbarRow>
-              <SearchBox>
-                <SearchRounded sx={{ fontSize: 18, color: "#98A2B3" }} />
+              <ToolbarRow>
+                <SearchBox>
+                  <SearchRounded sx={{ fontSize: 18, color: "#98A2B3" }} />
 
-                <SearchInput
-                  placeholder={t("search_placeholder")}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
+                  <SearchInput
+                    placeholder={t("search_placeholder")}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
 
-                <ShortcutText>
-                  <KeyboardCommandKeyIcon />
-                  <InputIcon>+K</InputIcon>
-                </ShortcutText>
-              </SearchBox>
+                  <ShortcutText>
+                    <KeyboardCommandKeyIcon />
+                    <InputIcon>+K</InputIcon>
+                  </ShortcutText>
+                </SearchBox>
+                <FilterButton onClick={open}>
+                  <IconFilter /> {t("filter")}
+                </FilterButton>
+              </ToolbarRow>
 
-              <FilterButton>
-                <IconFilter /> {t("filter")}
-              </FilterButton>
-            </ToolbarRow>
+              <FilterModalWrapper open={isOpen} onClose={close}>
+                <FilterContainer>
+                  <FilterHeader>
+                    <FilterHeaderText>
+                      <h3 style={{ margin: 0 }}>Filtrlar</h3>
+                      <p style={{ margin: 0, fontSize: 12, color: "#777" }}>
+                        Bu yerda tanlangan filtrlaringiz asosida natijani
+                        ko‘ring
+                      </p>
+                    </FilterHeaderText>
 
-            <TableArea>
-              <TableWrap>
-                <StyledTableContainer>
-                  <Table
-                    stickyHeader
-                    sx={{
-                      tableLayout: "fixed",
-                      width: "100%",
-                      minWidth: 980,
-                      borderCollapse: "separate",
-                      borderSpacing: 0,
-                    }}
-                  >
-                    <TableHead>
-                      <TableRow>
-                        <HeaderCell sx={{ minWidth: 150 }}>
-                          {t("order_number")}
-                        </HeaderCell>
+                    <IconButton onClick={close}>
+                      <Close />
+                    </IconButton>
+                  </FilterHeader>
 
-                        <HeaderCell sx={{ minWidth: 150 }}>
-                          {t("marketplace")}
-                        </HeaderCell>
+                  <FilterBody>
+                    <FilterSidebar>
+                      {filterItems.map((item, i) => (
+                        <FilterSidebarItem key={i}>
+                          {item.icon}
+                          {item.label}
+                        </FilterSidebarItem>
+                      ))}
+                    </FilterSidebar>
 
-                        <HeaderCell sx={{ minWidth: 300 }}>
-                          {t("product")}
-                        </HeaderCell>
+                    <FilterContent>
+                      <Box />
+                      <FilterIconBox>
+                        <IconFilterOrder />
+                      </FilterIconBox>
 
-                        <HeaderCell sx={{ minWidth: 150 }}>
-                          {t("shop_name")}
-                        </HeaderCell>
+                      <h3 style={{ margin: 0 }}>Filtrni tanlang</h3>
+                      <p style={{ color: "#777", fontSize: 13 }}>
+                        Natijalarni ko‘rish uchun chap paneldan filtrni tanlang.
+                      </p>
+                    </FilterContent>
+                  </FilterBody>
 
-                        <HeaderCell sx={{ minWidth: 110 }}>
-                          {t("work_type")}
-                        </HeaderCell>
+                  <FilterFooter>
+                    <FilterCancelButton vocab="editBtn" onClick={close}>
+                      Bekor qilish
+                    </FilterCancelButton>
 
-                        <HeaderCell sx={{ minWidth: 160 }}>
-                          <span
-                            style={{
-                              display: "inline-flex",
-                              alignItems: "center",
-                              gap: 4,
-                            }}
-                          >
-                            {t("submitted_time")}
-                            <UnfoldMoreRounded sx={{ fontSize: 16 }} />
-                          </span>
-                        </HeaderCell>
-                      </TableRow>
-                    </TableHead>
+                    <FilterApplyButton vocab="shareBtn">
+                      Filtrlarni qo‘llash
+                    </FilterApplyButton>
+                  </FilterFooter>
+                </FilterContainer>
+              </FilterModalWrapper>
 
-                    <TableBody>
-                      {isLoading ? (
+              <TableArea>
+                <TableWrap>
+                  <StyledTableContainer>
+                    <Table
+                      stickyHeader
+                      sx={{
+                        tableLayout: "fixed",
+                        width: "100%",
+                        minWidth: 980,
+                        borderCollapse: "separate",
+                        borderSpacing: 0,
+                      }}
+                    >
+                      <TableHead>
                         <TableRow>
-                          <TableCell
-                            colSpan={6}
-                            sx={{ borderBottom: "none", py: 6 }}
-                          >
-                            <div
+                          <HeaderCell sx={{ minWidth: 150 }}>
+                            {t("order_number")}
+                          </HeaderCell>
+
+                          <HeaderCell sx={{ minWidth: 150 }}>
+                            {t("marketplace")}
+                          </HeaderCell>
+
+                          <HeaderCell sx={{ minWidth: 300 }}>
+                            {t("product")}
+                          </HeaderCell>
+
+                          <HeaderCell sx={{ minWidth: 150 }}>
+                            {t("shop_name")}
+                          </HeaderCell>
+
+                          <HeaderCell sx={{ minWidth: 110 }}>
+                            {t("work_type")}
+                          </HeaderCell>
+
+                          <HeaderCell sx={{ minWidth: 160 }}>
+                            <span
                               style={{
-                                width: "100%",
-                                display: "flex",
+                                display: "inline-flex",
                                 alignItems: "center",
-                                justifyContent: "center",
-                                gap: 12,
+                                gap: 4,
                               }}
                             >
-                              <CircularProgress size={24} />
-                              <span>{t("loading")}</span>
-                            </div>
-                          </TableCell>
+                              {t("submitted_time")}
+                              <UnfoldMoreRounded sx={{ fontSize: 16 }} />
+                            </span>
+                          </HeaderCell>
                         </TableRow>
-                      ) : isError ? (
-                        <TableRow>
-                          <TableCell
-                            colSpan={6}
-                            sx={{ borderBottom: "none", p: 2 }}
-                          >
-                            <Alert severity="error">{t("load_error")}</Alert>
-                          </TableCell>
-                        </TableRow>
-                      ) : paginatedRows.length === 0 ? (
-                        <TableRow>
-                          <TableCell
-                            colSpan={6}
-                            sx={{
-                              borderBottom: "none",
-                              textAlign: "center",
-                              py: 6,
-                              color: "#667085",
-                            }}
-                          >
-                            {t("no_data")}
-                          </TableCell>
-                        </TableRow>
-                      ) : (
-                        paginatedRows.map((row) => (
-                          <BodyRow key={row.id}>
-                            <BodyCell>
-                              <OrderText>{row.order_number}</OrderText>
-                            </BodyCell>
+                      </TableHead>
 
-                            <BodyCell>
-                              <MarketplaceName>
-                                {row.marketplace}
-                              </MarketplaceName>
-                            </BodyCell>
+                      <TableBody>
+                        {isLoading ? (
+                          <TableRow>
+                            <TableCell
+                              colSpan={6}
+                              sx={{ borderBottom: "none", py: 6 }}
+                            >
+                              <div
+                                style={{
+                                  width: "100%",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  gap: 12,
+                                }}
+                              >
+                                <CircularProgress size={24} />
+                                <span>{t("loading")}</span>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ) : isError ? (
+                          <TableRow>
+                            <TableCell
+                              colSpan={6}
+                              sx={{ borderBottom: "none", p: 2 }}
+                            >
+                              <Alert severity="error">{t("load_error")}</Alert>
+                            </TableCell>
+                          </TableRow>
+                        ) : paginatedRows.length === 0 ? (
+                          <TableRow>
+                            <TableCell
+                              colSpan={6}
+                              sx={{
+                                borderBottom: "none",
+                                textAlign: "center",
+                                py: 6,
+                                color: "#667085",
+                              }}
+                            >
+                              {t("no_data")}
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          paginatedRows.map((row) => (
+                            <BodyRow key={row.id}>
+                              <BodyCell>
+                                <OrderText>{row.order_number}</OrderText>
+                              </BodyCell>
 
-                            <BodyCell>
-                              <ProductWrap>
-                                <ProductImage>
-                                  <img
-                                    src={TablePhone}
-                                    alt={row.product_name}
-                                  />
-                                </ProductImage>
+                              <BodyCell>
+                                <MarketplaceName>
+                                  {row.marketplace}
+                                </MarketplaceName>
+                              </BodyCell>
 
-                                <ProductInfo>
-                                  <ProductTitleRow>
-                                    <ProductTitle>
-                                      {row.product_name}
-                                    </ProductTitle>
+                              <BodyCell>
+                                <ProductWrap>
+                                  <ProductImage>
+                                    <img
+                                      src={TablePhone}
+                                      alt={row.product_name}
+                                    />
+                                  </ProductImage>
 
-                                    {row.moreCount ? (
-                                      <ProductExtraBadge>
-                                        +{row.moreCount}
-                                      </ProductExtraBadge>
-                                    ) : null}
-                                  </ProductTitleRow>
+                                  <ProductInfo>
+                                    <ProductTitleRow>
+                                      <ProductTitle>
+                                        {row.product_name}
+                                      </ProductTitle>
 
-                                  <ProductCount>
-                                    {row.quantity} {t("piece")}
-                                  </ProductCount>
-                                </ProductInfo>
-                              </ProductWrap>
-                            </BodyCell>
+                                      {row.moreCount ? (
+                                        <ProductExtraBadge>
+                                          +{row.moreCount}
+                                        </ProductExtraBadge>
+                                      ) : null}
+                                    </ProductTitleRow>
 
-                            <BodyCell>
-                              <ShopText>{row.shop_name}</ShopText>
-                            </BodyCell>
+                                    <ProductCount>
+                                      {row.quantity} {t("piece")}
+                                    </ProductCount>
+                                  </ProductInfo>
+                                </ProductWrap>
+                              </BodyCell>
 
-                            <BodyCell>
-                              <MethodText>{row.work_type}</MethodText>
-                            </BodyCell>
+                              <BodyCell>
+                                <ShopText>{row.shop_name}</ShopText>
+                              </BodyCell>
 
-                            <BodyCell>
-                              <DateText>{row.created_at}</DateText>
-                            </BodyCell>
-                          </BodyRow>
-                        ))
-                      )}
-                    </TableBody>
-                  </Table>
-                </StyledTableContainer>
+                              <BodyCell>
+                                <MethodText>{row.work_type}</MethodText>
+                              </BodyCell>
 
-                <PaginationWrap>
-                  <PaginationLeft>
-                    <PaginationLabel>{t("showing")}</PaginationLabel>
+                              <BodyCell>
+                                <DateText>{row.created_at}</DateText>
+                              </BodyCell>
+                            </BodyRow>
+                          ))
+                        )}
+                      </TableBody>
+                    </Table>
+                  </StyledTableContainer>
 
-                    <StyledRowsSelect value={ROWS_PER_PAGE} size="small">
-                      <StyledRowsMenuItem value={14}>14</StyledRowsMenuItem>
-                    </StyledRowsSelect>
+                  <PaginationWrap>
+                    <PaginationLeft>
+                      <PaginationLabel>{t("showing")}</PaginationLabel>
 
-                    <PaginationInfo>
-                      {t("of")} {totalCount}
-                    </PaginationInfo>
-                  </PaginationLeft>
+                      <StyledRowsSelect value={ROWS_PER_PAGE} size="small">
+                        <StyledRowsMenuItem value={14}>14</StyledRowsMenuItem>
+                      </StyledRowsSelect>
 
-                  <PaginationRight>
-                    <PageButton onClick={handlePrevPage} disabled={page === 1}>
-                      <KeyboardArrowLeftRounded sx={{ fontSize: 16 }} />
-                    </PageButton>
+                      <PaginationInfo>
+                        {t("of")} {totalCount}
+                      </PaginationInfo>
+                    </PaginationLeft>
 
-                    {pageNumbers.map((pageNumber) => (
-                      <PageTextButton
-                        key={pageNumber}
-                        active={page === pageNumber}
-                        onClick={() => setPage(pageNumber)}
+                    <PaginationRight>
+                      <PageButton
+                        onClick={handlePrevPage}
+                        disabled={page === 1}
                       >
-                        {pageNumber}
-                      </PageTextButton>
-                    ))}
+                        <KeyboardArrowLeftRounded sx={{ fontSize: 16 }} />
+                      </PageButton>
 
-                    {totalPages > 5 && <EllipsisText>...</EllipsisText>}
+                      {pageNumbers.map((pageNumber) => (
+                        <PageTextButton
+                          key={pageNumber}
+                          active={page === pageNumber}
+                          onClick={() => setPage(pageNumber)}
+                        >
+                          {pageNumber}
+                        </PageTextButton>
+                      ))}
 
-                    <PageButton
-                      onClick={handleNextPage}
-                      disabled={page === totalPages}
-                    >
-                      <KeyboardArrowRightRounded sx={{ fontSize: 16 }} />
-                    </PageButton>
-                  </PaginationRight>
-                </PaginationWrap>
-              </TableWrap>
-            </TableArea>
-          </OrdersCard>
-        </OrdersContainer>
-      </ContentWrap>
-    </DashboardWrap>
+                      {totalPages > 5 && <EllipsisText>...</EllipsisText>}
+
+                      <PageButton
+                        onClick={handleNextPage}
+                        disabled={page === totalPages}
+                      >
+                        <KeyboardArrowRightRounded sx={{ fontSize: 16 }} />
+                      </PageButton>
+                    </PaginationRight>
+                  </PaginationWrap>
+                </TableWrap>
+              </TableArea>
+            </OrdersCard>
+          </OrdersContainer>
+        </ContentWrap>
+      </DashboardWrap>
+    </ThemeProvider>
   );
 };
 

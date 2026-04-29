@@ -1,5 +1,4 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-
 import IconFilter from "@/assets/icons/icon-filter.svg?react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";

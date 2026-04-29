@@ -3,6 +3,7 @@ import {
   Button,
   IconButton,
   MenuItem,
+  Modal,
   Select,
   TableCell,
   TableContainer,
@@ -469,3 +470,96 @@ export const EllipsisText = styled(Typography)(() => ({
   lineHeight: "16px",
   color: TEXT_SECONDARY,
 }));
+export const FilterModalWrapper = styled(Modal)({});
+
+/* MAIN CONTAINER */
+export const FilterContainer = styled(Box)({
+  width: 673,
+  height: 408,
+  backgroundColor: "#fff",
+  borderRadius: "12px",
+  boxShadow: 24,
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  display: "flex",
+  flexDirection: "column",
+  overflow: "hidden",
+});
+
+/* HEADER */
+export const FilterHeader = styled(Box)({
+  padding: "12px 16px",
+  height: "72px",
+  borderBottom: "1px solid #eee",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
+export const FilterHeaderText = styled(Box)({});
+
+/* BODY */
+export const FilterBody = styled(Box)({
+  display: "flex",
+  flex: 1,
+});
+
+/* LEFT */
+export const FilterSidebar = styled(Box)({
+  width: 220,
+  borderRight: "1px solid #eee",
+  padding: 8,
+});
+
+export const FilterSidebarItem = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+  padding: "10px",
+  borderRadius: 4,
+  cursor: "pointer",
+  height: "55px",
+  "&:hover": {
+    backgroundColor: "#f5f5f5",
+  },
+});
+
+/* RIGHT */
+export const FilterContent = styled(Box)({
+  flex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  textAlign: "center",
+  padding: 16,
+});
+
+export const FilterIconBox = styled(Box)({
+  width: 50,
+  height: 50,
+  borderRadius: 8,
+  backgroundColor: "#0f766e",
+  marginBottom: 16,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+/* FOOTER */
+export const FilterFooter = styled(Box)({
+  padding: 12,
+  borderTop: "1px solid #eee",
+  display: "flex",
+  justifyContent: "flex-end",
+  gap: 8,
+});
+
+export const FilterCancelButton = styled(Button)({
+  border: "1px solid #E6E6F6",
+  color: "black",
+});
+
+export const FilterApplyButton = styled(Button)({});
