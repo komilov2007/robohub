@@ -8,30 +8,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { Select } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 
-const enter = keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(0.55);
-  }
-  70% {
-    opacity: 1;
-    transform: scale(1.06);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
-
-const float = keyframes`
-  0%, 100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -8px;
-  }
-`;
-
 const dashMove = keyframes`
   0% {
     transform: rotate(0deg);
@@ -154,7 +130,7 @@ export const RightWrapper = styled(Box)`
 `;
 
 export const RightCard = styled(Box)`
-  background: linear-gradient(to bottom, #00524f, #0f8484);
+  background: rgb(0, 82, 79);
   width: 100%;
   height: calc(100vh - clamp(20px, 2vw, 32px));
   border-radius: 15px;
@@ -195,38 +171,6 @@ export const TitleBlock = styled(Box)`
   gap: 8px;
 `;
 
-export const HeroWrapper = styled(Box)`
-  position: relative;
-  width: min(800px, 100%);
-  aspect-ratio: 800 / 548;
-  height: auto;
-  max-height: 100%;
-  overflow: hidden;
-  background: transparent;
-  margin: 0 auto;
-  transform-origin: center;
-
-  @media (max-height: 850px) {
-    width: min(720px, 100%);
-  }
-
-  @media (max-height: 760px) {
-    width: min(640px, 100%);
-  }
-
-  @media (max-height: 680px) {
-    width: min(560px, 100%);
-  }
-
-  @media (max-width: 1200px) {
-    width: min(680px, 100%);
-  }
-
-  @media (max-width: 1050px) {
-    width: min(600px, 100%);
-  }
-`;
-
 export const LinesSvg = styled("svg")`
   position: absolute;
   inset: 0;
@@ -250,121 +194,6 @@ export const LinesSvg = styled("svg")`
     to {
       stroke-dashoffset: -120;
     }
-  }
-`;
-
-export const CenterLogo = styled(Box)`
-  position: absolute;
-  left: 40.125%;
-  top: 35.22%;
-  width: 21.625%;
-  aspect-ratio: 1;
-  height: auto;
-  border-radius: 50%;
-  background: #ffffff;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${enter} 0.75s ease both;
-
-  svg,
-  img {
-    width: 68%;
-    height: auto;
-  }
-`;
-
-export const LogoBubble = styled(Box)`
-  position: absolute;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  animation:
-    ${enter} 0.75s ease both,
-    ${float} 4s ease-in-out infinite;
-
-  svg,
-  img {
-    max-width: 68%;
-    max-height: 68%;
-    object-fit: contain;
-    z-index: 2;
-  }
-
-  &.robosell {
-    width: 11.75%;
-    aspect-ratio: 1;
-    left: 12%;
-    top: 32.48%;
-    animation-delay: 0.1s, 0s;
-  }
-
-  &.m-top {
-    width: 11.5%;
-    aspect-ratio: 1;
-    left: 35.75%;
-    top: 14.23%;
-    animation-delay: 0.2s, 0.4s;
-  }
-
-  &.wb {
-    width: 7.625%;
-    aspect-ratio: 1;
-    left: 57.37%;
-    top: 15.33%;
-    animation-delay: 0.3s, 0.8s;
-  }
-
-  &.ozon-big {
-    width: 11.5%;
-    aspect-ratio: 1;
-    left: 74.25%;
-    top: 23.18%;
-    animation-delay: 0.4s, 1.1s;
-  }
-
-  &.uzum-big {
-    width: 11.5%;
-    aspect-ratio: 1;
-    left: 73%;
-    top: 50%;
-    animation-delay: 0.5s, 1.4s;
-  }
-
-  &.red {
-    width: 11.75%;
-    aspect-ratio: 1;
-    left: 16%;
-    top: 68.8%;
-    animation-delay: 0.6s, 1.7s;
-  }
-
-  &.ozon-small {
-    width: 7.375%;
-    aspect-ratio: 1;
-    left: 26.25%;
-    top: 50.91%;
-    animation-delay: 0.7s, 2s;
-  }
-
-  &.uzum-small {
-    width: 7.25%;
-    aspect-ratio: 1;
-    left: 37.87%;
-    top: 72.99%;
-    animation-delay: 0.8s, 2.2s;
-  }
-
-  &.m-small {
-    width: 7.25%;
-    aspect-ratio: 1;
-    left: 60.87%;
-    top: 72.99%;
-    animation-delay: 0.9s, 2.4s;
   }
 `;
 
@@ -519,3 +348,40 @@ export const FooterInner = styled(Box)`
   flex-wrap: wrap;
   justify-content: center;
 `;
+export const HeroWrapper = styled("div")(() => ({
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  position: "relative",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+
+  "@media (max-width:1200px)": {
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
+export const RemeberForgetText = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginBottom: 20,
+});
+export const VideoStyled = styled("video")(() => ({
+  width: 500,
+  height: 500,
+  objectFit: "cover",
+  display: "block",
+  border: "none",
+
+  "@media (max-width:1200px)": {
+    width: 400,
+    height: 400,
+  },
+}));

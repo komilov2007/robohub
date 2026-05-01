@@ -112,8 +112,7 @@ const theme = createTheme({
           props: { vocab: "loginBtn" },
           style: {
             position: "relative",
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0)), #00524F",
+            background: "rgb(0, 82, 79)",
             padding: "10px 20px",
             borderRadius: "20px",
 

@@ -60,7 +60,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
       <div>
         <TopArea collapsed={collapsed}>
           {!collapsed && (
-            <BrandWrap collapsed={collapsed}>
+            <BrandWrap to={"/"} collapsed={collapsed}>
               <IconLogo />
             </BrandWrap>
           )}

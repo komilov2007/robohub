@@ -191,7 +191,7 @@ const OrdersPage = () => {
 
                   <FilterFooter>
                     <FilterCancelButton vocab="editBtn" onClick={close}>
-                      Bekor qilish
+                      Bekor
                     </FilterCancelButton>
 
                     <FilterApplyButton vocab="shareBtn">

@@ -85,7 +85,6 @@ export default function Page() {
   } = usePage();
 
   const navigate = useNavigate();
-
   return (
     <PageWrapper>
       <TopBar>

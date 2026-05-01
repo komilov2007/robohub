@@ -16,11 +16,12 @@ import IconFlagEn from "@/assets/icons/flag-en.svg?react";
 import IconLock from "@/assets/icons/lock.svg?react";
 import IconUser from "@/assets/icons/user.svg?react";
 import theme from "@/theme/theme";
+import IconChecBox from "@/assets/icons/icon-cheakbox-box.svg?react";
+import IconChecBoxActive from "@/assets/icons/icon-cheakbox-active.svg?react";
 import { usePage } from "./usePage";
 import {
   Container,
   LoginFormCenter,
-  LoginFormOptions,
   AutofillOverride,
   StyledTextField,
   FieldLabel,
@@ -34,6 +35,7 @@ import {
   FooterInner,
   LanguageSelect,
   LanguageSelectWrap,
+  RemeberForgetText,
 } from "./style";
 const languages = [
   { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
@@ -50,8 +52,6 @@ const LoginLeft = () => {
     passwordVisibility,
     t,
     i18n,
-    isDirty,
-    isValid,
   } = usePage();
   return (
     <ThemeProvider theme={theme}>
@@ -76,8 +76,6 @@ const LoginLeft = () => {
 
                 <Typography vocab="loginSubTitle">
                   {t("subtitle_line_1")}
-                  <br />
-                  {t("subtitle_line_2")}
                 </Typography>
               </LoginTitleWrap>
               <LoginFieldsWrap>
@@ -152,16 +150,24 @@ const LoginLeft = () => {
                     )}
                   />
                 </Box>
-                <LoginFormOptions>
+                <RemeberForgetText>
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={rememberMe.value}
                         onChange={rememberMe.toggle}
+                        icon={<IconChecBox />}
+                        checkedIcon={<IconChecBoxActive />}
+                        disableRipple
                       />
                     }
-                    label={t("remember_me")}
-                  />
+                    label={
+                      <Typography variant="body2">
+                        {t("remember_me")}
+                      </Typography>
+                    }
+                  ></FormControlLabel>
+
                   <Typography
                     component={Link}
                     to="/forget-password"
@@ -169,7 +175,7 @@ const LoginLeft = () => {
                   >
                     {t("forgot_password")}
                   </Typography>
-                </LoginFormOptions>
+                </RemeberForgetText>
                 <Box>
                   <StyledLoginButton
                     variant="contained"
@@ -177,7 +183,6 @@ const LoginLeft = () => {
                     color="primary"
                     vocab="loginBtn"
                     loading={isSubmitting}
-                    disabled={!isDirty || !isValid}
                   >
                     {t("enter")}
                   </StyledLoginButton>

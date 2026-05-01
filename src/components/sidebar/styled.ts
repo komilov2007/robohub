@@ -4,17 +4,15 @@ import { Link } from "react-router-dom";
 
 type ActiveProps = { active?: boolean };
 type CollapsedProps = { collapsed?: boolean };
-
 export const SidebarWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
   width: collapsed ? 84 : 262,
   minWidth: collapsed ? 84 : 262,
   maxWidth: collapsed ? 84 : 262,
-  height: "100vh",
+  height: "100%",
   background: "#005F56",
-  overflowY: "auto",
-  overflowX: "hidden",
+  overflow: "hidden", // 👈 scroll YO‘Q
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
@@ -22,15 +20,6 @@ export const SidebarWrap = styled(Box, {
   transition: "width 0.3s ease, min-width 0.3s ease, max-width 0.3s ease",
   padding: 10,
   boxSizing: "border-box",
-
-  "&::-webkit-scrollbar": {
-    width: 0,
-  },
-
-  "@media (max-height: 760px)": {
-    gap: 8,
-    padding: 8,
-  },
 }));
 
 export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
@@ -39,6 +28,7 @@ export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   alignItems: "center",
   justifyContent: collapsed ? "center" : "space-between",
   marginBottom: 24,
+  marginLeft: "-5px",
   width: "100%",
 
   "@media (max-height: 760px)": {
@@ -47,7 +37,7 @@ export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   },
 }));
 
-export const BrandWrap = styled(Box, {
+export const BrandWrap = styled(Link, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
   display: "flex",
@@ -75,7 +65,7 @@ export const ToggleButton = styled(IconButton)(() => ({
   color: "#D1FAE5",
   background: "transparent",
   flexShrink: 0,
-  padding: 6,
+  marginRight: "8px",
 
   "&:hover": {
     background: "rgba(255,255,255,0.06)",
@@ -86,11 +76,11 @@ export const MenuWrap = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
   gap: 6,
-  marginLeft: "-5px",
   width: "100%",
   "@media (max-height: 760px)": {
     gap: 4,
   },
+  alignItems: "center",
 }));
 
 export const MenuItem = styled(Box, {
@@ -108,7 +98,7 @@ export const MenuItem = styled(Box, {
   background: active ? "rgba(255,255,255,0.08)" : "transparent",
   border: active ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
   transition: "all 0.2s ease",
-
+  width: 220,
   "&:hover": {
     background: active ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)",
   },
@@ -116,6 +106,7 @@ export const MenuItem = styled(Box, {
   "@media (max-height: 760px)": {
     height: 38,
   },
+  marginLeft: "-10px",
 }));
 
 export const MenuIconWrap = styled(Box, {
