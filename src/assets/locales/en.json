@@ -373,5 +373,10 @@
   "review_detail_rating_label": "Rating",
   "review_detail_comment": "Comment",
   "review_detail_image": "Image",
-  "review_detail_missing": "Not available"
+  "review_detail_missing": "Not available",
+  "server_number_error": "This phone number is already registered.",
+  "privacy_prefix": "By registering, you agree to our",
+  "privacy_link": "public offer and terms",
+  "privacy_suffix": ".",
+  "privacy_required": "Please accept the public offer and terms to continue"
 }

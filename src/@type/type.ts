@@ -25,6 +25,7 @@ export type RegisterFormType = {
   contact: string;
   password: string;
   confirm_password: string;
+  privacy: boolean;
 };
 
 export type RegisterPayload = {
@@ -55,14 +56,14 @@ export type RegisterResponse = {
   detail?: string;
 };
 export interface DashboardOrder {
-  id: number
-  order_number: string
-  marketplace: string
-  product_name: string
-  quantity: number
-  shop_name: string
-  work_type: string
-  created_at: string
-  image?: string
-  moreCount?: number
+  id: number;
+  order_number: string;
+  marketplace: string;
+  product_name: string;
+  quantity: number;
+  shop_name: string;
+  work_type: string;
+  created_at: string;
+  image?: string;
+  moreCount?: number;
 }

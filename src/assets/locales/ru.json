@@ -379,5 +379,10 @@
   "review_detail_rating_label": "Оценка",
   "review_detail_comment": "Комментарий",
   "review_detail_image": "Изображение",
-  "review_detail_missing": "Недоступно"
+  "review_detail_missing": "Недоступно",
+  "server_number_error": "Этот номер телефона уже зарегистрирован.",
+  "privacy_prefix": "Регистрируясь, вы соглашаетесь с нашими",
+  "privacy_link": "публичной офертой и условиями",
+  "privacy_suffix": ".",
+  "privacy_required": "Чтобы продолжить, подтвердите публичную оферту и условия"
 }

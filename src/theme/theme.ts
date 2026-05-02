@@ -46,6 +46,15 @@ const theme = createTheme({
           style: { fontSize: "32px", color: "#ffffff", fontWeight: "600" },
         },
         {
+          props: { vocab: "termsTxt" },
+          style: {
+            fontSize: "12px",
+            fontWeight: 400,
+            fontFamily: "inter",
+            color: "#3E4A60",
+          },
+        },
+        {
           props: { vocab: "loginRightLogoText" },
           style: {
             fontSize: "42px",

@@ -1,16 +1,16 @@
-import {  Typography } from '@mui/material';
-import { memo } from 'react';
-import { LoginRight } from '../login/loginright';
+import { Typography } from "@mui/material";
+import { memo } from "react";
+import { LoginRight } from "../login/loginright";
 import {
   FooterInner,
   FooterWrap,
   LanguageSelect,
   LanguageSelectWrap,
   StyledMenuItem,
-} from '../login/style';
-import { usePage } from '@/components/resgister-success/usePage';
-import { HeaderArea } from '../forget-login/styled';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+} from "../login/style";
+import { usePage } from "@/components/resgister-success/usePage";
+import { HeaderArea } from "../forget-login/styled";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import {
   SuccessContainer,
   SuccessLeftSide,
@@ -22,7 +22,7 @@ import {
   SuccessButton,
   SuccessRightSide,
   SuccessEmptyBox,
-} from './styled';
+} from "./styled";
 
 const Success = () => {
   const { t, i18n, languages, handleLangChange } = usePage();
@@ -53,24 +53,18 @@ const Success = () => {
               <CheckCircleRoundedIcon
                 sx={{
                   fontSize: 28,
-                  color: '#FFFFFF',
+                  color: "#FFFFFF",
                 }}
               />
             </SuccessIconBox>
 
-            <SuccessTitle>
-              {t('register_success_title')}
-            </SuccessTitle>
+            <SuccessTitle>{t("register_success_title")}</SuccessTitle>
 
             <SuccessDescription>
-              {t('register_success_description')}
+              {t("register_success_description")}
             </SuccessDescription>
 
-            <SuccessButton
-              to="/"
-            >
-              {t('start')}
-            </SuccessButton>
+            <SuccessButton to="/">{t("start")}</SuccessButton>
           </SuccessCard>
         </SuccessCenterWrap>
 
@@ -79,9 +73,9 @@ const Success = () => {
             <Typography vocab="loginBtm">
               © {new Date().getFullYear()} Robohub
             </Typography>
-            <Typography vocab="loginBtm">{t('privacy_policy')}</Typography>
+            <Typography vocab="loginBtm">{t("privacy_policy")}</Typography>
             <Typography vocab="loginBtm" component="span">
-              {t('support')}
+              {t("support")}
             </Typography>
           </FooterInner>
         </FooterWrap>

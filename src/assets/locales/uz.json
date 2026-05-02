@@ -377,5 +377,10 @@
   "review_detail_rating_label": "Baho",
   "review_detail_comment": "Izoh",
   "review_detail_image": "Rasm",
-  "review_detail_missing": "Mavjud emas"
+  "review_detail_missing": "Mavjud emas",
+  "server_number_error": "Bu telefon raqam allaqachon ro‘yxatdan o‘tgan",
+  "privacy_prefix": "Ro’yxatdan o’tish orqali siz bizning",
+  "privacy_link": "umumiy oferta va shartlarimizga",
+  "privacy_suffix": "rozilik bildirasiz.",
+  "privacy_required": "Davom etish uchun ommaviy oferta va shartlarni tasdiqlang"
 }

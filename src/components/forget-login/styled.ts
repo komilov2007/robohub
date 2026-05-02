@@ -5,27 +5,29 @@ import {
   Select,
   TextField,
   Typography,
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const AuthPageWrap = styled(Box)`
   width: 100%;
   min-height: 100vh;
   display: flex;
   background: #f8fafc;
-  
-`;
 
+  @media (max-width: 940px) {
+    justify-content: center;
+  }
+`;
 export const LeftColumn = styled(Box)`
-  width: 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #f8fafc;
   padding: 24px 40px 32px;
-
-
-  input:-webkit-autofill,
+  box-sizing: border-box;
+ input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   textarea:-webkit-autofill,
@@ -34,11 +36,20 @@ export const LeftColumn = styled(Box)`
     box-shadow: 0 0 0px 1000px transparent inset !important;
     -webkit-text-fill-color: #000 !important;
     transition: background-color 5000s ease-in-out 0s;
+  @media (max-width: 1000px) {
+    flex: 0 0 100%;
+    max-width: 640px;
+    margin: 0 auto; /* markazga olib keladi */
+  }
 `;
 
 export const AuthRightSide = styled(Box)`
-  width: 50%;
-  min-height: 100vh;
+  flex: 0 0 50%;
+  max-width: 50%;
+
+  @media (max-width: 940px) {
+    display: none;
+  }
 `;
 
 export const HeaderArea = styled(Box)`
@@ -53,14 +64,23 @@ export const CenterArea = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  @media (max-width: 500px) {
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 24px;
+    width: 100%;
+  }
 `;
 
 export const FormBlock = styled(Box)`
-  width: 464px;
-  display: flex;
-  flex-direction: column;
-`;
+  margin: 0 auto;
 
+  @media (max-width: 500px) {
+    width: 200px;
+    max-width: 200px;
+  }
+`;
 export const BackButton = styled(Button)`
   width: 40px;
   min-width: 40px;
@@ -82,9 +102,9 @@ export const BackButton = styled(Button)`
 export const LanguageSelectWrap = styled(Box)`
   display: flex;
   justify-content: flex-end;
-  `;
+`;
 
-export  const LanguageSelect = styled(Select)`
+export const LanguageSelect = styled(Select)`
   height: 36px;
   border-radius: 8px;
   background-color: #F5F5F5;
@@ -98,7 +118,7 @@ export const StyledMenuItem = styled(MenuItem)`
   font-size: 14px;
   display: flex;
   gap: 10px;
-  `;
+`;
 
 export const TitleWrap = styled(Box)`
   margin-bottom: 8px;
@@ -113,7 +133,7 @@ export const FieldWrap = styled(Box)`
 `;
 
 export const StyledTextField = styled(TextField)`
- width: 100%;
+  width: 100%;
 
   & .MuiOutlinedInput-root {
     height: 40px;

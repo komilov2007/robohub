@@ -15,8 +15,10 @@ import type {
   RegisterResponse,
 } from "@/@type/type";
 import toast from "react-hot-toast";
+import { useBoolean } from "@/hook/useBoolean";
 
 export const usePage = () => {
+  const privacyAccepted = useBoolean();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +43,11 @@ export const usePage = () => {
       .required("confirm_password_required")
       .oneOf([yup.ref("password")], "confirm_password_not_match")
       .default(""),
+    privacy: yup
+      .boolean()
+      .oneOf([true], "privacy_required")
+      .required("privacy_required")
+      .default(false),
   });
   const {
     control,
@@ -155,8 +162,8 @@ export const usePage = () => {
         return;
       }
 
-      if (status === 500) {
-        toast.error(t("server_error"));
+      if (data?.detail === "This phone number is already registered.") {
+        toast.error(t("server_number_error"));
         return;
       }
 
@@ -195,5 +202,6 @@ export const usePage = () => {
     languages,
     handleLangChange,
     navigate,
+    privacyAccepted,
   };
 };

@@ -1,105 +1,106 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 export const AuthPageWrap = styled(Box)`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  background: #f8fafc;  input:-webkit-autofill,
-   input:-webkit-autofill:hover,
-   input:-webkit-autofill:focus,
-   textarea:-webkit-autofill,
-   select:-webkit-autofill {
-     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
-     box-shadow: 0 0 0px 1000px transparent inset !important;
-     -webkit-text-fill-color: #000 !important;
-     transition: background-color 5000s ease-in-out 0s;
-   }
+  background: #f8fafc;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: #000 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
-
+export const TermsText = styled(Link)({
+  color: "#00524F",
+});
 export const LeftColumn = styled(Box)`
-  width: 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #f8fafc;
   padding: 24px 40px 32px;
+  box-sizing: border-box;
 
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 1040px) {
+    flex: 1 1 100%;
+    max-width: 100%;
     padding: 16px 20px 24px;
   }
 `;
-
 export const RightSide = styled(Box)`
-  width: 50%;
-  min-height: 100vh;
+  flex: 0 0 50%;
+  max-width: 50%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1040px) {
     display: none;
   }
 `;
-
 export const HeaderArea = styled(Box)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   min-height: 40px;
 `;
-
 export const CenterArea = styled(Box)`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  @media (max-width: 1200px) {
+    width: 760px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  @media (max-width: 1040px) {
+    max-width: 680px;
+  }
   @media (max-width: 768px) {
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-top: 40px;
+    max-width: 100%;
+    padding: 24px 16px;
   }
 `;
-
 export const FormBlock = styled(Box)`
   width: 548px;
   display: flex;
   flex-direction: column;
-
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
-
 export const LanguageSelectWrap = styled(Box)`
   display: flex;
   align-items: center;
 `;
-
 export const LanguageSelect = styled(Select)`
   width: 155px;
   height: 36px;
   border-radius: 10px;
-  background: #F5F5F5;
-
+  background: #f5f5f5;
   .MuiOutlinedInput-notchedOutline {
     border: 1px solid #d7dfeb;
   }
-
   &:hover .MuiOutlinedInput-notchedOutline {
     border-color: #d7dfeb;
   }
-
   &.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: #d7dfeb;
     border-width: 1px;
   }
-
   .MuiSelect-select {
     display: flex;
     align-items: center;
@@ -110,31 +111,25 @@ export const LanguageSelect = styled(Select)`
     color: #3e4a60;
   }
 `;
-
 export const StyledMenuItem = styled(MenuItem)`
   display: flex;
-   gap: 16px;
+  gap: 16px;
 `;
-
 export const TitleWrap = styled(Box)`
   margin-bottom: 8px;
 `;
-
 export const SubTitleWrap = styled(Box)`
   margin-bottom: 24px;
 `;
-
 export const NameRow = styled(Box)`
   width: 100%;
   display: flex;
   gap: 16px;
-
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 0;
   }
 `;
-
 export const FieldBox = styled(Box)`
   flex: 1;
 `;
@@ -154,8 +149,7 @@ export const StyledTextField = styled(TextField)`
     background: #ffffff;
     padding-left: 2px;
     padding-right: 2px;
-  padding-left: 10px;
-  
+    padding-left: 10px;
   }
 
   .MuiOutlinedInput-notchedOutline {
@@ -218,19 +212,35 @@ export const PasswordStrengthBars = styled(Box)`
   gap: 4px;
 `;
 
-export const PasswordStrengthBar = styled(Box)<{ active?: boolean }>`
+export const PasswordStrengthBar = styled(Typography)<{
+  level?: number;
+  score?: number;
+  active?: boolean;
+}>`
   height: 4px;
   border-radius: 999px;
-  background: ${({ active }) => (active ? '#00524F' : '#D7DFEB')};
-`;
+  background: ${({ level, score }) => {
+    if (!score || score < (level || 0)) return "#D7DFEB";
 
-export const PasswordStrengthText = styled(Typography)<{ active?: boolean }>`
-  min-width: 48px;
-  text-align: right;
+    if (score === 1) return "#DF1C41";
+    if (score === 2) return "#f59e0b";
+    if (score === 3) return "#00524F";
+    return "#00524F";
+  }};
+`;
+export const PasswordStrengthText = styled(Typography)<{
+  score?: number;
+}>`
   font-size: 12px;
-  line-height: 16px;
   font-weight: 500;
-  color: ${({ active }) => (active ? '#00524F' : '#98A2B3')};
+
+  color: ${({ score }) => {
+    if (!score) return "#9CA3AF";
+    if (score === 1) return "#DF1C41";
+    if (score === 2) return "#f59e0b";
+    if (score === 3) return "#00524F";
+    return "#00524F";
+  }};
 `;
 
 export const PasswordRulesWrap = styled(Box)`
@@ -257,7 +267,7 @@ export const PasswordRuleDot = styled(Box)<{ active?: boolean }>`
   height: 12px;
   min-width: 12px;
   border-radius: 50%;
-  background: ${({ active }) => (active ? '#00524F' : '#D7DFEB')};
+  background: ${({ active }) => (active ? "#00524F" : "#D7DFEB")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,14 +277,13 @@ export const PasswordRuleText = styled(Typography)<{ active?: boolean }>`
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
-  color: ${({ active }) => (active ? '#596881' : '#98A2B3')};
+  color: ${({ active }) => (active ? "#596881" : "#98A2B3")};
 `;
 
 export const AgreementWrap = styled(Box)`
   margin-top: 16px;
   margin-bottom: 12px;
 `;
-
 export const SubmitButton = styled(Button)`
   position: relative;
   width: 100%;
@@ -287,12 +296,16 @@ export const SubmitButton = styled(Button)`
   font-size: 14px;
   font-weight: 600;
   background:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0)
+    ),
     #00524f;
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 50%;
@@ -306,7 +319,11 @@ export const SubmitButton = styled(Button)`
 
   &:hover {
     background:
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0)
+      ),
       #00524f;
     box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4);
   }
