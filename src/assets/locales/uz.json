@@ -382,5 +382,6 @@
   "privacy_prefix": "Ro’yxatdan o’tish orqali siz bizning",
   "privacy_link": "umumiy oferta va shartlarimizga",
   "privacy_suffix": "rozilik bildirasiz.",
-  "privacy_required": "Davom etish uchun ommaviy oferta va shartlarni tasdiqlang"
+  "privacy_required": "Davom etish uchun ommaviy oferta va shartlarni tasdiqlang",
+  "password_number_required": "Parolda kamida bitta raqam bo‘lishi kerak"
 }

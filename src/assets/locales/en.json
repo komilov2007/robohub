@@ -378,5 +378,6 @@
   "privacy_prefix": "By registering, you agree to our",
   "privacy_link": "public offer and terms",
   "privacy_suffix": ".",
-  "privacy_required": "Please accept the public offer and terms to continue"
+  "privacy_required": "Please accept the public offer and terms to continue",
+  "password_number_required": "Password must contain at least one number"
 }
