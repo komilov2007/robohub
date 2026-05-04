@@ -152,7 +152,7 @@
   "password_rule_min": "Минимум 8 символов",
 
   "profile_cancel": "Отмена",
-  "profile_submit": "Добавить",
+  "profile_submit": "Cохранить изменения",
   "logout_modal_title": "Вы хотите выйти из системы?",
   "logout_modal_description": "Если вы выйдете из системы, вам нужно будет снова ввести логин и пароль.",
   "logout_cancel": "Отмена",
@@ -385,5 +385,9 @@
   "privacy_link": "публичной офертой и условиями",
   "privacy_suffix": ".",
   "privacy_required": "Чтобы продолжить, подтвердите публичную оферту и условия",
-  "password_number_required": "Пароль должен содержать хотя бы одну цифру"
+  "password_number_required": "Пароль должен содержать хотя бы одну цифру",
+  "edit_password_submit": "Сохранить",
+  "edit_password_success": "Пароль успешно изменён",
+  "edit_password_old_incorrect": "Старый пароль неверный",
+  "edit_password_same": "Новый пароль не должен совпадать со старым"
 }

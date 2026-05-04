@@ -150,9 +150,9 @@ export const StyledTextField = styled(TextField)`
 
 export const SubmitButton = styled(Button)`
   position: relative;
-  width: 464px;
+  width: 100%;
   height: 40px;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 12px;
   border-radius: 10px;
   text-transform: none;

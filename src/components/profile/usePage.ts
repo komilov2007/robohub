@@ -18,6 +18,7 @@ interface ChangePasswordForm {
 interface ProfileForm {
   first_name: string;
   last_name: string;
+  phone: string;
 }
 
 type ProfileResponse = {
@@ -38,8 +39,12 @@ const passwordSchema: yup.ObjectSchema<ChangePasswordForm> = yup.object({
 });
 
 const profileSchema: yup.ObjectSchema<ProfileForm> = yup.object({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
+  first_name: yup.string().required("Ism kiritilishi shart"),
+  last_name: yup.string().required("Familiya kiritilishi shart"),
+  phone: yup
+    .string()
+    .required("Telefon raqam kiritilishi shart")
+    .matches(/^\+?\d{9,15}$/, "Telefon raqam noto‘g‘ri"),
 });
 
 export const usePage = () => {
@@ -63,14 +68,6 @@ export const usePage = () => {
     },
   });
 
-  const profileForm = useForm<ProfileForm>({
-    resolver: yupResolver(profileSchema),
-    defaultValues: {
-      first_name: "",
-      last_name: "",
-    },
-  });
-
   const { data: profile } = useQuery<ProfileResponse>({
     queryKey: ["profile"],
     queryFn: async () => {
@@ -78,15 +75,24 @@ export const usePage = () => {
       return data;
     },
   });
+
   useEffect(() => {
     if (profile) {
       profileForm.reset({
         first_name: profile.first_name ?? "",
         last_name: profile.last_name ?? "",
+        phone: profile.phone ?? "", // 🔥 shu yetishmayapti
       });
     }
-  }, [profile, profileForm]);
-
+  }, [profile]);
+  const profileForm = useForm<ProfileForm>({
+    resolver: yupResolver(profileSchema),
+    defaultValues: {
+      first_name: "",
+      last_name: "",
+      phone: "",
+    },
+  });
   const newPassword = form.watch("new_password");
 
   const passwordRules = useMemo(
@@ -131,24 +137,44 @@ export const usePage = () => {
 
   const changePasswordMutation = useMutation({
     mutationFn: async (values: ChangePasswordForm) => {
+      if (values.old_password === values.new_password) {
+        toast.error(t("edit_password_same"));
+        throw new Error("Same password");
+      }
+
       const payload = {
         old_password: values.old_password,
         password: values.new_password,
         confirm_password: values.confirm_password,
       };
-      setTimeout(() => {
-        toast.success("Parolingiz muvaffaqiyatli o'zgartirildi!");
-      }, 800);
+
       const { data } = await api.post("account/change-password/", payload);
       return data;
     },
+
     onSuccess: () => {
+      toast.success(t("edit_password_success"));
       form.reset();
       setFalse();
     },
+
     onError: (error: any) => {
-      console.log("statusi:", error?.response?.status);
-      console.log("datasi:", error?.response?.data);
+      const data = error?.response?.data;
+
+      if (data?.old_password) {
+        const msg = Array.isArray(data.old_password)
+          ? data.old_password[0]
+          : data.old_password;
+
+        toast.error(msg);
+        return;
+      }
+
+      if (data?.detail) {
+        toast.error(t("edit_password_old_incorrect"));
+
+        return;
+      }
     },
   });
   const handleLogout = () => {
@@ -184,17 +210,21 @@ export const usePage = () => {
     form.reset();
     setFalse();
   };
+  const onSubmit = (data: ProfileForm) => {
+    console.log("SUBMIT DATA:", data);
 
+    updateProfileMutation.mutate(data); // 🔥 API shu yerda ketadi
+  };
   const handleSubmit = form.handleSubmit((values) => {
     changePasswordMutation.mutate(values);
   });
 
   const handleUpdateProfile = profileForm.handleSubmit((values) => {
+    console.log("YUBORILDI:", values); // 👈 shu chiqyaptimi?
     updateProfileMutation.mutate(values);
   });
   return {
     t,
-
     profile,
     profileForm,
     handleUpdateProfile,
@@ -216,5 +246,6 @@ export const usePage = () => {
     oldPasswordVisible,
     activeTab,
     setActiveTab,
+    onSubmit,
   };
 };

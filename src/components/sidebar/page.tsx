@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
 import IconArrowLeft from "@/assets/icons/sidebar-arrow-left.svg?react";
-
+import SidebarProfilImg from "@/assets/img/profil.webp";
 import { usePage } from "./usePage";
 import {
   AvatarWrap,
@@ -129,7 +129,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
 
         <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
           <AvatarWrap>
-            <img src={user.image} alt={user.fullName} />
+            <img src={user.image || SidebarProfilImg} alt={user.fullName} />
           </AvatarWrap>
 
           <UserInfo collapsed={collapsed}>

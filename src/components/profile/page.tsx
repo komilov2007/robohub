@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Controller } from "react-hook-form";
-import { Modal, ThemeProvider } from "@mui/material";
+import { CircularProgress, Modal, ThemeProvider } from "@mui/material";
 import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
 import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
 import IconFlagEn from "@/assets/icons/flag-en.svg?react";
@@ -62,8 +62,6 @@ const Profil = () => {
     logoutModal,
     profile,
     profileForm,
-    handleUpdateProfile,
-    isProfileUpdating,
     handleLogout,
     form,
     passwordRules,
@@ -198,11 +196,19 @@ const Profil = () => {
             <ActionsRow>
               <CancelButton>{t("profile_cancel")}</CancelButton>
 
-              <SaveButton
-                onClick={handleUpdateProfile}
-                disabled={isProfileUpdating}
-              >
-                {isProfileUpdating ? "..." : t("profile_submit")}
+              <SaveButton onClick={handleSubmit} disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <CircularProgress
+                      size={16}
+                      thickness={5}
+                      sx={{ color: "#fff", mr: 1 }}
+                    />
+                    {t("loading_text")}
+                  </>
+                ) : (
+                  t("profile_submit")
+                )}
               </SaveButton>
             </ActionsRow>
           </>
@@ -328,7 +334,18 @@ const Profil = () => {
               <CancelButton>{t("profile_cancel")}</CancelButton>
 
               <SaveButton onClick={handleSubmit} disabled={isLoading}>
-                {isLoading ? "..." : t("profile_submit")}
+                {isLoading ? (
+                  <>
+                    <CircularProgress
+                      size={16}
+                      thickness={5}
+                      sx={{ color: "#fff", mr: 1 }}
+                    />
+                    {t("loading_text")}
+                  </>
+                ) : (
+                  t("profile_submit")
+                )}
               </SaveButton>
             </ActionsRow>
           </>

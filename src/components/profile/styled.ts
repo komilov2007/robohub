@@ -405,7 +405,7 @@ export const EmailText = styled(Typography)({
 
 export const ActionsRow = styled(Box)({
   display: "flex",
-  marginLeft: "25%",
+  marginLeft: "19%",
   gap: 10,
   marginTop: 22,
   paddingRight: 8,
@@ -436,12 +436,24 @@ export const SaveButton = styled(Button)({
   fontSize: 14,
   fontWeight: 500,
   textTransform: "none",
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+  transition: "all 0.2s ease",
 
   "&:hover": {
     background: "#00524F",
   },
-});
 
+  "&:active": {
+    transform: "scale(0.97)",
+  },
+
+  "&.Mui-disabled": {
+    background: "#0A3F3C",
+    color: "#A7D1CE",
+  },
+});
 export const LanguageList = styled(Box)({
   width: 240,
   marginTop: 22,

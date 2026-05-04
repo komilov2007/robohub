@@ -145,7 +145,7 @@
   "password_rule_min": "At least 8 characters",
 
   "profile_cancel": "Cancel",
-  "profile_submit": "Add",
+  "profile_submit": "Save shanges",
   "logout_modal_title": "Do you want to log out?",
   "logout_modal_description": "If you log out, you will need to enter your login and password again.",
   "logout_cancel": "Cancel",
@@ -379,5 +379,9 @@
   "privacy_link": "public offer and terms",
   "privacy_suffix": ".",
   "privacy_required": "Please accept the public offer and terms to continue",
-  "password_number_required": "Password must contain at least one number"
+  "password_number_required": "Password must contain at least one number",
+  "edit_password_submit": "Save",
+  "edit_password_success": "Password changed successfully",
+  "edit_password_old_incorrect": "Old password is incorrect",
+  "edit_password_same": "New password must be different from the old password"
 }

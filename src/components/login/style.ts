@@ -4,8 +4,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import CircularProgress from "@mui/material/CircularProgress";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Select } from "@mui/material";
+import { Button, Select } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 
 const dashMove = keyframes`
@@ -105,18 +104,56 @@ export const Loader = styled(CircularProgress)<{ isLogin: boolean }>(
   }),
 );
 
-export const StyledLoginButton = styled(LoadingButton)`
-  width: 100%;
-  min-height: 40px;
-  border-radius: 12px;
-  text-transform: none;
-  box-shadow: none;
+export const StyledLoginButton = styled(Button)({
+  position: "relative", // 🔥 MUHIM
+  height: 40,
+  width: "100%",
+  borderRadius: 8,
 
-  &:hover {
-    box-shadow: none;
-  }
-`;
+  color: "#ffffff",
+  fontWeight: 600,
+  fontSize: 14,
+  marginTop: 2,
+  textTransform: "none",
 
+  overflow: "hidden", // 🔥 border tashqariga chiqmasin
+
+  transition: "all 0.25s ease",
+
+  // 🔥 ichki top border
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 1,
+    left: 0,
+    width: "100%",
+    height: 1,
+    background: "#FFFFFF1F",
+    opacity: 0.7,
+  },
+
+  "&:hover": {
+    background: "#00524F",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      top: 1,
+      left: 0,
+      width: "100%",
+      height: 1,
+      background: "#FFFFFF1F",
+      opacity: 0.7,
+    },
+  },
+
+  "&:active": {
+    transform: "scale(0.97)",
+  },
+
+  "&.Mui-disabled": {
+    opacity: 0.7,
+  },
+});
 export const RightWrapper = styled(Box)`
   width: 100%;
   min-height: 100vh;
@@ -385,3 +422,10 @@ export const VideoStyled = styled("video")(() => ({
     height: 400,
   },
 }));
+export const CheckboxIconWrapper = styled("span")({
+  width: 18,
+  height: 10,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});

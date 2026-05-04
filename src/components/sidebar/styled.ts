@@ -1,3 +1,4 @@
+import { Image } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
@@ -21,7 +22,7 @@ export const SidebarWrap = styled(Box, {
   padding: 10,
   boxSizing: "border-box",
 }));
-
+export const ProfilImg = styled(Image)({});
 export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   marginTop: 10,
   display: "flex",

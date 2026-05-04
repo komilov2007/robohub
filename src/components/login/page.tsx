@@ -36,6 +36,7 @@ import {
   LanguageSelect,
   LanguageSelectWrap,
   RemeberForgetText,
+  CheckboxIconWrapper,
 } from "./style";
 const languages = [
   { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
@@ -156,8 +157,16 @@ const LoginLeft = () => {
                       <Checkbox
                         checked={rememberMe.value}
                         onChange={rememberMe.toggle}
-                        icon={<IconChecBox />}
-                        checkedIcon={<IconChecBoxActive />}
+                        icon={
+                          <CheckboxIconWrapper>
+                            <IconChecBox />
+                          </CheckboxIconWrapper>
+                        }
+                        checkedIcon={
+                          <CheckboxIconWrapper>
+                            <IconChecBoxActive />
+                          </CheckboxIconWrapper>
+                        }
                         disableRipple
                       />
                     }
@@ -166,7 +175,7 @@ const LoginLeft = () => {
                         {t("remember_me")}
                       </Typography>
                     }
-                  ></FormControlLabel>
+                  />
 
                   <Typography
                     component={Link}
