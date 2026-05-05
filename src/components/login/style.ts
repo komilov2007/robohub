@@ -324,12 +324,17 @@ export const FooterWrap = styled(Box)`
   display: flex;
   justify-content: center;
   color: #7d879c;
+  @media (max-width: 350px) {
+    display: flex;
+    font-size: 1px;
+  }
 `;
 export const FooterInner = styled(Box)`
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+  font-size: 1px;
 `;
 export const HeroWrapper = styled("div")(() => ({
   width: "100%",

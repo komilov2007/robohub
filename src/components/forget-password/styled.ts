@@ -1,19 +1,15 @@
-import {
-  Box,
-  Button,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-
 export const AuthPageWrap = styled(Box)`
   width: 100%;
   min-height: 100vh;
   display: flex;
   background: #f8fafc;
-
   @media (max-width: 940px) {
     justify-content: center;
   }
@@ -42,43 +38,48 @@ export const LeftColumn = styled(Box)`
     margin: 0 auto; /* markazga olib keladi */
   }
 `;
-
 export const AuthRightSide = styled(Box)`
   flex: 0 0 50%;
   max-width: 50%;
-
   @media (max-width: 940px) {
     display: none;
   }
 `;
-
 export const HeaderArea = styled(Box)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   min-height: 40px;
 `;
-
 export const CenterArea = styled(Box)`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  @media (max-width: 500px) {
-    align-items: flex-start;
+  @media (max-width: 939px) {
     justify-content: center;
-    padding-top: 24px;
-    width: 100%;
   }
 `;
-
-export const FormBlock = styled(Box)`
-  margin: 0 auto;
-
-  @media (max-width: 500px) {
-    width: 200px;
-    max-width: 200px;
+export const FormBlock = styled("form")`
+  width: 540px; /* default */
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 939px) {
+    width: 400px; /* sen xohlagan */
+    min-width: 500px;
+  }
+  @media (max-width: 550px) {
+    width: 400px; /* sen xohlagan */
+    min-width: 400px;
+  }
+  @media (max-width: 420px) {
+    width: 400px;
+    min-width: 350px;
+  }
+  @media (max-width: 350px) {
+    width: 400px;
+    min-width: 250px;
   }
 `;
 export const BackButton = styled(Button)`
@@ -92,18 +93,15 @@ export const BackButton = styled(Button)`
   box-shadow: none;
   color: #101828;
   margin-bottom: 32px;
-
   &:hover {
     background: transparent;
     box-shadow: none;
   }
 `;
-
 export const LanguageSelectWrap = styled(Box)`
   display: flex;
   justify-content: flex-end;
 `;
-
 export const LanguageSelect = styled(Select)`
   height: 36px;
   border-radius: 8px;
@@ -113,25 +111,20 @@ export const LanguageSelect = styled(Select)`
     border: 'none',
   },
 `;
-
 export const StyledMenuItem = styled(MenuItem)`
   font-size: 14px;
   display: flex;
   gap: 10px;
 `;
-
 export const TitleWrap = styled(Box)`
   margin-bottom: 8px;
 `;
-
 export const SubTitleWrap = styled(Box)`
   margin-bottom: 24px;
 `;
-
 export const FieldWrap = styled(Box)`
   margin-bottom: 6px;
 `;
-
 export const StyledTextField = styled(TextField)`
   width: 100%;
 
@@ -146,8 +139,10 @@ export const StyledTextField = styled(TextField)`
       box-shadow: 0px 0px 3px #60788f;
     }
   }
+  @media (max-width: 350px) {
+    font-size: 14px;
+  }
 `;
-
 export const SubmitButton = styled(Button)`
   position: relative;
   width: 100%;
@@ -165,14 +160,12 @@ export const SubmitButton = styled(Button)`
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4);
   }
 `;
-
 export const BottomTextWrap = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 `;
-
 export const BottomInlineText = styled(Typography)`
   cursor: pointer;
 `;

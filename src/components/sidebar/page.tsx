@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
 import IconArrowLeft from "@/assets/icons/sidebar-arrow-left.svg?react";
@@ -30,12 +29,11 @@ import {
   UserInfo,
   UserName,
   UserPhone,
+  TopBlock,
 } from "./styled";
-
 type SidebarPageProps = {
   onCollapseChange?: (collapsed: boolean) => void;
 };
-
 const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
   const {
     collapsed,
@@ -48,34 +46,28 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
     handleInstall,
     cardData,
   } = usePage();
-
   useEffect(() => {
     onCollapseChange?.(collapsed);
   }, [collapsed, onCollapseChange]);
-
   const NotificationIcon = notification.icon;
-
   return (
     <SidebarWrap collapsed={collapsed}>
-      <div>
+      <TopBlock>
         <TopArea collapsed={collapsed}>
           {!collapsed && (
             <BrandWrap to={"/"} collapsed={collapsed}>
               <IconLogo />
             </BrandWrap>
           )}
-
           <ToggleButton onClick={handleToggleSidebar}>
             {collapsed ? <IconArrowLeft /> : <IconArrow />}
           </ToggleButton>
         </TopArea>
-
         <MenuWrap>
           {menus.map((item) => {
             const Icon = item.icon;
-            const active = isActive(item.path);
             const IconAct = item.iconAct;
-
+            const active = isActive(item.path);
             return (
               <MenuItem
                 key={item.id}
@@ -94,44 +86,38 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
             );
           })}
         </MenuWrap>
-      </div>
+        {!collapsed && (
+          <CardWrap>
+            <PhoneImage src={cardData.image} alt={cardData.title} />
+            <GlassBlock>
+              <Title>{cardData.title}</Title>
+              <Description>{cardData.description}</Description>
 
-      {!collapsed && (
-        <CardWrap>
-          <PhoneImage src={cardData.image} alt={cardData.title} />
-
-          <GlassBlock>
-            <Title>{cardData.title}</Title>
-            <Description>{cardData.description}</Description>
-            <InstallButton onClick={handleInstall}>
-              {cardData.buttonText}
-            </InstallButton>
-          </GlassBlock>
-        </CardWrap>
-      )}
-
+              <InstallButton onClick={handleInstall}>
+                {cardData.buttonText}
+              </InstallButton>
+            </GlassBlock>
+          </CardWrap>
+        )}
+      </TopBlock>
       <BottomArea>
         <NotificationsRow to={"/dashboard/notifications"} collapsed={collapsed}>
           <NotificationsLeft>
             <MenuIconWrap>
               <NotificationIcon />
             </MenuIconWrap>
-
             <NotificationsText collapsed={collapsed}>
               {notification.title}
             </NotificationsText>
           </NotificationsLeft>
-
           {!collapsed && (
             <Badge collapsed={collapsed}>{notification.count}</Badge>
           )}
         </NotificationsRow>
-
         <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
           <AvatarWrap>
             <img src={user.image || SidebarProfilImg} alt={user.fullName} />
           </AvatarWrap>
-
           <UserInfo collapsed={collapsed}>
             <UserName>{user.fullName}</UserName>
             <UserPhone>{user.phone}</UserPhone>
@@ -141,5 +127,4 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
     </SidebarWrap>
   );
 };
-
 export default SidebarPage;

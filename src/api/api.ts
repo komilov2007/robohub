@@ -1,30 +1,20 @@
-import axios from 'axios'
-
-const getCookie = (name: string): string | null => {
-  const cookies = document.cookie.split('; ')
-
-  for (const cookie of cookies) {
-    const [key, ...rest] = cookie.split('=')
-    const value = rest.join('=')
-
-    if (key === name) {
-      return decodeURIComponent(value)
-    }
-  }
-
-  return null
-}
+import axios from "axios";
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-})
+});
 
 api.interceptors.request.use((config) => {
-  const accessToken = getCookie('access_token')
+  const resetToken = localStorage.getItem("reset_access_token");
 
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
+  // 🔥 faqat kerakli endpointlarda qo‘shamiz
+  const isResetFlow =
+    config.url?.includes("/account/otp/verify/") ||
+    config.url?.includes("/account/reset-password/");
+
+  if (resetToken && isResetFlow) {
+    config.headers.Authorization = `Bearer ${resetToken}`;
   }
 
-  return config
-})
+  return config;
+});

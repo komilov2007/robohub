@@ -166,6 +166,7 @@ export const usePage = () => {
   });
 
   const onSubmit = (data: OtpFormType) => {
+    console.log("SUBMIT ISHLADI", data);
     if (isExpired) {
       setError("otp", {
         type: "manual",

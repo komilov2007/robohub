@@ -9,7 +9,7 @@ import {
   StyledMenuItem,
 } from "../login/style";
 import { usePage } from "@/components/resgister-success/usePage";
-import { HeaderArea } from "../forget-login/styled";
+import { HeaderArea } from "../forget-password/styled";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import {
   SuccessContainer,

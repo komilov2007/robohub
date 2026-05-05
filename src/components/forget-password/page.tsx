@@ -1,6 +1,5 @@
 import { ThemeProvider, Typography, InputAdornment, Box } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Controller } from "react-hook-form";
 import theme from "@/theme/theme";
 import IconUser from "@/assets/icons/user.svg?react";
 
@@ -10,6 +9,7 @@ import IconArrow from "@/assets/icons/icon-arrow.svg?react";
 import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
 import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
 import IconFlagEn from "@/assets/icons/flag-en.svg?react";
+
 import {
   AuthPageWrap,
   AuthRightSide,
@@ -29,11 +29,9 @@ import {
   BottomTextWrap,
   BottomInlineText,
 } from "./styled";
-import { useNavigate } from "react-router-dom";
 
-type FormValues = {
-  contact: string;
-};
+import { usePage } from "./usePage";
+import { useNavigate } from "react-router-dom";
 
 const languages = [
   { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
@@ -42,22 +40,17 @@ const languages = [
 ];
 
 const ForgetPasswordPage = () => {
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const { control, handleSubmit } = useForm<FormValues>({
-    defaultValues: {
-      contact: "",
-    },
-  });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-  };
-
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-    localStorage.setItem("lang", value);
-  };
+  const {
+    control,
+    handleSubmit,
+    onSubmit,
+    loading,
+    t,
+    i18n,
+    handleLangChange,
+  } = usePage();
 
   return (
     <ThemeProvider theme={theme}>
@@ -96,12 +89,13 @@ const ForgetPasswordPage = () => {
                 </Typography>
               </SubTitleWrap>
 
-              <FieldWrap></FieldWrap>
+              <FieldWrap />
 
               <Box>
                 <Typography vocab="noAccaunt">
                   {t("forget_password_email_label")}
                 </Typography>
+
                 <Controller
                   name="contact"
                   control={control}
@@ -127,13 +121,13 @@ const ForgetPasswordPage = () => {
                 />
               </Box>
 
-              <SubmitButton type="submit" vocab="loginBtn">
-                {t("forget_password_send_code")}
+              <SubmitButton type="submit" vocab="loginBtn" disabled={loading}>
+                {loading ? "Loading..." : t("forget_password_send_code")}
               </SubmitButton>
 
               <BottomTextWrap>
                 <Typography vocab="loginBtm">
-                  {t("forget_password_remember_password")}{" "}
+                  {t("forget_password_remember_password")}
                 </Typography>
 
                 <BottomInlineText

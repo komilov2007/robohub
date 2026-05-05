@@ -11,17 +11,21 @@ export const SidebarWrap = styled(Box, {
   width: collapsed ? 84 : 262,
   minWidth: collapsed ? 84 : 262,
   maxWidth: collapsed ? 84 : 262,
-  height: "100%",
+  height: "100vh",
   background: "#005F56",
-  overflow: "hidden", // 👈 scroll YO‘Q
+  overflow: "hidden", // scroll yo‘q
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
-  gap: 12,
-  transition: "width 0.3s ease, min-width 0.3s ease, max-width 0.3s ease",
   padding: 10,
   boxSizing: "border-box",
 }));
+export const TopBlock = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  gap: 12;
+  flex: 1; /* 🔥 joyni egallaydi */
+  min-height: 0; /* 🔥 overflow bug fix */
+`;
 export const ProfilImg = styled(Image)({});
 export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   marginTop: 10,
@@ -80,6 +84,7 @@ export const MenuWrap = styled(Box)(() => ({
   width: "100%",
   "@media (max-height: 760px)": {
     gap: 4,
+    display: "flex",
   },
   alignItems: "center",
 }));

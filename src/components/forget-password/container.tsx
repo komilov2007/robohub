@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const AuthContainer = styled(Box)`
   display: flex;
@@ -13,6 +13,11 @@ export const AuthLeft = styled(Box)`
   justify-content: center;
   align-items: center;
   background: #f6f8fb;
+  @media (max-width: 939px) {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 `;
 
 export const AuthRight = styled(Box)`
