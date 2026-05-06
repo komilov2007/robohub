@@ -71,7 +71,7 @@
   "register_success_description": "Поздравляем, вы успешно зарегистрировались в системе. Теперь вы можете пользоваться системой.",
   "start": "Начать",
   "register_failed": "Произошла ошибка при регистрации",
-  "register_success": "Регистрация прошла успешно",
+  "register_success": "Код подтверждения отправлен",
   "server_error": "Произошла ошибка на сервере, пожалуйста, попробуйте позже",
   "password_special_required": "Требуются специальные символы",
   "otp_verify_title": "Подтверждение OTP",
@@ -389,5 +389,27 @@
   "edit_password_submit": "Сохранить",
   "edit_password_success": "Пароль успешно изменён",
   "edit_password_old_incorrect": "Старый пароль неверный",
-  "edit_password_same": "Новый пароль не должен совпадать со старым"
+  "edit_password_same": "Новый пароль не должен совпадать со старым",
+  "reset_password_title": "Обновите пароль",
+  "reset_password_description": "Введите новый пароль.",
+
+  "reset_password": "Обновить пароль",
+
+  "password_medium": "Средний",
+  "password_good": "Хороший",
+  "password_strong": "Сильный",
+
+  "fill_all_fields": "Заполните все поля",
+  "passwords_not_match": "Пароли не совпадают",
+  "password_too_weak": "Пароль слишком слабый",
+  "token_not_found": "Токен не найден",
+
+  "password_reset_success": "Пароль успешно обновлён",
+  "something_went_wrong": "Произошла ошибка",
+  "reset_password_description_ru": "Введите новый пароль.",
+  "phone_required": "Введите номер телефона",
+  "phone_invalid": "Неверный номер телефона",
+  "sms_sent": "SMS отправлено",
+  "token_not_received": "Токен не получен",
+  "invalid_code_provided": "Неверный код подтверждения."
 }

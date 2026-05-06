@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { useBoolean } from "@/hook/useBoolean";
 import { api } from "@/api/api";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface ChangePasswordForm {
   old_password: string;
@@ -48,6 +49,7 @@ const profileSchema: yup.ObjectSchema<ProfileForm> = yup.object({
 });
 
 export const usePage = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<
@@ -179,13 +181,18 @@ export const usePage = () => {
   });
   const handleLogout = () => {
     document.cookie =
-      "access_token=; Max-Age=0; path=/; secure; samesite=strict";
+      "access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
 
     document.cookie =
-      "refresh_token=; Max-Age=0; path=/; secure; samesite=strict";
+      "refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+
+    document.cookie =
+      "reset_access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+
     toast.success(t("logout_toast"));
+
     setTimeout(() => {
-      window.location.replace("/");
+      window.location.href = "/login";
     }, 800);
   };
   const updateProfileMutation = useMutation({

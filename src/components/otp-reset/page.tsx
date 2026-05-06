@@ -1,6 +1,15 @@
 import Container from "@mui/material/Container";
+
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { Controller } from "react-hook-form";
+
+import { useNavigate } from "react-router-dom";
+
 import { LoginRight } from "../login/loginright";
+
+import { usePage } from "./usePage";
+
 import IconArrow from "@/assets/icons/icon-arrow.svg?react";
 
 import {
@@ -14,67 +23,94 @@ import {
   OtpRow,
   OtpInput,
   SubmitButton,
+  ResendText,
+  TimeText,
   Footer,
   FooterText,
   Arrow,
-} from "./styled";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { HeaderArea } from "../register/styled";
-import {
-  LanguageSelect,
   LanguageSelectWrap,
+  LanguageSelect,
   StyledMenuItem,
-} from "../login/style";
-import { useNavigate } from "react-router-dom";
-import { usePage } from "./usePage";
+} from "./styled";
 
 const OtpVerifyPage = () => {
   const {
+    t,
+
     control,
     handleSubmit,
     onSubmit,
-    verifyLoading,
-    contact,
-    otpValues,
-    handleOtpChange,
-    inputRefs,
+    i18n,
+
+    languages,
+
     handleLangChange,
+    verifyLoading,
+
+    contact,
+
+    otpValues,
+
+    handleOtpChange,
+
+    handleKeyDown,
+
+    inputRefs,
+
+    isExpired,
+    formatTime,
   } = usePage();
 
   const isMobile = useMediaQuery("(max-width:900px)");
+
   const navigate = useNavigate();
 
   return (
     <Container maxWidth={false} disableGutters>
       <PageWrap>
-        <LeftSide sx={{ width: isMobile ? "100%" : "50%" }}>
-          <HeaderArea>
-            <LanguageSelectWrap>
-              <LanguageSelect
-                defaultValue="uz"
-                onChange={(e) => handleLangChange(e.target.value as string)}
-              >
-                <StyledMenuItem value="uz">UZ</StyledMenuItem>
-                <StyledMenuItem value="ru">RU</StyledMenuItem>
-                <StyledMenuItem value="en">EN</StyledMenuItem>
-              </LanguageSelect>
-            </LanguageSelectWrap>
-          </HeaderArea>
+        <LeftSide
+          sx={{
+            width: isMobile ? "100%" : "50%",
+          }}
+        >
+          {/* HEADER */}
+          <LanguageSelectWrap>
+            <LanguageSelect
+              value={i18n.language}
+              onChange={(e) => handleLangChange(e.target.value as string)}
+            >
+              {languages.map(({ value, label, Icon }) => (
+                <StyledMenuItem key={value} value={value}>
+                  <Icon /> {label}
+                </StyledMenuItem>
+              ))}
+            </LanguageSelect>
+          </LanguageSelectWrap>
 
+          {/* CENTER */}
           <CenterWrap>
-            <form style={{ width: "100%", maxWidth: "400px" }}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={{
+                width: "100%",
+                maxWidth: "400px",
+              }}
+            >
               <FormWrap>
+                {/* BACK */}
                 <Arrow onClick={() => navigate(-1)}>
                   <IconArrow />
                 </Arrow>
 
-                <Title>OTP tasdiqlash</Title>
+                {/* TITLE */}
+                <Title>{t("otp_verify_title")}</Title>
 
+                {/* DESCRIPTION */}
                 <Description>
-                  Kod yuborildi <b>{contact}</b>
+                  {t("otp_sent_text")} <b>{contact}</b> {t("otp_sent_text_end")}
                 </Description>
 
+                {/* OTP INPUTS */}
                 <Controller
                   name="otp"
                   control={control}
@@ -83,36 +119,50 @@ const OtpVerifyPage = () => {
                       {otpValues.map((value, index) => (
                         <OtpInput
                           key={index}
-                          ref={(el: HTMLInputElement | null) => {
+                          disabled={isExpired}
+                          ref={(el) => {
                             inputRefs.current[index] = el;
                           }}
                           value={value}
                           onChange={(e) =>
                             handleOtpChange(index, e.target.value)
                           }
+                          onKeyDown={(e) => handleKeyDown(index, e)}
                           maxLength={1}
+                          inputMode="numeric"
                         />
                       ))}
                     </OtpRow>
                   )}
                 />
 
+                {/* BUTTON */}
                 <SubmitButton
-                  type="button"
-                  onClick={handleSubmit(onSubmit)}
-                  disabled={verifyLoading}
+                  type="submit"
+                  disabled={verifyLoading || isExpired}
                 >
-                  {verifyLoading ? "Loading..." : "Tasdiqlash"}
+                  {verifyLoading ? t("loading") : t("otp_verify_button")}
                 </SubmitButton>
+
+                {/* TIMER */}
+                <ResendText>
+                  {t("otp_resend_text")} <TimeText>{formatTime}</TimeText>
+                </ResendText>
               </FormWrap>
             </form>
           </CenterWrap>
 
+          {/* FOOTER */}
           <Footer>
             <FooterText>© {new Date().getFullYear()} Robohub</FooterText>
+
+            <FooterText>{t("privacy_policy")}</FooterText>
+
+            <FooterText>{t("support")}</FooterText>
           </Footer>
         </LeftSide>
 
+        {/* RIGHT */}
         {!isMobile && (
           <RightSide>
             <LoginRight />

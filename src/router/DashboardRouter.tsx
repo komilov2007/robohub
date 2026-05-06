@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "@/router/ProtectedRoute";
 import DashboardLayout from "@/layout/DashboardLayout";
 import DashboardPage from "@/components/dashboard/page";
 import OrdersPage from "@/components/order/page";
@@ -14,23 +15,21 @@ import CommentPage from "@/components/comment/page";
 const DashboardRouter = () => {
   return (
     <Routes>
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<DashboardPage />} />
-        <Route path="orders" element={<OrdersPage />} />
-        <Route path="products" element={<ProductsPage />} />
-        <Route path="warehouse" element={<WarehousePage />} />
-        <Route path="integration" element={<IntegrationPage />} />
-        <Route path="chat" element={<Page />} />
-        <Route path="/dashboard/products/add" element={<ProductAddCard />} />
-        <Route path="/dashboard/profile" element={<Profile />} />
-        <Route path="/dashboard/warehouse/mapping" element={<MappingPage />} />
-        <Route path="/dashboard/comment" element={<CommentPage />} />
-        <Route
-          path="/dashboard/notifications"
-          element={<NotificationsPage />}
-        />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="orders" element={<OrdersPage />} />
+          <Route path="products" element={<ProductsPage />} />
+          <Route path="warehouse" element={<WarehousePage />} />
+          <Route path="integration" element={<IntegrationPage />} />
+          <Route path="chat" element={<Page />} />
+          <Route path="products/add" element={<ProductAddCard />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="warehouse/mapping" element={<MappingPage />} />
+          <Route path="comment" element={<CommentPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+        </Route>
       </Route>
-
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );

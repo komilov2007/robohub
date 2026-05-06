@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
+import { MenuItem, styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Select from "@mui/material/Select";
 import IconButton from "@mui/material/IconButton";
@@ -225,12 +225,43 @@ export const ResendText = styled(Typography)`
   line-height: 18px;
   color: #98a2b3;
 `;
-
+export const HeaderArea = styled(Box)`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 40px;
+`;
 export const TimeText = styled("span")`
   color: #0b6b61;
   font-weight: 600;
 `;
+export const StyledMenuItem = styled(MenuItem)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+export const LanguageSelect = styled(Select)(() => ({
+  minWidth: 120,
+  width: "auto",
 
+  ".MuiSelect-select": {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  },
+  border: "1px solid #E4E4E4 ",
+  background: "#f5f5f5",
+  borderRadius: "8px",
+}));
+export const LanguageSelectWrap = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+  height: "36px",
+  "& .MuiInputBase-root": {
+    width: "fit-content",
+  },
+}));
 export const Footer = styled(Box)`
   width: 100%;
   display: flex;

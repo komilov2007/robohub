@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Box, Container, useMediaQuery } from "@mui/material";
 
 import LoginLeft from "@/components/login/page";
@@ -35,12 +35,20 @@ const LoginPage = () => {
 const AuthRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
+      <Route path="/login" element={<LoginPage />} />
+
       <Route path="/forget-password" element={<Page />} />
+
       <Route path="/register" element={<Register />} />
+
       <Route path="/otp-verify" element={<OtpVerifyPage />} />
+
       <Route path="/register/success" element={<Success />} />
-      <Route path="/otp" element={<OtpReset />} />{" "}
+
+      <Route path="/otp" element={<OtpReset />} />
+
       <Route path="/reset-password" element={<ResetPassword />} />
     </Routes>
   );

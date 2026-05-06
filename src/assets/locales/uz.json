@@ -70,7 +70,7 @@
   "register_success_description": "Tabriklaymiz siz tizimdan muvaffaqiyatli ro‘yxatdan o‘tdingiz. Tizimdan foydalanishingiz mumkin.",
   "start": "Boshlash",
   "register_failed": "Ro'yxatdan o'tishda xatolik yuz berdi xozirchalik email bilan ro'yxtan o'tish mumkin emas",
-  "register_success": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi",
+  "register_success": "Tasdiqlash kodi yuborildi",
   "password_special_required": "Maxsus belgilar talab qilinadi",
   "server_error": "Serverda xatolik yuz berdi, iltimos keyinroq qayta urinib ko'ring",
   "otp_verify_title": "OTP tasdiqlash",
@@ -388,5 +388,29 @@
   "edit_password_submit": "Saqlash",
   "edit_password_success": "Parol o‘zgardi",
   "edit_password_old_incorrect": "Eski parol noto‘g‘ri",
-  "edit_password_same": "Yangi parol eski parol bilan bir xil bo‘lmasligi kerak"
+  "edit_password_same": "Yangi parol eski parol bilan bir xil bo‘lmasligi kerak",
+  "reset_password_title": "Parolingizni yangilang",
+
+  "reset_password": "Parolni yangilash",
+
+  "password_medium": "O‘rtacha",
+  "password_good": "Yaxshi",
+  "password_strong": "Kuchli",
+
+  "fill_all_fields": "Barcha maydonlarni to‘ldiring",
+  "passwords_not_match": "Parollar mos emas",
+  "password_too_weak": "Parol juda kuchsiz",
+  "token_not_found": "Token topilmadi",
+
+  "password_reset_success": "Parol muvaffaqiyatli yangilandi",
+  "something_went_wrong": "Xatolik yuz berdi",
+  "reset_password_description_uz": "Yangi parolingizni kiriting.",
+  "phone_required": "Telefon raqam kiriting",
+  "phone_invalid": "Telefon raqam noto‘g‘ri",
+  "sms_sent": "SMS yuborildi",
+  "token_not_received": "Token olinmadi",
+  "reset_password_description": "Yangi parolingizni kiriting.",
+  "otp_verified_success": "Kodingiz tasdiqlandi!!!",
+  "otp_invalid": "Parolda xatolik bor",
+  "invalid_code_provided": "Tasdiqlash kodi noto‘g‘ri."
 }

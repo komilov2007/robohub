@@ -64,7 +64,7 @@
   "register_success_description": "Your account has been created successfully. You can now log in to your account and start using our services.",
   "start": "Start",
   "register_failed": "An error occurred during registration",
-  "register_success": "Registration completed successfully",
+  "register_success": "Verification code sent",
   "server_error": "An error occurred on the server, please try again later",
   "password_special_required": "Special characters are required",
   "otp_verify_title": "OTP Verification",
@@ -383,5 +383,27 @@
   "edit_password_submit": "Save",
   "edit_password_success": "Password changed successfully",
   "edit_password_old_incorrect": "Old password is incorrect",
-  "edit_password_same": "New password must be different from the old password"
+  "edit_password_same": "New password must be different from the old password",
+  "reset_password_title": "Reset your password",
+  "reset_password_description": "Enter your new password.",
+
+  "reset_password": "Reset password",
+
+  "password_medium": "Medium",
+  "password_good": "Good",
+  "password_strong": "Strong",
+
+  "fill_all_fields": "Fill all fields",
+  "passwords_not_match": "Passwords do not match",
+  "password_too_weak": "Password is too weak",
+  "token_not_found": "Token not found",
+
+  "password_reset_success": "Password updated successfully",
+  "something_went_wrong": "Something went wrong",
+  "reset_password_description_en": "Enter your new password.",
+  "phone_required": "Enter phone number",
+  "phone_invalid": "Invalid phone number",
+  "sms_sent": "SMS sent",
+  "token_not_received": "Token not received",
+  "invalid_code_provided": "Invalid verification code provided."
 }

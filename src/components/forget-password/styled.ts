@@ -16,7 +16,7 @@ export const AuthPageWrap = styled(Box)`
 `;
 export const LeftColumn = styled(Box)`
   flex: 0 0 50%;
-  max-width: 50%;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,12 +45,11 @@ export const AuthRightSide = styled(Box)`
     display: none;
   }
 `;
-export const HeaderArea = styled(Box)`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  min-height: 40px;
-`;
+export const HeaderArea = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+}));
 export const CenterArea = styled(Box)`
   flex: 1;
   display: flex;
@@ -98,10 +97,11 @@ export const BackButton = styled(Button)`
     box-shadow: none;
   }
 `;
-export const LanguageSelectWrap = styled(Box)`
-  display: flex;
-  justify-content: flex-end;
-`;
+export const LanguageSelectWrap = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "flex-end",
+  width: "100%",
+}));
 export const LanguageSelect = styled(Select)`
   height: 36px;
   border-radius: 8px;
