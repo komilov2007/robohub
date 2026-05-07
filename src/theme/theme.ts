@@ -25,7 +25,7 @@ const theme = createTheme({
         { props: { vocab: "loginSubTitle" }, style: { color: "#596881" } },
         {
           props: { vocab: "noAccaunt" },
-          style: { color: "#8796AF", fontSize: "14px", marginBottom: "5px" },
+          style: { color: "#8796AF", fontSize: "14px" },
         },
         {
           props: { vocab: "loginRgt" },
