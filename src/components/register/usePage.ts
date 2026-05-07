@@ -39,7 +39,6 @@ export const usePage = () => {
 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // 🔥 SCHEMA
   const schema = yup.object({
     first_name: yup.string().required("first_name_required").default(""),
 
@@ -72,7 +71,6 @@ export const usePage = () => {
       .default(false),
   });
 
-  // 🔥 FORM
   const {
     control,
     handleSubmit,
@@ -86,14 +84,12 @@ export const usePage = () => {
     defaultValues: schema.getDefault(),
   });
 
-  // 🔥 WATCH PASSWORD
   const passwordValue = useWatch({
     control,
     name: "password",
     defaultValue: "",
   });
 
-  // 🔥 PASSWORD CHECKS
   const passwordChecks = useMemo(() => {
     const value = passwordValue || "";
 
@@ -110,7 +106,6 @@ export const usePage = () => {
 
   const passedCount = Object.values(passwordChecks).filter(Boolean).length;
 
-  // 🔥 PASSWORD STRENGTH
   const passwordStrength = useMemo(() => {
     if (!passwordValue) {
       return {
@@ -146,7 +141,6 @@ export const usePage = () => {
     };
   }, [passedCount, passwordValue, t]);
 
-  // 🔥 REGISTER
   const registerMutation = useMutation({
     mutationFn: async (data: RegisterFormType) => {
       const payload: RegisterPayload = {
@@ -169,7 +163,6 @@ export const usePage = () => {
       return res.data;
     },
 
-    // 🔥 SUCCESS
     onSuccess: (res, variables) => {
       console.log("✅ REGISTER RESPONSE:", res);
 
@@ -199,7 +192,6 @@ export const usePage = () => {
       // 🔥 OTP PAGE
       navigate(`/otp-verify?contact=${encodeURIComponent(variables.contact)}`);
     },
-    // 🔥 ERROR
     onError: (error: any) => {
       const status = error?.response?.status;
 

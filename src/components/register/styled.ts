@@ -12,6 +12,8 @@ export const AuthPageWrap = styled(Box)`
   min-height: 100vh;
   display: flex;
   background: #f8fafc;
+  overflow: hidden;
+  box-sizing: border-box;
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -35,18 +37,20 @@ export const LeftColumn = styled(Box)`
   background: #f8fafc;
   padding: 24px 40px 32px;
   box-sizing: border-box;
+  overflow-y: auto;
 
-  @media (max-width: 1040px) {
+  @media (max-width: 1140px) {
     flex: 1 1 100%;
     max-width: 100%;
     padding: 16px 20px 24px;
+    min-height: 100dvh;
   }
 `;
 export const RightSide = styled(Box)`
   flex: 0 0 50%;
   max-width: 50%;
 
-  @media (max-width: 1040px) {
+  @media (max-width: 760px) {
     display: none;
   }
 `;
@@ -61,17 +65,12 @@ export const CenterArea = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: 1200px) {
-    width: 760px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  @media (max-width: 1040px) {
-    max-width: 680px;
-  }
+  min-height: 0;
+
   @media (max-width: 768px) {
     max-width: 100%;
     padding: 24px 16px;
+    box-sizing: border-box;
   }
 `;
 export const FormBlock = styled(Box)`

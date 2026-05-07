@@ -158,23 +158,34 @@ export const CardWrap = styled(Box)(() => ({
   alignItems: "flex-end",
   justifyContent: "center",
   paddingBottom: 12,
-  borderBottom: "1px solid #cac6c633",
   marginLeft: "5px",
-  marginTop: "80px",
   flexShrink: 0,
+  marginTop: "55px",
 
   "@media (max-height: 820px)": {
-    maxWidth: 235,
-    height: 230,
+    maxWidth: 210,
+    height: 235,
+    marginTop: "20px",
   },
 
   "@media (max-height: 760px)": {
-    maxWidth: 195,
-    height: 185,
+    maxWidth: 250,
+    width: 250,
+    height: 145,
+    marginTop: "10px",
+  },
+
+  "@media (max-height: 670px)": {
+    maxWidth: 220,
+    width: 250,
+    height: 130,
+    marginTop: "0px",
   },
 }));
+
 export const GlassBlock = styled(Box)(() => ({
   width: "100%",
+  maxWidth: 350,
   height: 218,
   borderRadius: 16,
   background: "#1F6764",
@@ -186,29 +197,54 @@ export const GlassBlock = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+
+  "@media (max-height: 820px)": {
+    maxWidth: 250,
+    width: 250,
+    padding: "90px 10px 10px",
+  },
+
+  "@media (max-height: 760px)": {
+    maxWidth: 250,
+    width: 250,
+    height: 135,
+    padding: "14px 10px 10px",
+  },
+
+  "@media (max-height: 670px)": {
+    maxWidth: 250,
+    width: 250,
+    height: 100,
+    padding: "12px 8px 8px",
+  },
 }));
+
 export const PhoneImage = styled("img")(() => ({
   position: "absolute",
-  top: -18,
-  left: "45%",
+  top: "-20%",
+  left: "50%",
   transform: "translateX(-50%)",
   width: 138,
   height: 156,
   zIndex: 2,
+  marginButtom: "10px",
   objectFit: "contain",
 
   "@media (max-height: 820px)": {
     width: 118,
     height: 134,
-    top: -12,
+    top: "-14%",
   },
 
   "@media (max-height: 760px)": {
-    width: 96,
-    height: 110,
-    top: -8,
+    display: "none",
+  },
+
+  "@media (max-height: 670px)": {
+    display: "none",
   },
 }));
+
 export const Title = styled(Typography)(() => ({
   fontSize: 14,
   lineHeight: "100%",
@@ -222,6 +258,10 @@ export const Title = styled(Typography)(() => ({
   "@media (max-height: 760px)": {
     fontSize: 11,
     marginBottom: 5,
+  },
+
+  "@media (max-height: 670px)": {
+    fontSize: 10,
   },
 }));
 
@@ -240,10 +280,6 @@ export const Description = styled(Typography)(() => ({
     fontSize: 9,
     marginBottom: 7,
   },
-
-  "@media (max-height: 680px)": {
-    display: "none",
-  },
 }));
 
 export const InstallButton = styled(Button)(() => ({
@@ -260,6 +296,18 @@ export const InstallButton = styled(Button)(() => ({
   fontWeight: 600,
   boxShadow: "none",
   marginTop: "auto",
+
+  "@media (max-height: 760px)": {
+    height: 30,
+    minHeight: 30,
+    fontSize: 12,
+  },
+
+  "@media (max-height: 670px)": {
+    height: 28,
+    minHeight: 28,
+    fontSize: 11,
+  },
 
   "&:hover": {
     background: "#B7F08A",

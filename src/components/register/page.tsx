@@ -74,7 +74,7 @@ const RegisterPage = () => {
     registerLoading,
     errors,
   } = usePage();
-  const isMobile = useMediaQuery("(max-widt:768px)");
+  const isMobile = useMediaQuery("(max-width:768px)");
   const navigate = useNavigate();
   return (
     <Container
@@ -364,11 +364,9 @@ const RegisterPage = () => {
                                 checkedIcon={<IconChecBoxActive />}
                                 disableRipple
                                 sx={{
-                                  p: 1,
                                   "& svg": {
-                                    width: 22,
-                                    height: 22,
-                                    margin: "4px",
+                                    width: 16.5,
+                                    height: 16.5,
                                   },
                                 }}
                               />

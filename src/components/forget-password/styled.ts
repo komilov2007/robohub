@@ -10,7 +10,8 @@ export const AuthPageWrap = styled(Box)`
   min-height: 100vh;
   display: flex;
   background: #f8fafc;
-  @media (max-width: 940px) {
+  overflow: hidden;
+  @media (max-width: 970px) {
     justify-content: center;
   }
 `;
@@ -23,7 +24,8 @@ export const LeftColumn = styled(Box)`
   background: #f8fafc;
   padding: 24px 40px 32px;
   box-sizing: border-box;
- input:-webkit-autofill,
+
+  input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   textarea:-webkit-autofill,
@@ -32,16 +34,28 @@ export const LeftColumn = styled(Box)`
     box-shadow: 0 0 0px 1000px transparent inset !important;
     -webkit-text-fill-color: #000 !important;
     transition: background-color 5000s ease-in-out 0s;
+  }
+
   @media (max-width: 1000px) {
     flex: 0 0 100%;
-    max-width: 640px;
-    margin: 0 auto; /* markazga olib keladi */
+    max-width: 40px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1200px) {
+    flex: 0 0 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  @media (max-width: 440px) {
+    flex: 0 0 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 `;
 export const AuthRightSide = styled(Box)`
   flex: 0 0 50%;
   max-width: 50%;
-  @media (max-width: 940px) {
+  @media (max-width: 970px) {
     display: none;
   }
 `;
