@@ -7,12 +7,7 @@ import IconPhone from "@/assets/icons/icon-chat-phone.svg?react";
 import IconVideo from "@/assets/icons/icon-chat-video.svg?react";
 import IconEmoji from "@/assets/icons/icon-emoji.svg?react";
 import IconFile from "@/assets/icons/icon-chat-file.svg?react";
-import {
-  AttachFileOutlined,
-  EmojiEmotionsOutlined,
-  MoreHorizOutlined,
-  SearchOutlined,
-} from "@mui/icons-material";
+import { MoreHorizOutlined, SearchOutlined } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
 import IconSettings from "@/assets/icons/icon-settings.svg?react";

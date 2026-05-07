@@ -473,12 +473,12 @@ export const EllipsisText = styled(Typography)(() => ({
 export const FilterModalWrapper = styled(Modal)({});
 
 /* MAIN CONTAINER */
-export const FilterContainer = styled(Box)({
+export const FilterContainer = styled(Box)(() => ({
   width: 673,
   height: 408,
   backgroundColor: "#fff",
   borderRadius: "12px",
-  boxShadow: 24,
+  boxShadow: "0px 4px 24px rgba(0,0,0,0.12)",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -486,7 +486,7 @@ export const FilterContainer = styled(Box)({
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
-});
+}));
 
 /* HEADER */
 export const FilterHeader = styled(Box)({

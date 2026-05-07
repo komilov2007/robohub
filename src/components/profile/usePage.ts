@@ -8,7 +8,6 @@ import * as yup from "yup";
 import { useBoolean } from "@/hook/useBoolean";
 import { api } from "@/api/api";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 interface ChangePasswordForm {
   old_password: string;
@@ -49,7 +48,6 @@ const profileSchema: yup.ObjectSchema<ProfileForm> = yup.object({
 });
 
 export const usePage = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<
