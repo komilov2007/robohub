@@ -1,6 +1,5 @@
-import { memo } from "react";
 import { Controller } from "react-hook-form";
-import { CircularProgress, Modal, ThemeProvider } from "@mui/material";
+import { Box, CircularProgress, Modal, ThemeProvider } from "@mui/material";
 import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
 import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
 import IconFlagEn from "@/assets/icons/flag-en.svg?react";
@@ -13,14 +12,12 @@ import {
   RadioButtonUnchecked,
   VisibilityOutlined,
 } from "@mui/icons-material";
-
 import theme from "@/theme/theme";
 import { usePage } from "./usePage";
 import {
   ActionsRow,
   CancelButton,
   ContentCard,
-  EmailText,
   EyeButton,
   FieldBox,
   FieldLabel,
@@ -32,6 +29,7 @@ import {
   PageWrapper,
   PasswordInput,
   ProfileInput,
+  ProfileInputPhone,
   RuleItem,
   RulesGrid,
   RuleText,
@@ -54,13 +52,12 @@ import {
   LogoutModalBox,
   LogoutTitle,
 } from "../sidebar/styled";
-const Profil = () => {
+const Profile = () => {
   const {
     t,
     activeTab,
     setActiveTab,
     logoutModal,
-    profile,
     profileForm,
     handleLogout,
     form,
@@ -68,15 +65,18 @@ const Profil = () => {
     passwordStrength,
     passwordStrengthText,
     passwordStrengthColor,
-    isLoading,
-    handleSubmit,
-
     passwordVisible,
     confirmPasswordVisible,
     oldPasswordVisible,
+    isProfileUpdating,
+    handleUpdateProfile,
+    isEditing,
+    setIsEditing,
+    handleChangeContact,
+    isPhoneEditing,
+    setIsPhoneEditing,
   } = usePage();
   const { i18n } = useTranslation();
-
   return (
     <ThemeProvider theme={theme}>
       <PageWrapper>
@@ -151,66 +151,118 @@ const Profil = () => {
         {activeTab === "profile" && (
           <>
             <ContentCard>
-              <FormGrid>
-                <FieldBox>
-                  <FieldLabel>{t("profile_first_name")}</FieldLabel>
-
-                  <Controller
-                    name="first_name"
-                    control={profileForm.control}
-                    render={({ field }) => (
-                      <ProfileInput {...field} placeholder="Sarvar" />
-                    )}
-                  />
-                </FieldBox>
-
-                <FieldBox>
-                  <FieldLabel>{t("profile_last_name")}</FieldLabel>
-
-                  <Controller
-                    name="last_name"
-                    control={profileForm.control}
-                    render={({ field }) => (
-                      <ProfileInput {...field} placeholder="Erkinjonov" />
-                    )}
-                  />
-                </FieldBox>
-              </FormGrid>
-
-              <FieldBox>
-                <FieldLabel>{t("profile_email")}</FieldLabel>
-
-                <EmailText>
-                  {profile?.email ||
-                    profile?.phone ||
-                    "sarvarerkinjonov72@gmail.com"}
-                </EmailText>
-              </FieldBox>
-
-              <CancelButton
-                sx={{ position: "absolute", right: 18, bottom: 30 }}
+              <Box
+                sx={{
+                  width: "646px",
+                  marginTop: 2,
+                  border: "1px solid #D8E2F0",
+                  borderRadius: "8px",
+                  padding: "18px 18px 20px",
+                }}
               >
-                {t("profile_change_email")}
-              </CancelButton>
-            </ContentCard>
-            <ActionsRow>
-              <CancelButton>{t("profile_cancel")}</CancelButton>
+                {" "}
+                <FormGrid>
+                  <FieldBox>
+                    <FieldLabel>{t("profile_first_name")}</FieldLabel>
 
-              <SaveButton onClick={handleSubmit} disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <CircularProgress
-                      size={16}
-                      thickness={5}
-                      sx={{ color: "#fff", mr: 1 }}
+                    <Controller
+                      name="first_name"
+                      disabled={!isEditing}
+                      control={profileForm.control}
+                      render={({ field }) => (
+                        <ProfileInput {...field} placeholder="Sarvar" />
+                      )}
                     />
-                    {t("loading_text")}
-                  </>
+                  </FieldBox>
+
+                  <FieldBox>
+                    <FieldLabel>{t("profile_last_name")}</FieldLabel>
+
+                    <Controller
+                      name="last_name"
+                      control={profileForm.control}
+                      disabled={!isEditing}
+                      render={({ field }) => (
+                        <ProfileInput {...field} placeholder="Erkinjonov" />
+                      )}
+                    />
+                  </FieldBox>
+                </FormGrid>
+                <FieldBox>
+                  <FieldLabel>{t("profile_email")}</FieldLabel>
+                  <Box sx={{ display: "flex", gap: "20px" }}>
+                    <Controller
+                      name="phone"
+                      control={profileForm.control}
+                      render={({ field }) => (
+                        <ProfileInputPhone
+                          {...field}
+                          disabled={!isPhoneEditing}
+                          placeholder="+998 90 123 45 67"
+                        />
+                      )}
+                    />
+
+                    <CancelButton
+                      onClick={() => {
+                        if (isPhoneEditing) {
+                          handleChangeContact();
+                        }
+
+                        setIsPhoneEditing((prev) => !prev);
+                      }}
+                    >
+                      {isPhoneEditing
+                        ? t("profile_submit")
+                        : t("profile_change_email")}
+                    </CancelButton>
+                  </Box>
+                </FieldBox>
+              </Box>
+              <ActionsRow>
+                {!isEditing ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <SaveButton onClick={() => setIsEditing(true)}>
+                      {t("edit_profile")}
+                    </SaveButton>
+                  </Box>
                 ) : (
-                  t("profile_submit")
+                  <>
+                    <Box sx={{ display: "flex", gap: "10px" }}>
+                      {" "}
+                      <CancelButton onClick={() => setIsEditing(false)}>
+                        {t("profile_cancel")}
+                      </CancelButton>
+                      <SaveButton
+                        onClick={() => {
+                          handleUpdateProfile();
+                          setIsEditing(false);
+                        }}
+                        disabled={isProfileUpdating}
+                      >
+                        {isProfileUpdating ? (
+                          <>
+                            <CircularProgress
+                              size={16}
+                              thickness={5}
+                              sx={{ color: "#fff", mr: 1 }}
+                            />
+                            {t("loading_text")}
+                          </>
+                        ) : (
+                          t("profile_submit")
+                        )}
+                      </SaveButton>
+                    </Box>
+                  </>
                 )}
-              </SaveButton>
-            </ActionsRow>
+              </ActionsRow>{" "}
+            </ContentCard>
           </>
         )}
 
@@ -333,8 +385,11 @@ const Profil = () => {
             <ActionsRow>
               <CancelButton>{t("profile_cancel")}</CancelButton>
 
-              <SaveButton onClick={handleSubmit} disabled={isLoading}>
-                {isLoading ? (
+              <SaveButton
+                onClick={handleUpdateProfile}
+                disabled={isProfileUpdating}
+              >
+                {isProfileUpdating ? (
                   <>
                     <CircularProgress
                       size={16}
@@ -355,4 +410,4 @@ const Profil = () => {
   );
 };
 
-export default memo(Profil);
+export default Profile;

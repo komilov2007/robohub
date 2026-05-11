@@ -411,5 +411,6 @@
   "phone_invalid": "Неверный номер телефона",
   "sms_sent": "SMS отправлено",
   "token_not_received": "Токен не получен",
-  "invalid_code_provided": "Неверный код подтверждения."
+  "invalid_code_provided": "Неверный код подтверждения.",
+  "otp_invalid_length": "Введите код подтверждения (5 цифр)"
 }

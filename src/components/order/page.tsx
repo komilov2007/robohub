@@ -360,7 +360,7 @@ const OrdersPage = () => {
                       <PaginationLabel>{t("showing")}</PaginationLabel>
 
                       <StyledRowsSelect value={ROWS_PER_PAGE} size="small">
-                        <StyledRowsMenuItem value={14}>14</StyledRowsMenuItem>
+                        <StyledRowsMenuItem value={13}>13</StyledRowsMenuItem>
                       </StyledRowsSelect>
 
                       <PaginationInfo>

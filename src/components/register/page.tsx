@@ -10,7 +10,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import theme from "@/theme/theme";
 import IconUser from "@/assets/icons/user.svg?react";
 import { LoginRight } from "../login/loginright";
-import { FooterInner, FooterWrap } from "../login/style";
 import IconChecBox from "@/assets/icons/icon-cheakbox-box.svg?react";
 import IconChecBoxActive from "@/assets/icons/icon-cheakbox-active.svg?react";
 import {
@@ -45,6 +44,9 @@ import {
   PasswordRuleDot,
   PasswordRuleText,
   TermsText,
+  FooterWrap,
+  FooterInner,
+  PrivacyText,
 } from "./styled";
 import { usePage } from "./usePage";
 import { useNavigate } from "react-router";
@@ -419,7 +421,9 @@ const RegisterPage = () => {
                 <Typography vocab="loginBtm">
                   © {new Date().getFullYear()} Robohub
                 </Typography>
-                <Typography vocab="loginBtm">{t("privacy_policy")}</Typography>
+                <PrivacyText to={"https://robohub.uz/policy"}>
+                  {t("privacy_policy")}
+                </PrivacyText>
                 <Typography vocab="loginBtm" component="span">
                   {t("support")}
                 </Typography>

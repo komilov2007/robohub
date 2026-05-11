@@ -383,7 +383,9 @@ export const LeftColumn = styled(Box)`
   background: #f8fafc;
   padding: clamp(14px, 1.5vw, 22px);
   box-sizing: border-box;
-  overflow: hidden;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: 900px) {
     flex: 1 1 100%;
@@ -392,7 +394,6 @@ export const LeftColumn = styled(Box)`
     padding: 12px;
   }
 `;
-
 export const RightSide = styled(Box)`
   flex: 0 0 50%;
   max-width: 50%;
@@ -413,14 +414,12 @@ export const HeaderArea = styled(Box)`
   min-height: 34px;
   flex-shrink: 0;
 `;
-
 export const CenterArea = styled(Box)`
   flex: 1;
-  min-height: 0;
+  min-height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 0;
@@ -477,20 +476,15 @@ export const LanguageSelect = styled(Select)`
     color: #3e4a60;
   }
 `;
-
 export const StyledMenuItem = styled(MenuItem)`
   display: flex;
   gap: 12px;
   font-size: 13px;
 `;
-
 export const TitleWrap = styled(Box)`
   margin-bottom: 4px;
 `;
-
 export const SubTitleWrap = styled(Box)`
-  margin-bottom: 12px;
-
   @media (max-height: 820px) {
     margin-bottom: 8px;
   }
@@ -732,3 +726,50 @@ export const BottomInlineText = styled(Typography)`
   cursor: pointer;
   font-size: 13px;
 `;
+export const FooterWrap = styled(Box)`
+  display: flex;
+  justify-content: center;
+  color: #7d879c;
+  width: 100%;
+  padding: 12px 0;
+
+  @media (max-width: 768px) {
+    padding: 10px 0;
+  }
+`;
+
+export const FooterInner = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  text-align: center;
+
+  font-size: 13px;
+
+  @media (max-width: 768px) {
+    gap: 14px;
+    font-size: 2px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+    font-size: 1px;
+  }
+
+  @media (max-width: 360px) {
+    flex-direction: row;
+    gap: 6px;
+    font-size: 1px;
+  }
+`;
+export const PrivacyText = styled(Link)({
+  fontSize: "13px",
+  textDecoration: "none",
+  color: "#7d879c",
+  "&:hover": {
+    color: "#00524F",
+    textDecoration: "underline",
+  },
+});

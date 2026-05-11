@@ -65,9 +65,7 @@ export const usePage = () => {
     },
     onSuccess: (user) => {
       const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : "";
-
       document.cookie = `access_token=${user.tokens.access}; path=/; samesite=strict${expires}`;
-
       if (user.tokens.refresh) {
         document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
       }

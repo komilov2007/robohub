@@ -92,7 +92,7 @@ const ForgetPasswordPage = () => {
               <FieldWrap />
 
               <Box>
-                <Typography vocab="noAccaunt">
+                <Typography sx={{ mb: 0.5 }} vocab="noAccaunt">
                   {t("forget_password_email_label")}
                 </Typography>
 

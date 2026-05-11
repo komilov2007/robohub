@@ -92,7 +92,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
 
   return (
     <TooltipBox>
-      <TooltipMonth>{t(`month_${label}`)} 2025</TooltipMonth>
+      <TooltipMonth>{t(`month_${label}`)} 2026</TooltipMonth>
 
       {tooltipItems.map((item) => (
         <TooltipRow key={item.label}>

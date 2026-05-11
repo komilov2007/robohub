@@ -151,7 +151,7 @@
   "password_rule_min": "Kamida 8 ta belgi",
 
   "profile_cancel": "Bekor qilish",
-  "profile_submit": "O'zgarishlarni saqlang",
+  "profile_submit": "Saqlash",
   "logout_modal_title": "Tizimdan chiqmoqchimisiz?",
   "logout_modal_description": "Agar tizimdan chiqsangiz, qayta kirish uchun login va parolni yana kiritishingiz kerak bo‘ladi.",
   "logout_cancel": "Bekor qilish",
@@ -240,11 +240,9 @@
   "sold": "Sotilgan",
   "returned": "Qaytarilgan",
   "invalid": "Yaroqsiz",
-
   "empty_products_title": "Mahsulotlar ro‘yxati bo‘sh",
   "empty_products_description": "Mahsulot joylashtirishni vaqt va nervlardan asrang.",
   "add_another_product": "Yana bir tovar qo‘shish",
-
   "share": "Ulash",
   "all_products": "Barcha tovarlar",
   "on_sale": "Sotuvdagi",
@@ -256,50 +254,39 @@
   "products": "Mahsulotlar",
   "create_product_card_text": "Tovar kartochkasini yaratish",
   "save_and_continue": "Saqlash va davom etish",
-
   "create_product_card_title": "Tovar kartochkasi yaratish",
   "create_product_card_description": "Tovar kartochkasini yaratish uchun quyidagi bosqichlardan o‘tishingiz kerak",
-
   "step_1": "1-bosqich",
   "step_2": "2-bosqich",
   "step_3": "3-bosqich",
-
   "product_card": "Tovar kartochkasi",
   "prices_and_sku": "Narxlar va SKU",
   "review": "Ko‘rib chiqish",
-
   "product_card_guide_title": "Tovar kartochka yaratish bo‘yicha qo‘llanma",
   "product_card_guide_description": "Tovar kartochka yaratish bo‘yicha to‘liq video ishlanmamiz. Ushbu yo‘riqnomadan foydalanishingiz mumkin.",
   "watch_video": "Videoni ko‘rish",
-
   "select_marketplaces_question": "Qaysi marketplacelar uchun kartochka yaratmoqchisiz?",
   "select_at_least_one": "Kamida 1 tasi tanlanishi kerak",
-
   "product_name": "Mahsulot nomi",
   "product_name_uz": "Mahsulot nomi (O‘zbekcha)",
   "product_name_ru": "Mahsulot nomi (Ruscha)",
   "enter_product_name": "Mahsulot nomini kiriting",
-
   "category": "Kategoriya",
   "ozon_category": "Ozon uchun kategoriya",
   "wildberries_category": "Wildberries uchun kategoriya",
   "uzum_category": "Uzum Market uchun kategoriya",
   "chairs": "Chairs",
   "tables": "Tables",
-
   "product_media": "Mahsulot umumiy rasmi va videolari",
   "upload_file": "Fayl yuklash",
   "upload_file_description": "Rasm yoki videoni shu yerga tashlang yoki tanlang",
-
   "product_description": "Mahsulot tavsifi",
   "description_ru": "Tavsif (Ruscha)",
   "description_uz": "Tavsif (O‘zbekcha)",
   "write_about_product": "Mahsulot haqida yozing",
-
   "additional": "Qo‘shimcha",
   "brand": "Brend",
   "enter_brand": "Brendni kiriting",
-
   "variants": "Variantlar",
   "variant": "Variant",
   "enter_variant": "Variantni kiriting",
@@ -308,13 +295,11 @@
   "mapping": "Mapping",
   "manual": "Qo'llanma",
   "stoplist": "Stoplist",
-
   "stoplist_description": "Stoplist — bu minimal miqdordan kam qolgan yoki sotuv uchun vaqtincha to‘xtatilgan tovarlar ro‘yxati. Ushbu ro‘yxat ombor zaxirasini nazorat qilish, yetishmayotgan mahsulotlarni aniqlash va ortiqcha chiqimlarning oldini olish uchun xizmat qiladi.",
   "minimum_quantity": "Minimal miqdor",
   "enter_stoplist_min_quantity": "Stoplist uchun minimal miqdor kiriting",
   "close": "Yopish",
   "save": "Saqlash",
-
   "ikpu": "IKPU",
   "purchase_price": "Kirish narxi",
   "sale_price": "Sotuv narxi",
@@ -350,21 +335,17 @@
   "review_search_placeholder": "Tovar ID bo‘yicha qidirish",
   "review_reply_placeholder": "Sizning javobingiz...",
   "review_send": "Jo‘natish",
-
   "review_mock_short": "Yoqdi tavsiya qilaman",
   "review_mock_medium": "Umuman olganda yoqdi. Kerakli xizmatni tez topdim.",
   "review_mock_long": "Juda qulay marketplace ekan. Narxlarni solishtirib tanlash oson.",
-
   "review_tab_all": "Barchasi",
   "review_tab_new": "Yangilari",
   "review_tab_unanswered": "Javobsiz",
   "review_tab_reviewed": "Ko‘rib chiqilgan",
-
   "review_table_marketplace": "Marketplace",
   "review_table_product": "Tovar va tovar ID si",
   "review_table_time": "Sharh qold. vaqti",
   "review_table_rating_comment": "Baho va sharh",
-
   "review_detail_title": "Xaridor sharhi",
   "review_detail_rating": "Reyting",
   "review_detail_shop": "Do‘kon",
@@ -390,18 +371,14 @@
   "edit_password_old_incorrect": "Eski parol noto‘g‘ri",
   "edit_password_same": "Yangi parol eski parol bilan bir xil bo‘lmasligi kerak",
   "reset_password_title": "Parolingizni yangilang",
-
   "reset_password": "Parolni yangilash",
-
   "password_medium": "O‘rtacha",
   "password_good": "Yaxshi",
   "password_strong": "Kuchli",
-
   "fill_all_fields": "Barcha maydonlarni to‘ldiring",
   "passwords_not_match": "Parollar mos emas",
   "password_too_weak": "Parol juda kuchsiz",
   "token_not_found": "Token topilmadi",
-
   "password_reset_success": "Parol muvaffaqiyatli yangilandi",
   "something_went_wrong": "Xatolik yuz berdi",
   "reset_password_description_uz": "Yangi parolingizni kiriting.",
@@ -412,5 +389,6 @@
   "reset_password_description": "Yangi parolingizni kiriting.",
   "otp_verified_success": "Kodingiz tasdiqlandi!!!",
   "otp_invalid": "Parolda xatolik bor",
-  "invalid_code_provided": "Tasdiqlash kodi noto‘g‘ri."
+  "invalid_code_provided": "Tasdiqlash kodi noto‘g‘ri.",
+  "otp_invalid_length": "Tasdiqlash kodini kiriting (5 raqam)"
 }

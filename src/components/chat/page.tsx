@@ -92,7 +92,7 @@ const Chat = () => {
           <HeaderLeft>
             <HeaderTitle>{t("chat")}</HeaderTitle>
 
-            <PlatformSelect defaultValue="all">
+            <PlatformSelect value="all">
               <MenuItem value="all">{t("all_platforms")}</MenuItem>
               <MenuItem value="ozon">Ozon</MenuItem>
               <MenuItem value="wildberries">Wildberries</MenuItem>

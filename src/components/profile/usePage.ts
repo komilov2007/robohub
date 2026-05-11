@@ -48,6 +48,8 @@ const profileSchema: yup.ObjectSchema<ProfileForm> = yup.object({
 });
 
 export const usePage = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [isPhoneEditing, setIsPhoneEditing] = useState(false);
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<
@@ -81,7 +83,7 @@ export const usePage = () => {
       profileForm.reset({
         first_name: profile.first_name ?? "",
         last_name: profile.last_name ?? "",
-        phone: profile.phone ?? "", // 🔥 shu yetishmayapti
+        phone: profile.phone ?? "",
       });
     }
   }, [profile]);
@@ -134,7 +136,31 @@ export const usePage = () => {
       : activeRulesCount <= 3
         ? "#F79009"
         : "#0B6E69";
+  const changeContactMutation = useMutation({
+    mutationFn: async (phone: string) => {
+      const payload = {
+        type: "phone",
+        value: phone,
+      };
 
+      const { data } = await api.post(
+        "account/profile/change-contact/",
+        payload,
+      );
+
+      return data;
+    },
+
+    onSuccess: () => {
+      toast.success(t("otp_sent"));
+    },
+
+    onError: (error: any) => {
+      console.log(error?.response?.data);
+
+      toast.error(t("something_went_wrong"));
+    },
+  });
   const changePasswordMutation = useMutation({
     mutationFn: async (values: ChangePasswordForm) => {
       if (values.old_password === values.new_password) {
@@ -180,31 +206,42 @@ export const usePage = () => {
   const handleLogout = () => {
     document.cookie =
       "access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-
     document.cookie =
       "refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-
     document.cookie =
       "reset_access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-
     toast.success(t("logout_toast"));
-
-    setTimeout(() => {
-      window.location.href = "/login";
-    }, 800);
+    window.location.href = "/login";
   };
   const updateProfileMutation = useMutation({
     mutationFn: async (values: ProfileForm) => {
-      const { data } = await api.patch("account/profile/", values);
+      const payload = {
+        first_name: values.first_name,
+        last_name: values.last_name,
+      };
+
+      const { data } = await api.patch("account/profile/", payload);
+
       return data;
     },
+
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      toast.success(t("profile_updated"));
+
+      queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
     },
+
     onError: (error: any) => {
-      console.log("PROFILE STATUS:", error?.response?.status);
-      console.log("PROFILE DATA:", error?.response?.data);
+      console.log(error?.response?.data);
+
+      toast.error(t("something_went_wrong"));
     },
+  });
+
+  const handleUpdateProfile = profileForm.handleSubmit((values) => {
+    updateProfileMutation.mutate(values);
   });
 
   const handleOpenModal = () => {
@@ -223,11 +260,35 @@ export const usePage = () => {
   const handleSubmit = form.handleSubmit((values) => {
     changePasswordMutation.mutate(values);
   });
+  const confirmContactMutation = useMutation({
+    mutationFn: async ({ phone, otp }: { phone: string; otp: string }) => {
+      const { data } = await api.post("account/profile/confirm-contact/", {
+        phone,
+        otp,
+      });
 
-  const handleUpdateProfile = profileForm.handleSubmit((values) => {
-    console.log("YUBORILDI:", values); // 👈 shu chiqyaptimi?
-    updateProfileMutation.mutate(values);
+      return data;
+    },
+
+    onSuccess: () => {
+      toast.success(t("profile_updated"));
+
+      queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
+    },
+
+    onError: (error: any) => {
+      console.log(error?.response?.data);
+
+      toast.error(t("invalid_otp"));
+    },
   });
+  const handleChangeContact = () => {
+    const phone = profileForm.getValues("phone");
+
+    changeContactMutation.mutate(phone);
+  };
   return {
     t,
     profile,
@@ -252,5 +313,12 @@ export const usePage = () => {
     activeTab,
     setActiveTab,
     onSubmit,
+    isEditing,
+    setIsEditing,
+    changeContactMutation,
+    confirmContactMutation,
+    handleChangeContact,
+    isPhoneEditing,
+    setIsPhoneEditing,
   };
 };

@@ -21,20 +21,16 @@ api.interceptors.request.use(
     if (url.includes("/account/otp/verify/")) {
       if (registerToken) {
         config.headers.Authorization = `Bearer ${registerToken}`;
-        console.log("✅ REGISTER TOKEN QO‘SHILDI");
       } else if (resetToken) {
         config.headers.Authorization = `Bearer ${resetToken}`;
-        console.log("✅ RESET TOKEN QO‘SHILDI");
       }
     } else if (url.includes("/account/reset-password/")) {
       if (resetToken) {
         config.headers.Authorization = `Bearer ${resetToken}`;
-        console.log("✅ RESET TOKEN QO‘SHILDI");
       }
     } else {
       if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
-        console.log("✅ ACCESS TOKEN QO‘SHILDI");
       }
     }
     return config;
