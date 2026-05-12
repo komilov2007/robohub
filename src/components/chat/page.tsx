@@ -7,14 +7,16 @@ import IconPhone from "@/assets/icons/icon-chat-phone.svg?react";
 import IconVideo from "@/assets/icons/icon-chat-video.svg?react";
 import IconEmoji from "@/assets/icons/icon-emoji.svg?react";
 import IconFile from "@/assets/icons/icon-chat-file.svg?react";
-import { MoreHorizOutlined, SearchOutlined } from "@mui/icons-material";
+import {
+  ArrowBackRounded,
+  MoreHorizOutlined,
+  SearchOutlined,
+} from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
 import IconSettings from "@/assets/icons/icon-settings.svg?react";
-import IconUzum from "@/assets/icons/icon-uzum.svg?react";
-import IconWb from "@/assets/icons/icon-wb.svg?react";
-import IconOzon from "@/assets/icons/icon-ozon.svg?react";
 import theme from "@/theme/theme";
+import { usePage } from "./usePage";
 
 import {
   ChatBody,
@@ -39,8 +41,13 @@ import {
   Header,
   HeaderLeft,
   HeaderTitle,
+  MessageBubble,
   MessageInput,
+  MessageList,
   MessageSendActions,
+  MessageText,
+  MessageTime,
+  MobileBackButton,
   PlatformSelect,
   SearchInput,
   SettingsButton,
@@ -52,38 +59,21 @@ import {
   UserRow,
 } from "./styled";
 
-const chats = [
-  {
-    id: 1,
-    name: "Abror Xoliqov",
-    time: "10:13",
-    message: "Lorem ipsum dolor sit amet sdf siapdk",
-    icon: <IconUzum />,
-    active: true,
-    unread: true,
-  },
-  {
-    id: 2,
-    name: "Uchiha Sasuka",
-    time: "10:00",
-    message: "Lorem ipsum dolor sit amet sdf siapdk",
-    icon: <IconWb />,
-    active: false,
-    unread: false,
-  },
-  {
-    id: 3,
-    name: "Uchiha Sasuka",
-    time: "10:13",
-    message: "Lorem ipsum dolor sit amet sdf siapdk",
-    icon: <IconOzon />,
-    active: false,
-    unread: false,
-  },
-];
-
 const Chat = () => {
   const { t } = useTranslation();
+  const {
+    chats,
+    selectedChat,
+    selectedChatId,
+    isChatOpen,
+    selectedMessages,
+    messageText,
+    setMessageText,
+    handleSelectChat,
+    handleBackToList,
+    handleSendMessage,
+    handleMessageKeyDown,
+  } = usePage();
 
   return (
     <ThemeProvider theme={theme}>
@@ -107,7 +97,7 @@ const Chat = () => {
         </Header>
 
         <ChatLayout>
-          <ChatSidebar>
+          <ChatSidebar open={isChatOpen}>
             <ChatListTabs>
               <ChatTab active>{t("all")}</ChatTab>
               <ChatTab>{t("unread")}</ChatTab>
@@ -129,7 +119,11 @@ const Chat = () => {
 
             <ChatList>
               {chats.map((item) => (
-                <UserRow key={item.id} active={item.active}>
+                <UserRow
+                  key={item.id}
+                  active={selectedChatId === item.id}
+                  onClick={() => handleSelectChat(item.id)}
+                >
                   <ChatUserRow>
                     <ChatUserName>
                       {item.name}
@@ -148,13 +142,17 @@ const Chat = () => {
             </ChatList>
           </ChatSidebar>
 
-          <ChatContent>
+          <ChatContent open={isChatOpen}>
             <ChatHeader>
               <ChatHeaderLeft>
+                <MobileBackButton onClick={handleBackToList}>
+                  <ArrowBackRounded sx={{ fontSize: 20 }} />
+                </MobileBackButton>
+
                 <ChatUserAvatar>AX</ChatUserAvatar>
 
                 <ChatHeaderInfo>
-                  <ChatHeaderName>Project Indomie</ChatHeaderName>
+                  <ChatHeaderName>{selectedChat.name}</ChatHeaderName>
                 </ChatHeaderInfo>
               </ChatHeaderLeft>
 
@@ -166,17 +164,40 @@ const Chat = () => {
             </ChatHeader>
 
             <ChatBody>
-              <ChatEmpty>{t("no_messages")}</ChatEmpty>
+              {selectedMessages.length ? (
+                <MessageList>
+                  {selectedMessages.map((message) => (
+                    <MessageBubble
+                      key={message.id}
+                      mine={message.sender === "me"}
+                    >
+                      <MessageText>{message.text}</MessageText>
+                      <MessageTime mine={message.sender === "me"}>
+                        {message.time}
+                      </MessageTime>
+                    </MessageBubble>
+                  ))}
+                </MessageList>
+              ) : (
+                <ChatEmpty>{t("no_messages")}</ChatEmpty>
+              )}
             </ChatBody>
 
             <ChatFooter>
-              <MessageInput placeholder={t("write_here")} />
+              <MessageInput
+                value={messageText}
+                onChange={(event) => setMessageText(event.target.value)}
+                onKeyDown={handleMessageKeyDown}
+                placeholder={t("write_here")}
+              />
 
               <MessageSendActions>
                 <IconEmoji />
                 <IconFile />
 
-                <Button vocab="shareBtn">{t("send")}</Button>
+                <Button vocab="shareBtn" onClick={handleSendMessage}>
+                  {t("send")}
+                </Button>
               </MessageSendActions>
             </ChatFooter>
           </ChatContent>

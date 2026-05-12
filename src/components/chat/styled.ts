@@ -1,5 +1,16 @@
-import { Box, InputBase, Select, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  InputBase,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
+
+type MobileViewProps = {
+  open?: boolean;
+};
 
 export const ChatPage = styled(Box)({
   width: "100%",
@@ -8,28 +19,52 @@ export const ChatPage = styled(Box)({
   flexDirection: "column",
   background: "#FFFFFF",
   overflow: "hidden",
+
+  "@media (max-width: 768px)": {
+    height: "100dvh",
+  },
 });
+
 export const Header = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  minHeight: "64px",
+  maxHeight: "56px",
   borderBottom: "1px solid #E8E8E9",
-  position: "relative",
   padding: "20px 24px",
   marginLeft: "10px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 768px)": {
+    minHeight: "56px",
+    marginLeft: 0,
+    padding: "0px 14px 0px 46px",
+    justifyContent: "space-between",
+  },
 });
 
 export const HeaderLeft = styled(Box)({
   display: "flex",
-  alignItems: "center",
-  gap: "100px",
+  gap: "42px",
+
+  "@media (max-width: 900px)": {
+    gap: "24px",
+  },
+
+  "@media (max-width: 520px)": {
+    gap: "10px",
+    display: "flex",
+  },
 });
 
 export const HeaderTitle = styled(Typography)({
   fontWeight: 600,
   fontFamily: "Inter, sans-serif",
   marginLeft: "30px",
+
+  "@media (max-width: 768px)": {
+    marginLeft: 0,
+  },
 });
 
 export const PlatformSelect = styled(Select)({
@@ -47,6 +82,10 @@ export const PlatformSelect = styled(Select)({
   ".MuiSelect-select": {
     padding: "2px 10px",
   },
+
+  "@media (max-width: 520px)": {
+    width: "132px",
+  },
 });
 
 export const SettingsButton = styled(Typography)({
@@ -62,6 +101,20 @@ export const SettingsButton = styled(Typography)({
   height: "36px",
   gap: "5px",
   cursor: "pointer",
+
+  "@media (max-width: 520px)": {
+    width: "36px",
+    minWidth: "36px",
+    fontSize: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    "& svg": {
+      width: 15,
+      height: 20,
+    },
+  },
 });
 
 export const ChatLayout = styled(Box)({
@@ -69,20 +122,41 @@ export const ChatLayout = styled(Box)({
   flex: 1,
   minHeight: 0,
 });
-export const ChatSidebar = styled(Box)({
+
+export const ChatSidebar = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<MobileViewProps>(({ open }) => ({
   borderRight: "1px solid #E8E8E9",
-  width: 312,
+  width: 315,
   flexShrink: 0,
   height: "100%",
   display: "flex",
   flexDirection: "column",
   minHeight: 0,
-});
+
+  "@media (max-width: 768px)": {
+    display: open ? "none" : "flex",
+    width: "100%",
+    borderRight: 0,
+  },
+}));
 
 export const ChatListTabs = styled(Box)({
   padding: "4px 24px",
   width: "312px",
   display: "flex",
+  boxSizing: "border-box",
+  overflowX: "auto",
+  scrollbarWidth: "none",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
+  "@media (max-width: 768px)": {
+    width: "100%",
+    padding: "4px 16px",
+  },
 });
 
 export const ChatTab = styled(Typography)<{ active?: boolean }>(
@@ -98,6 +172,8 @@ export const ChatTab = styled(Typography)<{ active?: boolean }>(
     padding: "16px 8px",
     borderBottom: active ? "2px solid #00524F" : "none",
     cursor: "pointer",
+    whiteSpace: "nowrap",
+    flexShrink: 0,
   }),
 );
 
@@ -107,37 +183,69 @@ export const SidebarSearchWrap = styled(Box)({
   alignItems: "center",
   justifyContent: "center",
   padding: "16px 24px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 768px)": {
+    padding: "12px 16px",
+  },
 });
 
 export const ChatSearchBox = styled(Box)({
   width: "264px",
+  maxWidth: "100%",
+
+  "@media (max-width: 768px)": {
+    width: "100%",
+  },
 });
 
 export const SearchInput = styled(InputBase)({
   width: "264px",
+  maxWidth: "100%",
   height: "40px",
   border: "1px solid #E8E8E9",
   borderRadius: "12px",
   padding: "10px",
   fontFamily: "Inter, sans-serif",
+
+  "@media (max-width: 768px)": {
+    width: "100%",
+  },
 });
 
-export const ChatList = styled(Box)({});
+export const ChatList = styled(Box)({
+  flex: 1,
+  minHeight: 0,
+  overflowY: "auto",
+
+  "@media (max-width: 768px)": {
+    paddingBottom: "10px",
+  },
+});
 
 export const UserRow = styled(Box)<{ active?: boolean }>(({ active }) => ({
   width: "264px",
+  maxWidth: "100%",
   height: "57px",
   background: active ? "#F3F4F4" : "transparent",
   borderRadius: "12px",
   padding: "8px 12px",
   margin: "4px 24px",
   cursor: "pointer",
+  boxSizing: "border-box",
+
+  "@media (max-width: 768px)": {
+    width: "calc(100% - 32px)",
+    height: "62px",
+    margin: "6px 16px",
+  },
 }));
 
 export const ChatUserRow = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  minWidth: 0,
 });
 
 export const ChatUserName = styled(Typography)({
@@ -147,18 +255,24 @@ export const ChatUserName = styled(Typography)({
   fontSize: "14px",
   fontWeight: 500,
   fontFamily: "Inter, sans-serif",
+  minWidth: 0,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 });
 
 export const TimeText = styled(Typography)({
   color: "#73757C",
   fontSize: "12px",
   fontFamily: "Inter, sans-serif",
+  flexShrink: 0,
 });
 
 export const UserMessageRow = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  minWidth: 0,
 });
 
 export const UserMessagePreview = styled(Typography)({
@@ -168,6 +282,7 @@ export const UserMessagePreview = styled(Typography)({
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  minWidth: 0,
 });
 
 export const UnreadDot = styled(Box)({
@@ -178,11 +293,20 @@ export const UnreadDot = styled(Box)({
   flexShrink: 0,
 });
 
-export const ChatContent = styled(Stack)({
+export const ChatContent = styled(Stack, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<MobileViewProps>(({ open }) => ({
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
-});
+  minWidth: 0,
+  minHeight: 0,
+
+  "@media (max-width: 768px)": {
+    display: open ? "flex" : "none",
+    flex: 1,
+  },
+}));
 
 export const ChatHeader = styled(Box)({
   padding: "12px 24px",
@@ -192,6 +316,13 @@ export const ChatHeader = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  boxSizing: "border-box",
+  gap: "12px",
+
+  "@media (max-width: 768px)": {
+    height: "58px",
+    padding: "8px 12px",
+  },
 });
 
 export const ChatHeaderLeft = styled(Box)({
@@ -199,6 +330,18 @@ export const ChatHeaderLeft = styled(Box)({
   alignItems: "center",
   gap: "8px",
   fontFamily: "Inter, sans-serif",
+  minWidth: 0,
+});
+
+export const MobileBackButton = styled(IconButton)({
+  display: "none",
+  width: "34px",
+  height: "34px",
+  flexShrink: 0,
+
+  "@media (max-width: 768px)": {
+    display: "inline-flex",
+  },
 });
 
 export const ChatUserAvatar = styled(Typography)({
@@ -212,34 +355,110 @@ export const ChatUserAvatar = styled(Typography)({
   color: "#00524F",
   fontFamily: "Inter, sans-serif",
   fontWeight: 600,
+  flexShrink: 0,
+
+  "@media (max-width: 768px)": {
+    width: "38px",
+    height: "38px",
+    fontSize: "14px",
+  },
 });
 
-export const ChatHeaderInfo = styled(Box)({});
+export const ChatHeaderInfo = styled(Box)({
+  minWidth: 0,
+});
 
 export const ChatHeaderName = styled(Typography)({
   fontFamily: "Inter, sans-serif",
   fontWeight: 500,
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 });
 
 export const ChatHeaderRight = styled(Box)({
   display: "flex",
   gap: "10px",
+  flexShrink: 0,
+
+  "@media (max-width: 520px)": {
+    gap: "8px",
+
+    "& svg": {
+      width: 20,
+      height: 20,
+    },
+  },
 });
 
 export const ChatBody = styled(Box)({
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  alignItems: "stretch",
+  justifyContent: "flex-start",
+  flexDirection: "column",
   flex: 1,
+  minHeight: 0,
+  padding: "18px",
+  gap: "10px",
+  boxSizing: "border-box",
+  background: "#FAFBFC",
+  overflowY: "auto",
+
+  "@media (max-width: 768px)": {
+    padding: "14px 12px",
+  },
 });
 
+export const MessageList = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  gap: "10px",
+  flex: 1,
+  minHeight: "100%",
+});
+
+export const MessageBubble = styled(Box)<{ mine?: boolean }>(({ mine }) => ({
+  maxWidth: "min(560px, 76%)",
+  alignSelf: mine ? "flex-end" : "flex-start",
+  background: mine ? "#00524F" : "#FFFFFF",
+  color: mine ? "#FFFFFF" : "#101828",
+  border: mine ? "1px solid #00524F" : "1px solid #E8E8E9",
+  borderRadius: mine ? "14px 14px 4px 14px" : "14px 14px 14px 4px",
+  padding: "9px 12px",
+  overflowWrap: "anywhere",
+
+  "@media (max-width: 520px)": {
+    maxWidth: "86%",
+  },
+}));
+
+export const MessageText = styled(Typography)({
+  fontSize: "14px",
+  lineHeight: "20px",
+  fontFamily: "Inter, sans-serif",
+});
+
+export const MessageTime = styled(Typography)<{ mine?: boolean }>(
+  ({ mine }) => ({
+    marginTop: "4px",
+    fontSize: "11px",
+    lineHeight: "14px",
+    color: mine ? "rgba(255, 255, 255, 0.7)" : "#73757C",
+    textAlign: "right",
+    fontFamily: "Inter, sans-serif",
+  }),
+);
+
 export const ChatEmpty = styled(Typography)({
+  margin: "auto",
   fontSize: "14px",
   color: "#73757C",
   width: "120px",
   height: "30px",
   border: "1px solid #E8E8E9",
   borderRadius: "8px",
+  background: "#FFFFFF",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -253,10 +472,23 @@ export const ChatFooter = styled(Box)({
   alignItems: "center",
   justifyContent: "space-between",
   padding: "24px",
+  boxSizing: "border-box",
+  gap: "12px",
+
+  "@media (max-width: 768px)": {
+    height: "58px",
+    padding: "10px 12px",
+  },
 });
 
 export const MessageInput = styled(InputBase)({
-  width: "708px",
+  width: "min(708px, 100%)",
+  minWidth: 0,
+  flex: 1,
+  height: "40px",
+  border: "1px solid #E8E8E9",
+  borderRadius: "12px",
+  padding: "0 12px",
   fontFamily: "Inter, sans-serif",
 });
 
@@ -264,4 +496,13 @@ export const MessageSendActions = styled(Box)({
   display: "flex",
   alignItems: "center",
   gap: "8px",
+  flexShrink: 0,
+
+  "@media (max-width: 520px)": {
+    "& button": {
+      minWidth: "64px",
+      height: "36px",
+      padding: "0 12px",
+    },
+  },
 });

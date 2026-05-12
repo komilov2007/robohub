@@ -138,7 +138,7 @@ export const usePage = () => {
   const handleNavigate = (path: string) => {
     navigate(path);
 
-    if (window.innerWidth) {
+    if (window.innerWidth < 768) {
       setCollapsed(true);
     }
   };
