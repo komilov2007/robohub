@@ -1,27 +1,56 @@
 import { Box, Button, InputBase, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+type CollapsedProps = {
+  collapsed?: boolean;
+};
 
 export const Page = styled(Box)(() => ({
   width: "100%",
+  minHeight: "100vh",
   height: "100vh",
   background: "#F6F9FC",
   overflow: "hidden",
+
+  "@media (max-width: 900px)": {
+    height: "auto",
+    overflow: "visible",
+  },
 }));
 
-export const Header = styled(Box)(() => ({
+export const Header = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "collapsed",
+})<CollapsedProps>(({ collapsed }) => ({
   height: 50,
   background: "#fff",
   borderBottom: "1px solid #E0E7EF",
+
   display: "flex",
   alignItems: "center",
+
   padding: "0 18px",
   boxSizing: "border-box",
-}));
 
+  paddingLeft: collapsed ? "clamp(68px, 78vw, 1228px)" : "48px",
+
+  transition: "all 0.3s ease",
+
+  "@media (max-width: 900px)": {
+    paddingLeft: collapsed ? "clamp(68px, 78vw, 1228px)" : "48px",
+  },
+
+  "@media (max-width: 480px)": {
+    height: 48,
+    paddingLeft: collapsed ? "clamp(68px, 78vw, 1228px)" : "48px",
+  },
+}));
 export const Title = styled(Typography)(() => ({
   fontSize: 17,
   fontWeight: 800,
   color: "#101828",
+
+  "@media (max-width: 480px)": {
+    fontSize: 16,
+  },
 }));
 
 export const TabsWrap = styled(Box)(() => ({
@@ -33,6 +62,18 @@ export const TabsWrap = styled(Box)(() => ({
   gap: 34,
   padding: "0 18px",
   boxSizing: "border-box",
+  overflowX: "auto",
+  overflowY: "hidden",
+  scrollbarWidth: "none",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
+  "@media (max-width: 700px)": {
+    gap: 20,
+    padding: "0 14px",
+  },
 }));
 
 export const TabButton = styled(Button, {
@@ -48,6 +89,8 @@ export const TabButton = styled(Button, {
   textTransform: "none",
   fontSize: 13,
   fontWeight: active ? 800 : 600,
+  whiteSpace: "nowrap",
+  flexShrink: 0,
 
   "&:hover": {
     background: "transparent",
@@ -79,10 +122,17 @@ export const Toolbar = styled(Box)(() => ({
   gap: 12,
   padding: "0 18px",
   boxSizing: "border-box",
+
+  "@media (max-width: 700px)": {
+    height: "auto",
+    padding: "14px",
+    alignItems: "stretch",
+    flexDirection: "column",
+  },
 }));
 
 export const SearchBox = styled(Box)(() => ({
-  width: 585,
+  width: "min(585px, 100%)",
   height: 40,
   border: "1px solid #DCE5EF",
   borderRadius: 8,
@@ -91,6 +141,7 @@ export const SearchBox = styled(Box)(() => ({
   alignItems: "center",
   padding: "0 12px",
   boxSizing: "border-box",
+  minWidth: 0,
 }));
 
 export const SearchInput = styled(InputBase)(() => ({
@@ -112,6 +163,11 @@ export const Shortcut = styled(Box)(() => ({
   border: "1px solid #DCE5EF",
   borderRadius: 5,
   padding: "2px 6px",
+  whiteSpace: "nowrap",
+
+  "@media (max-width: 420px)": {
+    display: "none",
+  },
 }));
 
 export const FilterButton = styled(Button)(() => ({
@@ -128,6 +184,11 @@ export const FilterButton = styled(Button)(() => ({
   "&:hover": {
     background: "#fff",
   },
+
+  "@media (max-width: 700px)": {
+    width: "100%",
+    justifyContent: "center",
+  },
 }));
 
 export const Content = styled(Box)(() => ({
@@ -135,8 +196,18 @@ export const Content = styled(Box)(() => ({
   padding: "0 18px 16px",
   boxSizing: "border-box",
   display: "grid",
-  gridTemplateColumns: "1fr 420px",
+  gridTemplateColumns: "minmax(0, 1fr) minmax(320px, 420px)",
   gap: 16,
+
+  "@media (max-width: 1100px)": {
+    gridTemplateColumns: "minmax(0, 1fr) 360px",
+  },
+
+  "@media (max-width: 900px)": {
+    height: "auto",
+    gridTemplateColumns: "1fr",
+    padding: "0 14px 16px",
+  },
 }));
 
 export const TableCard = styled(Box)(() => ({
@@ -144,15 +215,22 @@ export const TableCard = styled(Box)(() => ({
   background: "#fff",
   border: "1px solid #DCE5EF",
   borderRadius: 8,
-  overflow: "hidden",
+  overflow: "auto",
+  minWidth: 0,
+
+  "@media (max-width: 900px)": {
+    height: "min(460px, 62vh)",
+  },
 }));
 
 export const TableHeader = styled(Box)(() => ({
   height: 44,
   display: "grid",
-  gridTemplateColumns: "155px 160px 130px 1fr",
+  gridTemplateColumns:
+    "minmax(135px, 0.85fr) minmax(180px, 1.25fr) minmax(120px, 0.8fr) minmax(220px, 1.4fr)",
   borderBottom: "1px solid #DCE5EF",
   background: "#FBFCFE",
+  minWidth: 720,
 }));
 
 export const Th = styled(Box)(() => ({
@@ -172,6 +250,7 @@ export const Th = styled(Box)(() => ({
 export const TableBody = styled(Box)(() => ({
   height: "calc(100% - 44px)",
   overflowY: "auto",
+  minWidth: 720,
 
   "&::-webkit-scrollbar": {
     width: 6,
@@ -188,10 +267,12 @@ export const TableRow = styled(Box, {
 })<{ selected: boolean }>(({ selected }) => ({
   minHeight: 42,
   display: "grid",
-  gridTemplateColumns: "190px 260px 180px 1fr",
+  gridTemplateColumns:
+    "minmax(135px, 0.85fr) minmax(180px, 1.25fr) minmax(120px, 0.8fr) minmax(220px, 1.4fr)",
   borderBottom: "1px solid #DCE5EF",
   background: "#fff",
   cursor: "pointer",
+  minWidth: 720,
 
   "&:hover": {
     background: selected ? "#D7ECE6" : "#F7FAFC",
@@ -248,6 +329,7 @@ export const MarketCell = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   gap: 7,
+  minWidth: 0,
 }));
 
 export const UzumIcon = styled(Box)(() => ({
@@ -279,6 +361,16 @@ export const ReviewPanel = styled(Box)(() => ({
   display: "grid",
   gridTemplateRows: "1fr 66px",
   gap: 10,
+  minWidth: 0,
+
+  "@media (max-width: 900px)": {
+    height: "auto",
+    gridTemplateRows: "auto 58px",
+  },
+
+  "@media (max-width: 520px)": {
+    gridTemplateRows: "auto auto",
+  },
 }));
 
 export const DetailCard = styled(Box)(() => ({
@@ -287,7 +379,11 @@ export const DetailCard = styled(Box)(() => ({
   borderRadius: 8,
   padding: 16,
   boxSizing: "border-box",
-  overflow: "hidden",
+  overflow: "auto",
+
+  "@media (max-width: 520px)": {
+    padding: 14,
+  },
 }));
 
 export const DetailTitle = styled(Typography)(() => ({
@@ -305,6 +401,7 @@ export const ReviewMiniCard = styled(Box)(() => ({
   display: "flex",
   gap: 8,
   marginBottom: 15,
+  minWidth: 0,
 }));
 
 export const DetailRow = styled(Box)(() => ({
@@ -316,6 +413,13 @@ export const DetailRow = styled(Box)(() => ({
 
   "&:last-of-type": {
     borderBottom: 0,
+  },
+
+  "@media (max-width: 520px)": {
+    gridTemplateColumns: "1fr",
+    alignItems: "start",
+    gap: 4,
+    padding: "8px 0",
   },
 }));
 
@@ -330,6 +434,13 @@ export const DetailValue = styled(Box)(() => ({
   textAlign: "right",
   display: "flex",
   justifyContent: "flex-end",
+  minWidth: 0,
+  overflowWrap: "anywhere",
+
+  "@media (max-width: 520px)": {
+    textAlign: "left",
+    justifyContent: "flex-start",
+  },
 }));
 
 export const MissingText = styled(DetailValue)(() => ({
@@ -345,10 +456,18 @@ export const ReplyBox = styled(Box)(() => ({
   padding: "0 10px",
   boxSizing: "border-box",
   gap: 8,
+  minWidth: 0,
+
+  "@media (max-width: 520px)": {
+    alignItems: "stretch",
+    flexWrap: "wrap",
+    padding: 10,
+  },
 }));
 
 export const ReplyInput = styled(InputBase)(() => ({
   flex: 1,
+  minWidth: 120,
   fontSize: 13,
   color: "#101828",
 
@@ -370,5 +489,9 @@ export const SendButton = styled(Button)(() => ({
 
   "&:hover": {
     background: "#00524F",
+  },
+
+  "@media (max-width: 520px)": {
+    width: "100%",
   },
 }));

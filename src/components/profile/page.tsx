@@ -70,6 +70,8 @@ const Profile = () => {
     oldPasswordVisible,
     isProfileUpdating,
     handleUpdateProfile,
+    handleSubmit,
+    isLoading,
     isEditing,
     setIsEditing,
     handleChangeContact,
@@ -241,7 +243,6 @@ const Profile = () => {
                       <SaveButton
                         onClick={() => {
                           handleUpdateProfile();
-                          setIsEditing(false);
                         }}
                         disabled={isProfileUpdating}
                       >
@@ -386,10 +387,10 @@ const Profile = () => {
               <CancelButton>{t("profile_cancel")}</CancelButton>
 
               <SaveButton
-                onClick={handleUpdateProfile}
-                disabled={isProfileUpdating}
+                onClick={handleSubmit}
+                disabled={isLoading}
               >
-                {isProfileUpdating ? (
+                {isLoading ? (
                   <>
                     <CircularProgress
                       size={16}

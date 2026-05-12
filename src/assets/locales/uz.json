@@ -390,5 +390,6 @@
   "otp_verified_success": "Kodingiz tasdiqlandi!!!",
   "otp_invalid": "Parolda xatolik bor",
   "invalid_code_provided": "Tasdiqlash kodi noto‘g‘ri.",
-  "otp_invalid_length": "Tasdiqlash kodini kiriting (5 raqam)"
+  "otp_invalid_length": "Tasdiqlash kodini kiriting (5 raqam)",
+  "logout_success": "Tizimdan chiqdingiz!"
 }

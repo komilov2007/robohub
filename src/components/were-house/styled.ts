@@ -3,6 +3,7 @@
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import type { TypographyProps } from "@mui/material/Typography";
 import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -16,6 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { createElement } from "react";
 
 /* top level */
 export const PageBg = styled(Box)`
@@ -46,6 +48,7 @@ export const HeaderBar = styled(Box)({
 
 export const HeaderTitle = styled(Typography)({
   fontWeight: 600,
+  marginLeft: "30px",
   fontFamily: "inter",
 });
 
@@ -97,6 +100,17 @@ export const FilterAction = styled(Box)({
   height: "40px",
   cursor: "pointer",
   boxSizing: "border-box",
+});
+
+const SpanTypography = (props: TypographyProps) =>
+  createElement(Typography, { component: "span", ...props });
+
+export const ToolbarText = styled(SpanTypography)({
+  fontSize: "14px",
+  lineHeight: "20px",
+  fontWeight: 500,
+  fontFamily: "inter",
+  color: "inherit",
 });
 
 export const ToolbarLink = styled(Link)({
@@ -354,6 +368,15 @@ export const HeaderCell = styled(TableCell)({
   },
 });
 
+export const HeaderCellText = styled(SpanTypography)({
+  fontSize: "12px",
+  lineHeight: "16px",
+  fontWeight: 500,
+  fontFamily: "inter",
+  color: "#667085",
+  whiteSpace: "nowrap",
+});
+
 export const GroupRow = styled(TableRow)({
   backgroundColor: "#FFFFFF",
 });
@@ -367,6 +390,15 @@ export const GroupCell = styled(TableCell)({
   color: "#3A4556",
   textTransform: "uppercase",
   borderBottom: "1px solid #D7DFE9",
+});
+
+export const GroupCellText = styled(SpanTypography)({
+  fontSize: "12px",
+  lineHeight: "16px",
+  fontWeight: 700,
+  fontFamily: "inter",
+  color: "#3A4556",
+  textTransform: "uppercase",
 });
 
 export const BodyRow = styled(TableRow)({
@@ -388,6 +420,14 @@ export const BodyCell = styled(TableCell)({
   },
   fontWeight: 400,
   fontFamily: "inter",
+});
+
+export const BodyCellText = styled(SpanTypography)({
+  fontSize: "12px",
+  lineHeight: "26px",
+  fontWeight: 400,
+  fontFamily: "inter",
+  color: "#344054",
 });
 
 export const ProductCellWrap = styled(Box)({

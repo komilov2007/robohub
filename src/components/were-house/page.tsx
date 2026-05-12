@@ -20,6 +20,7 @@ import { usePage } from "./usePage";
 import { StyledField, StyledInput } from "./styled";
 import {
   ArrowButton,
+  BodyCellText,
   BodyCell,
   BodyRow,
   CardWrapper,
@@ -30,9 +31,11 @@ import {
   FooterRight,
   FooterText,
   GroupCell,
+  GroupCellText,
   GroupRow,
   HeaderBar,
   HeaderCell,
+  HeaderCellText,
   HeaderTitle,
   ImportLink,
   ImportText,
@@ -69,6 +72,7 @@ import {
   ToolbarLeft,
   ToolbarRight,
   ToolbarSection,
+  ToolbarText,
 } from "./styled";
 import { Controller } from "react-hook-form";
 
@@ -127,24 +131,24 @@ const WereHouse = () => {
 
             <FilterAction>
               <IconFilter />
-              {t("filter")}
+              <ToolbarText>{t("filter")}</ToolbarText>
             </FilterAction>
           </ToolbarLeft>
 
           <ToolbarRight>
             <ToolbarLink to="/dashboard/warehouse/mapping">
               <IconMapping />
-              {t("mapping")}
+              <ToolbarText>{t("mapping")}</ToolbarText>
             </ToolbarLink>
 
             <ToolbarLink to="/">
               <IconManual />
-              {t("manual")}
+              <ToolbarText>{t("manual")}</ToolbarText>
             </ToolbarLink>
 
             <ToolbarAction onClick={handleOpenModal}>
               <IconBasket />
-              {t("stoplist")}
+              <ToolbarText>{t("stoplist")}</ToolbarText>
             </ToolbarAction>
           </ToolbarRight>
 
@@ -210,16 +214,28 @@ const WereHouse = () => {
                 <StyledTableHead>
                   <StyledHeaderRow>
                     <HeaderCell sx={{ width: "380px" }}>
-                      {t("product_name")}
+                      <HeaderCellText>
+                        {t("product_name")}
+                      </HeaderCellText>
                     </HeaderCell>
 
-                    <HeaderCell sx={{ width: "150px" }}>{t("sku")}</HeaderCell>
+                    <HeaderCell sx={{ width: "150px" }}>
+                      <HeaderCellText>
+                        {t("sku")}
+                      </HeaderCellText>
+                    </HeaderCell>
 
-                    <HeaderCell sx={{ width: "160px" }}>{t("ikpu")}</HeaderCell>
+                    <HeaderCell sx={{ width: "160px" }}>
+                      <HeaderCellText>
+                        {t("ikpu")}
+                      </HeaderCellText>
+                    </HeaderCell>
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        {t("purchase_price")}
+                        <HeaderCellText>
+                          {t("purchase_price")}
+                        </HeaderCellText>
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -228,7 +244,9 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        {t("sale_price")}
+                        <HeaderCellText>
+                          {t("sale_price")}
+                        </HeaderCellText>
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -237,7 +255,9 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "120px" }}>
                       <SortHeaderWrap>
-                        {t("quantity")}
+                        <HeaderCellText>
+                          {t("quantity")}
+                        </HeaderCellText>
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -246,7 +266,9 @@ const WereHouse = () => {
 
                     <HeaderCell sx={{ width: "160px" }}>
                       <SortHeaderWrap>
-                        {t("added_time")}
+                        <HeaderCellText>
+                          {t("added_time")}
+                        </HeaderCellText>
                         <KeyboardArrowUpRoundedIcon
                           sx={{ fontSize: 14, color: "#98A2B3" }}
                         />
@@ -260,7 +282,11 @@ const WereHouse = () => {
                     if (item.type === "group") {
                       return (
                         <GroupRow key={`group-${item.group}-${index}`}>
-                          <GroupCell colSpan={7}>{item.group}</GroupCell>
+                          <GroupCell colSpan={7}>
+                            <GroupCellText>
+                              {item.group}
+                            </GroupCellText>
+                          </GroupCell>
                         </GroupRow>
                       );
                     }
@@ -279,10 +305,24 @@ const WereHouse = () => {
                           </ProductCellWrap>
                         </BodyCell>
 
-                        <BodyCell>{row.sku}</BodyCell>
-                        <BodyCell>{row.ikpu}</BodyCell>
-                        <BodyCell>{row.buyPrice}</BodyCell>
-                        <BodyCell>{row.sellPrice}</BodyCell>
+                        <BodyCell>
+                          <BodyCellText>{row.sku}</BodyCellText>
+                        </BodyCell>
+                        <BodyCell>
+                          <BodyCellText>
+                            {row.ikpu}
+                          </BodyCellText>
+                        </BodyCell>
+                        <BodyCell>
+                          <BodyCellText>
+                            {row.buyPrice}
+                          </BodyCellText>
+                        </BodyCell>
+                        <BodyCell>
+                          <BodyCellText>
+                            {row.sellPrice}
+                          </BodyCellText>
+                        </BodyCell>
 
                         <BodyCell>
                           <QuantityInput
@@ -293,7 +333,11 @@ const WereHouse = () => {
                           />
                         </BodyCell>
 
-                        <BodyCell>{row.addedAt}</BodyCell>
+                        <BodyCell>
+                          <BodyCellText>
+                            {row.addedAt}
+                          </BodyCellText>
+                        </BodyCell>
                       </BodyRow>
                     );
                   })}

@@ -99,25 +99,17 @@ export const usePage = () => {
     }
   };
 
-  // 🔥 VERIFY
   const verifyMutation = useMutation({
     mutationFn: async (data: OtpFormType) => {
-      // ✅ LOCALSTORAGE
       const registerToken = localStorage.getItem("register_access_token") || "";
-
-      console.log("🔥 REGISTER TOKEN:", registerToken);
-
       if (!registerToken) {
         throw new Error("REGISTER TOKEN TOPILMADI");
       }
-
       const payload = {
         contact,
         code: data.otp,
       };
-
       console.log("📤 OTP VERIFY:", payload);
-
       const res = await api.post<VerifyResponse>(
         "account/otp/verify/",
         payload,
@@ -127,50 +119,31 @@ export const usePage = () => {
           },
         },
       );
-
       return res.data;
     },
-
-    // 🔥 SUCCESS
     onSuccess: (data) => {
       console.log("✅ OTP SUCCESS:", data);
-
-      // ✅ TOKEN CLEAR
       localStorage.removeItem("register_access_token");
-
       toast.success(t("otp_verified_success"));
-
       navigate("/register/success");
     },
-
-    // 🔥 ERROR
     onError: (error: any) => {
-      console.log("❌ OTP ERROR:", error);
-
       const data = error?.response?.data;
-
-      console.log("❌ OTP ERROR DATA:", data);
-
       if (data?.code?.[0]) {
         setError("otp", {
           type: "server",
           message: data.code[0],
         });
-
         return;
       }
-
       const message =
         data?.message || data?.detail || data?.error || "otp_verify_failed";
-
       setError("otp", {
         type: "server",
         message,
       });
     },
   });
-
-  // 🔥 SUBMIT
   const onSubmit = (data: OtpFormType) => {
     console.log("SUBMIT ISHLADI", data);
 

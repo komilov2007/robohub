@@ -66,6 +66,8 @@ export const TitleRow = styled(Box)(() => ({
   padding: "0 16px",
   borderBottom: `1px solid ${BORDER}`,
   background: "#F7F9FB",
+  paddingLeft: "50px",
+
   boxSizing: "border-box",
 }));
 export const TitleText = styled(Typography)(() => ({

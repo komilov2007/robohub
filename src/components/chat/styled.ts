@@ -17,6 +17,7 @@ export const Header = styled(Box)({
   borderBottom: "1px solid #E8E8E9",
   position: "relative",
   padding: "20px 24px",
+  marginLeft: "10px",
 });
 
 export const HeaderLeft = styled(Box)({
@@ -28,6 +29,7 @@ export const HeaderLeft = styled(Box)({
 export const HeaderTitle = styled(Typography)({
   fontWeight: 600,
   fontFamily: "Inter, sans-serif",
+  marginLeft: "30px",
 });
 
 export const PlatformSelect = styled(Select)({

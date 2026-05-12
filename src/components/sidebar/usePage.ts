@@ -2,9 +2,9 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
+import { profileQueryOptions } from "@/api/profile";
 import IconComment from "@/assets/icons/icon-comment.svg?react";
 import IconCommentActive from "@/assets/icons/icon-comment-act.svg?react";
-import { api } from "@/api/api";
 
 import IconDashboardActive from "@/assets/icons/icon-dashboard-act.svg?react";
 import IconProductActive from "@/assets/icons/icon-product-act.svg?react";
@@ -26,16 +26,6 @@ import SidebarPhone from "@/assets/img/sidebar-phone.png";
 import { useBoolean } from "@/hook/useBoolean";
 import toast from "react-hot-toast";
 
-type ProfileResponse = {
-  full_name?: string;
-  first_name?: string;
-  last_name?: string;
-  phone?: string;
-  phone_number?: string;
-  image?: string;
-  avatar?: string;
-};
-
 export const usePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,13 +33,7 @@ export const usePage = () => {
 
   const [collapsed, setCollapsed] = useState(false);
 
-  const { data: profile } = useQuery<ProfileResponse>({
-    queryKey: ["profile"],
-    queryFn: async () => {
-      const { data } = await api.get("account/profile/");
-      return data;
-    },
-  });
+  const { data: profile } = useQuery(profileQueryOptions());
 
   const cardData = {
     title: t("sidebar_card_title"),
@@ -145,7 +129,7 @@ export const usePage = () => {
     document.cookie =
       "refresh_token=; Max-Age=0; path=/; secure; samesite=strict";
 
-    toast.success("Siz tizimdan chiqdingiz");
+    toast.success(t("logout_success"));
 
     setTimeout(() => {
       window.location.replace("/");
@@ -153,6 +137,10 @@ export const usePage = () => {
   };
   const handleNavigate = (path: string) => {
     navigate(path);
+
+    if (window.innerWidth) {
+      setCollapsed(true);
+    }
   };
 
   const isActive = (path: string) => {

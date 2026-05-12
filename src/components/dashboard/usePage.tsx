@@ -112,7 +112,7 @@ export function usePage() {
     { value: "ozon", labelKey: "ozon" },
     { value: "uzum", labelKey: "uzum" },
     { value: "wb", labelKey: "wb" },
-  ]
+  ];
 
   const months = [
     "jan",

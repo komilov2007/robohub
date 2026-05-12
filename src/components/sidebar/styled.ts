@@ -8,16 +8,28 @@ type CollapsedProps = { collapsed?: boolean };
 export const SidebarWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
-  width: collapsed ? 84 : 262,
-  minWidth: collapsed ? 84 : 262,
-  maxWidth: collapsed ? 84 : 262,
+  position: "absolute",
+  top: 0,
+  left: collapsed ? "-262px" : "0",
+
+  zIndex: 9999,
+
+  width: 262,
+  minWidth: 262,
+  maxWidth: 262,
+
   height: "100vh",
   background: "#005F56",
-  overflow: "hidden", // scroll yo‘q
+
+  overflow: "visible",
+
   display: "flex",
   flexDirection: "column",
+
   padding: 10,
   boxSizing: "border-box",
+
+  transition: "left 0.3s ease",
 }));
 export const TopBlock = styled(Box)`
   display: flex;
@@ -28,6 +40,9 @@ export const TopBlock = styled(Box)`
 `;
 export const ProfilImg = styled(Image)({});
 export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
+  position: "relative",
+  overflow: "visible",
+
   marginTop: 10,
   display: "flex",
   alignItems: "center",
@@ -35,13 +50,7 @@ export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   marginBottom: 24,
   marginLeft: "-5px",
   width: "100%",
-
-  "@media (max-height: 760px)": {
-    marginTop: 6,
-    marginBottom: 14,
-  },
 }));
-
 export const BrandWrap = styled(Link, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
@@ -65,18 +74,33 @@ export const BrandWrap = styled(Link, {
     },
   },
 }));
+export const ToggleButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "collapsed",
+})<CollapsedProps>(({ collapsed }) => ({
+  position: "absolute",
 
-export const ToggleButton = styled(IconButton)(() => ({
-  color: "#D1FAE5",
-  background: "transparent",
-  flexShrink: 0,
-  marginRight: "8px",
+  top: collapsed ? -6 : 8,
+  right: collapsed ? -55 : 0,
+  background: collapsed ? "#00524F" : "transparent",
+
+  width: 30,
+  height: 30,
+
+  zIndex: 10001,
+
+  transition: "all 0.3s ease",
+
+  borderRadius: 10,
+
+  "& svg": {
+    width: 18,
+    height: 18,
+  },
 
   "&:hover": {
-    background: "rgba(255,255,255,0.06)",
+    background: "#0A766B",
   },
 }));
-
 export const MenuWrap = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",

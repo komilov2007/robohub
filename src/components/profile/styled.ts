@@ -6,8 +6,16 @@ export const PageWrapper = styled(Box)({
   minHeight: "100vh",
   background: "#FFFFFF",
   padding: "0 20px 20px",
-  borderLeft: "4px solid #006B64",
   fontFamily: "Inter, sans-serif",
+  overflowX: "hidden",
+
+  "@media (max-width: 768px)": {
+    padding: "0 14px 18px",
+  },
+
+  "@media (max-width: 480px)": {
+    padding: "0 12px 16px",
+  },
 });
 
 export const TabsRow = styled(Box)({
@@ -16,6 +24,20 @@ export const TabsRow = styled(Box)({
   alignItems: "flex-end",
   gap: 14,
   borderBottom: "1px solid #CBD5E1",
+  overflowX: "auto",
+  overflowY: "hidden",
+  scrollbarWidth: "none",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+
+  "@media (max-width: 768px)": {
+    height: "auto",
+    minHeight: 56,
+    alignItems: "flex-end",
+    gap: 8,
+  },
 });
 
 export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
@@ -30,9 +52,24 @@ export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
   textTransform: "none",
   gap: 8,
   borderBottom: active ? "2px solid #006B64" : "2px solid transparent",
+  marginLeft: "20px",
+  whiteSpace: "nowrap",
+  flexShrink: 0,
 
   "&:hover": {
     background: "transparent",
+  },
+
+  "@media (max-width: 768px)": {
+    height: 40,
+    padding: "0 8px 10px",
+    marginLeft: 0,
+    fontSize: 14,
+    gap: 6,
+  },
+
+  "@media (max-width: 420px)": {
+    fontSize: 13,
   },
 }));
 
@@ -41,9 +78,29 @@ export const Separator = styled(Box)({
   height: 22,
   background: "#CBD5E1",
   marginBottom: 15,
+  flexShrink: 0,
+
+  "@media (max-width: 768px)": {
+    height: 18,
+    marginBottom: 13,
+  },
 });
 
-export const ContentCard = styled(Box)({});
+export const ContentCard = styled(Box)({
+  maxWidth: "100%",
+
+  "&& > .MuiBox-root": {
+    maxWidth: "100%",
+    boxSizing: "border-box",
+  },
+
+  "@media (max-width: 700px)": {
+    "&& > .MuiBox-root": {
+      width: "100%",
+      padding: "16px 14px 18px",
+    },
+  },
+});
 
 export const FormGrid = styled(Box)({
   display: "grid",
@@ -52,9 +109,25 @@ export const FormGrid = styled(Box)({
   marginBottom: 18,
   position: "relative",
   width: "610px",
+  maxWidth: "100%",
+
+  "@media (max-width: 700px)": {
+    gridTemplateColumns: "1fr",
+    width: "100%",
+    gap: 14,
+  },
 });
 
-export const FieldBox = styled(Box)({});
+export const FieldBox = styled(Box)({
+  minWidth: 0,
+
+  "@media (max-width: 700px)": {
+    "& > .MuiBox-root": {
+      flexDirection: "column",
+      gap: "12px",
+    },
+  },
+});
 
 export const FieldLabel = styled(Typography)({
   fontSize: 14,
@@ -64,6 +137,7 @@ export const FieldLabel = styled(Typography)({
 });
 export const ProfileInputPhone = styled(TextField)({
   width: "67%",
+  minWidth: 0,
 
   ".MuiInputBase-root": {
     height: 38,
@@ -89,9 +163,14 @@ export const ProfileInputPhone = styled(TextField)({
   "& input:-webkit-autofill:focus": {
     WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
   },
+
+  "@media (max-width: 700px)": {
+    width: "100%",
+  },
 });
 export const ProfileInput = styled(TextField)({
   width: "100%",
+  minWidth: 0,
 
   ".MuiInputBase-root": {
     height: 38,
@@ -129,6 +208,16 @@ export const ActionsRow = styled(Box)({
   gap: 10,
   marginTop: 22,
   paddingRight: 8,
+
+  "@media (max-width: 700px)": {
+    marginTop: 18,
+    paddingRight: 0,
+
+    "& > .MuiBox-root": {
+      width: "100%",
+      flexWrap: "wrap",
+    },
+  },
 });
 
 export const CancelButton = styled(Button)({
@@ -144,6 +233,11 @@ export const CancelButton = styled(Button)({
   marginBottom: "-10px",
   "&:hover": {
     background: "#F8FAFC",
+  },
+
+  "@media (max-width: 480px)": {
+    width: "100%",
+    minWidth: 0,
   },
 });
 
@@ -173,6 +267,12 @@ export const SaveButton = styled(Button)({
     background: "#0A3F3C",
     color: "#A7D1CE",
   },
+
+  "@media (max-width: 480px)": {
+    width: "100%",
+    minWidth: 0,
+    justifyContent: "center",
+  },
 });
 export const LanguageList = styled(Box)({
   width: 240,
@@ -180,6 +280,11 @@ export const LanguageList = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: 22,
+
+  "@media (max-width: 480px)": {
+    width: "100%",
+    gap: 18,
+  },
 });
 
 export const LanguageItem = styled(Box)({
@@ -216,6 +321,7 @@ export const LangRadio = styled(Box)<{ checked?: boolean }>(({ checked }) => ({
 
 export const PasswordInput = styled(TextField)({
   maxWidth: 630,
+  width: "100%",
 
   ".MuiInputBase-root": {
     height: 40,
@@ -245,6 +351,13 @@ export const PasswordInput = styled(TextField)({
   "& input:-webkit-autofill:focus": {
     WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
   },
+
+  "@media (max-width: 480px)": {
+    ".MuiInputBase-root": {
+      height: 38,
+      borderRadius: 8,
+    },
+  },
 });
 
 export const EyeButton = styled(Box)({
@@ -260,6 +373,13 @@ export const StrengthRow = styled(Box)({
   alignItems: "center",
   gap: 12,
   marginTop: 24,
+
+  "@media (max-width: 480px)": {
+    alignItems: "flex-start",
+    flexDirection: "column",
+    gap: 8,
+    marginTop: 20,
+  },
 });
 
 export const StrengthBar = styled(Box)({
@@ -287,6 +407,10 @@ export const StrengthText = styled(Typography)<{ strengthcolor: string }>(
     fontWeight: 500,
     color: strengthcolor,
     minWidth: 52,
+
+    "@media (max-width: 480px)": {
+      fontSize: 14,
+    },
   }),
 );
 export const StrengthLine = styled(Box)({
@@ -303,6 +427,12 @@ export const RulesGrid = styled(Box)({
   rowGap: 14,
   columnGap: 80,
   marginTop: 20,
+
+  "@media (max-width: 700px)": {
+    gridTemplateColumns: "1fr",
+    rowGap: 12,
+    columnGap: 0,
+  },
 });
 
 export const RuleItem = styled(Box)({
@@ -314,6 +444,10 @@ export const RuleItem = styled(Box)({
 export const RuleText = styled(Typography)({
   fontSize: 15,
   color: "#63728C",
+
+  "@media (max-width: 480px)": {
+    fontSize: 14,
+  },
 });
 export const FooterWrap = styled(Box)`
   display: flex;

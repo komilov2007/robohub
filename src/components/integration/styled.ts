@@ -13,7 +13,7 @@ export const HeaderTitle = styled(Typography)(() => ({
   borderBottom: "1px solid #E8E8E9",
   display: "flex",
   alignItems: "center",
-  padding: "0px 16px",
+  paddingLeft: "50px",
 }));
 
 export const ContentStack = styled(Stack)(() => ({

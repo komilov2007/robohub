@@ -20,6 +20,7 @@ export const Header = styled(Box)({
 export const HeaderTitle = styled(Typography)({
   fontSize: 20,
   fontWeight: 600,
+  padding: "0px 26px",
   fontFamily: "inter",
 });
 

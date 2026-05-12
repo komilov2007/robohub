@@ -412,5 +412,6 @@
   "sms_sent": "SMS отправлено",
   "token_not_received": "Токен не получен",
   "invalid_code_provided": "Неверный код подтверждения.",
-  "otp_invalid_length": "Введите код подтверждения (5 цифр)"
+  "otp_invalid_length": "Введите код подтверждения (5 цифр)",
+  "logout_success": "Вы вышли из системы!"
 }

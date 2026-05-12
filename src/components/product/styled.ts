@@ -35,6 +35,7 @@ export const Title = styled(Typography)({
   fontWeight: 600,
   lineHeight: "24px",
   color: "#101828",
+  paddingLeft: "30px",
   fontFamily: "inter",
 });
 

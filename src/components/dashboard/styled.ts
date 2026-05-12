@@ -24,6 +24,7 @@ export const SectionTitle = styled(Typography)({
   borderBottom: "0.5px solid #E0E6F0",
   padding: "15px 15px",
   fontFamily: "Inter, sans-serif",
+  paddingLeft: "50px",
 });
 
 export const CardsGrid = styled(Box)(({ theme }) => ({

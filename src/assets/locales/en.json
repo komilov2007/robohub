@@ -409,5 +409,6 @@
   "first_name_required": "First name is required",
   "contact_required": "Contact information is required",
   "last_name_required": "Last name is required",
-  "otp_invalid_length": "Please enter a valid OTP code (5 digits)"
+  "otp_invalid_length": "Please enter a valid OTP code (5 digits)",
+  "logout_success": "You have been logged out successfully!"
 }
