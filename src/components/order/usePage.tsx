@@ -1,5 +1,5 @@
 import { useBoolean } from "@/hook/useBoolean";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import StoreIcon from "@mui/icons-material/Store";
@@ -18,7 +18,8 @@ export interface DashboardOrder {
   image?: string;
   moreCount?: number;
 }
-const ROWS_PER_PAGE = 13;
+const DESKTOP_ROWS_PER_PAGE = 15;
+const MOBILE_ROWS_PER_PAGE = 15;
 const tabValues = [
   "yangilar",
   "yigishdagilar",
@@ -200,6 +201,9 @@ export const usePage = () => {
   const filterModal = useBoolean();
 
   const { value: isOpen, setTrue: open, setFalse: close } = filterModal;
+  const [rowsPerPage, setRowsPerPage] = useState(() =>
+    window.innerWidth < 768 ? MOBILE_ROWS_PER_PAGE : DESKTOP_ROWS_PER_PAGE,
+  );
   const [search, setSearchState] = useState<string>(searchSchema.getDefault());
   const [page, setPageState] = useState<number>(pageSchema.getDefault());
   const [activeTab, setActiveTabState] = useState<TabValue>(
@@ -207,6 +211,20 @@ export const usePage = () => {
   );
   const [isLoading] = useState<boolean>(false);
   const [isError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setRowsPerPage(
+        window.innerWidth < 768 ? MOBILE_ROWS_PER_PAGE : DESKTOP_ROWS_PER_PAGE,
+      );
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const tabs: Array<{ id: TabValue; label: string; count: number }> = [
     { id: "yangilar", label: "Yangilar", count: 0 },
     { id: "yigishdagilar", label: "Yig‘ishdagilar", count: 1 },
@@ -251,12 +269,12 @@ export const usePage = () => {
     );
   }, [search]);
   const totalCount = rows.length;
-  const totalPages = Math.max(1, Math.ceil(totalCount / ROWS_PER_PAGE));
+  const totalPages = Math.max(1, Math.ceil(totalCount / rowsPerPage));
   const paginatedRows = useMemo(() => {
-    const start = (page - 1) * ROWS_PER_PAGE;
-    const end = start + ROWS_PER_PAGE;
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
     return rows.slice(start, end);
-  }, [rows, page]);
+  }, [rows, page, rowsPerPage]);
   const pageNumbers = useMemo(() => {
     if (totalPages <= 5) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -294,7 +312,7 @@ export const usePage = () => {
     pageNumbers,
     handlePrevPage,
     handleNextPage,
-    ROWS_PER_PAGE,
+    ROWS_PER_PAGE: rowsPerPage,
     isLoading,
     isError,
     isOpen,

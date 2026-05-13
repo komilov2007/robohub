@@ -361,6 +361,8 @@ const OrdersPage = () => {
 
                       <StyledRowsSelect value={ROWS_PER_PAGE} size="small">
                         <StyledRowsMenuItem value={13}>13</StyledRowsMenuItem>
+                        <StyledRowsMenuItem value={18}>18</StyledRowsMenuItem>
+                        <StyledRowsMenuItem value={11}>11</StyledRowsMenuItem>
                       </StyledRowsSelect>
 
                       <PaginationInfo>

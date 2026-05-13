@@ -1,27 +1,35 @@
-import { Image } from "@mui/icons-material";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
 type ActiveProps = { active?: boolean };
 type CollapsedProps = { collapsed?: boolean };
+type DisableCursorProps = {
+  disablecursor?: boolean;
+};
+
+type FirstItemProps = {
+  firstitem?: boolean;
+};
 export const SidebarWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
   position: "absolute",
   top: 0,
-  left: collapsed ? "-262px" : "0",
+  left: 0,
 
   zIndex: 9999,
 
-  width: 262,
-  minWidth: 262,
-  maxWidth: 262,
+  width: collapsed ? 56 : 262,
+  minWidth: collapsed ? 56 : 262,
+  maxWidth: collapsed ? 56 : 262,
 
-  height: "100vh",
-  background: "#005F56",
+  height: "100dvh",
+  maxHeight: "100dvh",
+  background: collapsed ? "transparent" : "#00524F",
 
-  overflow: "visible",
+  overflowX: "visible",
+  overflowY: "hidden",
 
   display: "flex",
   flexDirection: "column",
@@ -29,16 +37,15 @@ export const SidebarWrap = styled(Box, {
   padding: 10,
   boxSizing: "border-box",
 
-  transition: "left 0.3s ease",
+  transition: "width 0.3s ease, background 0.3s ease",
 }));
 export const TopBlock = styled(Box)`
   display: flex;
   flex-direction: column;
-  gap: 12;
+  gap: 12px;
   flex: 1; /* 🔥 joyni egallaydi */
   min-height: 0; /* 🔥 overflow bug fix */
 `;
-export const ProfilImg = styled(Image)({});
 export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   position: "relative",
   overflow: "visible",
@@ -46,9 +53,8 @@ export const TopArea = styled(Box)<CollapsedProps>(({ collapsed }) => ({
   marginTop: 10,
   display: "flex",
   alignItems: "center",
-  justifyContent: collapsed ? "center" : "space-between",
+  justifyContent: collapsed ? "flex-start" : "space-between",
   marginBottom: 24,
-  marginLeft: "-5px",
   width: "100%",
 }));
 export const BrandWrap = styled(Link, {
@@ -56,10 +62,10 @@ export const BrandWrap = styled(Link, {
 })<CollapsedProps>(({ collapsed }) => ({
   display: "flex",
   alignItems: "center",
-  minWidth: 10,
+  minWidth: 1,
   padding: 10,
   justifyContent: collapsed ? "center" : "flex-start",
-  width: collapsed ? "100%" : "auto",
+  width: collapsed ? "100%" : "150px",
 
   "& svg": {
     width: 172,
@@ -79,8 +85,9 @@ export const ToggleButton = styled(IconButton, {
 })<CollapsedProps>(({ collapsed }) => ({
   position: "absolute",
 
-  top: collapsed ? -6 : 8,
-  right: collapsed ? -55 : 0,
+  top: collapsed ? -10 : 3,
+  right: collapsed ? "auto" : 0,
+  left: collapsed ? 3 : "auto",
   background: collapsed ? "#00524F" : "transparent",
 
   width: 30,
@@ -91,7 +98,9 @@ export const ToggleButton = styled(IconButton, {
   transition: "all 0.3s ease",
 
   borderRadius: 10,
-
+  "@media (max-height: 760px)": {
+    top: collapsed ? -10 : 0,
+  },
   "& svg": {
     width: 18,
     height: 18,
@@ -102,43 +111,75 @@ export const ToggleButton = styled(IconButton, {
   },
 }));
 export const MenuWrap = styled(Box)(() => ({
+  marginTop: -20,
   display: "flex",
   flexDirection: "column",
   gap: 6,
   width: "100%",
+  alignItems: "stretch",
   "@media (max-height: 760px)": {
     gap: 4,
-    display: "flex",
   },
-  alignItems: "center",
 }));
+export const MenuItemWrap = styled(Box)(() => ({
+  position: "relative",
 
+  width: "100%",
+
+  overflow: "visible",
+}));
 export const MenuItem = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "active" && prop !== "collapsed",
-})<ActiveProps & CollapsedProps>(({ active, collapsed }) => ({
-  height: 45,
-  borderRadius: 8,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: collapsed ? "center" : "flex-start",
-  gap: collapsed ? 0 : 10,
-  padding: collapsed ? "0 8px" : "0 12px",
-  cursor: "pointer",
-  userSelect: "none",
-  background: active ? "rgba(255,255,255,0.08)" : "transparent",
-  border: active ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
-  transition: "all 0.2s ease",
-  width: 220,
-  "&:hover": {
-    background: active ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)",
-  },
+  shouldForwardProp: (prop) =>
+    prop !== "active" &&
+    prop !== "collapsed" &&
+    prop !== "firstitem" &&
+    prop !== "disablecursor",
+})<ActiveProps & CollapsedProps & FirstItemProps & DisableCursorProps>(
+  ({ active, collapsed, firstitem, disablecursor }) => ({
+    height: 45,
 
-  "@media (max-height: 760px)": {
-    height: 38,
-  },
-  marginLeft: "-10px",
-}));
+    borderRadius: 8,
 
+    display: "flex",
+    alignItems: "center",
+
+    justifyContent: collapsed ? "center" : "flex-start",
+
+    gap: collapsed ? 0 : 10,
+
+    padding: collapsed ? "0 8px" : "0 12px",
+
+    cursor: disablecursor ? "not-allowed" : "pointer",
+
+    userSelect: "none",
+
+    background: active ? "rgba(255,255,255,0.08)" : "transparent",
+
+    border: active
+      ? "1px solid rgba(255,255,255,0.08)"
+      : "1px solid transparent",
+
+    transition: "all 0.2s ease",
+
+    width: "100%",
+
+    boxSizing: "border-box",
+
+    ...(firstitem && {
+      marginBottom: 12,
+      color: "#0d8371",
+      opacity: "60%",
+    }),
+
+    "&:hover": {
+      background: disablecursor
+        ? "rgba(255,255,255,0.06)"
+        : active
+          ? "rgba(255,255,255,0.08)"
+          : "rgba(255,255,255,0.04)",
+    },
+  }),
+);
 export const MenuIconWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "active",
 })<ActiveProps>(({ active }) => ({
@@ -153,7 +194,116 @@ export const MenuIconWrap = styled(Box, {
     height: 18,
   },
 }));
+export const MenuBadge = styled(Box)(() => ({
+  marginLeft: "auto",
 
+  height: 22,
+
+  padding: "0 10px",
+
+  borderRadius: 999,
+
+  background: "rgba(134,239,172,0.22)",
+
+  color: "#D1FAE5",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  fontSize: 10,
+  fontWeight: 800,
+
+  letterSpacing: 0.4,
+}));
+export const SoonModal = styled(Box)(() => ({
+  position: "fixed",
+
+  left: 275,
+  top: 18,
+
+  width: 265,
+
+  borderRadius: 16,
+
+  background: "linear-gradient(125deg,#00524f 30%,#0F8F7B 120%)",
+
+  padding: "16px 20px",
+  zIndex: 9999999,
+  border: "1px solid rgba(255,255,255,0.08)",
+  backdropFilter: "blur(12px)",
+  animation: "soonFade .18s ease",
+  pointerEvents: "none",
+  "&::before": {
+    content: '""',
+
+    position: "absolute",
+
+    left: -6,
+    top: 68,
+
+    width: 12,
+    height: 12,
+
+    background: "#00524f",
+
+    transform: "rotate(45deg)",
+
+    borderLeft: "1px solid rgba(255,255,255,0.08)",
+
+    borderBottom: "1px solid rgba(255,255,255,0.08)",
+  },
+
+  "@keyframes soonFade": {
+    from: {
+      opacity: 0,
+      transform: "translateY(6px) scale(0.98)",
+    },
+
+    to: {
+      opacity: 1,
+      transform: "translateY(0) scale(1)",
+    },
+  },
+
+  "@media (max-width: 900px)": {
+    display: "none",
+  },
+}));
+export const SoonTitle = styled(Box)(() => ({
+  color: "#fff",
+
+  fontSize: 14,
+  fontWeight: 600,
+}));
+export const SoonWrapper = styled(Box)(() => ({
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+  marginTop: -7,
+}));
+
+export const SoonBadge = styled(Box)(() => ({
+  display: "inline-flex",
+  height: 22,
+  padding: "0 10px",
+  borderRadius: 999,
+  background: "rgb(145, 252, 135)",
+  color: "#00524F",
+  alignItems: "center",
+  fontSize: 10,
+  fontWeight: 800,
+}));
+
+export const SoonText = styled(Box)(() => ({
+  color: "rgba(255,255,255,0.92)",
+
+  fontSize: 13,
+
+  lineHeight: "22px",
+
+  fontWeight: 400,
+}));
 export const MenuText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "active" && prop !== "collapsed",
 })<ActiveProps & CollapsedProps>(({ active, collapsed }) => ({
@@ -170,172 +320,6 @@ export const MenuText = styled(Typography, {
 
   "@media (max-height: 760px)": {
     fontSize: 12,
-  },
-}));
-
-export const CardWrap = styled(Box)(() => ({
-  width: "100%",
-  maxWidth: 224,
-  height: 260,
-  position: "relative",
-  display: "flex",
-  alignItems: "flex-end",
-  justifyContent: "center",
-  paddingBottom: 12,
-  marginLeft: "5px",
-  flexShrink: 0,
-  marginTop: "55px",
-
-  "@media (max-height: 820px)": {
-    maxWidth: 210,
-    height: 235,
-    marginTop: "20px",
-  },
-
-  "@media (max-height: 760px)": {
-    maxWidth: 250,
-    width: 250,
-    height: 145,
-    marginTop: "10px",
-  },
-
-  "@media (max-height: 670px)": {
-    maxWidth: 220,
-    width: 250,
-    height: 130,
-    marginTop: "0px",
-  },
-}));
-
-export const GlassBlock = styled(Box)(() => ({
-  width: "100%",
-  maxWidth: 350,
-  height: 218,
-  borderRadius: 16,
-  background: "#1F6764",
-  border: "1px solid rgba(255, 255, 255, 0.08)",
-  backdropFilter: "blur(16px)",
-  WebkitBackdropFilter: "blur(16px)",
-  boxSizing: "border-box",
-  padding: "105px 12px 12px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-
-  "@media (max-height: 820px)": {
-    maxWidth: 250,
-    width: 250,
-    padding: "90px 10px 10px",
-  },
-
-  "@media (max-height: 760px)": {
-    maxWidth: 250,
-    width: 250,
-    height: 135,
-    padding: "14px 10px 10px",
-  },
-
-  "@media (max-height: 670px)": {
-    maxWidth: 250,
-    width: 250,
-    height: 100,
-    padding: "12px 8px 8px",
-  },
-}));
-
-export const PhoneImage = styled("img")(() => ({
-  position: "absolute",
-  top: "-20%",
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: 138,
-  height: 156,
-  zIndex: 2,
-  marginButtom: "10px",
-  objectFit: "contain",
-
-  "@media (max-height: 820px)": {
-    width: 118,
-    height: 134,
-    top: "-14%",
-  },
-
-  "@media (max-height: 760px)": {
-    display: "none",
-  },
-
-  "@media (max-height: 670px)": {
-    display: "none",
-  },
-}));
-
-export const Title = styled(Typography)(() => ({
-  fontSize: 14,
-  lineHeight: "100%",
-  fontWeight: 700,
-  color: "#FFFFFF",
-  textAlign: "center",
-  marginBottom: 8,
-  fontFamily: "inter",
-  marginTop: 8,
-
-  "@media (max-height: 760px)": {
-    fontSize: 11,
-    marginBottom: 5,
-  },
-
-  "@media (max-height: 670px)": {
-    fontSize: 10,
-  },
-}));
-
-export const Description = styled(Typography)(() => ({
-  fontSize: 12,
-  lineHeight: "100%",
-  fontWeight: 400,
-  opacity: 0.7,
-  color: "white",
-  textAlign: "center",
-  marginBottom: 10,
-  fontFamily: "inter",
-  zIndex: 20,
-
-  "@media (max-height: 760px)": {
-    fontSize: 9,
-    marginBottom: 7,
-  },
-}));
-
-export const InstallButton = styled(Button)(() => ({
-  width: "100%",
-  height: 35,
-  minHeight: 35,
-  borderRadius: 12,
-  background: "#B7F08A",
-  color: "#00524F",
-  fontFamily: "inter",
-  textTransform: "none",
-  fontSize: 14,
-  lineHeight: "18px",
-  fontWeight: 600,
-  boxShadow: "none",
-  marginTop: "auto",
-
-  "@media (max-height: 760px)": {
-    height: 30,
-    minHeight: 30,
-    fontSize: 12,
-  },
-
-  "@media (max-height: 670px)": {
-    height: 28,
-    minHeight: 28,
-    fontSize: 11,
-  },
-
-  "&:hover": {
-    background: "#B7F08A",
-    boxShadow: "none",
   },
 }));
 
@@ -361,8 +345,8 @@ export const NotificationsRow = styled(Link, {
   cursor: "pointer",
   color: "#D7E5E2",
   textDecoration: "none",
-  marginLeft: "-5px",
   width: "100%",
+  boxSizing: "border-box",
   "&:hover": {
     background: "rgba(255,255,255,0.04)",
   },
@@ -424,8 +408,8 @@ export const UserCard = styled(Link, {
   justifyContent: collapsed ? "center" : "flex-start",
   textDecoration: "none",
   flexShrink: 0,
-  marginLeft: "-5px",
   width: "100%",
+  boxSizing: "border-box",
 }));
 
 export const AvatarWrap = styled(Box)(() => ({
@@ -472,63 +456,6 @@ export const UserPhone = styled(Typography)(() => ({
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
-}));
-
-export const MenuItemLogout = styled(Box)({});
-
-export const MenuItemLogoutBtn = styled(Button)({
-  textTransform: "none",
-  color: "#C5CFDD",
-  height: 45,
-  borderRadius: 8,
-  display: "flex",
-  alignItems: "center",
-  cursor: "pointer",
-  userSelect: "none",
-  width: "100%",
-  justifyContent: "flex-start",
-  gap: 10,
-});
-
-export const GlowShape = styled(Box)(() => ({
-  position: "absolute",
-  top: 60,
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: 200,
-  height: 160,
-  borderRadius: 16,
-  background: "rgba(255,255,255,0.10)",
-}));
-
-export const ContentWrap = styled(Box)(() => ({
-  position: "relative",
-  zIndex: 2,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  padding: "0 20px",
-}));
-
-export const BrandLogo = styled(Box)(() => ({
-  width: 33,
-  height: 18,
-  position: "relative",
-  flexShrink: 0,
-}));
-
-export const BrandText = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== "collapsed",
-})<CollapsedProps>(({ collapsed }) => ({
-  color: "#A7F3A0",
-  fontSize: 17,
-  fontWeight: 700,
-  lineHeight: "22px",
-  whiteSpace: "nowrap",
-  opacity: collapsed ? 0 : 1,
-  width: collapsed ? 0 : "auto",
-  overflow: "hidden",
-  transition: "all 0.25s ease",
 }));
 
 export const LogoutModalBox = styled(Box)(() => ({

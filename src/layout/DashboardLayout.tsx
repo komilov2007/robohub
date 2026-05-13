@@ -1,15 +1,26 @@
 import { Box } from "@mui/material";
 import Sidebar from "@/components/sidebar/page";
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SIDEBAR_OPEN_WIDTH = 252;
 const SIDEBAR_COLLAPSED_WIDTH = 0;
 
 export default function MainLayout() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => window.innerWidth < 900);
 
   const sidebarWidth = collapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_OPEN_WIDTH;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCollapsed(window.innerWidth < 900);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Box

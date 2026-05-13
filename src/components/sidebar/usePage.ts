@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { profileQueryOptions } from "@/api/profile";
 import IconComment from "@/assets/icons/icon-comment.svg?react";
 import IconCommentActive from "@/assets/icons/icon-comment-act.svg?react";
-
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import IconDashboardActive from "@/assets/icons/icon-dashboard-act.svg?react";
 import IconProductActive from "@/assets/icons/icon-product-act.svg?react";
 import IconWareActive from "@/assets/icons/sidebar-ware-act.svg?react";
@@ -22,7 +22,6 @@ import IconDashboard from "@/assets/icons/icon-dashboard.svg?react";
 
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 
-import SidebarPhone from "@/assets/img/sidebar-phone.png";
 import { useBoolean } from "@/hook/useBoolean";
 import toast from "react-hot-toast";
 
@@ -31,20 +30,20 @@ export const usePage = () => {
   const location = useLocation();
   const { t } = useTranslation();
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => window.innerWidth < 900);
 
   const { data: profile } = useQuery(profileQueryOptions());
 
-  const cardData = {
-    title: t("sidebar_card_title"),
-    description: t("sidebar_card_description"),
-    buttonText: t("sidebar_card_button"),
-    image: SidebarPhone,
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setCollapsed(window.innerWidth < 900);
+    };
 
-  const handleInstall = () => {
-    navigate("/dashboard/integration");
-  };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const menus = useMemo(
     () => [
@@ -97,6 +96,13 @@ export const usePage = () => {
         icon: IconComment,
         iconAct: IconCommentActive,
       },
+      {
+        id: 7,
+        title: t("Avtojavob"),
+        path: "/dashboard/answers",
+        icon: StarBorderIcon,
+        iconAct: StarBorderIcon,
+      },
     ],
     [t],
   );
@@ -138,7 +144,7 @@ export const usePage = () => {
   const handleNavigate = (path: string) => {
     navigate(path);
 
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 800) {
       setCollapsed(true);
     }
   };
@@ -159,9 +165,8 @@ export const usePage = () => {
     handleToggleSidebar,
     handleNavigate,
     isActive,
-    handleInstall,
-    cardData,
     handleLogout,
     logoutModal,
+    t,
   };
 };

@@ -76,8 +76,6 @@ export const usePage = () => {
   const formatTime = `${Math.floor(timeLeft / 60)}:${String(
     timeLeft % 60,
   ).padStart(2, "0")}`;
-
-  // 🔥 OTP CHANGE
   const handleOtpChange = (index: number, value: string) => {
     if (isExpired) return;
 

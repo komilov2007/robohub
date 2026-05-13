@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
@@ -13,10 +13,6 @@ import {
   Badge,
   BottomArea,
   BrandWrap,
-  CardWrap,
-  Description,
-  GlassBlock,
-  InstallButton,
   MenuIconWrap,
   MenuItem,
   MenuText,
@@ -24,9 +20,7 @@ import {
   NotificationsLeft,
   NotificationsRow,
   NotificationsText,
-  PhoneImage,
   SidebarWrap,
-  Title,
   ToggleButton,
   TopArea,
   UserCard,
@@ -34,6 +28,13 @@ import {
   UserName,
   UserPhone,
   TopBlock,
+  SoonModal,
+  SoonTitle,
+  MenuBadge,
+  SoonBadge,
+  SoonText,
+  MenuItemWrap,
+  SoonWrapper,
 } from "./styled";
 
 type SidebarPageProps = {
@@ -49,8 +50,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
     handleToggleSidebar,
     handleNavigate,
     isActive,
-    handleInstall,
-    cardData,
+    t,
   } = usePage();
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
   }, [collapsed, onCollapseChange]);
 
   const NotificationIcon = notification.icon;
-
+  const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
   return (
     <SidebarWrap collapsed={collapsed}>
       <TopBlock>
@@ -74,77 +74,94 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
           </ToggleButton>
         </TopArea>
 
-        <MenuWrap>
-          {menus.map((item) => {
-            const Icon = item.icon;
-            const IconAct = item.iconAct;
-            const active = isActive(item.path);
-
-            return (
-              <MenuItem
-                key={item.id}
-                active={active}
-                collapsed={collapsed}
-                onClick={() => handleNavigate(item.path)}
-              >
-                <MenuIconWrap active={active}>
-                  {active ? <IconAct /> : <Icon />}
-                </MenuIconWrap>
-
-                <MenuText active={active} collapsed={collapsed}>
-                  {item.title}
-                </MenuText>
-              </MenuItem>
-            );
-          })}
-        </MenuWrap>
-
         {!collapsed && (
-          <CardWrap>
-            <PhoneImage src={cardData.image} alt={cardData.title} />
+          <MenuWrap>
+            {menus.map((item, index) => {
+              const Icon = item.icon;
+              const IconAct = item.iconAct;
 
-            <GlassBlock>
-              <Title>{cardData.title}</Title>
+              const active = isActive(item.path);
 
-              <Description>{cardData.description}</Description>
+              const firstItem = index === 0;
 
-              <InstallButton onClick={handleInstall}>
-                {cardData.buttonText}
-              </InstallButton>
-            </GlassBlock>
-          </CardWrap>
+              return (
+                <MenuItemWrap
+                  key={item.id}
+                  onMouseEnter={() => firstItem && setHoveredMenu(item.id)}
+                  onMouseLeave={() => setHoveredMenu(null)}
+                >
+                  <MenuItem
+                    active={active}
+                    collapsed={collapsed}
+                    firstitem={firstItem}
+                    disablecursor={firstItem}
+                    onClick={() => {
+                      if (!firstItem) {
+                        handleNavigate(item.path);
+                      }
+                    }}
+                  >
+                    <MenuIconWrap active={active}>
+                      {active ? <IconAct /> : <Icon />}
+                    </MenuIconWrap>
+
+                    <MenuText active={active} collapsed={collapsed}>
+                      {item.title}
+                    </MenuText>
+
+                    {firstItem && <MenuBadge>TEZ KUNDA</MenuBadge>}
+                  </MenuItem>
+
+                  {firstItem && hoveredMenu === item.id && (
+                    <SoonModal>
+                      <SoonWrapper>
+                        <SoonTitle>{t("sidebar_dashboard")}</SoonTitle>
+
+                        <SoonBadge>{t("sidebar_soon")}</SoonBadge>
+                      </SoonWrapper>
+
+                      <SoonText>{t("sidebar_soon_description")}</SoonText>
+                    </SoonModal>
+                  )}
+                </MenuItemWrap>
+              );
+            })}
+          </MenuWrap>
         )}
       </TopBlock>
 
-      <BottomArea>
-        <NotificationsRow to={"/dashboard/notifications"} collapsed={collapsed}>
-          <NotificationsLeft>
-            <MenuIconWrap>
-              <NotificationIcon />
-            </MenuIconWrap>
+      {!collapsed && (
+        <BottomArea>
+          <NotificationsRow
+            to={"/dashboard/notifications"}
+            collapsed={collapsed}
+          >
+            <NotificationsLeft>
+              <MenuIconWrap>
+                <NotificationIcon />
+              </MenuIconWrap>
 
-            <NotificationsText collapsed={collapsed}>
-              {notification.title}
-            </NotificationsText>
-          </NotificationsLeft>
+              <NotificationsText collapsed={collapsed}>
+                {notification.title}
+              </NotificationsText>
+            </NotificationsLeft>
 
-          {!collapsed && (
             <Badge collapsed={collapsed}>{notification.count}</Badge>
-          )}
-        </NotificationsRow>
+          </NotificationsRow>
 
-        <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
-          <AvatarWrap>
-            <img src={user.image || SidebarProfilImg} alt={user.fullName} />
-          </AvatarWrap>
+          <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
+            <AvatarWrap>
+              <img src={user.image || SidebarProfilImg} alt={user.fullName} />
+            </AvatarWrap>
 
-          <UserInfo collapsed={collapsed}>
-            <UserName>{user.fullName}</UserName>
+            <UserInfo collapsed={collapsed}>
+              <UserName>{user.fullName}</UserName>
 
-            <UserPhone>{user.phone}</UserPhone>
-          </UserInfo>
-        </UserCard>
-      </BottomArea>
+              <UserPhone>{user.phone}</UserPhone>
+            </UserInfo>
+          </UserCard>
+        </BottomArea>
+      )}
     </SidebarWrap>
   );
 };

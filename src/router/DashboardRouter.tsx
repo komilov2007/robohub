@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import ProtectedRoute from "@/router/ProtectedRoute";
+// import ProtectedRoute from "@/router/ProtectedRoute";
 import DashboardLayout from "@/layout/DashboardLayout";
 import DashboardPage from "@/components/dashboard/page";
 import OrdersPage from "@/components/order/page";
@@ -12,24 +12,26 @@ import Profile from "@/components/profile/page";
 import NotificationsPage from "@/components/notifications/page";
 import MappingPage from "@/components/mappping/page";
 import CommentPage from "@/components/comment/page";
+import AnswerPage from "@/components/answer/page";
 const DashboardRouter = () => {
   return (
     <Routes>
-      <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="orders" element={<OrdersPage />} />
-          <Route path="products" element={<ProductsPage />} />
-          <Route path="warehouse" element={<WarehousePage />} />
-          <Route path="integration" element={<IntegrationPage />} />
-          <Route path="chat" element={<Page />} />
-          <Route path="products/add" element={<ProductAddCard />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="warehouse/mapping" element={<MappingPage />} />
-          <Route path="comment" element={<CommentPage />} />
-          <Route path="notifications" element={<NotificationsPage />} />
-        </Route>
+      {/* <Route element={<ProtectedRoute />}> */}
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="products" element={<ProductsPage />} />
+        <Route path="warehouse" element={<WarehousePage />} />
+        <Route path="integration" element={<IntegrationPage />} />
+        <Route path="chat" element={<Page />} />
+        <Route path="products/add" element={<ProductAddCard />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="warehouse/mapping" element={<MappingPage />} />
+        <Route path="comment" element={<CommentPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
+        <Route path="answers" element={<AnswerPage />} />
       </Route>
+      {/* </Route> */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );

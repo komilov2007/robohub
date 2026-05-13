@@ -410,5 +410,43 @@
   "contact_required": "Contact information is required",
   "last_name_required": "Last name is required",
   "otp_invalid_length": "Please enter a valid OTP code (5 digits)",
-  "logout_success": "You have been logged out successfully!"
+  "logout_success": "You have been logged out successfully!",
+  "answer_page_title": "Rating Auto Replies",
+  "answer_page_help": "Help",
+
+  "answer_page_hero_title": "Automatic Replies",
+
+  "answer_page_hero_description": "Set up automatic replies based on star ratings. The selected response will be sent immediately after a review is received.",
+
+  "answer_page_active": "0 of 5 active",
+
+  "answer_page_open": "ACTIVE",
+
+  "answer_page_text": "Auto reply text",
+
+  "answer_review_bad": "Critical",
+  "answer_review_bad_description": "Apologize to the customer and provide a clear solution.",
+  "answer_review_bad_placeholder": "We sincerely apologize for this experience. Please share the details — we’ll resolve the issue as soon as possible...",
+
+  "answer_review_poor": "Unsatisfied",
+  "answer_review_poor_description": "Acknowledge the issue and guide the customer toward a solution.",
+  "answer_review_poor_placeholder": "Thank you for your feedback — we’d like to make things right. Please tell us what went wrong...",
+
+  "answer_review_neutral": "Neutral",
+  "answer_review_neutral_description": "Thank the customer and ask what could be improved.",
+  "answer_review_neutral_placeholder": "Thank you for your review! What can we improve to earn one more star next time?",
+
+  "answer_review_good": "Good",
+  "answer_review_good_description": "Thank the customer for the positive feedback.",
+  "answer_review_good_placeholder": "Thank you so much for your kind words! We're happy you enjoyed the experience.",
+
+  "answer_review_perfect": "Excellent",
+  "answer_review_perfect_description": "Thank the customer and encourage them to return.",
+  "answer_review_perfect_placeholder": "Thank you for the amazing rating! We look forward to seeing you again soon.",
+
+  "cancel": "Cancel",
+  "save_changes": "Save Changes",
+  "answer_page_active_status": "ACTIVE",
+  "sidebar_soon": "Coming soon",
+  "sidebar_soon_description": "We’re building the next-generation dashboard — real-time analytics for all marketplaces in one place."
 }

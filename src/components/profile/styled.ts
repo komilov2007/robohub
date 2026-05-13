@@ -102,6 +102,37 @@ export const ContentCard = styled(Box)({
   },
 });
 
+export const ProfilePanel = styled(Box)({
+  width: 646,
+  maxWidth: "100%",
+  marginTop: 16,
+  border: "1px solid #D8E2F0",
+  borderRadius: 8,
+  padding: "18px 18px 20px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 700px)": {
+    width: "100%",
+    padding: "16px 14px 18px",
+  },
+
+  "@media (max-width: 480px)": {
+    padding: "14px 12px 16px",
+  },
+});
+
+export const ContactRow = styled(Box)({
+  display: "flex",
+  alignItems: "flex-start",
+  gap: 20,
+  width: "100%",
+
+  "@media (max-width: 700px)": {
+    flexDirection: "column",
+    gap: 12,
+  },
+});
+
 export const FormGrid = styled(Box)({
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
@@ -212,6 +243,7 @@ export const ActionsRow = styled(Box)({
   "@media (max-width: 700px)": {
     marginTop: 18,
     paddingRight: 0,
+    width: "100%",
 
     "& > .MuiBox-root": {
       width: "100%",
@@ -223,6 +255,7 @@ export const ActionsRow = styled(Box)({
 export const CancelButton = styled(Button)({
   height: 38,
   padding: "0 18px",
+  minWidth: 120,
   border: "1px solid #D8E2F0",
   borderRadius: 8,
   color: "#101828",
@@ -244,6 +277,7 @@ export const CancelButton = styled(Button)({
 export const SaveButton = styled(Button)({
   height: 38,
   padding: "0 18px",
+  minWidth: 120,
   borderRadius: 8,
   color: "#FFFFFF",
   background: "#006B64",

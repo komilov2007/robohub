@@ -4,20 +4,115 @@ import OperatorImg from "@/assets/img/operator.webp";
 
 export const PageWrapper = styled(Stack)(() => ({
   width: "100%",
+  minHeight: "100vh",
+  background: "#F8FAFC",
+  overflowX: "hidden",
+  boxSizing: "border-box",
 }));
 
 export const HeaderTitle = styled(Typography)(() => ({
   fontWeight: 600,
   fontFamily: "Inter",
-  height: "48px",
+  minHeight: "48px",
   borderBottom: "1px solid #E8E8E9",
   display: "flex",
   alignItems: "center",
   paddingLeft: "50px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    minHeight: "44px",
+    paddingLeft: "48px",
+    paddingRight: "14px",
+    fontSize: "15px",
+  },
 }));
 
 export const ContentStack = styled(Stack)(() => ({
   width: "100%",
+  minWidth: 0,
+}));
+
+export const PromoCard = styled(Box)(() => ({
+  width: "calc(100% - 40px)",
+  minHeight: 116,
+  margin: "16px 20px 4px",
+  padding: "18px 20px",
+  borderRadius: 12,
+  background: "#005F56",
+  color: "#FFFFFF",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 18,
+  boxSizing: "border-box",
+  overflow: "hidden",
+
+  "@media (max-width: 768px)": {
+    alignItems: "stretch",
+    flexDirection: "column",
+  },
+
+  "@media (max-width: 640px)": {
+    width: "calc(100% - 28px)",
+    margin: "14px 14px 2px",
+    padding: "16px 14px",
+  },
+}));
+
+export const PromoContent = styled(Box)(() => ({
+  display: "flex",
+  alignItems: "center",
+  gap: 16,
+  minWidth: 0,
+
+  "@media (max-width: 420px)": {
+    alignItems: "flex-start",
+  },
+}));
+
+export const PromoImage = styled("img")(() => ({
+  width: 74,
+  height: 84,
+  objectFit: "contain",
+  flexShrink: 0,
+
+  "@media (max-width: 420px)": {
+    width: 58,
+    height: 66,
+  },
+}));
+
+export const PromoText = styled(Box)(() => ({
+  minWidth: 0,
+}));
+
+export const PromoTitle = styled(Typography)(() => ({
+  fontSize: 18,
+  lineHeight: "24px",
+  fontWeight: 700,
+  fontFamily: "Inter",
+  color: "#FFFFFF",
+  marginBottom: 6,
+
+  "@media (max-width: 420px)": {
+    fontSize: 15,
+    lineHeight: "20px",
+  },
+}));
+
+export const PromoDescription = styled(Typography)(() => ({
+  maxWidth: 620,
+  fontSize: 13,
+  lineHeight: "18px",
+  fontWeight: 400,
+  fontFamily: "Inter",
+  color: "rgba(255, 255, 255, 0.78)",
+
+  "@media (max-width: 420px)": {
+    fontSize: 12,
+    lineHeight: "16px",
+  },
 }));
 
 export const SectionWrapper = styled(Box)(() => ({
@@ -29,36 +124,60 @@ export const SectionTitle = styled(Typography)(() => ({
   fontWeight: 600,
   fontFamily: "Inter",
   fontSize: "14px",
+
+  "@media (max-width: 640px)": {
+    padding: "14px 14px 0",
+  },
 }));
 
 export const IntegrationCard = styled(Box)(() => ({
   display: "flex",
   padding: "16px",
   border: "1px solid #E0E6F0",
-  width: "97.5%",
+  width: "calc(100% - 40px)",
   minHeight: "72px",
   borderRadius: "8px",
   margin: "16px 20px",
   justifyContent: "space-between",
   alignItems: "center",
+  gap: "16px",
   boxSizing: "border-box",
+  background: "#FFFFFF",
+
+  "@media (max-width: 768px)": {
+    alignItems: "flex-start",
+    flexDirection: "column",
+  },
+
+  "@media (max-width: 640px)": {
+    width: "calc(100% - 28px)",
+    margin: "12px 14px",
+    padding: "14px",
+  },
 }));
 
 export const CardLeft = styled(Box)(() => ({
   display: "flex",
   gap: "10px",
   alignItems: "flex-start",
+  minWidth: 0,
+
+  "& svg": {
+    flexShrink: 0,
+  },
 }));
 
 export const TextBox = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
+  minWidth: 0,
 }));
 
 export const ItemTitle = styled(Typography)(() => ({
   fontWeight: 500,
   fontFamily: "Inter",
   fontSize: "14px",
+  wordBreak: "break-word",
 }));
 
 export const ItemDescription = styled(Typography)(() => ({
@@ -67,12 +186,27 @@ export const ItemDescription = styled(Typography)(() => ({
   fontFamily: "Inter",
   color: "#596881",
   maxWidth: "760px",
+  wordBreak: "break-word",
 }));
 
 export const ButtonGroup = styled(Box)(() => ({
   display: "flex",
   gap: "12px",
   flexShrink: 0,
+
+  "@media (max-width: 768px)": {
+    width: "100%",
+    justifyContent: "flex-end",
+  },
+
+  "@media (max-width: 420px)": {
+    flexDirection: "column",
+    gap: "8px",
+
+    "& .MuiButton-root": {
+      width: "100%",
+    },
+  },
 }));
 
 export const ModalCenter = styled(Box)(() => ({
@@ -83,23 +217,33 @@ export const ModalCenter = styled(Box)(() => ({
 
 export const ModalBox = styled(Box)(() => ({
   width: 606,
-  height: 577,
+  maxWidth: "calc(100vw - 28px)",
+  maxHeight: "calc(100dvh - 28px)",
   background: "#fff",
   borderRadius: "8px",
   outline: "none",
   display: "flex",
   flexDirection: "column",
   boxShadow: "0px 10px 30px rgba(16, 24, 40, 0.12)",
+
+  "@media (max-width: 640px)": {
+    width: "calc(100vw - 24px)",
+  },
 }));
 
 export const ModalHeader = styled(Box)(() => ({
-  height: 64,
+  minHeight: 64,
   padding: "0 24px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   borderBottom: "1px solid #E8E8E9",
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    minHeight: 56,
+    padding: "0 14px",
+  },
 }));
 
 export const ModalTitle = styled(Typography)(() => ({
@@ -113,10 +257,15 @@ export const ModalContent = styled(Box)(() => ({
   flex: 1,
   padding: "16px 24px",
   boxSizing: "border-box",
+  overflowY: "auto",
+
+  "@media (max-width: 640px)": {
+    padding: "14px",
+  },
 }));
 
 export const ModalInfoBox = styled(Box)(() => ({
-  height: 48,
+  minHeight: 48,
   borderRadius: "8px",
   background: "#F5F7FA",
   display: "flex",
@@ -125,6 +274,12 @@ export const ModalInfoBox = styled(Box)(() => ({
   padding: "0 12px",
   marginBottom: "14px",
   boxSizing: "border-box",
+
+  "@media (max-width: 420px)": {
+    alignItems: "flex-start",
+    height: "auto",
+    padding: "10px 12px",
+  },
 }));
 
 export const ModalIconBox = styled(Box)(() => ({
@@ -162,6 +317,14 @@ export const InstructionImage = styled(Box)(() => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundColor: "#E8E8E9",
+
+  "@media (max-width: 640px)": {
+    height: 150,
+  },
+
+  "@media (max-width: 420px)": {
+    height: 120,
+  },
 }));
 
 export const InputLabel = styled(Typography)(() => ({
@@ -188,6 +351,10 @@ export const StyledInput = styled("input")(() => ({
   "&::placeholder": {
     color: "#98A2B3",
   },
+
+  "@media (max-width: 420px)": {
+    height: 40,
+  },
 }));
 
 export const PasswordInput = styled("input")(() => ({
@@ -203,6 +370,10 @@ export const PasswordInput = styled("input")(() => ({
   "&::placeholder": {
     color: "#98A2B3",
   },
+
+  "@media (max-width: 420px)": {
+    height: 40,
+  },
 }));
 export const EyeIconBox = styled(Box)(() => ({
   position: "absolute",
@@ -214,7 +385,7 @@ export const EyeIconBox = styled(Box)(() => ({
 }));
 
 export const ModalFooter = styled(Box)(() => ({
-  height: 64,
+  minHeight: 64,
   padding: "0 24px",
   display: "flex",
   alignItems: "center",
@@ -222,4 +393,19 @@ export const ModalFooter = styled(Box)(() => ({
   gap: "12px",
   borderTop: "1px solid #E8E8E9",
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    minHeight: 60,
+    padding: "10px 14px",
+  },
+
+  "@media (max-width: 420px)": {
+    alignItems: "stretch",
+    flexDirection: "column-reverse",
+    height: "auto",
+
+    "& .MuiButton-root": {
+      width: "100%",
+    },
+  },
 }));

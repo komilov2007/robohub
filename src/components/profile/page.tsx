@@ -17,6 +17,7 @@ import { usePage } from "./usePage";
 import {
   ActionsRow,
   CancelButton,
+  ContactRow,
   ContentCard,
   EyeButton,
   FieldBox,
@@ -28,6 +29,7 @@ import {
   LanguageList,
   PageWrapper,
   PasswordInput,
+  ProfilePanel,
   ProfileInput,
   ProfileInputPhone,
   RuleItem,
@@ -153,16 +155,7 @@ const Profile = () => {
         {activeTab === "profile" && (
           <>
             <ContentCard>
-              <Box
-                sx={{
-                  width: "646px",
-                  marginTop: 2,
-                  border: "1px solid #D8E2F0",
-                  borderRadius: "8px",
-                  padding: "18px 18px 20px",
-                }}
-              >
-                {" "}
+              <ProfilePanel>
                 <FormGrid>
                   <FieldBox>
                     <FieldLabel>{t("profile_first_name")}</FieldLabel>
@@ -192,7 +185,7 @@ const Profile = () => {
                 </FormGrid>
                 <FieldBox>
                   <FieldLabel>{t("profile_email")}</FieldLabel>
-                  <Box sx={{ display: "flex", gap: "20px" }}>
+                  <ContactRow>
                     <Controller
                       name="phone"
                       control={profileForm.control}
@@ -218,9 +211,9 @@ const Profile = () => {
                         ? t("profile_submit")
                         : t("profile_change_email")}
                     </CancelButton>
-                  </Box>
+                  </ContactRow>
                 </FieldBox>
-              </Box>
+              </ProfilePanel>
               <ActionsRow>
                 {!isEditing ? (
                   <Box
@@ -386,10 +379,7 @@ const Profile = () => {
             <ActionsRow>
               <CancelButton>{t("profile_cancel")}</CancelButton>
 
-              <SaveButton
-                onClick={handleSubmit}
-                disabled={isLoading}
-              >
+              <SaveButton onClick={handleSubmit} disabled={isLoading}>
                 {isLoading ? (
                   <>
                     <CircularProgress

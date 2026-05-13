@@ -5,6 +5,7 @@ import { CloseOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 
 import IconEdit from "@/assets/icons/icon-pencil.svg?react";
 import IconDelete from "@/assets/icons/icon-delete.svg?react";
+import SidebarPhone from "@/assets/img/sidebar-phone.png";
 import theme from "@/theme/theme";
 
 import { usePage } from "./usePage";
@@ -31,6 +32,12 @@ import {
   PageWrapper,
   PasswordInput,
   PasswordWrapper,
+  PromoCard,
+  PromoContent,
+  PromoDescription,
+  PromoImage,
+  PromoText,
+  PromoTitle,
   SectionTitle,
   SectionWrapper,
   StyledInput,
@@ -54,6 +61,19 @@ const Integration = () => {
     <ThemeProvider theme={theme}>
       <PageWrapper>
         <HeaderTitle>{t("integration_title")}</HeaderTitle>
+
+        <PromoCard>
+          <PromoContent>
+            <PromoImage src={SidebarPhone} alt={t("sidebar_card_title")} />
+
+            <PromoText>
+              <PromoTitle>{t("sidebar_card_title")}</PromoTitle>
+              <PromoDescription>{t("sidebar_card_description")}</PromoDescription>
+            </PromoText>
+          </PromoContent>
+
+          <Button vocab="shareBtn">{t("sidebar_card_button")}</Button>
+        </PromoCard>
 
         <ContentStack>
           {sections.map((section) => (

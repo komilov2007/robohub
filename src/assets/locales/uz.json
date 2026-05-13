@@ -391,5 +391,43 @@
   "otp_invalid": "Parolda xatolik bor",
   "invalid_code_provided": "Tasdiqlash kodi noto‘g‘ri.",
   "otp_invalid_length": "Tasdiqlash kodini kiriting (5 raqam)",
-  "logout_success": "Tizimdan chiqdingiz!"
+  "logout_success": "Tizimdan chiqdingiz!",
+  "answer_page_title": "Reyting bo‘yicha avtojavob",
+  "answer_page_help": "Yordam",
+
+  "answer_page_hero_title": "Avtomatik javoblar",
+
+  "answer_page_hero_description": "Yulduzlar soniga qarab sharhlarga avtomatik javoblarni sozlang. Mos matn sharh kelishi bilan darhol yuboriladi.",
+
+  "answer_page_active": "5 dan 0 ta faol",
+
+  "answer_page_open": "OCHIQ",
+
+  "answer_page_text": "Avtojavob matni",
+
+  "answer_review_bad": "Tanqidiy",
+  "answer_review_bad_description": "Mijozdan kechirim so‘rang va aniq yechim taklif qiling.",
+  "answer_review_bad_placeholder": "Bu vaziyat uchun chin dildan uzr so‘raymiz. Tafsilotlarni yozing — biz hal qilamiz...",
+
+  "answer_review_poor": "Norozi",
+  "answer_review_poor_description": "Muammoni tan oling va yechim sari yo‘l ko‘rsating.",
+  "answer_review_poor_placeholder": "Fikringiz uchun rahmat — biz tuzatishni xohlaymiz. Nima noto‘g‘ri ketganini yozing...",
+
+  "answer_review_neutral": "Neytral",
+  "answer_review_neutral_description": "Minnatdorchilik bildiring va aniqroq fikr so‘rang.",
+  "answer_review_neutral_placeholder": "Sharhingiz uchun rahmat! Keyingi safar yana bir yulduz olish uchun nima qilishimiz kerak?",
+
+  "answer_review_good": "Yaxshi",
+  "answer_review_good_description": "Ijobiy fikr uchun minnatdorchilik bildiring.",
+  "answer_review_good_placeholder": "Yaxshi fikringiz uchun katta rahmat! Sizga xizmat qilishdan xursandmiz.",
+
+  "answer_review_perfect": "A’lo",
+  "answer_review_perfect_description": "Ajoyib baho uchun rahmat va yana qaytishga undang.",
+  "answer_review_perfect_placeholder": "Ajoyib baho uchun rahmat! Sizni yana ko‘rishdan doim xursandmiz.",
+
+  "cancel": "Bekor qilish",
+  "save_changes": "O‘zgarishlarni saqlash",
+  "answer_page_active_status": "FAOL",
+  "sidebar_soon": "Tez kunda",
+  "sidebar_soon_description": "Yangi avlod boshqaruv paneli ustida ishlayapmiz — barcha marketpleys bo‘yicha real vaqt tahlili bir joyda."
 }

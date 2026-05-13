@@ -23,19 +23,21 @@ const SOFT = "#EEF2F6";
 export const DashboardWrap = styled(Box)(() => ({
   display: "flex",
   width: "100%",
-  height: "100vh",
+  height: "100dvh",
   minHeight: "100vh",
-  maxHeight: "100vh",
-  overflow: "hidden",
+  maxHeight: "100dvh",
+  overflowX: "hidden",
+  overflowY: "hidden",
   background: BG,
 }));
 export const ContentWrap = styled(Box)(() => ({
   flex: 1,
   minWidth: 0,
-  height: "100vh",
+  height: "100%",
   minHeight: "100vh",
-  maxHeight: "100vh",
-  overflow: "hidden",
+  maxHeight: "100dvh",
+  overflowX: "hidden",
+  overflowY: "hidden",
   display: "flex",
   flexDirection: "column",
   background: BG,
@@ -46,21 +48,24 @@ export const OrdersContainer = styled(Box)(() => ({
   width: "100%",
   display: "flex",
   flexDirection: "column",
-  overflow: "hidden",
+  overflowX: "hidden",
+  overflowY: "hidden",
 }));
 export const OrdersCard = styled(Box)(() => ({
   width: "100%",
   height: "100%",
   minHeight: 0,
+  maxHeight: "100dvh",
   background: "#F7F9FB",
   borderLeft: `1px solid ${BORDER}`,
   display: "flex",
   flexDirection: "column",
-  overflow: "hidden",
+  overflowX: "hidden",
+  overflowY: "hidden",
 }));
 export const TitleRow = styled(Box)(() => ({
-  height: 54,
-  minHeight: 44,
+  height: 48,
+  minHeight: 48,
   display: "flex",
   alignItems: "center",
   padding: "0 16px",
@@ -69,6 +74,12 @@ export const TitleRow = styled(Box)(() => ({
   paddingLeft: "50px",
 
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    height: 42,
+    minHeight: 42,
+    padding: "0 14px 0 48px",
+  },
 }));
 export const TitleText = styled(Typography)(() => ({
   lineHeight: "20px",
@@ -76,8 +87,8 @@ export const TitleText = styled(Typography)(() => ({
   fontFamily: "inter",
 }));
 export const TabsRow = styled(Box)(() => ({
-  height: 42,
-  minHeight: 42,
+  height: 40,
+  minHeight: 40,
   display: "flex",
   alignItems: "center",
   marginTop: "10px",
@@ -85,11 +96,23 @@ export const TabsRow = styled(Box)(() => ({
   padding: "0 20px",
   borderBottom: `1px solid ${BORDER}`,
   background: WHITE,
+  overflowX: "auto",
   overflowY: "hidden",
   scrollbarWidth: "none",
   boxSizing: "border-box",
   "&::-webkit-scrollbar": {
     display: "none",
+  },
+
+  "@media (max-width: 768px)": {
+    gap: 18,
+    padding: "0 14px",
+  },
+
+  "@media (max-width: 640px)": {
+    height: 36,
+    minHeight: 36,
+    marginTop: 6,
   },
 }));
 export const TabItem = styled(Box)<{ active?: boolean }>(({ active }) => ({
@@ -128,8 +151,8 @@ export const TabCount = styled(Box)<{ active?: boolean }>(({ active }) => ({
   boxSizing: "border-box",
 }));
 export const ToolbarRow = styled(Box)(() => ({
-  height: 60,
-  minHeight: 60,
+  height: 52,
+  minHeight: 52,
   display: "flex",
   alignItems: "center",
   gap: 12,
@@ -137,6 +160,15 @@ export const ToolbarRow = styled(Box)(() => ({
   borderBottom: `1px solid ${BORDER}`,
   background: "neutral/50",
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    alignItems: "stretch",
+    flexDirection: "column",
+    height: 92,
+    minHeight: 92,
+    gap: 8,
+    padding: "8px 14px",
+  },
 }));
 export const SearchBox = styled(Box)(() => ({
   width: 659,
@@ -149,6 +181,11 @@ export const SearchBox = styled(Box)(() => ({
   alignItems: "center",
   padding: "0 14px",
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+    height: 36,
+  },
 }));
 export const SearchInput = styled("input")(() => ({
   flex: 1,
@@ -203,72 +240,208 @@ export const FilterButton = styled(Button)(() => ({
     boxShadow: "none",
     borderColor: "#D0D5DD",
   },
+
+  "@media (max-width: 640px)": {
+    height: 36,
+    width: "100%",
+    justifyContent: "center",
+  },
 }));
 export const TableArea = styled(Box)(() => ({
   flex: 1,
+
   minHeight: 0,
-  overflow: "hidden",
+
+  overflowX: "hidden",
+  overflowY: "hidden",
+
   display: "flex",
   flexDirection: "column",
+
   background: "#F7F9FB",
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+
+    minHeight: 0,
+
+    overflow: "hidden",
+  },
 }));
+
 export const TableWrap = styled(Box)(() => ({
   flex: 1,
+
   minHeight: 0,
+
   width: "100%",
-  padding: "14px 12px 0 12px",
+
+  padding: "10px 12px 0 12px",
+
   boxSizing: "border-box",
-  overflow: "hidden",
+
+  overflowX: "hidden",
+  overflowY: "hidden",
+
   display: "flex",
   flexDirection: "column",
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+
+    padding: "8px 0 0 0",
+
+    overflow: "hidden",
+  },
 }));
+
 export const StyledTableContainer = styled(TableContainer)(() => ({
   width: "100%",
+
   flex: 1,
+
+  minHeight: 0,
+
   background: WHITE,
+
   border: `1px solid ${BORDER}`,
+
   borderTopLeftRadius: 10,
   borderTopRightRadius: 10,
+
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  overflow: "auto",
+
+  overflowX: "auto",
+  overflowY: "auto",
+
+  WebkitOverflowScrolling: "touch",
+
   boxShadow: "none",
+
+  "&::-webkit-scrollbar": {
+    width: 6,
+    height: 6,
+  },
+
+  "&::-webkit-scrollbar-thumb": {
+    background: "#D0D5DD",
+
+    borderRadius: 999,
+  },
+
+  "& table": {
+    width: "100%",
+
+    borderCollapse: "separate",
+
+    borderSpacing: 0,
+  },
+
+  "@media (max-width: 640px)": {
+    borderRadius: 0,
+
+    borderLeft: "none",
+    borderRight: "none",
+
+    "& table": {
+      minWidth: 980,
+      width: 980,
+    },
+  },
 }));
+
 export const HeaderCell = styled(TableCell)(() => ({
   background: "#F7F9FB",
+
   padding: "0 14px",
-  height: 50,
+
+  height: 40,
+  minHeight: 40,
+
   borderBottom: `1px solid ${BORDER}`,
   borderRight: `1px solid ${BORDER}`,
+
   fontSize: "12px",
   lineHeight: "16px",
+
   fontWeight: 400,
+
   color: TEXT_SECONDARY,
+
   whiteSpace: "nowrap",
+
   verticalAlign: "middle",
+
   boxSizing: "border-box",
+
   "&:last-of-type": {
     borderRight: "none",
   },
+
+  "@media (max-width: 640px)": {
+    height: 40,
+    minHeight: 40,
+
+    padding: "0 14px",
+
+    fontSize: "12px",
+
+    lineHeight: "16px",
+  },
 }));
+
 export const BodyRow = styled(TableRow)(() => ({
-  height: 46,
+  height: 38,
+
+  minHeight: 38,
+
   background: WHITE,
+
+  "@media (max-width: 640px)": {
+    height: 38,
+
+    minHeight: 38,
+  },
 }));
+
 export const BodyCell = styled(TableCell)(() => ({
-  padding: "5.4px 14px",
-  height: 46,
+  padding: "3px 14px",
+
+  height: 38,
+  minHeight: 38,
+
   borderBottom: `1px solid ${BORDER}`,
   borderRight: `1px solid ${BORDER}`,
+
   fontSize: "14px",
   lineHeight: "18px",
+
   fontWeight: 400,
+
   color: TEXT_DARK,
+
   verticalAlign: "middle",
+
   background: WHITE,
+
   boxSizing: "border-box",
+
+  whiteSpace: "nowrap",
+
   "&:last-of-type": {
     borderRight: "none",
+  },
+
+  "@media (max-width: 640px)": {
+    height: 38,
+    minHeight: 38,
+
+    padding: "3px 14px",
+
+    fontSize: "14px",
+
+    lineHeight: "18px",
   },
 }));
 export const OrderText = styled(Typography)(() => ({
@@ -276,6 +449,10 @@ export const OrderText = styled(Typography)(() => ({
   lineHeight: "18px",
   color: "black",
   whiteSpace: "nowrap",
+
+  "@media (max-width: 640px)": {
+    lineHeight: "14px",
+  },
 }));
 export const MarketplaceWrap = styled(Box)(() => ({
   display: "flex",
@@ -301,9 +478,18 @@ export const MarketplaceLogo = styled(Box)(() => ({
 }));
 export const MarketplaceName = styled(Typography)(() => ({
   fontSize: "14px",
+
   lineHeight: "18px",
+
   color: TEXT_DARK,
+
   whiteSpace: "nowrap",
+
+  "@media (max-width: 640px)": {
+    fontSize: "14px",
+
+    lineHeight: "18px",
+  },
 }));
 export const ProductWrap = styled(Box)(() => ({
   display: "flex",
@@ -311,21 +497,7 @@ export const ProductWrap = styled(Box)(() => ({
   gap: 10,
   minWidth: 0,
 }));
-export const ProductImage = styled(Box)(() => ({
-  width: 22,
-  height: 28,
-  minWidth: 22,
-  borderRadius: 4,
-  overflow: "hidden",
-  background: "#F2F4F7",
-  border: `1px solid ${BORDER}`,
-  "& img": {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    display: "block",
-  },
-}));
+
 export const ProductInfo = styled(Box)(() => ({
   minWidth: 0,
   display: "flex",
@@ -337,14 +509,57 @@ export const ProductTitleRow = styled(Box)(() => ({
   gap: 6,
   minWidth: 0,
 }));
+export const ProductImage = styled(Box)(() => ({
+  width: 20,
+  height: 24,
+
+  minWidth: 20,
+
+  borderRadius: 4,
+
+  overflow: "hidden",
+
+  background: "#F2F4F7",
+
+  border: `1px solid ${BORDER}`,
+
+  "& img": {
+    width: "100%",
+    height: "100%",
+
+    objectFit: "cover",
+
+    display: "block",
+  },
+
+  "@media (max-width: 640px)": {
+    width: 20,
+    height: 24,
+
+    minWidth: 20,
+  },
+}));
+
 export const ProductTitle = styled(Typography)(() => ({
   fontSize: "14px",
+
   lineHeight: "18px",
+
   color: TEXT_DARK,
+
   whiteSpace: "nowrap",
+
   overflow: "hidden",
+
   textOverflow: "ellipsis",
+
+  "@media (max-width: 640px)": {
+    fontSize: "14px",
+
+    lineHeight: "18px",
+  },
 }));
+
 export const ProductExtraBadge = styled(Box)(() => ({
   minWidth: 24,
   height: 18,
@@ -359,34 +574,71 @@ export const ProductExtraBadge = styled(Box)(() => ({
   lineHeight: "11px",
   fontWeight: 600,
   flexShrink: 0,
+
+  "@media (max-width: 640px)": {
+    height: 16,
+    minWidth: 20,
+    fontSize: "10px",
+  },
 }));
 export const ProductCount = styled(Typography)(() => ({
   fontSize: "12px",
   lineHeight: "16px",
   color: TEXT_SECONDARY,
   marginTop: 2,
+
+  "@media (max-width: 640px)": {
+    display: "none",
+  },
 }));
 export const ShopText = styled(Typography)(() => ({
   fontSize: "14px",
+
   lineHeight: "18px",
+
   color: TEXT_DARK,
+
   whiteSpace: "nowrap",
+
+  "@media (max-width: 640px)": {
+    fontSize: "14px",
+
+    lineHeight: "18px",
+  },
 }));
 export const MethodText = styled(Typography)(() => ({
   fontSize: "14px",
+
   lineHeight: "18px",
+
   color: TEXT_DARK,
+
   whiteSpace: "nowrap",
+
+  "@media (max-width: 640px)": {
+    fontSize: "14px",
+
+    lineHeight: "18px",
+  },
 }));
 export const DateText = styled(Typography)(() => ({
   fontSize: "14px",
+
   lineHeight: "18px",
+
   color: TEXT_DARK,
+
   whiteSpace: "nowrap",
+
+  "@media (max-width: 640px)": {
+    fontSize: "14px",
+
+    lineHeight: "18px",
+  },
 }));
 export const PaginationWrap = styled(Box)(() => ({
-  height: 48,
-  minHeight: 48,
+  height: 44,
+  minHeight: 44,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -397,12 +649,27 @@ export const PaginationWrap = styled(Box)(() => ({
   borderBottomRightRadius: 10,
   background: WHITE,
   boxSizing: "border-box",
-  marginBottom: "10px",
+  marginBottom: 8,
+
+  "@media (max-width: 640px)": {
+    alignItems: "flex-start",
+    flexDirection: "column",
+    height: 76,
+    minHeight: 76,
+    gap: 6,
+    padding: "8px 12px",
+    marginBottom: 6,
+  },
 }));
 export const PaginationLeft = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   gap: 10,
+
+  "@media (max-width: 420px)": {
+    width: "100%",
+    justifyContent: "space-between",
+  },
 }));
 export const PaginationLabel = styled(Typography)(() => ({
   fontSize: "14px",
@@ -437,6 +704,12 @@ export const PaginationRight = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   gap: 8,
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+    overflowX: "auto",
+    paddingBottom: 2,
+  },
 }));
 export const PageButton = styled(IconButton)<{ active?: boolean }>(
   ({ active }) => ({

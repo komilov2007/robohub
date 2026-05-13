@@ -18,17 +18,25 @@ export const PageWrapper = styled(Box)({
   backgroundColor: "#F8FAFC",
   boxSizing: "border-box",
   fontFamily: "inter",
+  overflowX: "hidden",
 });
 
 export const Header = styled(Box)({
   width: "100%",
-  height: "56px",
+  minHeight: "56px",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  // marginBottom: "16px",
+  gap: "12px",
   borderBottom: "1px solid #E0E6F0",
   padding: "16px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    alignItems: "stretch",
+    flexDirection: "column",
+    padding: "12px 14px",
+  },
 });
 
 export const Title = styled(Typography)({
@@ -37,6 +45,10 @@ export const Title = styled(Typography)({
   color: "#101828",
   paddingLeft: "30px",
   fontFamily: "inter",
+
+  "@media (max-width: 640px)": {
+    paddingLeft: "34px",
+  },
 });
 
 export const CreateButton = styled(Link)({
@@ -59,6 +71,13 @@ export const CreateButton = styled(Link)({
   alignItems: "center",
   gap: "10px",
   textDecoration: "none",
+  boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+    minWidth: 0,
+    justifyContent: "center",
+  },
 });
 
 export const TabsWrapper = styled(Box)({
@@ -66,6 +85,12 @@ export const TabsWrapper = styled(Box)({
   borderBottom: "1px solid #EAECF0",
   marginBottom: "16px",
   padding: "0px 16px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    marginBottom: "12px",
+    padding: "0 8px",
+  },
 });
 
 export const StyledTabs = styled(Tabs)({
@@ -88,6 +113,11 @@ export const StyledTab = styled(Tab)({
   "&.Mui-selected": {
     color: "#0B6E69",
     fontWeight: 600,
+  },
+
+  "@media (max-width: 640px)": {
+    minWidth: "auto",
+    padding: "0 10px",
   },
 });
 
@@ -117,6 +147,17 @@ export const SearchRow = styled(Box)({
   width: "49%",
   marginBottom: "20px",
   padding: "0px 16px",
+  boxSizing: "border-box",
+
+  "@media (max-width: 1024px)": {
+    width: "70%",
+  },
+
+  "@media (max-width: 640px)": {
+    width: "100%",
+    marginBottom: "12px",
+    padding: "0 14px",
+  },
 });
 
 export const SearchBox = styled(Box)({
@@ -178,6 +219,10 @@ export const ShortcutBox = styled(Box)({
   lineHeight: "18px",
   boxSizing: "border-box",
   flexShrink: 0,
+
+  "@media (max-width: 420px)": {
+    display: "none",
+  },
 });
 
 export const Grid = styled(Box)({
@@ -189,16 +234,26 @@ export const Grid = styled(Box)({
   "@media (max-width: 1200px)": {
     gridTemplateColumns: "1fr",
   },
+
+  "@media (max-width: 640px)": {
+    padding: "0 14px 14px",
+    gap: "12px",
+  },
 });
 
 export const ProductCard = styled(Card)({
+  position: "relative",
   width: "100%",
-  borderRadius: "16px",
+  borderRadius: "12px",
   border: "1px solid #DDE3EA",
   backgroundColor: "#FFFFFF",
   boxShadow: "none",
   padding: "24px",
   boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    padding: "14px",
+  },
 });
 
 export const CardTop = styled(Box)({
@@ -207,6 +262,7 @@ export const CardTop = styled(Box)({
   alignItems: "flex-start",
   justifyContent: "space-between",
   gap: "12px",
+  minWidth: 0,
 });
 
 export const ProductMain = styled(Box)({
@@ -215,6 +271,10 @@ export const ProductMain = styled(Box)({
   alignItems: "flex-start",
   gap: "12px",
   minWidth: 0,
+
+  "@media (max-width: 520px)": {
+    flexDirection: "column",
+  },
 });
 
 export const ProductImage = styled("img")({
@@ -224,6 +284,11 @@ export const ProductImage = styled("img")({
   objectFit: "cover",
   flexShrink: 0,
   display: "block",
+
+  "@media (max-width: 520px)": {
+    width: "72px",
+    height: "96px",
+  },
 });
 
 export const ProductInfo = styled(Box)({
@@ -273,6 +338,7 @@ export const ProductMeta = styled(Typography)({
   lineHeight: "20px",
   color: "#667085",
   marginBottom: "2px",
+  wordBreak: "break-word",
 });
 
 export const ProductPrice = styled(Typography)({
@@ -288,9 +354,14 @@ export const MarketsWrapper = styled(Box)({
   alignItems: "flex-start",
   gap: "24px",
   marginBottom: "14px",
+  flexWrap: "wrap",
+
   "@media (max-width: 700px)": {
+    gap: "8px 18px",
+  },
+
+  "@media (max-width: 520px)": {
     flexDirection: "column",
-    gap: "10px",
   },
 });
 
@@ -298,6 +369,7 @@ export const MarketsColumn = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "10px",
+  minWidth: 0,
 });
 
 export const MarketRow = styled(Box)({
@@ -305,6 +377,7 @@ export const MarketRow = styled(Box)({
   alignItems: "center",
   gap: "8px",
   minHeight: "24px",
+  minWidth: 0,
 });
 
 export const MarketName = styled(Typography)({
@@ -314,6 +387,11 @@ export const MarketName = styled(Typography)({
   lineHeight: "20px",
   color: "#344054",
   fontFamily: "inter",
+
+  "@media (max-width: 520px)": {
+    minWidth: "92px",
+    fontSize: "13px",
+  },
 });
 
 interface MiniBadgeProps {
@@ -361,7 +439,6 @@ export const PlatformTabs = styled(Box)({
   gap: "8px",
   marginBottom: "10px",
   flexWrap: "wrap",
-  marginLeft: "-110px",
 });
 
 export const PlatformTab = styled(Box, {
@@ -381,16 +458,20 @@ export const PlatformTab = styled(Box, {
   fontSize: "12px",
   lineHeight: "18px",
   boxSizing: "border-box",
+
+  "@media (max-width: 520px)": {
+    minWidth: "auto",
+    padding: "0 10px",
+  },
 }));
 
 export const StatsBox = styled(Box)({
-  width: "125%",
+  width: "100%",
   backgroundColor: "#F8FAFC",
   border: "1px solid #EAECF0",
   borderRadius: "12px",
   padding: "10px 14px",
   boxSizing: "border-box",
-  marginLeft: "-110px",
 });
 
 export const StatsRow = styled(Box)({
@@ -400,6 +481,10 @@ export const StatsRow = styled(Box)({
   "@media (max-width: 700px)": {
     gridTemplateColumns: "repeat(3, 1fr)",
     rowGap: "12px",
+  },
+
+  "@media (max-width: 420px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
   },
 });
 
@@ -459,6 +544,12 @@ export const TopRightAction = styled(Box)({
   cursor: "pointer",
   flexShrink: 0,
   boxSizing: "border-box",
+
+  "@media (max-width: 520px)": {
+    position: "absolute",
+    top: 14,
+    right: 14,
+  },
 });
 
 export const EmptyStateWrapper = styled(Box)({

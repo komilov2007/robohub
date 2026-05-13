@@ -413,5 +413,43 @@
   "token_not_received": "Токен не получен",
   "invalid_code_provided": "Неверный код подтверждения.",
   "otp_invalid_length": "Введите код подтверждения (5 цифр)",
-  "logout_success": "Вы вышли из системы!"
+  "logout_success": "Вы вышли из системы!",
+  "answer_page_title": "Автоответы по рейтингу",
+  "answer_page_help": "Помощь",
+
+  "answer_page_hero_title": "Автоматические ответы",
+
+  "answer_page_hero_description": "Настройте автоматические ответы в зависимости от количества звезд. Ответ будет отправляться сразу после получения отзыва.",
+
+  "answer_page_active": "0 из 5 активны",
+
+  "answer_page_open": "АКТИВНО",
+
+  "answer_page_text": "Текст автоответа",
+
+  "answer_review_bad": "Критично",
+  "answer_review_bad_description": "Извинитесь перед клиентом и предложите конкретное решение.",
+  "answer_review_bad_placeholder": "Приносим искренние извинения за ситуацию. Опишите детали — мы обязательно решим проблему...",
+
+  "answer_review_poor": "Недоволен",
+  "answer_review_poor_description": "Признайте проблему и предложите путь решения.",
+  "answer_review_poor_placeholder": "Спасибо за отзыв — мы хотим всё исправить. Расскажите подробнее, что пошло не так...",
+
+  "answer_review_neutral": "Нейтрально",
+  "answer_review_neutral_description": "Поблагодарите и уточните, что можно улучшить.",
+  "answer_review_neutral_placeholder": "Спасибо за отзыв! Что мы можем сделать, чтобы в следующий раз получить ещё одну звезду?",
+
+  "answer_review_good": "Хорошо",
+  "answer_review_good_description": "Поблагодарите клиента за положительный отзыв.",
+  "answer_review_good_placeholder": "Большое спасибо за ваш отзыв! Мы рады, что вам всё понравилось.",
+
+  "answer_review_perfect": "Отлично",
+  "answer_review_perfect_description": "Поблагодарите клиента и пригласите снова.",
+  "answer_review_perfect_placeholder": "Спасибо за высокую оценку! Будем рады видеть вас снова.",
+
+  "cancel": "Отмена",
+  "save_changes": "Сохранить изменения",
+  "answer_page_active_status": "АКТИВНО",
+  "sidebar_soon": "Скоро",
+  "sidebar_soon_description": "Мы работаем над панелью нового поколения — аналитика всех маркетплейсов в реальном времени в одном месте."
 }
