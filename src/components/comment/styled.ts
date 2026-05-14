@@ -6,10 +6,10 @@ type CollapsedProps = {
 
 export const Page = styled(Box)(() => ({
   width: "100%",
-  minHeight: "100vh",
-  height: "100vh",
+  minHeight: "100%",
+  height: "100%",
   background: "#F6F9FC",
-  overflow: "hidden",
+  overflow: "visible",
 
   "@media (max-width: 900px)": {
     height: "auto",
@@ -20,6 +20,9 @@ export const Page = styled(Box)(() => ({
 export const Header = styled(Box, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
+  position: "sticky",
+  top: 0,
+  zIndex: 15,
   height: 50,
   background: "#fff",
   borderBottom: "1px solid #E0E7EF",

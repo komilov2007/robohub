@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
@@ -38,10 +38,14 @@ import {
 } from "./styled";
 
 type SidebarPageProps = {
+  collapsed?: boolean;
   onCollapseChange?: (collapsed: boolean) => void;
 };
 
-const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
+const SidebarPage = ({
+  collapsed: controlledCollapsed,
+  onCollapseChange,
+}: SidebarPageProps) => {
   const {
     collapsed,
     menus,
@@ -51,11 +55,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
     handleNavigate,
     isActive,
     t,
-  } = usePage();
-
-  useEffect(() => {
-    onCollapseChange?.(collapsed);
-  }, [collapsed, onCollapseChange]);
+  } = usePage(controlledCollapsed, onCollapseChange);
 
   const NotificationIcon = notification.icon;
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
@@ -135,6 +135,7 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
           <NotificationsRow
             to={"/dashboard/notifications"}
             collapsed={collapsed}
+            onClick={() => handleNavigate("/dashboard/notifications")}
           >
             <NotificationsLeft>
               <MenuIconWrap>
@@ -149,7 +150,11 @@ const SidebarPage = ({ onCollapseChange }: SidebarPageProps) => {
             <Badge collapsed={collapsed}>{notification.count}</Badge>
           </NotificationsRow>
 
-          <UserCard to={"/dashboard/profile"} collapsed={collapsed}>
+          <UserCard
+            to={"/dashboard/profile"}
+            collapsed={collapsed}
+            onClick={() => handleNavigate("/dashboard/profile")}
+          >
             <AvatarWrap>
               <img src={user.image || SidebarProfilImg} alt={user.fullName} />
             </AvatarWrap>

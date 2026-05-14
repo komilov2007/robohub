@@ -3,7 +3,7 @@ import Sidebar from "@/components/sidebar/page";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const SIDEBAR_OPEN_WIDTH = 252;
+const SIDEBAR_OPEN_WIDTH = 262;
 const SIDEBAR_COLLAPSED_WIDTH = 0;
 
 export default function MainLayout() {
@@ -21,6 +21,43 @@ export default function MainLayout() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const body = document.body;
+    const originalOverflow = body.style.overflow;
+    const originalTouchAction = body.style.touchAction;
+    const originalOverscrollBehavior = body.style.overscrollBehavior;
+
+    const isMobile = window.innerWidth < 900;
+    const shouldLock = !collapsed && isMobile;
+
+    if (shouldLock) {
+      body.style.overflow = "hidden";
+      body.style.touchAction = "none";
+      body.style.overscrollBehavior = "none";
+    } else {
+      body.style.overflow = originalOverflow;
+      body.style.touchAction = originalTouchAction;
+      body.style.overscrollBehavior = originalOverscrollBehavior;
+    }
+
+    return () => {
+      body.style.overflow = originalOverflow;
+      body.style.touchAction = originalTouchAction;
+      body.style.overscrollBehavior = originalOverscrollBehavior;
+    };
+  }, [collapsed]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !collapsed && window.innerWidth < 900) {
+        setCollapsed(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [collapsed]);
 
   return (
     <Box
@@ -46,11 +83,11 @@ export default function MainLayout() {
 
           zIndex: {
             xs: 9999,
-            md: 1,
+            md: 1300,
           },
         }}
       >
-        <Sidebar onCollapseChange={setCollapsed} />
+        <Sidebar collapsed={collapsed} onCollapseChange={setCollapsed} />
       </Box>
 
       {/* MOBILE BACKDROP */}
@@ -93,11 +130,15 @@ export default function MainLayout() {
           },
 
           minWidth: 0,
-          minHeight: "100vh",
+          height: "100vh",
+          minHeight: 0,
 
           background: "#F5F7FA",
 
-          overflow: "hidden",
+          overflowY: "auto",
+          overflowX: "hidden",
+          WebkitOverflowScrolling: "touch",
+          overscrollBehavior: "contain",
 
           transition: "margin-left 0.3s ease, width 0.3s ease",
         }}

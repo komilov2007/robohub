@@ -14,18 +14,19 @@ type FirstItemProps = {
 export const SidebarWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
-  position: "absolute",
   top: 0,
-  left: 0,
+  left: -1,
 
-  zIndex: 9999,
+  position: "relative",
+  zIndex: 1300,
 
   width: collapsed ? 56 : 262,
   minWidth: collapsed ? 56 : 262,
   maxWidth: collapsed ? 56 : 262,
 
-  height: "100dvh",
-  maxHeight: "100dvh",
+  height: "100vh",
+  maxHeight: "100vh",
+
   background: collapsed ? "transparent" : "#00524F",
 
   overflowX: "visible",
@@ -38,6 +39,22 @@ export const SidebarWrap = styled(Box, {
   boxSizing: "border-box",
 
   transition: "width 0.3s ease, background 0.3s ease",
+
+  "@media (max-width: 768px)": {
+    width: collapsed ? 56 : 262,
+    minWidth: collapsed ? 56 : 262,
+    maxWidth: collapsed ? 56 : 262,
+
+    height: "100dvh",
+    maxHeight: "100dvh",
+
+    overflowY: "auto",
+    overflowX: "hidden",
+
+    WebkitOverflowScrolling: "touch",
+
+    pointerEvents: "none",
+  },
 }));
 export const TopBlock = styled(Box)`
   display: flex;
@@ -87,16 +104,17 @@ export const ToggleButton = styled(IconButton, {
 
   top: collapsed ? -10 : 3,
   right: collapsed ? "auto" : 0,
-  left: collapsed ? 3 : "auto",
+  left: collapsed ? -5 : "auto",
   background: collapsed ? "#00524F" : "transparent",
 
   width: 30,
   height: 30,
 
-  zIndex: 10001,
+  zIndex: 10001111111111,
 
   transition: "all 0.3s ease",
 
+  pointerEvents: "auto",
   borderRadius: 10,
   "@media (max-height: 760px)": {
     top: collapsed ? -10 : 0,
@@ -117,6 +135,9 @@ export const MenuWrap = styled(Box)(() => ({
   gap: 6,
   width: "100%",
   alignItems: "stretch",
+
+  pointerEvents: "auto",
+
   "@media (max-height: 760px)": {
     gap: 4,
   },
@@ -166,7 +187,6 @@ export const MenuItem = styled(Box, {
     boxSizing: "border-box",
 
     ...(firstitem && {
-      marginBottom: 12,
       color: "#0d8371",
       opacity: "60%",
     }),
@@ -220,7 +240,7 @@ export const SoonModal = styled(Box)(() => ({
   position: "fixed",
 
   left: 275,
-  top: 18,
+  top: 55,
 
   width: 265,
 
@@ -228,8 +248,8 @@ export const SoonModal = styled(Box)(() => ({
 
   background: "linear-gradient(125deg,#00524f 30%,#0F8F7B 120%)",
 
-  padding: "16px 20px",
-  zIndex: 9999999,
+  padding: "6px 10px",
+  zIndex: 999999911111111111111,
   border: "1px solid rgba(255,255,255,0.08)",
   backdropFilter: "blur(12px)",
   animation: "soonFade .18s ease",
@@ -240,7 +260,7 @@ export const SoonModal = styled(Box)(() => ({
     position: "absolute",
 
     left: -6,
-    top: 68,
+    top: 35,
 
     width: 12,
     height: 12,
@@ -285,22 +305,22 @@ export const SoonWrapper = styled(Box)(() => ({
 
 export const SoonBadge = styled(Box)(() => ({
   display: "inline-flex",
-  height: 22,
+  height: 12,
   padding: "0 10px",
   borderRadius: 999,
   background: "rgb(145, 252, 135)",
   color: "#00524F",
   alignItems: "center",
-  fontSize: 10,
+  fontSize: 8,
   fontWeight: 800,
 }));
 
 export const SoonText = styled(Box)(() => ({
   color: "rgba(255,255,255,0.92)",
 
-  fontSize: 13,
+  fontSize: 11,
 
-  lineHeight: "22px",
+  lineHeight: "15px",
 
   fontWeight: 400,
 }));
@@ -328,6 +348,8 @@ export const BottomArea = styled(Box)(() => ({
   flexDirection: "column",
   gap: 12,
   flexShrink: 0,
+
+  pointerEvents: "auto",
 
   "@media (max-height: 760px)": {
     gap: 8,

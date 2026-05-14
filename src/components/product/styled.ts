@@ -14,28 +14,56 @@ interface PlatformTabProps {
 
 export const PageWrapper = styled(Box)({
   width: "100%",
-  minHeight: "100vh",
+  minHeight: "100%",
+  height: "100%",
   backgroundColor: "#F8FAFC",
   boxSizing: "border-box",
   fontFamily: "inter",
   overflowX: "hidden",
+  display: "flex",
+  flexDirection: "column",
 });
 
 export const Header = styled(Box)({
+  position: "sticky",
+  top: 0,
+  zIndex: 10,
+
   width: "100%",
-  minHeight: "56px",
+  minHeight: "64px",
+
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+
   gap: "12px",
-  borderBottom: "1px solid #E0E6F0",
-  padding: "16px",
+
+  padding: "14px 18px",
+
   boxSizing: "border-box",
 
+  borderBottom: "1px solid #E0E6F0",
+
+  background: "rgba(248,250,252,0.92)",
+  backdropFilter: "blur(14px)",
+
+  transition: "all 0.2s ease",
+
   "@media (max-width: 640px)": {
-    alignItems: "stretch",
-    flexDirection: "column",
-    padding: "12px 14px",
+    minHeight: "58px",
+
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    gap: "10px",
+
+    padding: "10px 12px",
+
+    borderBottom: "1px solid rgba(224,230,240,0.9)",
+
+    backdropFilter: "blur(18px)",
+    fontSize: "15px",
   },
 });
 
@@ -48,35 +76,66 @@ export const Title = styled(Typography)({
 
   "@media (max-width: 640px)": {
     paddingLeft: "34px",
+    fontSize: "15px",
   },
 });
 
 export const CreateButton = styled(Link)({
   height: "40px",
   minWidth: "226px",
-  borderRadius: "8px",
+
+  borderRadius: "10px",
+
   padding: "10px 14px",
+
   textTransform: "none",
+
   backgroundColor: "#0B6E69",
   color: "#FFFFFF",
+
   boxShadow: "none",
+
   fontWeight: 600,
   fontSize: "14px",
   lineHeight: "20px",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  gap: "10px",
+
+  textDecoration: "none",
+  boxSizing: "border-box",
+
+  transition: "all 0.2s ease",
+
   "&:hover": {
     backgroundColor: "#095C58",
     boxShadow: "none",
   },
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  textDecoration: "none",
-  boxSizing: "border-box",
 
   "@media (max-width: 640px)": {
-    width: "100%",
-    minWidth: 0,
-    justifyContent: "center",
+    width: "auto",
+    minWidth: "fit-content",
+
+    height: "36px",
+
+    padding: "0 12px",
+
+    borderRadius: "8px",
+
+    fontSize: "12px",
+    lineHeight: "16px",
+
+    gap: "6px",
+
+    flexShrink: 0,
+
+    "& svg": {
+      width: 16,
+      height: 16,
+    },
   },
 });
 

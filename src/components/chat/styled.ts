@@ -14,7 +14,8 @@ type MobileViewProps = {
 
 export const ChatPage = styled(Box)({
   width: "100%",
-  height: "100vh",
+  minHeight: "100%",
+  height: "100%",
   display: "flex",
   flexDirection: "column",
   background: "#FFFFFF",
@@ -24,8 +25,58 @@ export const ChatPage = styled(Box)({
     height: "100dvh",
   },
 });
+export const EmojiPickerWrap = styled(Box)({
+  position: "absolute",
+  bottom: "80px",
+  right: "24px",
 
+  backgroundColor: "#fff",
+
+  border: "1px solid #E8E8E9",
+  borderRadius: "12px",
+
+  padding: "12px",
+
+  width: "350px",
+  height: "300px",
+
+  display: "flex",
+  flexDirection: "column",
+
+  zIndex: 1000,
+
+  boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+
+  "@media (max-width: 768px)": {
+    right: "12px",
+    bottom: "72px",
+    width: "280px",
+    height: "260px",
+  },
+});
+
+export const EmojiItem = styled(Box)({
+  cursor: "pointer",
+
+  fontSize: "20px",
+
+  padding: "4px",
+
+  borderRadius: "4px",
+
+  transition: "background 0.2s ease",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  "&:hover": {
+    backgroundColor: "#f0f0f0",
+  },
+});
 export const Header = styled(Box)({
+  position: "sticky",
+  top: 0,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -34,6 +85,7 @@ export const Header = styled(Box)({
   padding: "20px 24px",
   marginLeft: "10px",
   boxSizing: "border-box",
+  background: "#FFFFFF",
 
   "@media (max-width: 768px)": {
     minHeight: "56px",
@@ -117,12 +169,13 @@ export const SettingsButton = styled(Typography)({
   },
 });
 
-export const ChatLayout = styled(Box)({
+export const ChatLayout = styled(Box)(() => ({
   display: "flex",
-  flex: 1,
+  height: "100%",
   minHeight: 0,
-});
-
+  overflow: "hidden",
+  position: "relative",
+}));
 export const ChatSidebar = styled(Box, {
   shouldForwardProp: (prop) => prop !== "open",
 })<MobileViewProps>(({ open }) => ({
@@ -138,9 +191,33 @@ export const ChatSidebar = styled(Box, {
     display: open ? "none" : "flex",
     width: "100%",
     borderRight: 0,
+    pointerEvents: open ? "none" : "auto",
   },
 }));
+export const ChatContent = styled(Stack, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<MobileViewProps>(({ open }) => ({
+  flex: 1,
 
+  display: "flex",
+  flexDirection: "column",
+
+  minWidth: 0,
+  minHeight: 0,
+
+  overflow: "hidden",
+
+  "@media (max-width: 768px)": {
+    position: open ? "relative" : "absolute",
+    inset: 0,
+
+    display: open ? "flex" : "none",
+
+    background: "#fff",
+
+    zIndex: 2,
+  },
+}));
 export const ChatListTabs = styled(Box)({
   padding: "4px 24px",
   width: "312px",
@@ -293,21 +370,6 @@ export const UnreadDot = styled(Box)({
   flexShrink: 0,
 });
 
-export const ChatContent = styled(Stack, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<MobileViewProps>(({ open }) => ({
-  width: "100%",
-  display: "flex",
-  justifyContent: "space-between",
-  minWidth: 0,
-  minHeight: 0,
-
-  "@media (max-width: 768px)": {
-    display: open ? "flex" : "none",
-    flex: 1,
-  },
-}));
-
 export const ChatHeader = styled(Box)({
   padding: "12px 24px",
   height: "72px",
@@ -321,7 +383,8 @@ export const ChatHeader = styled(Box)({
 
   "@media (max-width: 768px)": {
     height: "58px",
-    padding: "8px 12px",
+    padding: "8px 14px",
+    gap: "10px",
   },
 });
 
@@ -331,6 +394,12 @@ export const ChatHeaderLeft = styled(Box)({
   gap: "8px",
   fontFamily: "Inter, sans-serif",
   minWidth: 0,
+  pointerEvents: "auto",
+
+  "@media (max-width: 768px)": {
+    flex: 1,
+    overflow: "hidden",
+  },
 });
 
 export const MobileBackButton = styled(IconButton)({
@@ -338,12 +407,14 @@ export const MobileBackButton = styled(IconButton)({
   width: "34px",
   height: "34px",
   flexShrink: 0,
+  position: "relative",
+  zIndex: 5,
+  marginLeft: "-6px",
 
   "@media (max-width: 768px)": {
     display: "inline-flex",
   },
 });
-
 export const ChatUserAvatar = styled(Typography)({
   borderRadius: "50%",
   background: "#E1F1F1",
@@ -467,12 +538,20 @@ export const ChatEmpty = styled(Typography)({
 export const ChatFooter = styled(Box)({
   display: "flex",
   width: "100%",
+
   height: "64px",
+
+  flexShrink: 0,
+
   borderTop: "1px solid #E8E8E9",
+
   alignItems: "center",
   justifyContent: "space-between",
+
   padding: "24px",
+
   boxSizing: "border-box",
+
   gap: "12px",
 
   "@media (max-width: 768px)": {
@@ -497,6 +576,7 @@ export const MessageSendActions = styled(Box)({
   alignItems: "center",
   gap: "8px",
   flexShrink: 0,
+  position: "relative",
 
   "@media (max-width: 520px)": {
     "& button": {
@@ -504,5 +584,60 @@ export const MessageSendActions = styled(Box)({
       height: "36px",
       padding: "0 12px",
     },
+  },
+});
+export const EmojiGrid = styled(Box)({
+  flex: 1,
+
+  display: "grid",
+  gridTemplateColumns: "repeat(8, 1fr)",
+
+  gap: "4px",
+
+  overflowY: "auto",
+
+  alignContent: "start",
+
+  "@media (max-width: 768px)": {
+    gridTemplateColumns: "repeat(6, 1fr)",
+  },
+});
+export const EmojiPickerContainer = styled(Box)({
+  position: "absolute",
+  bottom: "80px",
+  right: "24px",
+  backgroundColor: "#fff",
+  border: "1px solid #E8E8E9",
+  borderRadius: "12px",
+  padding: "12px",
+  display: "grid",
+  gridTemplateColumns: "repeat(6, 3fr)",
+  gap: "4px",
+  zIndex: 1000,
+  maxHeight: "300px",
+  overflowY: "auto",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+});
+export const EmojiPickerHeader = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+
+  marginBottom: "8px",
+});
+
+export const EmojiPickerTitle = styled(Typography)({
+  fontSize: "14px",
+  fontWeight: 600,
+  fontFamily: "Inter, sans-serif",
+  color: "#101828",
+});
+
+export const EmojiCloseButton = styled(IconButton)({
+  width: 28,
+  height: 28,
+
+  "& svg": {
+    fontSize: 18,
   },
 });

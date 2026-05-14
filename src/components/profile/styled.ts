@@ -21,10 +21,11 @@ export const PageWrapper = styled(Box)({
 export const TabsRow = styled(Box)({
   height: 58,
   display: "flex",
-  alignItems: "flex-end",
+  alignItems: "center",
+  justifyContent: "space-between",
   gap: 14,
   borderBottom: "1px solid #CBD5E1",
-  overflowX: "auto",
+  overflowX: "hidden",
   overflowY: "hidden",
   scrollbarWidth: "none",
 
@@ -33,10 +34,12 @@ export const TabsRow = styled(Box)({
   },
 
   "@media (max-width: 768px)": {
-    height: "auto",
-    minHeight: 56,
-    alignItems: "flex-end",
-    gap: 8,
+    height: 68,
+    alignItems: "center",
+    gap: 6,
+    justifyContent: "space-between",
+    marginLeft: "15px",
+    padding: "0 4px",
   },
 });
 
@@ -61,15 +64,26 @@ export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
   },
 
   "@media (max-width: 768px)": {
-    height: 40,
-    padding: "0 8px 10px",
+    height: 68,
+    padding: "8px 6px 6px",
     marginLeft: 0,
-    fontSize: 14,
+    fontSize: 12,
     gap: 6,
+    flex: "1 1 25%",
+    maxWidth: "25%",
+    minWidth: 0,
+    borderBottom: "none",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    whiteSpace: "normal",
+    flexDirection: "column",
   },
 
   "@media (max-width: 420px)": {
-    fontSize: 13,
+    fontSize: 11,
+    padding: "8px 4px 6px",
+    gap: 4,
   },
 }));
 
@@ -81,8 +95,7 @@ export const Separator = styled(Box)({
   flexShrink: 0,
 
   "@media (max-width: 768px)": {
-    height: 18,
-    marginBottom: 13,
+    display: "none",
   },
 });
 

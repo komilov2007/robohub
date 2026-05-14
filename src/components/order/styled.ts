@@ -23,9 +23,8 @@ const SOFT = "#EEF2F6";
 export const DashboardWrap = styled(Box)(() => ({
   display: "flex",
   width: "100%",
-  height: "100dvh",
-  minHeight: "100vh",
-  maxHeight: "100dvh",
+  height: "100%",
+  minHeight: 0,
   overflowX: "hidden",
   overflowY: "hidden",
   background: BG,
@@ -34,8 +33,7 @@ export const ContentWrap = styled(Box)(() => ({
   flex: 1,
   minWidth: 0,
   height: "100%",
-  minHeight: "100vh",
-  maxHeight: "100dvh",
+  minHeight: 0,
   overflowX: "hidden",
   overflowY: "hidden",
   display: "flex",
@@ -55,15 +53,18 @@ export const OrdersCard = styled(Box)(() => ({
   width: "100%",
   height: "100%",
   minHeight: 0,
-  maxHeight: "100dvh",
   background: "#F7F9FB",
   borderLeft: `1px solid ${BORDER}`,
   display: "flex",
   flexDirection: "column",
   overflowX: "hidden",
-  overflowY: "hidden",
+  overflowY: "auto",
+  position: "relative",
 }));
 export const TitleRow = styled(Box)(() => ({
+  position: "sticky",
+  top: 0,
+  zIndex: 3,
   height: 48,
   minHeight: 48,
   display: "flex",
@@ -71,20 +72,21 @@ export const TitleRow = styled(Box)(() => ({
   padding: "0 16px",
   borderBottom: `1px solid ${BORDER}`,
   background: "#F7F9FB",
-  paddingLeft: "50px",
+  paddingLeft: "35px",
 
   boxSizing: "border-box",
 
   "@media (max-width: 640px)": {
     height: 42,
     minHeight: 42,
-    padding: "0 14px 0 48px",
+    padding: "0 14px 0 0px",
   },
 }));
 export const TitleText = styled(Typography)(() => ({
   lineHeight: "20px",
   fontWeight: 600,
   fontFamily: "inter",
+  paddingLeft: "40px",
 }));
 export const TabsRow = styled(Box)(() => ({
   height: 40,

@@ -21,10 +21,11 @@ import { createElement } from "react";
 
 /* top level */
 export const PageBg = styled(Box)`
-  height: 100vh;
+  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -38,12 +39,16 @@ export const PageBg = styled(Box)`
 `;
 
 export const HeaderBar = styled(Box)({
+  position: "sticky",
+  top: 0,
+  zIndex: 15,
   display: "flex",
   height: "56px",
   borderBottom: "1px solid #E0E6F0",
   padding: "16px",
   alignItems: "center",
   justifyContent: "space-between",
+  background: "#FFFFFF",
 });
 
 export const HeaderTitle = styled(Typography)({

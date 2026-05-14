@@ -25,25 +25,36 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import { useBoolean } from "@/hook/useBoolean";
 import toast from "react-hot-toast";
 
-export const usePage = () => {
+export const usePage = (
+  controlledCollapsed?: boolean,
+  onCollapseChange?: (collapsed: boolean) => void,
+) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
 
-  const [collapsed, setCollapsed] = useState(() => window.innerWidth < 900);
+  const [internalCollapsed, setInternalCollapsed] = useState(
+    () => window.innerWidth < 900,
+  );
+
+  const collapsed = controlledCollapsed ?? internalCollapsed;
 
   const { data: profile } = useQuery(profileQueryOptions());
 
   useEffect(() => {
+    if (controlledCollapsed !== undefined) {
+      return;
+    }
+
     const handleResize = () => {
-      setCollapsed(window.innerWidth < 900);
+      setInternalCollapsed(window.innerWidth < 900);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [controlledCollapsed]);
 
   const menus = useMemo(
     () => [
@@ -125,8 +136,15 @@ export const usePage = () => {
   };
 
   const handleToggleSidebar = () => {
-    setCollapsed((prev) => !prev);
+    const nextCollapsed = !collapsed;
+
+    if (onCollapseChange) {
+      onCollapseChange(nextCollapsed);
+    } else {
+      setInternalCollapsed(nextCollapsed);
+    }
   };
+
   const logoutModal = useBoolean();
   const handleLogout = () => {
     document.cookie =
@@ -141,11 +159,16 @@ export const usePage = () => {
       window.location.replace("/");
     }, 800);
   };
+
   const handleNavigate = (path: string) => {
     navigate(path);
 
     if (window.innerWidth < 800) {
-      setCollapsed(true);
+      if (onCollapseChange) {
+        onCollapseChange(true);
+      } else {
+        setInternalCollapsed(true);
+      }
     }
   };
 

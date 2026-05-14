@@ -10,33 +10,58 @@ export const PageWrapper = styled(Stack)(() => ({
   boxSizing: "border-box",
 }));
 
-export const HeaderTitle = styled(Typography)(() => ({
+export const HeaderTitle = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "collapsed",
+})<{
+  collapsed: boolean;
+}>(({ collapsed }) => ({
+  minHeight: 54,
+
+  background: "rgba(255,255,255,0.96)",
+  backdropFilter: "blur(10px)",
+  borderBottom: "1px solid #E4E7EC",
+  fontSize: 18,
   fontWeight: 600,
+  color: "#1D2939",
   fontFamily: "Inter",
-  minHeight: "48px",
-  borderBottom: "1px solid #E8E8E9",
   display: "flex",
   alignItems: "center",
-  paddingLeft: "50px",
-  boxSizing: "border-box",
+  justifyContent: "space-between",
+
+  padding: "0 50px 0 40px",
+
+  position: "fixed",
+  top: 0,
+
+  left: collapsed ? 0 : 262,
+  width: `calc(100% - ${collapsed ? 0 : 262}px)`,
+
+  transition: "left .25s ease, width .25s ease",
+
+  zIndex: 1200,
 
   "@media (max-width: 640px)": {
-    minHeight: "44px",
-    paddingLeft: "48px",
-    paddingRight: "14px",
-    fontSize: "15px",
+    left: 0,
+    right: 0,
+    minHeight: 56,
+    padding: "10px 40px",
   },
 }));
 
 export const ContentStack = styled(Stack)(() => ({
   width: "100%",
   minWidth: 0,
+  marginTop: "48px",
+
+  "@media (max-width: 640px)": {
+    marginTop: "44px",
+  },
 }));
 
 export const PromoCard = styled(Box)(() => ({
   width: "calc(100% - 40px)",
   minHeight: 116,
-  margin: "16px 20px 4px",
+  margin: "72px 20px 4px",
   padding: "18px 20px",
   borderRadius: 12,
   background: "#005F56",
@@ -55,7 +80,7 @@ export const PromoCard = styled(Box)(() => ({
 
   "@media (max-width: 640px)": {
     width: "calc(100% - 28px)",
-    margin: "14px 14px 2px",
+    margin: "74px 14px 2px",
     padding: "16px 14px",
   },
 }));

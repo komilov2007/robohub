@@ -20,11 +20,21 @@ export const SectionWrapper = styled(Box)({
 export const SectionTitle = styled(Typography)({
   fontWeight: 600,
   color: "#101828",
-  marginBottom: "18px",
   borderBottom: "0.5px solid #E0E6F0",
   padding: "15px 15px",
   fontFamily: "Inter, sans-serif",
   paddingLeft: "50px",
+  position: "fixed",
+  top: 0,
+  zIndex: 1000,
+  width: "100%",
+  backgroundColor: "#f5f7fb",
+  boxSizing: "border-box",
+  "@media (max-width: 640px)": {
+    paddingLeft: "48px",
+    paddingRight: "14px",
+    fontSize: "15px",
+  },
 });
 
 export const CardsGrid = styled(Box)(({ theme }) => ({
@@ -32,6 +42,7 @@ export const CardsGrid = styled(Box)(({ theme }) => ({
   padding: "0px 10px",
   gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
   gap: "14px",
+  marginTop: "65px",
 
   [theme.breakpoints.down("lg")]: {
     gridTemplateColumns: "1fr 1fr",

@@ -4,7 +4,9 @@ import {
   type ReactNode,
   useMemo,
   useState,
+  useRef,
 } from "react";
+
 import IconUzum from "@/assets/icons/icon-uzum.svg?react";
 import IconWb from "@/assets/icons/icon-wb.svg?react";
 import IconOzon from "@/assets/icons/icon-ozon.svg?react";
@@ -24,6 +26,11 @@ type ChatMessage = {
   text: string;
   time: string;
   sender: "me" | "user";
+  file?: {
+    name: string;
+    type: string;
+    url: string;
+  };
 };
 
 const initialChats: ChatItem[] = [
@@ -62,10 +69,18 @@ const getCurrentTime = () =>
 
 export const usePage = () => {
   const [chats, setChats] = useState(initialChats);
+
   const [selectedChatId, setSelectedChatId] = useState(initialChats[0].id);
+
   const [isChatOpen, setIsChatOpen] = useState(false);
+
   const [messageText, setMessageText] = useState("");
+
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const selectedChat = useMemo(
     () => chats.find((chat) => chat.id === selectedChatId) ?? chats[0],
@@ -77,16 +92,10 @@ export const usePage = () => {
     [messages, selectedChatId],
   );
 
-  const handleSelectChat = (chatId: number) => {
-    setSelectedChatId(chatId);
+  const handleSelectChat = (id: number) => {
+    setSelectedChatId(id);
     setIsChatOpen(true);
-    setChats((prev) =>
-      prev.map((chat) =>
-        chat.id === chatId ? { ...chat, unread: false } : chat,
-      ),
-    );
   };
-
   const handleBackToList = () => {
     setIsChatOpen(false);
   };
@@ -97,6 +106,7 @@ export const usePage = () => {
     if (!text) return;
 
     const time = getCurrentTime();
+
     const nextMessage: ChatMessage = {
       id: Date.now(),
       chatId: selectedChatId,
@@ -106,6 +116,7 @@ export const usePage = () => {
     };
 
     setMessages((prev) => [...prev, nextMessage]);
+
     setChats((prev) =>
       prev.map((chat) =>
         chat.id === selectedChatId
@@ -118,6 +129,7 @@ export const usePage = () => {
           : chat,
       ),
     );
+
     setMessageText("");
   };
 
@@ -128,6 +140,53 @@ export const usePage = () => {
       event.preventDefault();
       handleSendMessage();
     }
+  };
+
+  const handleEmojiClick = (emoji: string) => {
+    setMessageText((prev) => prev + emoji);
+  };
+
+  const handleFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const url = e.target?.result as string;
+      const time = getCurrentTime();
+      const nextMessage: ChatMessage = {
+        id: Date.now(),
+        chatId: selectedChatId,
+        text: messageText || `📎 ${file.name}`,
+        time,
+        sender: "me",
+        file: {
+          name: file.name,
+          type: file.type,
+          url,
+        },
+      };
+
+      setMessages((prev) => [...prev, nextMessage]);
+      setChats((prev) =>
+        prev.map((chat) =>
+          chat.id === selectedChatId
+            ? {
+                ...chat,
+                message: `📎 ${file.name}`,
+                time,
+                unread: false,
+              }
+            : chat,
+        ),
+      );
+      setMessageText("");
+    };
+    reader.readAsDataURL(file);
   };
 
   return {
@@ -142,5 +201,12 @@ export const usePage = () => {
     handleBackToList,
     handleSendMessage,
     handleMessageKeyDown,
+    setIsChatOpen,
+    showEmojiPicker,
+    setShowEmojiPicker,
+    handleEmojiClick,
+    handleFileClick,
+    handleFileSelect,
+    fileInputRef,
   };
 };

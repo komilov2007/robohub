@@ -1,5 +1,3 @@
-// styled.ts
-
 import { styled } from "@mui/material/styles";
 
 import {
@@ -17,7 +15,6 @@ export const SwitchRow = styled(Stack)(() => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-
   gap: 8,
 
   "@media (max-width: 640px)": {
@@ -25,6 +22,7 @@ export const SwitchRow = styled(Stack)(() => ({
     justifyContent: "space-between",
   },
 }));
+
 export const SwitchIcon = styled(Switch)<{
   active: boolean;
 }>(({}) => ({
@@ -59,64 +57,53 @@ export const SwitchIcon = styled(Switch)<{
     opacity: 1,
   },
 }));
-export const FooterButtons = styled(Stack)(() => ({
-  display: "flex",
-  flexDirection: "row",
-
-  gap: 12,
-
-  "@media (max-width: 420px)": {
-    width: "100%",
-
-    minHeight: "10px",
-    "& button": {
-      flex: 1,
-    },
-  },
-}));
 
 export const Row = styled(Stack)(() => ({
   display: "flex",
   flexDirection: "row",
-
   gap: 2,
 }));
 
 export const StarsRow = styled(Stack)(() => ({
   display: "flex",
   flexDirection: "row",
-
   alignItems: "center",
-
   gap: 8,
-
   marginBottom: 4,
-
   flexWrap: "wrap",
 }));
 
 // PAGE
-
 export const PageWrapper = styled(Box)(() => ({
   width: "100%",
-  height: "100dvh",
 
-  background: "linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)",
+  height: "100%",
+  minHeight: "100dvh",
 
   display: "flex",
   flexDirection: "column",
 
   overflow: "hidden",
 
-  boxSizing: "border-box",
-}));
+  background: "linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)",
 
+  boxSizing: "border-box",
+
+  "@media (max-width: 640px)": {
+    height: "100dvh",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+  },
+}));
 // HEADER
 
 export const Header = styled(Box)(() => ({
-  minHeight: 50,
+  minHeight: 54,
 
-  background: "#FFFFFF",
+  background: "rgba(255,255,255,0.96)",
+
+  backdropFilter: "blur(10px)",
 
   borderBottom: "1px solid #E4E7EC",
 
@@ -125,26 +112,40 @@ export const Header = styled(Box)(() => ({
   justifyContent: "space-between",
 
   padding: "0 46px 0 50px",
-  gap: 12,
 
-  boxSizing: "border-box",
+  gap: 12,
 
   flexShrink: 0,
 
-  "@media (max-width: 640px)": {
-    alignItems: "flex-start",
+  boxSizing: "border-box",
 
-    padding: "13px 46px 0 50px",
+  zIndex: 20,
+
+  "@media (max-width: 640px)": {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+
+    minHeight: 56,
+
+    padding: "10px 14px",
+
+    gap: 10,
   },
 }));
 
-// MAIN
-
 export const HeaderTitle = styled(Typography)(() => ({
-  fontWeight: 600,
+  fontWeight: 700,
 
   color: "#0F172A",
-  fontfamily: "inter",
+
+  fontFamily: "Inter",
+
+  "@media (max-width: 640px)": {
+    fontSize: 15,
+    paddingLeft: "34px",
+  },
 }));
 
 export const HeaderHelp = styled(Typography)(() => ({
@@ -157,8 +158,14 @@ export const HeaderHelp = styled(Typography)(() => ({
 
   transition: "0.2s",
 
-  "&:hover": {
-    opacity: 0.7,
+  "@media (hover: hover)": {
+    "&:hover": {
+      opacity: 0.7,
+    },
+  },
+
+  "@media (max-width: 640px)": {
+    fontSize: 13,
   },
 }));
 
@@ -170,10 +177,17 @@ export const Main = styled(Box)(() => ({
   minHeight: 0,
 
   overflowY: "auto",
+  overflowX: "hidden",
 
   padding: "18px",
 
   boxSizing: "border-box",
+
+  WebkitOverflowScrolling: "touch",
+
+  overscrollBehaviorY: "contain",
+
+  scrollPaddingBottom: "140px",
 
   "&::-webkit-scrollbar": {
     width: 6,
@@ -183,8 +197,21 @@ export const Main = styled(Box)(() => ({
     background: "#CBD5E1",
     borderRadius: 999,
   },
-}));
 
+  "@media (max-width: 640px)": {
+    paddingTop: "calc(56px + 14px)",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    paddingBottom: "calc(102px + env(safe-area-inset-bottom) + 14px)",
+
+    scrollPaddingTop: "80px",
+    scrollPaddingBottom: "140px",
+
+    overflowAnchor: "none",
+
+    transform: "translateZ(0)",
+  },
+}));
 export const Content = styled(Box)(() => ({
   width: "100%",
   maxWidth: 860,
@@ -195,6 +222,10 @@ export const Content = styled(Box)(() => ({
   flexDirection: "column",
 
   gap: 16,
+
+  "@media (max-width: 640px)": {
+    gap: 12,
+  },
 }));
 
 // HERO
@@ -204,9 +235,9 @@ export const HeroCard = styled(Box)(() => ({
 
   borderRadius: 24,
 
-  padding: 26,
+  padding: 24,
 
-  background: "linear-gradient(135deg, #0B7A69 0%, #06635B 45%, #15B8B8 100%)",
+  background: "linear-gradient(135deg,#0B7A69 0%,#06635B 45%,#15B8B8 100%)",
 
   display: "flex",
   alignItems: "center",
@@ -216,11 +247,11 @@ export const HeroCard = styled(Box)(() => ({
 
   boxSizing: "border-box",
 
-  boxShadow: "0 20px 45px rgba(11,122,105,0.22)",
-
   position: "relative",
 
   overflow: "hidden",
+
+  boxShadow: "0 20px 45px rgba(11,122,105,0.22)",
 
   "&::before": {
     content: '""',
@@ -239,27 +270,15 @@ export const HeroCard = styled(Box)(() => ({
   },
 
   "@media (max-width: 640px)": {
-    borderRadius: 20,
-
-    padding: 18,
-
-    gap: 14,
-  },
-
-  "@media (max-width: 500px)": {
     flexDirection: "column",
 
     alignItems: "flex-start",
 
-    padding: 16,
-
     borderRadius: 18,
 
-    gap: 16,
-  },
+    padding: 16,
 
-  "@media (max-width: 380px)": {
-    padding: 14,
+    gap: 14,
   },
 }));
 
@@ -269,25 +288,23 @@ export const HeroLeft = styled(Box)(() => ({
 
   gap: 16,
 
-  zIndex: 2,
-
   minWidth: 0,
+
+  zIndex: 2,
 
   "@media (max-width: 500px)": {
     width: "100%",
-
-    alignItems: "flex-start",
 
     gap: 12,
   },
 }));
 
 export const HeroIcon = styled(Box)(() => ({
-  width: 60,
-  height: 60,
+  width: 56,
+  height: 56,
 
-  minWidth: 60,
-  minHeight: 60,
+  minWidth: 56,
+  minHeight: 56,
 
   borderRadius: "50%",
 
@@ -303,29 +320,12 @@ export const HeroIcon = styled(Box)(() => ({
 
   flexShrink: 0,
 
-  fontSize: 24,
-
-  boxSizing: "border-box",
-
   "@media (max-width: 500px)": {
-    width: 52,
-    height: 52,
+    width: 48,
+    height: 48,
 
-    minWidth: 52,
-    minHeight: 52,
-
-    "& svg": {
-      width: 22,
-      height: 22,
-    },
-  },
-
-  "@media (max-width: 380px)": {
-    width: 46,
-    height: 46,
-
-    minWidth: 46,
-    minHeight: 46,
+    minWidth: 48,
+    minHeight: 48,
   },
 }));
 
@@ -335,16 +335,10 @@ export const HeroTitle = styled(Typography)(() => ({
 
   color: "#fff",
 
-  marginBottom: 4,
-
   lineHeight: 1.2,
 
   "@media (max-width: 500px)": {
     fontSize: 17,
-  },
-
-  "@media (max-width: 380px)": {
-    fontSize: 16,
   },
 }));
 
@@ -358,24 +352,20 @@ export const HeroDescription = styled(Typography)(() => ({
   maxWidth: 460,
 
   "@media (max-width: 500px)": {
-    maxWidth: "100%",
-
     fontSize: 13,
 
     lineHeight: "20px",
-  },
 
-  "@media (max-width: 380px)": {
-    fontSize: 12,
+    maxWidth: "100%",
   },
 }));
 
 export const HeroBadge = styled(Box)(() => ({
-  height: 38,
+  height: 36,
 
   borderRadius: 999,
 
-  padding: "0 18px",
+  padding: "0 16px",
 
   background: "rgba(255,255,255,0.14)",
 
@@ -387,31 +377,18 @@ export const HeroBadge = styled(Box)(() => ({
 
   color: "#fff",
 
-  fontSize: 13,
+  fontSize: 12,
   fontWeight: 800,
-
-  zIndex: 2,
-
-  flexShrink: 0,
 
   whiteSpace: "nowrap",
 
+  zIndex: 2,
+
   "@media (max-width: 500px)": {
     width: "100%",
-
-    height: 34,
-
-    fontSize: 12,
-
-    justifyContent: "center",
-  },
-
-  "@media (max-width: 380px)": {
-    height: 32,
-
-    padding: "0 12px",
   },
 }));
+
 // CARD
 
 export const ReviewCard = styled(Box)<{
@@ -427,7 +404,7 @@ export const ReviewCard = styled(Box)<{
 
   overflow: "hidden",
 
-  padding: 22,
+  padding: 20,
 
   boxSizing: "border-box",
 
@@ -437,14 +414,20 @@ export const ReviewCard = styled(Box)<{
     ? "0 10px 35px rgba(18,183,106,0.18)"
     : "0 4px 18px rgba(15,23,42,0.04)",
 
-  transform: active ? "translateY(-2px)" : "translateY(0)",
+  "@media (hover: hover)": {
+    "&:hover": {
+      transform: "translateY(-4px)",
 
-  "&:hover": {
-    transform: "translateY(-4px)",
+      border: "1px solid rgba(11,122,105,0.18)",
 
-    border: "1px solid rgba(11,122,105,0.18)",
+      boxShadow: "0 16px 40px rgba(15,23,42,0.08)",
+    },
+  },
 
-    boxShadow: "0 16px 40px rgba(15,23,42,0.08)",
+  "@media (max-width: 640px)": {
+    padding: 16,
+
+    borderRadius: 16,
   },
 }));
 
@@ -491,6 +474,7 @@ export const NumberBadge = styled(Box)<{
 }>(({ bgcolor, textcolor }) => ({
   width: 38,
   minWidth: 38,
+
   height: 38,
 
   borderRadius: 14,
@@ -544,8 +528,6 @@ export const OpenBadge = styled(Box)<{
 
   fontWeight: 800,
   fontSize: 13,
-
-  transition: "0.2s",
 }));
 
 export const Dot = styled(Box)<{
@@ -582,20 +564,23 @@ export const StyledTextField = styled(TextField)(() => ({
 
     "& textarea": {
       fontSize: 14,
-
       color: "#475467",
+
+      scrollMarginBottom: "180px",
     },
 
     "& fieldset": {
       borderColor: "#D0D5DD",
     },
 
-    "&:hover": {
-      background: "#fff",
-    },
+    "@media (hover: hover)": {
+      "&:hover": {
+        background: "#fff",
+      },
 
-    "&:hover fieldset": {
-      borderColor: "#98A2B3",
+      "&:hover fieldset": {
+        borderColor: "#98A2B3",
+      },
     },
 
     "&.Mui-focused": {
@@ -619,6 +604,9 @@ export const TextCount = styled(Typography)(() => ({
 
   color: "#98A2B3",
 }));
+
+// FOOTER
+
 export const Footer = styled(Box)(() => ({
   minHeight: 54,
 
@@ -638,10 +626,22 @@ export const Footer = styled(Box)(() => ({
 
   flexShrink: 0,
 
+  zIndex: 30,
+
   "@media (max-width: 650px)": {
-    padding: "10px 12px",
+    position: "fixed",
+
+    left: 0,
+    right: 0,
+    bottom: 0,
 
     minHeight: 72,
+
+    padding: "10px 12px calc(10px + env(safe-area-inset-bottom))",
+
+    background: "#FFFFFF",
+
+    borderTop: "1px solid #E4E7EC",
   },
 }));
 
@@ -658,8 +658,7 @@ export const FooterContent = styled(Box)(() => ({
   "@media (max-width: 650px)": {
     flexDirection: "column",
 
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "stretch",
 
     gap: 10,
   },
@@ -668,13 +667,10 @@ export const FooterContent = styled(Box)(() => ({
 export const FooterLeft = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
 
   gap: 10,
 
   "@media (max-width: 650px)": {
-    width: "100%",
-
     justifyContent: "center",
   },
 }));
@@ -691,6 +687,7 @@ export const FooterText = styled(Typography)(() => ({
     textAlign: "center",
   },
 }));
+
 export const FooterButton = styled(Button)(() => ({
   height: 36,
 
@@ -708,28 +705,25 @@ export const FooterButton = styled(Button)(() => ({
   boxShadow: "none",
 
   whiteSpace: "nowrap",
+
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+
   gap: 8,
 
   "@media (max-width: 650px)": {
-    height: 32,
+    height: 34,
 
-    minWidth: 96,
+    minWidth: 100,
 
     fontSize: 12,
-
-    borderRadius: 12,
-
-    padding: "0 12px",
   },
 
   "@media (max-width: 420px)": {
     flex: 1,
 
     minWidth: 0,
-    padding: "0 12px",
   },
 }));
 
@@ -739,14 +733,6 @@ export const CancelButton = styled(FooterButton)(() => ({
   color: "#344054",
 
   background: "#FFFFFF",
-
-  "&:hover": {
-    borderColor: "#98A2B3",
-
-    background: "#F8FAFC",
-
-    transform: "translateY(-1px)",
-  },
 }));
 
 export const SaveButton = styled(FooterButton)(() => ({
@@ -755,18 +741,9 @@ export const SaveButton = styled(FooterButton)(() => ({
   color: "#fff",
 
   boxShadow: "0 10px 24px rgba(11,122,105,0.24)",
+  boxSizing: "border-box",
 
   "&:hover": {
-    transform: "translateY(-2px)",
-
-    boxShadow: "0 16px 32px rgba(11,122,105,0.30)",
-
-    background: "linear-gradient(135deg,#09695B 0%,#05514A 100%)",
-  },
-  "@media (max-width: 420px)": {
-    flex: 1,
-
-    minWidth: 0,
-    padding: "0px 20px",
+    boxShadow: "0 14px 32px rgba(11,122,105,0.32)",
   },
 }));

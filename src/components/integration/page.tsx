@@ -1,5 +1,6 @@
 import { Button, Modal, ThemeProvider } from "@mui/material";
 import { memo } from "react";
+import { useOutletContext } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { CloseOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 
@@ -46,6 +47,7 @@ import {
 
 const Integration = () => {
   const { t } = useTranslation();
+  const { collapsed } = useOutletContext<{ collapsed: boolean }>();
 
   const {
     sections,
@@ -60,7 +62,9 @@ const Integration = () => {
   return (
     <ThemeProvider theme={theme}>
       <PageWrapper>
-        <HeaderTitle>{t("integration_title")}</HeaderTitle>
+        <HeaderTitle collapsed={collapsed}>
+          {t("integration_title")}
+        </HeaderTitle>
 
         <PromoCard>
           <PromoContent>
@@ -68,7 +72,9 @@ const Integration = () => {
 
             <PromoText>
               <PromoTitle>{t("sidebar_card_title")}</PromoTitle>
-              <PromoDescription>{t("sidebar_card_description")}</PromoDescription>
+              <PromoDescription>
+                {t("sidebar_card_description")}
+              </PromoDescription>
             </PromoText>
           </PromoContent>
 
