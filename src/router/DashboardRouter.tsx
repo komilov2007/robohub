@@ -13,6 +13,7 @@ import NotificationsPage from "@/components/notifications/page";
 import MappingPage from "@/components/mappping/page";
 import CommentPage from "@/components/comment/page";
 import AnswerPage from "@/components/answer/page";
+import SubscriptionPage from "@/components/subscription/page";
 const DashboardRouter = () => {
   return (
     <Routes>
@@ -30,6 +31,7 @@ const DashboardRouter = () => {
         <Route path="comment" element={<CommentPage />} />
         <Route path="notifications" element={<NotificationsPage />} />
         <Route path="answers" element={<AnswerPage />} />
+        <Route path="subscription" element={<SubscriptionPage />} />
       </Route>
       {/* </Route> */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

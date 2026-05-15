@@ -1,4 +1,10 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  LinearProgress,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 
@@ -200,6 +206,23 @@ export const MenuItem = styled(Box, {
     },
   }),
 );
+export const MenuIconWrapStar = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "active",
+})<ActiveProps>(({ active }) => ({
+  color: active ? "#C8F29B" : "#C7D5D3",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+  width: 28,
+  height: 28,
+  background: "black",
+  borderRadius: "20%",
+  "& svg": {
+    width: 18,
+    height: 18,
+  },
+}));
 export const MenuIconWrap = styled(Box, {
   shouldForwardProp: (prop) => prop !== "active",
 })<ActiveProps>(({ active }) => ({
@@ -355,7 +378,7 @@ export const BottomArea = styled(Box)(() => ({
     gap: 8,
   },
 }));
-export const NotificationsRow = styled(Link, {
+export const SubscriptionRow = styled(Link, {
   shouldForwardProp: (prop) => prop !== "collapsed",
 })<CollapsedProps>(({ collapsed }) => ({
   height: 36,
@@ -367,6 +390,24 @@ export const NotificationsRow = styled(Link, {
   cursor: "pointer",
   color: "#D7E5E2",
   textDecoration: "none",
+  width: "100%",
+  boxSizing: "border-box",
+  "&:hover": {
+    background: "rgba(255,255,255,0.04)",
+  },
+}));
+export const NotificationsRow = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "collapsed",
+})<CollapsedProps>(({ collapsed }) => ({
+  height: 36,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: collapsed ? "center" : "space-between",
+  padding: collapsed ? "0 8px" : "0 12px",
+  borderRadius: 8,
+  cursor: "pointer",
+  textDecoration: "none",
+  color: "#D7E5E2",
   width: "100%",
   boxSizing: "border-box",
   "&:hover": {
@@ -547,5 +588,232 @@ export const LogoutConfirmButton = styled(Button)(() => ({
 
   "&:hover": {
     background: "#B42318",
+  },
+}));
+// styled.ts
+export const SubCardWrapper = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "collapsed",
+})<CollapsedProps>(({ theme }) => ({
+  width: "100%",
+  minHeight: 118,
+
+  cursor: "pointer",
+  textDecoration: "none",
+
+  borderRadius: 16,
+
+  padding: "14px 14px 12px",
+
+  background: "#015856",
+
+  boxShadow: "0 4px 18px rgba(0,0,0,0.14)",
+
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+
+  position: "relative",
+  overflow: "hidden",
+
+  border: "1px solid rgba(255, 255, 255, 0.06)",
+
+  transition: "all 0.2s ease",
+
+  "&:hover": {
+    transform: "translateY(-1px)",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    minHeight: 110,
+
+    padding: "12px",
+
+    borderRadius: 14,
+  },
+}));
+
+export const SubTopBox = styled(Box)(() => ({
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "space-between",
+
+  width: "100%",
+}));
+
+export const SubInfoBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: 10,
+
+  minWidth: 0,
+
+  [theme.breakpoints.down("sm")]: {
+    gap: 8,
+  },
+}));
+
+export const SubIconBox = styled(Box)(({ theme }) => ({
+  width: 28,
+  height: 28,
+
+  minWidth: 28,
+
+  borderRadius: 9,
+
+  background: "rgba(255,255,255,0.08)",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  flexShrink: 0,
+
+  [theme.breakpoints.down("sm")]: {
+    width: 26,
+    height: 26,
+
+    minWidth: 26,
+
+    borderRadius: 8,
+  },
+}));
+
+export const SubTextBox = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: "column",
+
+  minWidth: 0,
+}));
+
+export const SubTitle = styled(Typography)(({ theme }) => ({
+  fontSize: 15,
+  fontWeight: 700,
+  lineHeight: "18px",
+
+  color: "#FFFFFF",
+
+  marginTop: 1,
+
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 14,
+    lineHeight: "17px",
+  },
+}));
+
+export const SubStatus = styled(Typography)(({ theme }) => ({
+  fontSize: 12,
+  fontWeight: 500,
+  lineHeight: "16px",
+
+  color: "#B8F5D3",
+
+  marginTop: 2,
+
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 11,
+    lineHeight: "14px",
+  },
+}));
+
+export const SubBottomBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "flex-end",
+  justifyContent: "space-between",
+
+  gap: 10,
+
+  marginTop: 10,
+
+  width: "100%",
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: 8,
+  },
+}));
+
+export const SubDays = styled(Typography)(({ theme }) => ({
+  fontSize: 13,
+  fontWeight: 500,
+  lineHeight: "16px",
+
+  color: "rgba(255,255,255,0.74)",
+
+  whiteSpace: "nowrap",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 12,
+    lineHeight: "15px",
+  },
+}));
+
+export const SubPriceBox = styled(Box)(() => ({
+  display: "flex",
+  alignItems: "flex-end",
+
+  flexShrink: 0,
+}));
+
+export const SubPrice = styled(Typography)(({ theme }) => ({
+  fontSize: 15,
+  fontWeight: 600,
+  lineHeight: "26px",
+
+  fontFamily: "Inter",
+
+  color: "#FFFFFF",
+
+  marginBottom: "-3px",
+
+  whiteSpace: "nowrap",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 14,
+    lineHeight: "22px",
+  },
+}));
+
+export const SubMonth = styled(Typography)(({ theme }) => ({
+  fontSize: 13,
+  fontWeight: 600,
+  lineHeight: "16px",
+
+  color: "rgba(255,255,255,0.72)",
+
+  marginLeft: 2,
+  marginBottom: 2,
+
+  whiteSpace: "nowrap",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: 12,
+    lineHeight: "14px",
+  },
+}));
+
+export const SubProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 3,
+
+  borderRadius: 999,
+
+  marginTop: 10,
+
+  background: "rgba(255,255,255,0.10)",
+
+  flexShrink: 0,
+
+  "& .MuiLinearProgress-bar": {
+    borderRadius: 999,
+    background: "#D9FFE4",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    marginTop: 8,
   },
 }));

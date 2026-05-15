@@ -35,7 +35,21 @@ import {
   SoonText,
   MenuItemWrap,
   SoonWrapper,
+  SubBottomBox,
+  SubCardWrapper,
+  SubDays,
+  SubIconBox,
+  SubInfoBox,
+  SubMonth,
+  SubPrice,
+  SubPriceBox,
+  SubProgress,
+  SubStatus,
+  SubTextBox,
+  SubTitle,
+  SubTopBox,
 } from "./styled";
+import { StarRounded } from "@mui/icons-material";
 
 type SidebarPageProps = {
   collapsed?: boolean;
@@ -132,6 +146,46 @@ const SidebarPage = ({
 
       {!collapsed && (
         <BottomArea>
+          <SubCardWrapper
+            to={"/dashboard/subscription"}
+            collapsed={collapsed}
+            onClick={() => {
+              if (window.innerWidth < 900) {
+                handleToggleSidebar();
+              }
+            }}
+          >
+            <SubTopBox>
+              <SubInfoBox>
+                <SubIconBox>
+                  <StarRounded
+                    sx={{
+                      color: "#D9FF66",
+                      fontSize: 16,
+                    }}
+                  />
+                </SubIconBox>
+
+                <SubTextBox>
+                  <SubTitle>{t("subscription_active")}</SubTitle>
+
+                  <SubStatus>{t("subscription_active")}</SubStatus>
+                </SubTextBox>
+              </SubInfoBox>
+            </SubTopBox>
+
+            <SubBottomBox>
+              <SubDays>87 {t("subscription_days_left")}</SubDays>
+
+              <SubPriceBox>
+                <SubPrice>500,000</SubPrice>
+
+                <SubMonth>/mo</SubMonth>
+              </SubPriceBox>
+            </SubBottomBox>
+
+            <SubProgress variant="determinate" value={72} />
+          </SubCardWrapper>
           <NotificationsRow
             to={"/dashboard/notifications"}
             collapsed={collapsed}

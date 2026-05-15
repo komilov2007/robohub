@@ -28,6 +28,7 @@ export const TabsRow = styled(Box)({
   overflowX: "hidden",
   overflowY: "hidden",
   scrollbarWidth: "none",
+  width: "100%",
 
   "&::-webkit-scrollbar": {
     display: "none",
