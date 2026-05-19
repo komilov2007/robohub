@@ -15,7 +15,7 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { useTranslation } from "react-i18next";
 
-import { usePage } from "./usePage";
+import { usePage } from "@/pages/dashboard/dashboard/usePage";
 import {
   ChartBox,
   ChartCard,
@@ -50,7 +50,7 @@ import {
   TooltipRow,
   TooltipRowLeft,
   TooltipValue,
-} from "./styled";
+} from "@/pages/dashboard/dashboard/styled";
 
 type TooltipProps = {
   active?: boolean;

@@ -491,5 +491,12 @@
   "subscription_back": "Back",
   "subscription_pay": "Pay",
   "month_short": "mo",
-  "summary_period": "/ {{period}} mo"
+  "summary_period": "/ {{period}} mo",
+  "subscription_12_months": "12 months",
+  "subscription_6_months": "6 months",
+  "subscription_3_months": "3 months",
+  "not_found_title": "Page not found",
+  "not_found_description": "The page you are looking for does not exist or may have been moved.",
+  "not_found_home": "Back to dashboard",
+  "not_found_back": "Go back"
 }

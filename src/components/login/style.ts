@@ -4,8 +4,9 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Button, Select } from "@mui/material";
+import { Select } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
+import LoadingButton from "@mui/lab/LoadingButton";
 const dashMove = keyframes`
   0% {
     transform: rotate(0deg);
@@ -89,18 +90,28 @@ export const Loader = styled(CircularProgress)<{ isLogin: boolean }>(
     color: isLogin ? "gray" : "blue",
   }),
 );
-export const StyledLoginButton = styled(Button)({
-  position: "relative", // 🔥 MUHIM
+export const StyledLoginButton = styled(LoadingButton)({
+  position: "relative",
+
   height: 40,
   width: "100%",
+
   borderRadius: 8,
-  color: "#ffffff",
+
+  background: "#0B6E69",
+  color: "#FFFFFF",
+
   fontWeight: 600,
   fontSize: 14,
+
   marginTop: 2,
+
   textTransform: "none",
+
   overflow: "hidden",
+
   transition: "all 0.25s ease",
+
   "&::before": {
     content: '""',
     position: "absolute",
@@ -111,23 +122,23 @@ export const StyledLoginButton = styled(Button)({
     background: "#FFFFFF1F",
     opacity: 0.7,
   },
+
   "&:hover": {
     background: "#00524F",
+
     "&::before": {
-      content: '""',
-      position: "absolute",
-      top: 1,
-      left: 0,
-      width: "100%",
-      height: 1,
       background: "#FFFFFF1F",
       opacity: 0.7,
     },
   },
+
   "&:active": {
     transform: "scale(0.97)",
   },
+
   "&.Mui-disabled": {
+    background: "#0B6E69",
+    color: "#FFFFFF",
     opacity: 0.7,
   },
 });

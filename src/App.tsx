@@ -6,8 +6,8 @@ import DashboardRouter from "./router/DashboardRouter";
 function App() {
   const user = Cookies.get("user");
 
-  if (!user && window.location.pathname.startsWith("/dashboard")) {
-    window.location.replace("/login");
+  if (!user && window.location.pathname.startsWith("/admin/dashboard")) {
+    window.location.replace("/");
 
     return null;
   }

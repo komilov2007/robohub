@@ -1,32 +1,31 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Box, Container, useMediaQuery } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 
-import LoginLeft from "@/components/login/page";
+import LoginPage from "@/pages/auth/login/page";
+import Register from "@/pages/auth/register/page";
+import ForgetPassword from "@/pages/auth/forget-password/page";
+import OtpVerifyPage from "@/pages/auth/otp-verificate/page";
+import Success from "@/pages/auth/register-success/page";
+import OtpReset from "@/pages/auth/otp-reset/page";
+import ResetPassword from "@/pages/auth/reset-password/page";
+
 import { LoginRight } from "@/components/login/loginright";
-import Register from "@/components/register/page";
-import Page from "@/components/forget-password/page";
-import OtpVerifyPage from "@/components/otp-verificate/page";
-import Success from "@/components/resgister-success/page";
-import OtpReset from "@/components/otp-reset/page";
-import ResetPassword from "@/components/reset-password/page";
-const LoginPage = () => {
+
+const AuthLayout = ({ children }: any) => {
   const isMobile = useMediaQuery("(max-width:768px)");
 
   return (
     <Container
-      sx={{ width: "100%", display: "flex" }}
       maxWidth={false}
       disableGutters
+      sx={{
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+      }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          height: "100vh",
-          width: "100%",
-        }}
-      >
-        <LoginLeft />
-      </Box>
+      {children}
+
       {!isMobile && <LoginRight />}
     </Container>
   );
@@ -35,21 +34,78 @@ const LoginPage = () => {
 const AuthRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      {/* LOGIN */}
+      <Route
+        path="/"
+        element={
+          <AuthLayout>
+            <LoginPage />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/login" element={<LoginPage />} />
+      {/* REGISTER */}
+      <Route
+        path="/register"
+        element={
+          <AuthLayout>
+            <Register />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/forget-password" element={<Page />} />
+      {/* FORGET PASSWORD */}
+      <Route
+        path="/forget-password"
+        element={
+          <AuthLayout>
+            <ForgetPassword />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/register" element={<Register />} />
+      {/* OTP VERIFY */}
+      <Route
+        path="/otp-verify"
+        element={
+          <AuthLayout>
+            <OtpVerifyPage />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/otp-verify" element={<OtpVerifyPage />} />
+      {/* OTP RESET */}
+      <Route
+        path="/otp"
+        element={
+          <AuthLayout>
+            <OtpReset />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/register/success" element={<Success />} />
+      {/* RESET PASSWORD */}
+      <Route
+        path="/reset-password"
+        element={
+          <AuthLayout>
+            <ResetPassword />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/otp" element={<OtpReset />} />
+      {/* SUCCESS */}
+      <Route
+        path="/register/success"
+        element={
+          <AuthLayout>
+            <Success />
+          </AuthLayout>
+        }
+      />
 
-      <Route path="/reset-password" element={<ResetPassword />} />
+      {/* UNKNOWN ROUTES */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

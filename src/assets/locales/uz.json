@@ -469,7 +469,11 @@
   "subscription_pay": "To'lash",
   "month_short": "oy",
   "summary_period": "/ {{period}} oy",
-  "subscription_12_months": "",
-  "subscription_6_months": "6",
-  "subscription_3_months": "3"
+  "subscription_12_months": "12 oylik",
+  "subscription_6_months": "6 oylik",
+  "subscription_3_months": "3 oylik",
+  "not_found_title": "Sahifa topilmadi",
+  "not_found_description": "Siz qidirayotgan sahifa mavjud emas yoki boshqa manzilga ko‘chirilgan bo‘lishi mumkin.",
+  "not_found_home": "Dashboardga qaytish",
+  "not_found_back": "Orqaga qaytish"
 }
