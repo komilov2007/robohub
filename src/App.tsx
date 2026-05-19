@@ -1,10 +1,18 @@
-// import AuthRouter from "./router/AuthRouter";
+import Cookies from "js-cookie";
+
+import AuthRouter from "./router/AuthRouter";
 import DashboardRouter from "./router/DashboardRouter";
 
 function App() {
-  // const isAuth = document.cookie.includes("access_token=");
-  // return isAuth ? <DashboardRouter /> : <AuthRouter />;
-  return <DashboardRouter />;
+  const user = Cookies.get("user");
+
+  if (!user && window.location.pathname.startsWith("/dashboard")) {
+    window.location.replace("/login");
+
+    return null;
+  }
+
+  return user ? <DashboardRouter /> : <AuthRouter />;
 }
 
 export default App;

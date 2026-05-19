@@ -489,5 +489,7 @@
   "subscription_payment_title": "Choose payment method",
   "subscription_payment_desc": "Select one of the following payment systems",
   "subscription_back": "Back",
-  "subscription_pay": "Pay"
+  "subscription_pay": "Pay",
+  "month_short": "mo",
+  "summary_period": "/ {{period}} mo"
 }

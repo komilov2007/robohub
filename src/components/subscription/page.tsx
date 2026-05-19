@@ -112,15 +112,15 @@ export default function SubscriptionPage() {
 
         <PeriodTabs>
           <PeriodButton active={period === 3} onClick={() => handlePeriod(3)}>
-            3 oy
+            {t("subscription_3_months")}
           </PeriodButton>
 
           <PeriodButton active={period === 6} onClick={() => handlePeriod(6)}>
-            6 oy
+            {t("subscription_6_months")}
           </PeriodButton>
 
           <PeriodButton active={period === 12} onClick={() => handlePeriod(12)}>
-            12 oy
+            {t("subscription_12_months")}
           </PeriodButton>
         </PeriodTabs>
 
@@ -278,7 +278,7 @@ export default function SubscriptionPage() {
               <Divider />
               <SummaryText>{t("subscription_total")}</SummaryText>
               <TotalPrice>{totalPrice.toLocaleString()} UZS</TotalPrice>
-              <SummaryText>/ {period} oy</SummaryText>
+              <SummaryText>{t("summary_period", { period })}</SummaryText>
               <PayButton onClick={handleOpenPayment}>
                 {t("subscription_continue")}
               </PayButton>
@@ -341,7 +341,7 @@ export default function SubscriptionPage() {
                               alt="uzum"
                               style={{
                                 width: 118,
-                                height: 118,
+                                height: 78,
 
                                 objectFit: "contain",
                               }}
@@ -357,7 +357,7 @@ export default function SubscriptionPage() {
                               alt="click"
                               style={{
                                 width: 118,
-                                height: 118,
+                                height: 78,
 
                                 objectFit: "contain",
                               }}
@@ -374,8 +374,7 @@ export default function SubscriptionPage() {
                               alt="payme"
                               style={{
                                 width: 118,
-                                height: 118,
-
+                                height: 68,
                                 objectFit: "contain",
                               }}
                             />

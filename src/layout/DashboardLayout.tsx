@@ -90,7 +90,6 @@ export default function MainLayout() {
         <Sidebar collapsed={collapsed} onCollapseChange={setCollapsed} />
       </Box>
 
-      {/* MOBILE BACKDROP */}
       {!collapsed && (
         <Box
           onClick={() => setCollapsed(true)}
@@ -112,13 +111,11 @@ export default function MainLayout() {
         />
       )}
 
-      {/* CONTENT */}
       <Box
         component="main"
         sx={{
           flex: 1,
 
-          // DESKTOP
           ml: {
             xs: 0,
             md: `${sidebarWidth}px`,

@@ -492,5 +492,7 @@
   "subscription_payment_title": "Выберите способ оплаты",
   "subscription_payment_desc": "Выберите одну из следующих платёжных систем",
   "subscription_back": "Назад",
-  "subscription_pay": "Оплатить"
+  "subscription_pay": "Оплатить",
+  "month_short": "мес",
+  "summary_period": "/ {{period}} мес"
 }

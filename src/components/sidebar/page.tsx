@@ -1,13 +1,9 @@
 import { useState } from "react";
-
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
 import IconArrowLeft from "@/assets/icons/sidebar-arrow-left.svg?react";
-
 import SidebarProfilImg from "@/assets/img/profil.webp";
-
 import { usePage } from "./usePage";
-
 import {
   AvatarWrap,
   Badge,
@@ -50,12 +46,10 @@ import {
   SubTopBox,
 } from "./styled";
 import { StarRounded } from "@mui/icons-material";
-
 type SidebarPageProps = {
   collapsed?: boolean;
   onCollapseChange?: (collapsed: boolean) => void;
 };
-
 const SidebarPage = ({
   collapsed: controlledCollapsed,
   onCollapseChange,
@@ -70,7 +64,6 @@ const SidebarPage = ({
     isActive,
     t,
   } = usePage(controlledCollapsed, onCollapseChange);
-
   const NotificationIcon = notification.icon;
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
   return (
@@ -82,22 +75,17 @@ const SidebarPage = ({
               <IconLogo />
             </BrandWrap>
           )}
-
           <ToggleButton collapsed={collapsed} onClick={handleToggleSidebar}>
             {collapsed ? <IconArrowLeft /> : <IconArrow />}
           </ToggleButton>
         </TopArea>
-
         {!collapsed && (
           <MenuWrap>
             {menus.map((item, index) => {
               const Icon = item.icon;
               const IconAct = item.iconAct;
-
               const active = isActive(item.path);
-
               const firstItem = index === 0;
-
               return (
                 <MenuItemWrap
                   key={item.id}
@@ -118,22 +106,17 @@ const SidebarPage = ({
                     <MenuIconWrap active={active}>
                       {active ? <IconAct /> : <Icon />}
                     </MenuIconWrap>
-
                     <MenuText active={active} collapsed={collapsed}>
                       {item.title}
                     </MenuText>
-
                     {firstItem && <MenuBadge>TEZ KUNDA</MenuBadge>}
                   </MenuItem>
-
                   {firstItem && hoveredMenu === item.id && (
                     <SoonModal>
                       <SoonWrapper>
                         <SoonTitle>{t("sidebar_dashboard")}</SoonTitle>
-
                         <SoonBadge>{t("sidebar_soon")}</SoonBadge>
                       </SoonWrapper>
-
                       <SoonText>{t("sidebar_soon_description")}</SoonText>
                     </SoonModal>
                   )}
@@ -143,7 +126,6 @@ const SidebarPage = ({
           </MenuWrap>
         )}
       </TopBlock>
-
       {!collapsed && (
         <BottomArea>
           <SubCardWrapper
@@ -165,25 +147,19 @@ const SidebarPage = ({
                     }}
                   />
                 </SubIconBox>
-
                 <SubTextBox>
                   <SubTitle>{t("subscription_active")}</SubTitle>
-
                   <SubStatus>{t("subscription_active")}</SubStatus>
                 </SubTextBox>
               </SubInfoBox>
             </SubTopBox>
-
             <SubBottomBox>
               <SubDays>87 {t("subscription_days_left")}</SubDays>
-
               <SubPriceBox>
                 <SubPrice>500,000</SubPrice>
-
-                <SubMonth>/mo</SubMonth>
+                <SubMonth>/{t("month_short")}</SubMonth>
               </SubPriceBox>
             </SubBottomBox>
-
             <SubProgress variant="determinate" value={72} />
           </SubCardWrapper>
           <NotificationsRow
@@ -195,15 +171,12 @@ const SidebarPage = ({
               <MenuIconWrap>
                 <NotificationIcon />
               </MenuIconWrap>
-
               <NotificationsText collapsed={collapsed}>
                 {notification.title}
               </NotificationsText>
             </NotificationsLeft>
-
             <Badge collapsed={collapsed}>{notification.count}</Badge>
           </NotificationsRow>
-
           <UserCard
             to={"/dashboard/profile"}
             collapsed={collapsed}
@@ -212,10 +185,8 @@ const SidebarPage = ({
             <AvatarWrap>
               <img src={user.image || SidebarProfilImg} alt={user.fullName} />
             </AvatarWrap>
-
             <UserInfo collapsed={collapsed}>
               <UserName>{user.fullName}</UserName>
-
               <UserPhone>{user.phone}</UserPhone>
             </UserInfo>
           </UserCard>
@@ -224,5 +195,4 @@ const SidebarPage = ({
     </SidebarWrap>
   );
 };
-
 export default SidebarPage;

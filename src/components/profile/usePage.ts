@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Cookies from "js-cookie";
 
 import { useBoolean } from "@/hook/useBoolean";
 import { api } from "@/api/api";
@@ -204,14 +205,14 @@ export const usePage = () => {
     },
   });
   const handleLogout = () => {
-    document.cookie =
-      "access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    document.cookie =
-      "refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    document.cookie =
-      "reset_access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    Cookies.remove("user");
+
+    localStorage.removeItem("reset_access_token");
+    localStorage.removeItem("register_access_token");
+
     toast.success(t("logout_toast"));
-    window.location.href = "/login";
+
+    window.location.replace("/login");
   };
   const updateProfileMutation = useMutation({
     mutationFn: async (values: ProfileForm) => {

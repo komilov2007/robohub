@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import * as yup from "yup";
+import Cookies from "js-cookie";
 
 import { useBoolean } from "@/hook/useBoolean";
 import { api } from "@/api/api";
@@ -22,10 +23,12 @@ export interface UserProps {
     refresh: string;
   };
 }
+
 import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
 import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
 import IconFlagEn from "@/assets/icons/flag-en.svg?react";
 import toast from "react-hot-toast";
+
 const schema = yup.object({
   contact: yup.string().trim().required("contact_required").default(""),
   password: yup
@@ -34,11 +37,13 @@ const schema = yup.object({
     .min(6, "password_min_length")
     .default(""),
 });
+
 const languages = [
   { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
   { value: "ru", label: "Русский", Icon: IconFlagRu },
   { value: "en", label: "English", Icon: IconFlagEn },
 ];
+
 export type SchemaType = yup.InferType<typeof schema>;
 
 export const usePage = () => {
@@ -63,32 +68,38 @@ export const usePage = () => {
       const res = await api.post<UserProps>("account/login/", data);
       return res.data;
     },
+
     onSuccess: (user) => {
-      const expires = rememberMe.value ? `; max-age=${60 * 60 * 24 * 7}` : "";
-      document.cookie = `access_token=${user.tokens.access}; path=/; samesite=strict${expires}`;
-      if (user.tokens.refresh) {
-        document.cookie = `refresh_token=${user.tokens.refresh}; path=/; samesite=strict${expires}`;
-      }
+      Cookies.set("user", user.tokens.access, {
+        expires: rememberMe.value ? 7 : undefined,
+        path: "/",
+        sameSite: "strict",
+      });
+
       toast.success(t("login_toast"));
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 800);
+
+      window.location.href = "/dashboard";
     },
+
     onError: (error: any) => {
       const message =
         error?.response?.data?.message ||
         error?.response?.data?.detail ||
         "login_failed";
+
       toast.error(t("login_error_toast"));
+
       setError("root", {
         type: "server",
         message,
       });
     },
   });
+
   const onSubmit = async (data: SchemaType) => {
     await loginMutation.mutateAsync(data);
   };
+
   return {
     control,
     handleSubmit,

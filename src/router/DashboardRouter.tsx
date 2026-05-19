@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-// import ProtectedRoute from "@/router/ProtectedRoute";
 import DashboardLayout from "@/layout/DashboardLayout";
 import DashboardPage from "@/components/dashboard/page";
 import OrdersPage from "@/components/order/page";
@@ -17,7 +16,6 @@ import SubscriptionPage from "@/components/subscription/page";
 const DashboardRouter = () => {
   return (
     <Routes>
-      {/* <Route element={<ProtectedRoute />}> */}
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<DashboardPage />} />
         <Route path="orders" element={<OrdersPage />} />
@@ -33,7 +31,6 @@ const DashboardRouter = () => {
         <Route path="answers" element={<AnswerPage />} />
         <Route path="subscription" element={<SubscriptionPage />} />
       </Route>
-      {/* </Route> */}
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );

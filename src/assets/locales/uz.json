@@ -466,5 +466,10 @@
   "subscription_payment_title": "To'lov usulini tanlang",
   "subscription_payment_desc": "Quyidagi to'lov tizimlaridan birini tanlang",
   "subscription_back": "Orqaga",
-  "subscription_pay": "To'lash"
+  "subscription_pay": "To'lash",
+  "month_short": "oy",
+  "summary_period": "/ {{period}} oy",
+  "subscription_12_months": "",
+  "subscription_6_months": "6",
+  "subscription_3_months": "3"
 }
