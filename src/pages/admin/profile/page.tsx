@@ -4,7 +4,7 @@ import theme from "@/theme/theme";
 
 import { usePage } from "./usePage";
 
-import { PageWrapper } from "@/pages/dashboard/profile/styled";
+import { PageWrapper } from "@/pages/admin/profile/styled";
 import ProfileTabs from "@/components/profile/ProfileTabs";
 import ProfileContent from "@/components/profile/ProfileContent";
 import LogoutModal from "@/components/profile/LogoutModal";

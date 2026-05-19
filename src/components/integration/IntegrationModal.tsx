@@ -20,7 +20,7 @@ import {
   PasswordWrapper,
   StyledInput,
   TextBox,
-} from "@/pages/dashboard/integration/styled";
+} from "@/pages/admin/integration/styled";
 
 const IntegrationModal = ({
   t,

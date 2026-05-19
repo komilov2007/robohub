@@ -43,7 +43,7 @@ import {
   StyledTableContainer,
   TableArea,
   TableWrap,
-} from "@/pages/dashboard/order/styled";
+} from "@/pages/admin/order/styled";
 
 const OrdersTable = ({
   t,

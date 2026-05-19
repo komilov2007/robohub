@@ -27,7 +27,7 @@ import {
   SectionHeader,
   SectionTitle,
   Step,
-} from "@/pages/dashboard/subscription/styled";
+} from "@/pages/admin/subscription/styled";
 
 type Props = {
   marketplaces: any[];

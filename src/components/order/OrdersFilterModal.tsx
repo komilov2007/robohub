@@ -17,7 +17,7 @@ import {
   FilterModalWrapper,
   FilterSidebar,
   FilterSidebarItem,
-} from "@/pages/dashboard/order/styled";
+} from "@/pages/admin/order/styled";
 
 const OrdersFilterModal = ({ isOpen, close, filterItems }: any) => {
   return (

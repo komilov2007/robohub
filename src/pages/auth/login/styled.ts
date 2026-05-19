@@ -60,7 +60,7 @@ export const LoginLeft = styled(Box)({
 });
 export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
   height: 42,
-  padding: "0 10px 12px",
+  padding: "0 60px 12px 30px",
   minWidth: "auto",
   borderRadius: 0,
   background: "transparent",
@@ -73,6 +73,7 @@ export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
   marginLeft: "20px",
   whiteSpace: "nowrap",
   flexShrink: 0,
+  marginBottom: "-15px",
 
   "&:hover": {
     background: "transparent",

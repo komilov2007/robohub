@@ -2,8 +2,8 @@ import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 import ArrowDownwardRoundedIcon from "@mui/icons-material/ArrowDownwardRounded";
 import { useTranslation } from "react-i18next";
 
-import type { StatCardItem } from "@/pages/dashboard/dashboard/usePage";
-import { usePage } from "@/pages/dashboard/dashboard/usePage";
+import type { StatCardItem } from "@/pages/admin/dashboard/usePage";
+import { usePage } from "@/pages/admin/dashboard/usePage";
 import {
   CardTitle,
   CardTop,
@@ -18,7 +18,7 @@ import {
   ValueRow,
   ValueText,
   ValueWrap,
-} from "@/pages/dashboard/dashboard/styled";
+} from "@/pages/admin/dashboard/styled";
 
 function TrendBadge({
   trend,

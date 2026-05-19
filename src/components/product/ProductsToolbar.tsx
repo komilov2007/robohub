@@ -8,7 +8,7 @@ import {
   SearchLeft,
   SearchRow,
   ShortcutBox,
-} from "@/pages/dashboard/product/styled";
+} from "@/pages/admin/product/styled";
 
 const ProductsToolbar = ({ t, search, setSearch }: any) => {
   return (

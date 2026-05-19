@@ -31,7 +31,7 @@ import {
   StatusBadge,
   StatusRow,
   TopRightAction,
-} from "@/pages/dashboard/product/styled";
+} from "@/pages/admin/product/styled";
 
 const ProductsGrid = ({ filteredProducts, t }: any) => {
   const navigate = useNavigate();

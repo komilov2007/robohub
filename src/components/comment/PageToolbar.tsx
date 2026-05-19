@@ -8,7 +8,7 @@ import {
   SearchInput,
   Shortcut,
   Toolbar,
-} from "@/pages/dashboard/comment/styled";
+} from "@/pages/admin/comment/styled";
 
 const PageToolbar = ({ t, search, setSearch }: any) => {
   return (

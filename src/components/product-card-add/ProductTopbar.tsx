@@ -13,7 +13,7 @@ import {
   StrongHeadLink,
   SubmitButton,
   TopBar,
-} from "@/pages/dashboard/product-card-add/styled";
+} from "@/pages/admin/product-card-add/styled";
 
 const ProductTopbar = ({ t }: any) => {
   const navigate = useNavigate();

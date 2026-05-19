@@ -1,23 +1,23 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "@/layout/DashboardLayout";
-import DashboardPage from "@/pages/dashboard/dashboard/page";
-import OrdersPage from "@/pages/dashboard/order/page";
-import ProductsPage from "@/pages/dashboard/product/page";
-import WarehousePage from "@/pages/dashboard/were-house/page";
-import IntegrationPage from "@/pages/dashboard/integration/page";
-import ProductAddCard from "@/pages/dashboard/product-card-add/page";
-import Profile from "@/pages/dashboard/profile/page";
-import NotificationsPage from "@/pages/dashboard/notifications/page";
-import MappingPage from "@/pages/dashboard/mappping/page";
-import CommentPage from "@/pages/dashboard/comment/page";
-import SubscriptionPage from "@/pages/dashboard/subscription/page";
-import AnswerPage from "@/pages/dashboard/answer/page";
-import Chat from "@/pages/dashboard/chat/page";
+import DashboardPage from "@/pages/admin/dashboard/page";
+import OrdersPage from "@/pages/admin/order/page";
+import ProductsPage from "@/pages/admin/product/page";
+import WarehousePage from "@/pages/admin/were-house/page";
+import IntegrationPage from "@/pages/admin/integration/page";
+import ProductAddCard from "@/pages/admin/product-card-add/page";
+import Profile from "@/pages/admin/profile/page";
+import NotificationsPage from "@/pages/admin/notifications/page";
+import MappingPage from "@/pages/admin/mappping/page";
+import CommentPage from "@/pages/admin/comment/page";
+import SubscriptionPage from "@/pages/admin/subscription/page";
+import AnswerPage from "@/pages/admin/answer/page";
+import Chat from "@/pages/admin/chat/page";
 import NotFoundPage from "@/pages/not-found/page";
 const DashboardRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/admin/dashboard" replace />} />
+      <Route path="/" element={<Navigate to="/admin/dashboard" />} />
       <Route path="/admin" element={<DashboardLayout />}>
         <Route index element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />

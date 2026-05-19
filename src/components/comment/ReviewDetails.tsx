@@ -21,7 +21,7 @@ import {
   ReviewPanel,
   SendButton,
   SmallMuted,
-} from "@/pages/dashboard/comment/styled";
+} from "@/pages/admin/comment/styled";
 
 const ReviewDetails = ({
   selectedReview,

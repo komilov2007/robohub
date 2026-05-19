@@ -16,7 +16,7 @@ import {
   StepList,
   StepRow,
   VideoButton,
-} from "@/pages/dashboard/product-card-add/styled";
+} from "@/pages/admin/product-card-add/styled";
 
 const ProductSidebar = ({ t }: any) => {
   return (

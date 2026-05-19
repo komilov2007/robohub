@@ -5,7 +5,7 @@ import {
   MessageList,
   MessageText,
   MessageTime,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const MessageListSection = ({ messages, t }: any) => {
   if (!messages.length) {

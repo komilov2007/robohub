@@ -17,7 +17,7 @@ import {
   TableRow,
   Td,
   Th,
-} from "@/pages/dashboard/comment/styled";
+} from "@/pages/admin/comment/styled";
 
 const RatingStars = ({ value }: any) => {
   return (

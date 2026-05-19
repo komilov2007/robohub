@@ -29,7 +29,7 @@ import {
   UploadDescription,
   UploadIconWrap,
   UploadTitle,
-} from "@/pages/dashboard/product-card-add/styled";
+} from "@/pages/admin/product-card-add/styled";
 
 const ProductSections = ({
   t,

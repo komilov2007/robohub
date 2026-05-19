@@ -7,7 +7,7 @@ import {
   EmojiPickerHeader,
   EmojiPickerTitle,
   EmojiPickerWrap,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const emojis = ["😀", "😂", "😍", "🔥", "🎉", "❤️", "👍", "🥰"];
 

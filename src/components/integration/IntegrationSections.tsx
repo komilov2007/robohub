@@ -12,7 +12,7 @@ import {
   SectionTitle,
   SectionWrapper,
   TextBox,
-} from "@/pages/dashboard/integration/styled";
+} from "@/pages/admin/integration/styled";
 
 const IntegrationSections = ({ sections, handleOpenModal, t }: any) => {
   return (

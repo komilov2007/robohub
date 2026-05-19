@@ -9,7 +9,7 @@ import {
   PromoImage,
   PromoText,
   PromoTitle,
-} from "@/pages/dashboard/integration/styled";
+} from "@/pages/admin/integration/styled";
 
 const IntegrationBanner = ({ t }: any) => {
   return (

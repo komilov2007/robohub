@@ -6,7 +6,7 @@ import {
   UserMessagePreview,
   UserMessageRow,
   UserRow,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const ChatListItem = ({ item, active, onClick }: any) => {
   return (

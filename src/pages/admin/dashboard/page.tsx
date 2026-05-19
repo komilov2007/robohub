@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Box } from "@mui/material";
 import DashboardStatsSection from "@/components/dashboard/stats";
 import AnalyticsDashboard from "@/components/dashboard/analitika";
-import OrdersPage from "@/pages/dashboard/order/page";
+import OrdersPage from "@/pages/admin/order/page";
 
 const Page = () => {
   return (

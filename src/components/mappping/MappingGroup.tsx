@@ -9,7 +9,7 @@ import {
   GroupName,
   GroupNameWrap,
   GroupTop,
-} from "@/pages/dashboard/mappping/styled";
+} from "@/pages/admin/mappping/styled";
 
 const MappingGroup = ({ title, handleCreateGroup }: any) => {
   return (

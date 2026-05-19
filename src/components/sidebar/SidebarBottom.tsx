@@ -27,7 +27,7 @@ import {
   UserInfo,
   UserName,
   UserPhone,
-} from "@/pages/dashboard/sidebar/styled";
+} from "@/pages/admin/sidebar/styled";
 
 type Props = {
   collapsed: boolean;

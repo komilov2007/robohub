@@ -7,7 +7,7 @@ import {
   EmptyStateIconBox,
   EmptyStateTitle,
   EmptyStateWrapper,
-} from "@/pages/dashboard/product/styled";
+} from "@/pages/admin/product/styled";
 
 const EmptyProducts = ({ t }: any) => {
   return (

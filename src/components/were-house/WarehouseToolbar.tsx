@@ -12,7 +12,7 @@ import IconFilter from "@/assets/icons/icon-filter.svg?react";
 import IconCancel from "@/assets/icons/icon-cancel.svg?react";
 import IconInfo from "@/assets/icons/icon-info.svg?react";
 
-import { InputIcon } from "@/pages/dashboard/order/styled";
+import { InputIcon } from "@/pages/admin/order/styled";
 
 import {
   FilterAction,
@@ -37,7 +37,7 @@ import {
   ToolbarRight,
   ToolbarSection,
   ToolbarText,
-} from "@/pages/dashboard/were-house/styled";
+} from "@/pages/admin/were-house/styled";
 
 type Props = {
   modal: any;

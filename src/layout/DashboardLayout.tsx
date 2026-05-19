@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import Sidebar from "@/pages/dashboard/sidebar/page";
+import Sidebar from "@/pages/admin/sidebar/page";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 

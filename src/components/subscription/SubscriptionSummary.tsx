@@ -12,7 +12,7 @@ import {
   SummaryTitle,
   SummaryValue,
   TotalPrice,
-} from "@/pages/dashboard/subscription/styled";
+} from "@/pages/admin/subscription/styled";
 
 import PaymentModal from "./PaymentModal";
 

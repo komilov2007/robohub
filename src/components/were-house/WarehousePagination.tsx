@@ -13,7 +13,7 @@ import {
   RowsPerPageControl,
   StyledMenuItem,
   StyledSelect,
-} from "@/pages/dashboard/were-house/styled";
+} from "@/pages/admin/were-house/styled";
 
 type Props = {
   page: number;

@@ -10,7 +10,7 @@ import {
   LogoutIconWrap,
   LogoutModalBox,
   LogoutTitle,
-} from "@/pages/dashboard/sidebar/styled";
+} from "@/pages/admin/sidebar/styled";
 
 const LogoutModal = ({ t, logoutModal, handleLogout }: any) => {
   return (

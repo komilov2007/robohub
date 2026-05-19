@@ -12,7 +12,7 @@ import {
   ChatTab,
   SearchInput,
   SidebarSearchWrap,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const ChatSidebarComponent = ({
   chats,

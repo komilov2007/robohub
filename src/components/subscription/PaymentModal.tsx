@@ -26,7 +26,7 @@ import {
   PaymentSubmitButton,
   PaymentTitle,
   PaymentTop,
-} from "@/pages/dashboard/subscription/styled";
+} from "@/pages/admin/subscription/styled";
 
 type Props = {
   paymentModal: boolean;

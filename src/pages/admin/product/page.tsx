@@ -29,7 +29,7 @@ export default function Page() {
       <Header>
         <Title>{t("my_products")}</Title>
 
-        <CreateButton to="/dashboard/products/add">
+        <CreateButton to="/admin/products/add">
           <IconAdd />
 
           {t("create_product_card")}

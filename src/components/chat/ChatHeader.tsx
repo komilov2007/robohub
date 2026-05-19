@@ -8,7 +8,7 @@ import {
   HeaderTitle,
   PlatformSelect,
   SettingsButton,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const ChatHeader = ({ t }: any) => {
   return (

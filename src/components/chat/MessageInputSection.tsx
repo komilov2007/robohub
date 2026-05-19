@@ -9,7 +9,7 @@ import {
   ChatFooter,
   MessageInput,
   MessageSendActions,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const MessageInputSection = ({
   t,

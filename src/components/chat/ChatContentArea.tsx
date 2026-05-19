@@ -16,7 +16,7 @@ import {
   ChatHeaderRight,
   ChatUserAvatar,
   MobileBackButton,
-} from "@/pages/dashboard/chat/styled";
+} from "@/pages/admin/chat/styled";
 
 const ChatContentArea = ({
   selectedChat,

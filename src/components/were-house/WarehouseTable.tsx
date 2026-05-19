@@ -20,7 +20,7 @@ import {
   StyledTable,
   StyledTableContainer,
   StyledTableHead,
-} from "@/pages/dashboard/were-house/styled";
+} from "@/pages/admin/were-house/styled";
 
 type Props = {
   tableItems: any[];

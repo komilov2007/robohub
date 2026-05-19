@@ -11,7 +11,7 @@ import {
   SearchInput,
   ShortcutText,
   ToolbarRow,
-} from "@/pages/dashboard/order/styled";
+} from "@/pages/admin/order/styled";
 
 const OrdersToolbar = ({ t, search, setSearch, open }: any) => {
   return (
