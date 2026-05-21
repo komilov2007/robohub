@@ -12,10 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
 
-import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
-import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
-import IconFlagEn from "@/assets/icons/flag-en.svg?react";
-
 import { api } from "@/api/api";
 
 import type {
@@ -27,6 +23,7 @@ import type {
 import toast from "react-hot-toast";
 
 import { useBoolean } from "@/hook/useBoolean";
+import { ROUTERS } from "@/constants/router";
 
 export const usePage = () => {
   const privacyAccepted = useBoolean();
@@ -177,11 +174,9 @@ export const usePage = () => {
 
       localStorage.removeItem("refresh_token");
 
-      // 🔥 REGISTER TOKEN
       const registerToken = res?.tokens?.access;
 
       if (registerToken) {
-        // ✅ LOCALSTORAGE
         localStorage.setItem("register_access_token", registerToken);
 
         console.log("✅ REGISTER TOKEN LOCALSTORAGEGA SAQLANDI");
@@ -189,8 +184,11 @@ export const usePage = () => {
 
       toast.success(t("register_success"));
 
-      // 🔥 OTP PAGE
-      navigate(`/otp-verify?contact=${encodeURIComponent(variables.contact)}`);
+      navigate(`/${ROUTERS.otp_verify}`, {
+        state: {
+          contact: variables.contact,
+        },
+      });
     },
     onError: (error: any) => {
       const status = error?.response?.status;
@@ -225,69 +223,28 @@ export const usePage = () => {
     },
   });
 
-  // 🔥 SUBMIT
   const onSubmit = (data: RegisterFormType) => {
     registerMutation.mutate(data);
   };
 
-  // 🔥 LANGUAGE
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-
-    localStorage.setItem("lang", value);
-  };
-
-  // 🔥 LANGUAGES
-  const languages = [
-    {
-      value: "uz",
-      label: "O'zbekcha",
-      Icon: IconFlagUz,
-    },
-
-    {
-      value: "ru",
-      label: "Русский",
-      Icon: IconFlagRu,
-    },
-
-    {
-      value: "en",
-      label: "English",
-      Icon: IconFlagEn,
-    },
-  ];
-
   return {
     t,
     i18n,
-
     control,
     handleSubmit,
     onSubmit,
-
     errors,
-
     isDirty,
     isValid,
     isSubmitting,
-
     registerLoading: registerMutation.isPending,
-
     showPassword,
     setShowPassword,
-
     showConfirmPassword,
     setShowConfirmPassword,
-
     passwordChecks,
     passwordStrength,
-
-    languages,
-    handleLangChange,
-
     navigate,
-
     privacyAccepted,
   };
 };

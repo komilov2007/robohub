@@ -7,10 +7,6 @@ import { useNavigate } from "react-router-dom";
 import IconUser from "@/assets/icons/user.svg?react";
 import IconArrow from "@/assets/icons/icon-arrow.svg?react";
 
-import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
-import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
-import IconFlagEn from "@/assets/icons/flag-en.svg?react";
-
 import {
   BackButton,
   BottomInlineText,
@@ -18,21 +14,11 @@ import {
   CenterArea,
   FieldWrap,
   FormBlock,
-  HeaderArea,
-  LanguageSelect,
-  LanguageSelectWrap,
-  StyledMenuItem,
   StyledTextField,
   SubmitButton,
   SubTitleWrap,
   TitleWrap,
 } from "@/pages/auth/forget-password/styled";
-
-const languages = [
-  { value: "uz", label: "O'zbekcha", Icon: IconFlagUz },
-  { value: "ru", label: "Русский", Icon: IconFlagRu },
-  { value: "en", label: "English", Icon: IconFlagEn },
-];
 
 const ForgetPasswordForm = ({
   control,
@@ -40,28 +26,11 @@ const ForgetPasswordForm = ({
   onSubmit,
   loading,
   t,
-  i18n,
-  handleLangChange,
 }: any) => {
   const navigate = useNavigate();
 
   return (
     <>
-      <HeaderArea>
-        <LanguageSelectWrap>
-          <LanguageSelect
-            value={i18n.language}
-            onChange={(e) => handleLangChange(e.target.value as string)}
-          >
-            {languages.map(({ value, label, Icon }) => (
-              <StyledMenuItem key={value} value={value}>
-                <Icon /> {label}
-              </StyledMenuItem>
-            ))}
-          </LanguageSelect>
-        </LanguageSelectWrap>
-      </HeaderArea>
-
       <CenterArea>
         <FormBlock onSubmit={handleSubmit(onSubmit)}>
           <BackButton onClick={() => navigate(-1)}>

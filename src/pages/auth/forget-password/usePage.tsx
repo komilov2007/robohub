@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { api } from "@/api/api";
 import toast from "react-hot-toast";
+import { ROUTERS } from "@/constants/router";
 type FormValues = {
   contact: string;
 };
@@ -51,7 +52,7 @@ export const usePage = () => {
         localStorage.setItem("reset_refresh_token", refreshToken);
       }
       toast.success(t("sms_sent"));
-      navigate(`/otp?contact=${encodeURIComponent(contact)}`);
+      navigate(`${ROUTERS.otp}?contact=${encodeURIComponent(contact)}`);
     } catch (err: any) {
       console.log(err?.response?.data);
       toast.error(

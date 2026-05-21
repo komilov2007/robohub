@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 import { handleLangChange } from "@/assets/locales/i18n";
+import { ROUTERS } from "@/constants/router";
 
 const OTP_LENGTH = 5;
 
@@ -101,10 +102,12 @@ export const usePage = () => {
       toast.success(t("otp_verified_success"));
       if (newResetToken) {
         localStorage.setItem("reset_access_token", newResetToken);
-        navigate(`/reset-password?token=${encodeURIComponent(newResetToken)}`);
+        navigate(
+          `/${ROUTERS.reset_password}?token=${encodeURIComponent(newResetToken)}`,
+        );
       } else {
         toast.error(t("token_not_received"));
-        navigate("/reset-password");
+        navigate(`/${ROUTERS.reset_password}`);
       }
     } catch (err: any) {
       const detail = err?.response?.data?.detail;

@@ -1,6 +1,7 @@
 import { StarRounded } from "@mui/icons-material";
 
 import SidebarProfilImg from "@/assets/img/profil.webp";
+import { ROUTERS } from "@/constants/router";
 
 import {
   BottomArea,
@@ -48,20 +49,22 @@ const SidebarBottom = ({
 }: Props) => {
   const NotificationIcon = notification.icon;
 
-  if (collapsed) return null;
+  const subscriptionPath = `/${ROUTERS.admin}/${ROUTERS.admin_subscription}`;
+  const notificationsPath = `/${ROUTERS.admin}/${ROUTERS.admin_notifications}`;
+  const profilePath = `/${ROUTERS.admin}/${ROUTERS.admin_profile}`;
 
   return (
     <BottomArea>
       <SubCardWrapper
-        to={"/admin/subscription"}
-        collapsed={collapsed}
+        to={subscriptionPath}
+        $collapsed={collapsed}
         onClick={() => {
           if (window.innerWidth < 900) {
             handleToggleSidebar();
           }
         }}
       >
-        <SubTopBox>
+        <SubTopBox $collapsed={collapsed}>
           <SubInfoBox>
             <SubIconBox>
               <StarRounded
@@ -72,61 +75,67 @@ const SidebarBottom = ({
               />
             </SubIconBox>
 
-            <SubTextBox>
-              <SubTitle>{t("subscription_active")}</SubTitle>
-
-              <SubStatus>{t("subscription_active")}</SubStatus>
-            </SubTextBox>
+            {!collapsed && (
+              <SubTextBox>
+                <SubTitle>{t("subscription_active")}</SubTitle>
+                <SubStatus>{t("subscription_active")}</SubStatus>
+              </SubTextBox>
+            )}
           </SubInfoBox>
         </SubTopBox>
 
-        <SubBottomBox>
-          <SubDays>87 {t("subscription_days_left")}</SubDays>
+        {!collapsed && (
+          <>
+            <SubBottomBox>
+              <SubDays>87 {t("subscription_days_left")}</SubDays>
 
-          <SubPriceBox>
-            <SubPrice>500,000</SubPrice>
+              <SubPriceBox>
+                <SubPrice>500,000</SubPrice>
+                <SubMonth>/{t("month_short")}</SubMonth>
+              </SubPriceBox>
+            </SubBottomBox>
 
-            <SubMonth>/{t("month_short")}</SubMonth>
-          </SubPriceBox>
-        </SubBottomBox>
-
-        <SubProgress variant="determinate" value={72} />
+            <SubProgress variant="determinate" value={72} />
+          </>
+        )}
       </SubCardWrapper>
 
       <NotificationsRow
-        to={"/admin/notifications"}
-        collapsed={collapsed}
-        onClick={() => handleNavigate("/admin/notifications")}
+        to={notificationsPath}
+        $collapsed={collapsed}
+        onClick={() => handleNavigate(notificationsPath)}
       >
         <NotificationsLeft>
           <MenuIconWrap>
             <NotificationIcon />
           </MenuIconWrap>
 
-          <NotificationsText collapsed={collapsed}>
+          <NotificationsText $collapsed={collapsed}>
             {notification.title}
           </NotificationsText>
         </NotificationsLeft>
 
-        <Badge collapsed={collapsed}>{notification.count}</Badge>
+        {!collapsed && (
+          <Badge $collapsed={collapsed}>{notification.count}</Badge>
+        )}
       </NotificationsRow>
 
       <UserCard
-        to={"/admin/profile"}
-        collapsed={collapsed}
-        onClick={() => handleNavigate("/admin/profile")}
+        to={profilePath}
+        $collapsed={collapsed}
+        onClick={() => handleNavigate(profilePath)}
       >
         <AvatarWrap>
           <img src={user.image || SidebarProfilImg} alt={user.fullName} />
         </AvatarWrap>
 
-        <UserInfo collapsed={collapsed}>
+        <UserInfo $collapsed={collapsed}>
           <UserName>{user.fullName}</UserName>
-
           <UserPhone>{user.phone}</UserPhone>
         </UserInfo>
       </UserCard>
     </BottomArea>
   );
 };
+
 export default SidebarBottom;

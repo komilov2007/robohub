@@ -10,8 +10,8 @@ import {
   SoonModal,
   SoonWrapper,
   SoonTitle,
-  SoonBadge,
   SoonText,
+  SoonBadge,
 } from "@/pages/admin/sidebar/styled";
 
 type Props = {
@@ -31,8 +31,6 @@ const SidebarMenu = ({
 }: Props) => {
   const [hoveredMenu, setHoveredMenu] = useState<number | null>(null);
 
-  if (collapsed) return null;
-
   return (
     <MenuWrap>
       {menus.map((item, index) => {
@@ -45,36 +43,37 @@ const SidebarMenu = ({
         return (
           <MenuItemWrap
             key={item.id}
-            onMouseEnter={() => firstItem && setHoveredMenu(item.id)}
+            onMouseEnter={() =>
+              firstItem && !collapsed && setHoveredMenu(item.id)
+            }
             onMouseLeave={() => setHoveredMenu(null)}
           >
             <MenuItem
-              active={active}
-              collapsed={collapsed}
-              firstitem={firstItem}
-              disablecursor={firstItem}
+              $active={active}
+              $collapsed={collapsed}
+              $firstitem={firstItem}
+              $disablecursor={firstItem}
               onClick={() => {
                 if (!firstItem) {
                   handleNavigate(item.path);
                 }
               }}
             >
-              <MenuIconWrap active={active}>
+              <MenuIconWrap $active={active}>
                 {active ? <IconAct /> : <Icon />}
               </MenuIconWrap>
 
-              <MenuText active={active} collapsed={collapsed}>
+              <MenuText $active={active} $collapsed={collapsed}>
                 {item.title}
               </MenuText>
 
-              {firstItem && <MenuBadge>TEZ KUNDA</MenuBadge>}
+              {!collapsed && firstItem && <MenuBadge>TEZ KUNDA</MenuBadge>}
             </MenuItem>
 
-            {firstItem && hoveredMenu === item.id && (
+            {!collapsed && firstItem && hoveredMenu === item.id && (
               <SoonModal>
                 <SoonWrapper>
                   <SoonTitle>{t("sidebar_dashboard")}</SoonTitle>
-
                   <SoonBadge>{t("sidebar_soon")}</SoonBadge>
                 </SoonWrapper>
 

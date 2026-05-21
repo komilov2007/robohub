@@ -1,7 +1,5 @@
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
-import { usePage } from "@/pages/auth/register-success/usePage";
-
 import {
   SuccessCenterWrap,
   SuccessCard,
@@ -11,9 +9,11 @@ import {
   SuccessIconBox,
   SuccessTitle,
 } from "@/pages/auth/register-success/styled";
+import { useTranslation } from "react-i18next";
+import { ROUTERS } from "@/constants/router";
 
 const SuccessContent = () => {
-  const { t } = usePage();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -36,7 +36,7 @@ const SuccessContent = () => {
             {t("register_success_description")}
           </SuccessDescription>
 
-          <SuccessButton to="/">{t("start")}</SuccessButton>
+          <SuccessButton to={ROUTERS.home}>{t("start")}</SuccessButton>
         </SuccessCard>
       </SuccessCenterWrap>
     </>

@@ -1,16 +1,17 @@
 import { usePage } from "./usePage";
 
 import {
-  SidebarWrap,
   TopArea,
   BrandWrap,
   ToggleButton,
   TopBlock,
+  SidebarWrapper,
 } from "./styled";
 
 import IconLogo from "@/assets/icons/sidebar-logo.svg?react";
 import IconArrow from "@/assets/icons/sidebar-arrow.svg?react";
 import IconArrowLeft from "@/assets/icons/sidebar-arrow-left.svg?react";
+
 import SidebarMenu from "@/components/sidebar/SidebarMenu";
 import SidebarBottom from "@/components/sidebar/SidebarBottom";
 
@@ -35,16 +36,16 @@ const SidebarPage = ({
   } = usePage(controlledCollapsed, onCollapseChange);
 
   return (
-    <SidebarWrap collapsed={collapsed}>
+    <SidebarWrapper $collapsed={collapsed}>
       <TopBlock>
-        <TopArea collapsed={collapsed}>
+        <TopArea $collapsed={collapsed}>
           {!collapsed && (
-            <BrandWrap to={"/"} collapsed={collapsed}>
+            <BrandWrap to="/" $collapsed={collapsed}>
               <IconLogo />
             </BrandWrap>
           )}
 
-          <ToggleButton collapsed={collapsed} onClick={handleToggleSidebar}>
+          <ToggleButton $collapsed={collapsed} onClick={handleToggleSidebar}>
             {collapsed ? <IconArrowLeft /> : <IconArrow />}
           </ToggleButton>
         </TopArea>
@@ -66,7 +67,7 @@ const SidebarPage = ({
         handleToggleSidebar={handleToggleSidebar}
         t={t}
       />
-    </SidebarWrap>
+    </SidebarWrapper>
   );
 };
 

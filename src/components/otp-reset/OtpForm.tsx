@@ -9,12 +9,9 @@ import {
   CenterWrap,
   Description,
   FormWrap,
-  LanguageSelect,
-  LanguageSelectWrap,
   OtpInput,
   OtpRow,
   ResendText,
-  StyledMenuItem,
   SubmitButton,
   TimeText,
   Title,
@@ -25,9 +22,6 @@ const OtpForm = ({
   control,
   handleSubmit,
   onSubmit,
-  i18n,
-  languages,
-  handleLangChange,
   verifyLoading,
   contact,
   otpValues,
@@ -41,19 +35,6 @@ const OtpForm = ({
 
   return (
     <>
-      <LanguageSelectWrap>
-        <LanguageSelect
-          value={i18n.language}
-          onChange={(e) => handleLangChange(e.target.value as string)}
-        >
-          {languages.map(({ value, label, Icon }: any) => (
-            <StyledMenuItem key={value} value={value}>
-              <Icon /> {label}
-            </StyledMenuItem>
-          ))}
-        </LanguageSelect>
-      </LanguageSelectWrap>
-
       <CenterWrap>
         <form
           onSubmit={handleSubmit(onSubmit)}

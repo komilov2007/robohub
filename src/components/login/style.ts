@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Select } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { Form } from "react-router-dom";
 const dashMove = keyframes`
   0% {
     transform: rotate(0deg);
@@ -315,7 +316,7 @@ export const LanguageSelect = styled(Select)`
     border: none;
   }
 `;
-export const LoginOuter = styled(Box)`
+export const LoginOuter = styled(Form)`
   width: min(100%, 540px);
   display: flex;
   flex-direction: column;

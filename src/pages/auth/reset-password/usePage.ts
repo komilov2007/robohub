@@ -1,19 +1,10 @@
 import { useState } from "react";
-
 import { useForm } from "react-hook-form";
-
 import { useNavigate, useSearchParams } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
-
 import { api } from "@/api/api";
-
 import toast from "react-hot-toast";
-
-import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
-import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
-import IconFlagEn from "@/assets/icons/flag-en.svg?react";
-
+import { ROUTERS } from "@/constants/router";
 export type FormValues = {
   password: string;
   confirm_password: string;
@@ -25,49 +16,27 @@ export const usePage = () => {
   const navigate = useNavigate();
 
   const [params] = useSearchParams();
-
-  // ✅ QUERY TOKEN
   const queryToken = params.get("token") || "";
-
-  // ✅ LOCAL TOKEN
   const localToken = localStorage.getItem("reset_access_token") || "";
-
-  // ✅ TOKEN
   const token = queryToken || localToken;
-
-  // 🔥 FORM
   const { control, handleSubmit, watch } = useForm<FormValues>({
     defaultValues: {
       password: "",
       confirm_password: "",
     },
   });
-
-  // 🔥 LOADING
   const [registerLoading, setRegisterLoading] = useState(false);
-
-  // 🔥 SHOW PASSWORD
   const [showPassword, setShowPassword] = useState(false);
-
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  // 🔥 WATCH
   const password = watch("password") || "";
-
-  // 🔥 RULES
   const getPasswordChecks = (value: string) => ({
     minLength: value.length >= 8,
-
     hasNumber: /\d/.test(value),
-
     hasUppercase: /[A-Z]/.test(value),
-
     hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(value),
   });
 
   const passwordChecks = getPasswordChecks(password);
-
-  // 🔥 STRENGTH
   const getStrength = (checks: ReturnType<typeof getPasswordChecks>) => {
     const score = Object.values(checks).filter(Boolean).length;
 
@@ -149,20 +118,12 @@ export const usePage = () => {
           },
         },
       );
-
-      console.log("✅ RESET RESPONSE:", res.data);
-
+      console.log("res:", res.data);
       toast.success(t("password_reset_success"));
-
-      // ✅ LOCAL CLEAR
       localStorage.removeItem("reset_access_token");
-
       localStorage.removeItem("reset_refresh_token");
-
-      navigate("/");
+      navigate(`/${ROUTERS.home}`);
     } catch (err: any) {
-      console.log("❌ RESET ERROR:", err?.response?.data);
-
       toast.error(
         err?.response?.data?.detail ||
           err?.response?.data?.message ||
@@ -172,33 +133,6 @@ export const usePage = () => {
       setRegisterLoading(false);
     }
   };
-
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-
-    localStorage.setItem("lang", value);
-  };
-
-  const languages = [
-    {
-      value: "uz",
-      label: "O'zbekcha",
-      Icon: IconFlagUz,
-    },
-
-    {
-      value: "ru",
-      label: "Русский",
-      Icon: IconFlagRu,
-    },
-
-    {
-      value: "en",
-      label: "English",
-      Icon: IconFlagEn,
-    },
-  ];
-
   return {
     control,
     handleSubmit,
@@ -217,10 +151,6 @@ export const usePage = () => {
 
     t,
     i18n,
-
-    handleLangChange,
-
-    languages,
 
     navigate,
   };

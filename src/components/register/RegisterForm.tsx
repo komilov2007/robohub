@@ -12,7 +12,7 @@ import {
 
 import { Controller } from "react-hook-form";
 
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import {
   VisibilityOutlined,

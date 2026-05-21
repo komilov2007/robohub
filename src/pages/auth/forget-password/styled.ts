@@ -7,23 +7,23 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 export const AuthPageWrap = styled(Box)`
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  background: #f8fafc;
-  overflow: hidden;
-  @media (max-width: 970px) {
-    justify-content: center;
-  }
+  justify-content: center;
+  background: transparent;
+  overflow: visible;
 `;
+
 export const LeftColumn = styled(Box)`
-  flex: 0 0 50%;
-  max-width: 100%;
-  min-height: 100vh;
+  width: min(100%, 540px);
+  max-width: 540px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  background: #f8fafc;
-  padding: 24px 40px 32px;
+  background: transparent;
+  padding: 0;
   box-sizing: border-box;
+  margin: 0 auto;
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -36,20 +36,43 @@ export const LeftColumn = styled(Box)`
     transition: background-color 5000s ease-in-out 0s;
   }
 
-  @media (max-width: 1000px) {
-    flex: 0 0 100%;
-    max-width: 40px;
-    margin: 0 auto;
+  @media (max-width: 550px) {
+    width: 100%;
+    max-width: 400px;
   }
-  @media (max-width: 1200px) {
-    flex: 0 0 100%;
-    max-width: 500px;
-    margin: 0 auto;
+
+  @media (max-width: 420px) {
+    max-width: 350px;
   }
-  @media (max-width: 440px) {
-    flex: 0 0 100%;
-    max-width: 300px;
-    margin: 0 auto;
+
+  @media (max-width: 350px) {
+    max-width: 280px;
+  }
+`;
+
+export const CenterArea = styled(Box)`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const FormBlock = styled("form")`
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 550px) {
+    max-width: 400px;
+  }
+
+  @media (max-width: 420px) {
+    max-width: 350px;
+  }
+
+  @media (max-width: 350px) {
+    max-width: 280px;
   }
 `;
 export const AuthRightSide = styled(Box)`
@@ -64,37 +87,7 @@ export const HeaderArea = styled(Box)(() => ({
   justifyContent: "flex-end",
   width: "100%",
 }));
-export const CenterArea = styled(Box)`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  @media (max-width: 939px) {
-    justify-content: center;
-  }
-`;
-export const FormBlock = styled("form")`
-  width: 540px; /* default */
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 939px) {
-    width: 400px; /* sen xohlagan */
-    min-width: 500px;
-  }
-  @media (max-width: 550px) {
-    width: 400px; /* sen xohlagan */
-    min-width: 400px;
-  }
-  @media (max-width: 420px) {
-    width: 400px;
-    min-width: 350px;
-  }
-  @media (max-width: 350px) {
-    width: 400px;
-    min-width: 250px;
-  }
-`;
+
 export const BackButton = styled(Button)`
   width: 40px;
   min-width: 40px;

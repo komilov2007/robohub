@@ -6,7 +6,6 @@ import { AuthPageWrap, LeftColumn } from "./styled";
 
 import { usePage } from "./usePage";
 import ForgetPasswordForm from "@/components/forget-password/ForgetPasswordForm";
-import ForgetPasswordFooter from "@/components/forget-password/ForgetPasswordFooter";
 
 const ForgetPasswordPage = () => {
   const data = usePage();
@@ -16,7 +15,6 @@ const ForgetPasswordPage = () => {
       <AuthPageWrap>
         <LeftColumn>
           <ForgetPasswordForm {...data} />
-          <ForgetPasswordFooter t={data.t} />
         </LeftColumn>
       </AuthPageWrap>
     </ThemeProvider>

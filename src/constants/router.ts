@@ -1,0 +1,25 @@
+export const ROUTERS = {
+  home: "/",
+
+  register: "register",
+  forget_password: "forget-password",
+  otp_verify: "otp-verify",
+  otp: "otp",
+  reset_password: "reset-password",
+  register_success: "register/success",
+
+  admin: "admin",
+  admin_dashboard: "dashboard",
+  admin_orders: "orders",
+  admin_products: "products",
+  admin_products_add: "products/add",
+  admin_warehouse: "warehouse",
+  admin_warehouse_mapping: "warehouse/mapping",
+  admin_integration: "integration",
+  admin_profile: "profile",
+  admin_comment: "comment",
+  admin_notifications: "notifications",
+  admin_answers: "answers",
+  admin_chat: "chat",
+  admin_subscription: "subscription",
+} as const;

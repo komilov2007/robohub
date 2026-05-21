@@ -12,13 +12,10 @@ import * as yup from "yup";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import IconFlagUz from "@/assets/icons/flag-uz.svg?react";
-import IconFlagRu from "@/assets/icons/flag-ru.svg?react";
-import IconFlagEn from "@/assets/icons/flag-en.svg?react";
-
 import { api } from "@/api/api";
 
 import toast from "react-hot-toast";
+import { ROUTERS } from "@/constants/router";
 
 type OtpFormType = {
   otp: string;
@@ -61,7 +58,6 @@ export const usePage = () => {
     defaultValues: schema.getDefault(),
   });
 
-  // 🔥 TIMER
   useEffect(() => {
     if (timeLeft === 0) return;
 
@@ -72,7 +68,6 @@ export const usePage = () => {
     return () => clearTimeout(timer);
   }, [timeLeft]);
 
-  // 🔥 FORMAT TIME
   const formatTime = `${Math.floor(timeLeft / 60)}:${String(
     timeLeft % 60,
   ).padStart(2, "0")}`;
@@ -123,7 +118,7 @@ export const usePage = () => {
       console.log("✅ OTP SUCCESS:", data);
       localStorage.removeItem("register_access_token");
       toast.success(t("otp_verified_success"));
-      navigate("/register/success");
+      navigate(`/${ROUTERS.register_success}`);
     },
     onError: (error: any) => {
       const data = error?.response?.data;
@@ -175,34 +170,6 @@ export const usePage = () => {
     verifyMutation.mutate(data);
   };
 
-  // 🔥 LANGUAGE
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-
-    localStorage.setItem("lang", value);
-  };
-
-  // 🔥 LANGUAGES
-  const languages = [
-    {
-      value: "uz",
-      label: "O'zbekcha",
-      Icon: IconFlagUz,
-    },
-
-    {
-      value: "ru",
-      label: "Русский",
-      Icon: IconFlagRu,
-    },
-
-    {
-      value: "en",
-      label: "English",
-      Icon: IconFlagEn,
-    },
-  ];
-
   return {
     t,
     i18n,
@@ -220,12 +187,8 @@ export const usePage = () => {
 
     inputRefs,
 
-    handleLangChange,
-
     timeLeft,
     formatTime,
     isExpired,
-
-    languages,
   };
 };

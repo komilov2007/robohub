@@ -8,7 +8,7 @@ export const AuthContainer = styled(Box)`
 `;
 
 export const AuthLeft = styled(Box)`
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +21,6 @@ export const AuthLeft = styled(Box)`
 `;
 
 export const AuthRight = styled(Box)`
-  width: 50%;
+  width: 100%;
   height: 100%;
 `;

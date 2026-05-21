@@ -1,19 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import "./assets/locales/i18n";
 import "./index.css";
+
+import { router } from "@/router/router";
+import CircularIndeterminate from "./components/loader/page";
+
 const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <BrowserRouter>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<CircularIndeterminate />}>
         <Toaster position="top-right" />
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  </QueryClientProvider>,
+        <RouterProvider router={router} />
+      </Suspense>
+    </QueryClientProvider>
+  </React.StrictMode>,
 );

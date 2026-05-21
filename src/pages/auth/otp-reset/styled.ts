@@ -7,11 +7,9 @@ import Button from "@mui/material/Button";
 
 export const PageWrap = styled(Box)`
   width: 100%;
-  max-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: stretch;
-  background: #f8f8f8;
   overflow: hidden;
   box-sizing: border-box;
   margin-top: -10px;
@@ -19,8 +17,6 @@ export const PageWrap = styled(Box)`
 
 export const LeftSide = styled(Box)`
   flex: 1;
-  min-height: 100vh;
-  background: #f8f8f8;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

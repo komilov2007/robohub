@@ -45,17 +45,20 @@ export const TabsRow = styled(Box)({
 });
 export const LoginWrapper = styled(Box)({
   width: "100%",
+  display: "flex",
+  background: "#FFFFFF",
+});
+
+export const LoginLeft = styled(Box)({
+  width: "50%",
   minHeight: "100vh",
   display: "flex",
-});
-export const LoginLeft = styled(Box)({
-  width: "100%",
-  flex: "0 0 50%",
-  minWidth: "100%",
+  flexDirection: "column",
+  flexShrink: 0,
 
   "@media (max-width: 768px)": {
     width: "100%",
-    minWidth: "100%",
+    minHeight: "100dvh",
   },
 });
 export const TabButton = styled(Button)<{ active?: boolean }>(({ active }) => ({
