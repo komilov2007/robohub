@@ -1,8 +1,9 @@
-import Typography from "@mui/material/Typography";
-
-import { Link } from "react-router-dom";
-
-import { StyledLoginButton, LoginLeftNoAcc } from "./style";
+import {
+  StyledLoginButton,
+  LoginLeftNoAcc,
+  Typo,
+  NoAccountText,
+} from "./style";
 import { ROUTERS } from "@/constants/router";
 
 const LoginActions = ({ isSubmitting, t }: any) => {
@@ -18,11 +19,9 @@ const LoginActions = ({ isSubmitting, t }: any) => {
       </StyledLoginButton>
 
       <LoginLeftNoAcc>
-        <Typography vocab="noAccaunt">{t("no_account")}</Typography>
+        <NoAccountText>{t("no_account")}</NoAccountText>
 
-        <Typography component={Link} to={ROUTERS.register} vocab="loginRgt">
-          {t("register")}
-        </Typography>
+        <Typo to={ROUTERS.register}>{t("register")}</Typo>
       </LoginLeftNoAcc>
     </>
   );

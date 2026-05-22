@@ -1,15 +1,6 @@
-// import { ROUTERS } from "@/constants/router";
-// import { lazy, Suspense } from "react";
-// import { createBrowserRouter } from "react-router-dom";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-
 import { ROUTERS } from "@/constants/router";
-
-import AuthLayout from "@/layout/auth/auth-layout";
-import DashboardLayout from "@/layout/admin/dashboard-layout";
-
-import { ProtectedRoute, PublicRoute } from "../layout/hocs/hocs";
-
+import AuthLayout from "@/layout/auth/layout";
 import Login from "@/pages/auth/login/page";
 import Register from "@/pages/auth/register/page";
 import ForgetPassword from "@/pages/auth/forget-password/page";
@@ -31,10 +22,9 @@ import Notifications from "@/pages/admin/notifications/page";
 import Answers from "@/pages/admin/answer/page";
 import Chat from "@/pages/admin/chat/page";
 import Subscription from "@/pages/admin/subscription/page";
-
+import AdminLayout from "@/layout/admin/layout";
 export const router = createBrowserRouter([
   {
-    element: <PublicRoute />,
     children: [
       {
         path: ROUTERS.home,
@@ -73,11 +63,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoute />,
     children: [
       {
         path: ROUTERS.admin,
-        element: <DashboardLayout />,
+        element: <AdminLayout />,
         children: [
           {
             index: true,
@@ -148,15 +137,3 @@ export const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
-// const Login = lazy(() => import("@/pages/auth/login/page"));
-
-// export const router = createBrowserRouter([
-//   {
-//     path: ROUTERS.home,
-//     element: (
-//       <Suspense fallback={<div>Loading...</div>}>
-//         <Login />
-//       </Suspense>
-//     ),
-//   },
-// ]);

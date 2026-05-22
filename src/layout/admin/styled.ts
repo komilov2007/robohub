@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 
 export const LayoutWrapper = styled(Box)({
   minHeight: "100vh",
@@ -28,7 +28,18 @@ export const SidebarWrapper = styled(Box, {
     transform: $collapsed ? "translateX(-262px)" : "translateX(0)",
   },
 }));
-
+export const MobileBtn = styled(Button)({
+  position: "fixed",
+  top: 12,
+  left: 8,
+  zIndex: 10000,
+  width: 32,
+  height: 32,
+  borderRadius: 8,
+  border: "none",
+  background: "#00524F",
+  color: "#fff",
+});
 export const MobileOverlay = styled(Box)({
   position: "fixed",
   inset: 0,

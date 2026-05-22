@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Select } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 const dashMove = keyframes`
   0% {
     transform: rotate(0deg);
@@ -76,11 +76,29 @@ export const StyledTextField = styled(TextField)`
     }
   }
 `;
+export const NoAccountText = styled(Typography)({
+  color: "#7D879C",
+  fontSize: 14,
+  fontWeight: 400,
+  fontFamily: "inter",
+});
 export const FieldLabel = styled(Typography)`
   color: #111625;
   margin-bottom: 3px;
   font-size: 14px;
 `;
+export const TYPO = styled(Link)({
+  color: "#00524F",
+  fontSize: 12,
+  fontWeight: 500,
+  textDecoration: "none",
+});
+export const Typo = styled(Link)({
+  color: "#00524F",
+  fontSize: 14,
+  fontWeight: 500,
+  textDecoration: "none",
+});
 export const StyledMenuItem = styled(MenuItem)`
   display: flex;
   align-items: center;

@@ -1,10 +1,6 @@
-import { Suspense } from "react";
-import { Box, ThemeProvider } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
-import theme from "@/theme/theme";
-import CircularIndeterminate from "@/components/loader/page";
 
 import { AutofillOverride, LoginFormCenter } from "@/components/login/style";
 
@@ -13,12 +9,13 @@ import LoginFooter from "@/components/login/LoginFooter";
 import { LoginRight } from "@/components/login/loginright";
 
 import { LoginLeft, LoginWrapper } from "@/pages/auth/login/styled";
+import { PublicRoute } from "./hocs";
 
 const AuthLayout = () => {
   const { t } = useTranslation();
 
   return (
-    <ThemeProvider theme={theme}>
+    <PublicRoute>
       <AutofillOverride>
         <LoginWrapper>
           <LoginLeft>
@@ -49,7 +46,7 @@ const AuthLayout = () => {
           <LoginRight />
         </LoginWrapper>
       </AutofillOverride>
-    </ThemeProvider>
+    </PublicRoute>
   );
 };
 

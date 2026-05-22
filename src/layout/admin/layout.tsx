@@ -9,45 +9,35 @@ import {
   MainContent,
   MobileOverlay,
   SidebarWrapper,
+  MobileBtn,
 } from "./styled";
 import { ArrowRight } from "@mui/icons-material";
+import { ProtectedRoute } from "./hocs";
 
-export default function MainLayout() {
+export default function AdminLayout() {
   const { collapsed, setCollapsed, isMobile, sidebarWidth } = usePage();
 
   return (
-    <LayoutWrapper>
-      <SidebarWrapper $sidebarWidth={sidebarWidth} $collapsed={collapsed}>
-        <Sidebar collapsed={collapsed} onCollapseChange={setCollapsed} />
-      </SidebarWrapper>
-      {collapsed && isMobile && (
-        <button
-          onClick={() => setCollapsed(false)}
-          style={{
-            position: "fixed",
-            top: 12,
-            left: 8,
-            zIndex: 10000,
-            width: 32,
-            height: 32,
-            borderRadius: 8,
-            border: "none",
-            background: "#00524F",
-            color: "#fff",
-          }}
-        >
-          <ArrowRight />
-        </button>
-      )}
-      {!collapsed && isMobile && (
-        <MobileOverlay onClick={() => setCollapsed(true)} />
-      )}
+    <ProtectedRoute>
+      <LayoutWrapper>
+        <SidebarWrapper $sidebarWidth={sidebarWidth} $collapsed={collapsed}>
+          <Sidebar collapsed={collapsed} onCollapseChange={setCollapsed} />
+        </SidebarWrapper>
+        {collapsed && isMobile && (
+          <MobileBtn onClick={() => setCollapsed(false)}>
+            <ArrowRight />
+          </MobileBtn>
+        )}
+        {!collapsed && isMobile && (
+          <MobileOverlay onClick={() => setCollapsed(true)} />
+        )}
 
-      <MainContent $sidebarWidth={sidebarWidth}>
-        {/* <Suspense fallback={<CircularIndeterminate />}> */}
-        <Outlet context={{ collapsed }} />
-        {/* </Suspense> */}
-      </MainContent>
-    </LayoutWrapper>
+        <MainContent $sidebarWidth={sidebarWidth}>
+          {/* <Suspense fallback={<CircularIndeterminate />}> */}
+          <Outlet context={{ collapsed }} />
+          {/* </Suspense> */}
+        </MainContent>
+      </LayoutWrapper>
+    </ProtectedRoute>
   );
 }
